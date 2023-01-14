@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Outlet, Route, Routes } from 'react-router-dom';
-import Dashboard from './components/shared/Dashboard';
 import AdminHome from './pages/admin/AdminHome';
 import ClientHome from './pages/client/ClientHome';
 import Home from './pages/public/Home';

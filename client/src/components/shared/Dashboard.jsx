@@ -39,7 +39,7 @@ const Dashboard = ({ rightContainerContent }) => {
                     <d.MenueBar>
                         {links.map((e,i) => {
                             return (
-                                <d.IconContainer onClick={() => {
+                                <d.IconContainer selected={true} onClick={() => {
                                     setNav(i)
                                 }} key={i} > {e.icon} </d.IconContainer>
                                 
@@ -57,24 +57,6 @@ const Dashboard = ({ rightContainerContent }) => {
                                 </d.OptionContainer>
                             )
                         })}
-                        
-                        {/* <d.OptionsTitle>Tours</d.OptionsTitle>
-                        <d.OptionContainer>
-                            <d.OptionIconContainer><FiBarChart2/></d.OptionIconContainer>
-                            <d.Option>Tour Statistics</d.Option>
-                        </d.OptionContainer>
-                        <d.OptionContainer>
-                            <d.OptionIconContainer><FiPlusCircle/></d.OptionIconContainer>
-                            <d.Option>Add Tours</d.Option>
-                        </d.OptionContainer>
-                        <d.OptionContainer>
-                            <d.OptionIconContainer><FiSliders/></d.OptionIconContainer>
-                            <d.Option>Update Tours</d.Option>
-                        </d.OptionContainer>
-                        <d.OptionContainer>
-                            <d.OptionIconContainer><FiBookOpen/></d.OptionIconContainer>
-                            <d.Option>View All Bookings</d.Option>
-                        </d.OptionContainer> */}
 
                     </d.OptionsContainer>
                                       
