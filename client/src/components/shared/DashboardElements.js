@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import img from './../../images/1.jpg'
+import { Link } from "react-router-dom";
 
 export const Conatiner = styled.div`
 
@@ -89,7 +90,7 @@ export const MenueBar = styled.div`
 
     
 `;
-export const IconContainer = styled.div`
+export const IconContainer = styled.button`
     width:2rem ;
     height:2rem ;
     display:flex ;
@@ -102,6 +103,9 @@ export const IconContainer = styled.div`
         color:#14BCDE ;
         cursor: pointer;
     }
+    background-color:#444 ;
+    border:none ;
+    outline:none ;
 `;
 
 export const OptionsContainer = styled.div`
@@ -120,7 +124,7 @@ export const OptionsTitle = styled.p`
     font-weight:1000 ;
 `;
 
-export const OptionContainer = styled.div`
+export const OptionContainer = styled(Link)`
     width:100% ;
     margin:1rem 0 ;
     display:flex ;
@@ -129,6 +133,9 @@ export const OptionContainer = styled.div`
         color:#14BCDE ;
         cursor: pointer;
     }
+    color:#333 ;
+    text-decoration:none ;
+
 `;
 
 export const Option = styled.p`

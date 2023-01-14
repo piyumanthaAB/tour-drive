@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as d from './DashboardElements';
-import { FiMap,FiTruck,FiUser,FiActivity,FiPlusCircle,FiBarChart2,FiBookOpen,FiSliders } from "react-icons/fi";
+import { adminlinks,clientLinks } from '../../data/links';
 
-const Dashboard = ({rightContainerContent}) => {
+const Dashboard = ({ rightContainerContent }) => {
+
+    const [nav, setNav] = useState(1)
+    const [links, setLinks] = useState(adminlinks);
+
+    const currentUserRole = 'admin'
+    
+    useEffect(() => {
+       switch (currentUserRole) {
+        case 'admin':
+               setLinks(adminlinks);
+            break;
+           case 'client':
+               setLinks(clientLinks)
+               break;       
+        default:
+            break;
+       } 
+    },[])
+
     return (
         <d.Conatiner>
             <d.ContainerLeft>
@@ -15,17 +34,31 @@ const Dashboard = ({rightContainerContent}) => {
                         
                     </d.LeftContainerNameContainer>
                 </d.LeftTopContainer>
-                <d.HR/>
+                <d.HR />
                 <d.LeftBottomContainer>
                     <d.MenueBar>
-                        <d.IconContainer> <FiMap/> </d.IconContainer>
-                        <d.IconContainer> <FiTruck/> </d.IconContainer>
-                        <d.IconContainer> <FiUser/> </d.IconContainer>
-                        <d.IconContainer> <FiActivity/> </d.IconContainer>
-                    </d.MenueBar>   
+                        {links.map((e,i) => {
+                            return (
+                                <d.IconContainer onClick={() => {
+                                    setNav(i)
+                                }} key={i} > {e.icon} </d.IconContainer>
+                                
+                            )
+                        })}
+                    </d.MenueBar>
                     <d.OptionsContainer>
                         
-                        <d.OptionsTitle>Tours</d.OptionsTitle>
+                        <d.OptionsTitle>{links[nav].resourceType}</d.OptionsTitle>
+                        {links[nav].options.map((e,i) => {
+                            return (
+                                <d.OptionContainer key={i} to={`${e.redirectURL}`}>
+                                    <d.OptionIconContainer>{e.icon}</d.OptionIconContainer>
+                                    <d.Option>{e.text}</d.Option>
+                                </d.OptionContainer>
+                            )
+                        })}
+                        
+                        {/* <d.OptionsTitle>Tours</d.OptionsTitle>
                         <d.OptionContainer>
                             <d.OptionIconContainer><FiBarChart2/></d.OptionIconContainer>
                             <d.Option>Tour Statistics</d.Option>
@@ -41,7 +74,7 @@ const Dashboard = ({rightContainerContent}) => {
                         <d.OptionContainer>
                             <d.OptionIconContainer><FiBookOpen/></d.OptionIconContainer>
                             <d.Option>View All Bookings</d.Option>
-                        </d.OptionContainer>
+                        </d.OptionContainer> */}
 
                     </d.OptionsContainer>
                                       
@@ -51,7 +84,7 @@ const Dashboard = ({rightContainerContent}) => {
             </d.ContainerLeft>
     
             <d.ContainerRight>
-              {rightContainerContent}
+                {rightContainerContent}
             </d.ContainerRight>
         </d.Conatiner>
     )
