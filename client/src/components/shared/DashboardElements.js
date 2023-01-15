@@ -106,6 +106,7 @@ export const IconContainer = styled.button`
     background-color:#444 ;
     border:none ;
     outline:none ;
+    transition:all 0.2s ;
 `;
 
 export const OptionsContainer = styled.div`
@@ -130,11 +131,14 @@ export const OptionContainer = styled(Link)`
     display:flex ;
     align-items:center ;
     &:hover{
-        color:#14BCDE ;
+        ${'' /* color:#14BCDE ; */}
+        color:#333;
         cursor: pointer;
     }
-    color:#333 ;
+    color:#777 ;
+    font-weight:${props => props.selected ? 'bold' : "400"}; ;
     text-decoration:none ;
+    transition:all 0.2s ;
 
 `;
 

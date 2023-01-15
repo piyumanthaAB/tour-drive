@@ -3,7 +3,7 @@ import { FiMap,FiTruck,FiUser,FiActivity,FiPlusCircle,FiBarChart2,FiBookOpen,FiS
 
 export const adminlinks = [
     {
-        resourceType: 'Tour',
+        resourceType: 'Tours',
         icon: <FiMap/>,
         options: [
             {
@@ -77,7 +77,7 @@ export const adminlinks = [
         ]
     },
     {
-        resourceType: 'Stats',
+        resourceType: 'Statistics',
         icon: <FiActivity/>,
         options: [
             {
@@ -87,17 +87,17 @@ export const adminlinks = [
             },
             {
                 icon: <FiPlusCircle/>,
-                text: 'Add Vehicles',
+                text: 'User Statistics',
                 redirectURL:'/admin/vehicle-add'
             },
             {
                 icon: <FiSliders/>,
-                text: 'Update Vehicles',
+                text: 'Tour Statistics',
                 redirectURL:'/admin/vehicle-update'
             },
             {
                 icon: <FiBookOpen/>,
-                text: 'View All Rentings',
+                text: 'Reviews Statistics',
                 redirectURL:'/admin/vehicle-rentings'
             },
         ]
