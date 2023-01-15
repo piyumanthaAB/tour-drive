@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import img from './../../images/1.jpg'
+import img from './../../images/1.png'
 import { Link } from "react-router-dom";
 
 export const Conatiner = styled.div`
@@ -96,13 +96,13 @@ export const IconContainer = styled.button`
     display:flex ;
     align-items:center ;
     justify-content:center ;
-    ${'' /* background-color:#fff ; */}
     font-size:1.5rem ;
     color:${props => props.selected ? '#14BCDE' : "#fff"};
     &:hover{
         color:#14BCDE ;
         cursor: pointer;
     }
+    
     background-color:#444 ;
     border:none ;
     outline:none ;

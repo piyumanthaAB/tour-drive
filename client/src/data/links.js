@@ -9,22 +9,22 @@ export const adminlinks = [
             {
                 icon: <FiBarChart2/>,
                 text: 'Tour Statistics',
-                redirectURL:'/admin/tour-stats'
+                redirectURL:'/admin/tours/stat'
             },
             {
                 icon: <FiPlusCircle/>,
                 text: 'Add Tours',
-                redirectURL:'/admin/tours-add'
+                redirectURL:'/admin/tours/add-tours'
             },
             {
                 icon: <FiSliders/>,
                 text: 'Update Tours',
-                redirectURL:'/admin/tour-update'
+                redirectURL:'/admin/tours/update-tours'
             },
             {
                 icon: <FiBookOpen/>,
                 text: 'View All Bookings',
-                redirectURL:'/admin/tour-bookings'
+                redirectURL:'/admin/tours/view-all-bookings'
             },
         ]
     },
@@ -35,22 +35,22 @@ export const adminlinks = [
             {
                 icon: <FiBarChart2/>,
                 text: 'Vehicle Statistics',
-                redirectURL:'/admin/vehicle-stats'
+                redirectURL:'/admin/vehicles/stat'
             },
             {
                 icon: <FiPlusCircle/>,
                 text: 'Add Vehicles',
-                redirectURL:'/admin/vehicle-add'
+                redirectURL:'/admin/vehicles/add-vehicle'
             },
             {
                 icon: <FiSliders/>,
                 text: 'Update Vehicles',
-                redirectURL:'/admin/vehicle-update'
+                redirectURL:'/admin/vehicles/update-vehicle'
             },
             {
                 icon: <FiBookOpen/>,
                 text: 'View All Rentings',
-                redirectURL:'/admin/vehicle-rentings'
+                redirectURL:'/admin/vehicles/view-all-bookings'
             },
         ]
     },
@@ -61,17 +61,17 @@ export const adminlinks = [
             {
                 icon: <FiBarChart2/>,
                 text: 'View All Users',
-                redirectURL:'/admin/vehicle-stats'
+                redirectURL:'/admin/users/all'
             },
             {
                 icon: <FiPlusCircle/>,
                 text: 'Add Users',
-                redirectURL:'/admin/vehicle-add'
+                redirectURL:'/admin/users/add'
             },
             {
                 icon: <FiXCircle/>,
                 text: 'Delete Users',
-                redirectURL:'/admin/vehicle-update'
+                redirectURL:'/admin/users/delete'
             },
             
         ]
