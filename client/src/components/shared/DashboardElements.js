@@ -27,7 +27,7 @@ export const ContainerRight = styled.div`
 export const LeftTopContainer = styled.div`
     display:flex ;
     width:100% ;
-    padding:3rem 1rem ;
+    padding:3rem 1rem 3rem 2rem ;
     ${'' /* justify-content:space-between ; */}
     
 `;
@@ -133,6 +133,7 @@ export const OptionContainer = styled(Link)`
     &:hover{
         ${'' /* color:#14BCDE ; */}
         color:#333;
+        font-weight:bold ;
         cursor: pointer;
     }
     color:#777 ;

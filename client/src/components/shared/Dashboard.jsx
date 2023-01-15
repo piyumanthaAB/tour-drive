@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import * as d from './DashboardElements';
 import { adminlinks,clientLinks } from '../../data/links';
+import DashboardNav from './DashboardNav';
 
 const Dashboard = ({ rightContainerContent }) => {
 
@@ -79,6 +80,7 @@ const Dashboard = ({ rightContainerContent }) => {
             </d.ContainerLeft>
     
             <d.ContainerRight>
+                <DashboardNav/>
                 {rightContainerContent}
             </d.ContainerRight>
         </d.Conatiner>
