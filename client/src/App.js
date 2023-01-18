@@ -5,6 +5,7 @@ import Home from './pages/public/Home';
 import WithoutNav from './components/router/WithoutNav'
 import WithNav from './components/router/WithNav'
 import NotFound from './pages/public/NotFound';
+import AdminTourCreate from './pages/admin/AdminTourCreate';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
             <Route exact path="/admin" element={<AdminHome />} /> {/* this is admin home */}
             
             <Route exact path="/admin/tours/stat" element={<AdminHome />} />
-            <Route exact path="/admin/tours/add-tours" element={<AdminHome />} />
+            <Route exact path="/admin/tours/add-tours" element={<AdminTourCreate />} />
             <Route exact path="/admin/tours/update-tours" element={<AdminHome />} />
             <Route exact path="/admin/tours/view-all-bookings" element={<AdminHome />} />
 

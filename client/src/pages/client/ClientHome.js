@@ -4,7 +4,7 @@ import ClientHomeComp from './../../components/client/ClientHomeComp';
 const ClientHome = () => {
   return (
     <>
-          <Dashboard rightContainerContent={ <ClientHomeComp/>} />
+      <Dashboard rightContainerContent={<ClientHomeComp />} />
 
 
     </>
