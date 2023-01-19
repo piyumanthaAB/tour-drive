@@ -8,6 +8,12 @@ import WithoutNav from './components/router/WithoutNav'
 import WithNav from './components/router/WithNav'
 import NotFound from './pages/public/NotFound';
 import AdminTourCreate from './pages/admin/AdminTourCreate';
+import Login from './pages/public/Login';
+import Signup from './pages/public/Signup';
+import ForgotPassword from './pages/public/ForgotPassword';
+import ResetPassword from './pages/public/ResetPassword';
+import Profile_1 from './pages/public/Profile_1';
+import Profile_2 from './pages/public/Profile_2';
 
 function App() {
   const GlobalStyle = createGlobalStyle`
@@ -20,12 +26,11 @@ function App() {
       <div className="App">
         <Routes>
           
-          {/* ==================== routes without nav bar starts here ========================= */}
+          {/*🚩 ==================== routes without nav bar starts here ========================= */}
           
           <Route element={<WithoutNav />}>
             <Route exact path="/me" element={<ClientHome />} />
-            <Route exact path="/login" element={<Home />} />
-            <Route exact path="/register" element={<Home />} />
+            
 
             {/* ADMIN ROUTES starts here */}
             <Route exact path="/admin" element={<AdminHome />} /> {/* this is admin home */}
@@ -48,18 +53,29 @@ function App() {
 
           </Route>
           
-          {/* ==================== routes without nav bar ends here ============================*/}
+          {/*🚩 ==================== routes without nav bar ends here ============================*/}
 
           
-          {/* ==================== routes WITH nav bar starts here ========================= */}
+          {/*💥 ==================== routes WITH nav bar starts here ========================= */}
           
           <Route element={<WithNav />}>
 
             <Route exact path="/" element={<Home />} />
             <Route exact path="/about" element={<Home />} />
             <Route exact path="/contact-us" element={<Home />} />
-            <Route exact path="/forgot-password" element={<Home />} />
-            <Route exact path="/reset-password" element={<Home />} />
+
+
+            <Route exact path="/forgot-password" element={<ForgotPassword/>} />
+            <Route exact path="/reset-password" element={<ResetPassword />} />
+
+            <Route exact path="/login" element={<Login/>} />
+            <Route exact path="/signup" element={<Signup/>} />
+            
+            <Route exact path="/signup-info-1" element={<Profile_1 />} />
+            <Route exact path="/signup-info-2" element={<Profile_2 />} />
+
+
+
             <Route exact path="/contact-us" element={<Home />} />
             <Route exact path="/tours" element={<Home />} />
             <Route exact path="/tours/:id" element={<Home />} />
@@ -72,7 +88,7 @@ function App() {
           </Route>
 
 
-          {/* ==================== routes WITH nav bar ends here ========================= */}
+          {/*💥 ==================== routes WITH nav bar ends here ========================= */}
 
           
         </Routes>

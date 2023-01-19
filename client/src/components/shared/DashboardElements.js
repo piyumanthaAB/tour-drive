@@ -98,6 +98,7 @@ export const IconContainer = styled.button`
     justify-content:center ;
     font-size:1.5rem ;
     color:${props => props.selected ? 'var(--main-color)' : "#fff"};
+    
     &:hover{
         color:var(--main-color);
         cursor: pointer;
