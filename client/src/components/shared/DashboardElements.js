@@ -59,6 +59,7 @@ export const WelcomeText = styled.p`
 export const NameText = styled.p`
     font-size:1.5rem ;
     font-weight:1000 ;
+    font-family:var(--secondary-font) ;
 `;
 
 export const HR = styled.hr`
@@ -72,7 +73,6 @@ export const LeftBottomContainer = styled.div`
     display:flex ;
     flex:0 1 100% ;
     padding:2rem 0 ;
-    ${'' /* background-color:blue ; */}
     flex-direction:column ;
     justify-content:flex-start ;
     align-items:center ;
@@ -97,9 +97,9 @@ export const IconContainer = styled.button`
     align-items:center ;
     justify-content:center ;
     font-size:1.5rem ;
-    color:${props => props.selected ? '#14BCDE' : "#fff"};
+    color:${props => props.selected ? 'var(--main-color)' : "#fff"};
     &:hover{
-        color:#14BCDE ;
+        color:var(--main-color);
         cursor: pointer;
     }
     
@@ -111,7 +111,7 @@ export const IconContainer = styled.button`
 
 export const OptionsContainer = styled.div`
     width:85% ;
-    border:1px solid #14BCDE ;
+    border:1px solid var(--main-color);
     ${'' /* background-color:red ; */}
     min-height:30rem ;
     margin:3rem 0 ;
@@ -123,6 +123,7 @@ export const OptionsTitle = styled.p`
     font-size:1.75rem ;
     margin:0 0 1rem 0 ;
     font-weight:1000 ;
+    
 `;
 
 export const OptionContainer = styled(Link)`
@@ -131,7 +132,6 @@ export const OptionContainer = styled(Link)`
     display:flex ;
     align-items:center ;
     &:hover{
-        ${'' /* color:#14BCDE ; */}
         color:#333;
         font-weight:bold ;
         cursor: pointer;
@@ -145,6 +145,7 @@ export const OptionContainer = styled(Link)`
 
 export const Option = styled.p`
     font-size:1.3rem ;
+    font-family:var(--secondary-font) ;
 `;
 
 export const OptionIconContainer = styled.div`

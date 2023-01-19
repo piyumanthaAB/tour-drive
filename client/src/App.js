@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
+import './variables.css';
 import AdminHome from './pages/admin/AdminHome';
 import ClientHome from './pages/client/ClientHome';
 import Home from './pages/public/Home';
@@ -8,8 +10,13 @@ import NotFound from './pages/public/NotFound';
 import AdminTourCreate from './pages/admin/AdminTourCreate';
 
 function App() {
+  const GlobalStyle = createGlobalStyle`
+  @import url('./variables.css');
+`
+  
   return (
     <Router>
+      <GlobalStyle />
       <div className="App">
         <Routes>
           
