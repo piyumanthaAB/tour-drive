@@ -1,8 +1,11 @@
 import React from 'react'
+import HomeCover from '../../components/Home/HomeCover'
 
 const Home = () => {
   return (
-    <h1>Home</h1>
+    <>
+      <HomeCover/>
+    </>
   )
 }
 
