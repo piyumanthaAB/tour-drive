@@ -2,7 +2,7 @@ export const tours = [
     {
         _id: '1',
         name: 'sample_tour_1',
-        tour_cover: 'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80',
+        tour_cover: 'https://images.unsplash.com/photo-1544750040-4ea9b8a27d38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHNyaSUyMGxhbmthfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
         tour_gallery_images: [
             'https://images.unsplash.com/photo-1542785853-cf202360bca0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
             'https://images.unsplash.com/photo-1546048607-6a1240f95d42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
@@ -42,7 +42,7 @@ export const tours = [
     {
         _id: '2',
         name: 'sample_tour_2',
-        tour_cover: 'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80',
+        tour_cover: 'https://images.unsplash.com/photo-1552055568-e9943cd2a08f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c3JpJTIwbGFua2F8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
         tour_gallery_images: [
             '',
             '',
@@ -82,7 +82,7 @@ export const tours = [
     {
         _id: '3',
         name: 'sample_tour_3',
-        tour_cover: 'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80',
+        tour_cover: 'https://images.unsplash.com/photo-1491497895121-1334fc14d8c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHNyaSUyMGxhbmthfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
         tour_gallery_images: [
             '',
             '',
@@ -122,7 +122,7 @@ export const tours = [
     {
         _id: '4',
         name: 'sample_tour_4',
-        tour_cover: 'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80',
+        tour_cover: 'https://media.istockphoto.com/id/1285881901/photo/temple-of-the-sacred-tooth-relic-at-kandy-sri-lanka.jpg?b=1&s=170667a&w=0&k=20&c=RqbfMHFsJHiM2UG5xAhGjQOoCIPYF-0r3-neaNNbbcI=',
         tour_gallery_images: [
             '',
             '',

@@ -14,6 +14,7 @@ import ForgotPassword from './pages/public/ForgotPassword';
 import ResetPassword from './pages/public/ResetPassword';
 import Profile_1 from './pages/public/Profile_1';
 import Profile_2 from './pages/public/Profile_2';
+import Tours from './pages/public/Tours';
 
 function App() {
   const GlobalStyle = createGlobalStyle`
@@ -77,8 +78,8 @@ function App() {
 
 
             <Route exact path="/contact-us" element={<Home />} />
-            <Route exact path="/tours" element={<Home />} />
-            <Route exact path="/tours/:id" element={<Home />} />
+            <Route exact path="/tours" element={<Tours />} />
+            <Route exact path="/tours/:id" element={<Tours />} />
             <Route exact path="/vehicles" element={<Home />} />
             <Route exact path="/vehicles/:id" element={<Home />} />
           
