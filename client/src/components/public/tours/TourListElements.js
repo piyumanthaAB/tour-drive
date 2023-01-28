@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import img_1 from './../../../images/tours/tour_1.jpg'
 import {Link} from 'react-router-dom';
 
 
@@ -8,32 +7,35 @@ export const ContentContainer = styled.div`
     min-height:50rem ;
     ${'' /* background-color:#000 ; */}
     margin:10rem auto ;
+    ${'' /* display:flex ; */}
+    ${'' /* padding:1rem ; */}
     
 `;
 
 export const ToursSection = styled.div`
-    width:100% ;
     display:flex ;
-    justify-content:space-between ;
+    flex:0 1 90% ;
+    ${'' /* justify-content:space-between ; */}
+    ${'' /* background-color:red ; */}
+    display:flex ;
 `;
 
 export const TourListContainer = styled.div`
-    flex:0 1 75% ;
+    flex:0 1 70% ;
     min-height:10rem ;
+    ${'' /* display:flex ; */}
+    ${'' /* justify-content:center ; */}
     ${'' /* background-color:green ; */}
-    padding:2rem 1rem ;
+    ${'' /* padding:2rem 1rem ; */}
+    
 `;
 
-export const TourFilterContainer = styled.div`
-    flex:0 1 25% ;
-    ${'' /* background-color:#ccc ; */}
-`;
+
 
 export const TourItemContainer = styled.div`
     flex:0 1 100% ;
-    ${'' /* border:1px solid #000 ; */}
     border-radius:1rem ;
-    min-height:25rem ;
+    padding:1rem ;
     margin:3rem 0 ;
     display:flex ;
     box-shadow: 0px 0px 32px 0px rgba(143,143,143,0.2);
@@ -42,12 +44,14 @@ export const TourItemContainer = styled.div`
 
 export const TourImgContainer = styled.div`
     flex:0 1 30% ;
+    position: relative;
     ${'' /* background-image: url(${img_1}); */}
     background-image: url(${props => props.img });
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius:1rem ;
+    
 
 `;
 
@@ -177,4 +181,58 @@ export const ExploreBtn = styled(Link)`
     font-size:1.8rem ;
     font-weight:600 ;
     border-radius:1rem ;
+
+    
 `
+
+export const FavouriteBtn = styled.button`
+    width:3.5rem ;
+    height:3.5rem ;
+    border-radius:50% ;
+    background-color:#eee ;
+    border:none ;
+    outline:none ;
+    font-size:1.8rem ;
+    display:flex ;
+    justify-content:center ;
+    align-items:center ;
+    position:absolute ;
+    top:2rem ;
+    right:2rem ;
+    transition:all 0.2s ;
+
+    :hover{
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+`;
+
+export const TourFilterContainer = styled.div`
+    flex:0 1 30% ;
+    ${'' /* background-color:#ccc ; */}
+    display:flex ;
+    padding:1rem 5rem ;
+    flex-direction:column ;
+    align-items:flex-start ;
+    justify-content:flex-start ;
+`;
+
+export const TourFilterTitle = styled.div`
+    font-weight:600 ;
+    font-size:2rem ;
+    text-align:center ;
+
+`;
+
+export const TourFilterRow = styled.div`
+    width:100% ;
+    margin:1rem 0 ;
+    min-height:4rem ;
+    ${'' /* background-color:green ; */}
+`;
+
+export const TourFilterRowTitle = styled.div`
+    font-size:1.5rem ;
+    font-weight:600 ;
+
+`;

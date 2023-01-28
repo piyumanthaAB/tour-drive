@@ -6,6 +6,7 @@ import ClientHome from './pages/client/ClientHome';
 import Home from './pages/public/Home';
 import WithoutNav from './components/router/WithoutNav'
 import WithNav from './components/router/WithNav'
+import WithColoredFooter from './components/router/WithColoredFooter';
 import NotFound from './pages/public/NotFound';
 import AdminTourCreate from './pages/admin/AdminTourCreate';
 import Login from './pages/public/Login';
@@ -66,11 +67,11 @@ function App() {
             <Route exact path="/contact-us" element={<Home />} />
 
 
-            <Route exact path="/forgot-password" element={<ForgotPassword/>} />
+            <Route exact path="/forgot-password" element={<ForgotPassword />} />
             <Route exact path="/reset-password" element={<ResetPassword />} />
 
-            <Route exact path="/login" element={<Login/>} />
-            <Route exact path="/signup" element={<Signup/>} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/signup" element={<Signup />} />
             
             <Route exact path="/signup-info-1" element={<Profile_1 />} />
             <Route exact path="/signup-info-2" element={<Profile_2 />} />
@@ -85,12 +86,16 @@ function App() {
           
             
 
-            <Route path="*" element={<NotFound />} />
           </Route>
-
-
           {/*💥 ==================== routes WITH nav bar ends here ========================= */}
 
+
+
+
+          <Route element={<WithColoredFooter />}>
+            <Route path="*" element={<NotFound />} />
+
+          </Route>
           
         </Routes>
       </div>

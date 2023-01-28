@@ -2,13 +2,19 @@ import React from 'react'
 import { TourItemContainer, TourPriceContainer, TourDescContainer,
     TourImgContainer, TourTitle,Price,ExploreBtn,
     ContentContainer, TourFilterContainer, TourSecondaryTitleContainer,
-    TourSecondaryTitle, BadgeIcon, BadgeContainer, PriceRow,
-    TourListContainer, ToursSection, SecondaryTitleIcon, ReviewTitle,
-    ReviewsContainer, ReviewIcon, Row, TourDesc
+    TourSecondaryTitle, BadgeIcon, BadgeContainer, PriceRow,TourFilterRow,
+    TourListContainer, ToursSection, SecondaryTitleIcon, ReviewTitle,TourFilterRowTitle,
+    ReviewsContainer, ReviewIcon, Row, TourDesc,FavouriteBtn,TourFilterTitle
 } from './TourListElements';
 
-import { FiMapPin,FiUsers,FiClock } from "react-icons/fi";
-import { BsFillStarFill,BsStarHalf,BsStar } from "react-icons/bs";
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
+
+import { FiMapPin,FiUsers,FiClock,FiHeart } from "react-icons/fi";
+import { BsFillStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+
+import Accordion from 'react-bootstrap/Accordion';
 
 const TourListComponent = ({tours}) => {
     return (
@@ -21,9 +27,25 @@ const TourListComponent = ({tours}) => {
                             return (
                                 <>
                                     <TourItemContainer key={tour._id}>
-                                        <TourImgContainer img={tour.tour_cover} />
+                                        <TourImgContainer img={tour.tour_cover} >
+                                            {/* mui check box with icon can use here */}
+                                            
+                                            <FavouriteBtn>
+                                                <Checkbox
+                                                    icon={<FavoriteBorder />}
+                                                    checkedIcon={<Favorite />}
+                                                    sx={{
+                                                        color: '#333',
+                                                        '&.Mui-checked': {
+                                                            color: 'var(--main-color)',
+                                                        },
+                                                        '& .MuiSvgIcon-root': { fontSize: 20 }
+                                                    }}
+                                                />
+                                            </FavouriteBtn>
+                                        </TourImgContainer>
                                         <TourDescContainer>
-                                            <TourTitle>{ tour.name}</TourTitle>
+                                            <TourTitle>{tour.name}</TourTitle>
                                             <Row>
                                   
                                                 <TourSecondaryTitleContainer>
@@ -64,10 +86,26 @@ const TourListComponent = ({tours}) => {
                         })}
                         
                     </TourListContainer>
-                    <TourFilterContainer>
                       
+                    <TourFilterContainer>
+                        <TourFilterTitle>
+                            Filter Tours
+                        </TourFilterTitle>
+                        <TourFilterRow>
+                            <TourFilterRowTitle>Categories</TourFilterRowTitle>
+
+                        </TourFilterRow>
+                        <TourFilterRow>
+                            <TourFilterRowTitle>Reviews Score</TourFilterRowTitle>
+                        
+                        </TourFilterRow>
+                        <TourFilterRow>
+                            <TourFilterRowTitle>Filter Price</TourFilterRowTitle>
+                        
+                        </TourFilterRow>
                     </TourFilterContainer>
                 </ToursSection>
+                
             </ContentContainer>
         </>
     );
