@@ -22,7 +22,7 @@ export default function LoginForm() {
          </l.ForgetText>
          <l.LoginButton>SignIn</l.LoginButton>
 
-         <l.Desc2>-----or sign in with------</l.Desc2>
+         <l.Desc2>-----or sign in with-----</l.Desc2>
 
          <l.FacebookLoginButton>Continue with Facebook</l.FacebookLoginButton>
          <l.GoogleLoginButton>Continue with Google</l.GoogleLoginButton>
