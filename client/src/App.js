@@ -16,6 +16,8 @@ import ResetPassword from './pages/public/ResetPassword';
 import Profile_1 from './pages/public/Profile_1';
 import Profile_2 from './pages/public/Profile_2';
 import Tours from './pages/public/Tours';
+import AdminCreateUser from './pages/admin/user related/AdminCreateUser';
+import SharedElementsPreview from './pages/SharedElementsPreview';
 
 function App() {
   const GlobalStyle = createGlobalStyle`
@@ -48,7 +50,7 @@ function App() {
             <Route exact path="/admin/vehicles/view-all-bookings" element={<AdminHome />} />
             
             <Route exact path="/admin/users/all" element={<AdminHome />} />
-            <Route exact path="/admin/users/add" element={<AdminHome />} />
+            <Route exact path="/admin/users/add" element={<AdminCreateUser/>} />
             <Route exact path="/admin/users/delete" element={<AdminHome />} />
             
             {/* ADMIN ROUTES ends here */}
@@ -84,6 +86,7 @@ function App() {
             <Route exact path="/vehicles" element={<Home />} />
             <Route exact path="/vehicles/:id" element={<Home />} />
           
+            <Route exact path="/shared-elemets-preview" element={<SharedElementsPreview />} />
             
 
           </Route>

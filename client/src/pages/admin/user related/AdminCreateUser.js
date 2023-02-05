@@ -1,4 +1,5 @@
 import React from 'react'
+import AdminUserCreateForm from '../../../components/admin/user related/AdminUserCreateForm'
 import Dashboard from '../../../components/shared/Dashboard'
 
 const AdminCreateUser = () => {
@@ -6,7 +7,7 @@ const AdminCreateUser = () => {
       <>
           <Dashboard rightContainerContent={
               <>
-                  <h1>this contains the form to create a user(driver)</h1>
+                  <AdminUserCreateForm/>
               </>
           } 
               

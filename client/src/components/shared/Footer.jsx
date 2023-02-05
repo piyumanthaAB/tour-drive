@@ -52,7 +52,7 @@ const Footer = ({color,textColor,headingColor,iconColor}) => {
                         </f.FooterContactInfoItemsContainer>
                         <f.FooterContactInfoItemsContainer>
                             <f.ContactIcon><FiMail /></f.ContactIcon>
-                            <f.FooterLink textColor={textColor} to='/'>tourdrive.info@gmail.com</f.FooterLink>
+                            <f.FooterLink textColor={textColor} to='/shared-elemets-preview'>tourdrive.info@gmail.com</f.FooterLink>
 
                         </f.FooterContactInfoItemsContainer>
 

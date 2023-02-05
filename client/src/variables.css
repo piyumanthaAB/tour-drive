@@ -7,4 +7,6 @@ font-family: 'Source Sans Pro', sans-serif; */
     --secondary-color: #4F840B;
     --primary-font:'Source Sans Pro', sans-serif;
     --secondary-font:'Montserrat', sans-serif;
+
+    --form-input-text-color:#555;
   }

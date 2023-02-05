@@ -21,6 +21,8 @@ export const ContainerLeft = styled.div`
 
 export const ContainerRight = styled.div`
     flex:0 1 80% ;
+    display:flex ;
+    flex-direction:column ;
     ${'' /* background-color:blue ; */}
 `;
 
