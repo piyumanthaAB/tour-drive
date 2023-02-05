@@ -8,7 +8,7 @@ import WithoutNav from './components/router/WithoutNav'
 import WithNav from './components/router/WithNav'
 import WithColoredFooter from './components/router/WithColoredFooter';
 import NotFound from './pages/public/NotFound';
-import AdminTourCreate from './pages/admin/AdminTourCreate';
+import AdminTourCreate from './pages/admin/tour related/AdminTourCreate';
 import Login from './pages/public/Login';
 import Signup from './pages/public/Signup';
 import ForgotPassword from './pages/public/ForgotPassword';

@@ -14,9 +14,12 @@ import Favorite from '@mui/icons-material/Favorite';
 import { FiMapPin,FiUsers,FiClock,FiHeart } from "react-icons/fi";
 import { BsFillStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 
-import Accordion from 'react-bootstrap/Accordion';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 const TourListComponent = ({tours}) => {
+    
+    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     return (
         <>
             <ContentContainer>
@@ -93,6 +96,21 @@ const TourListComponent = ({tours}) => {
                         </TourFilterTitle>
                         <TourFilterRow>
                             <TourFilterRowTitle>Categories</TourFilterRowTitle>
+                            <FormGroup>
+                                <FormControlLabel control={<Checkbox defaultChecked
+                                
+                                    sx={{
+                                        color: '#333',
+                                        '&.Mui-checked': {
+                                            color: 'var(--main-color)',
+                                        },
+                                        '& .MuiSvgIcon-root': { fontSize: 25 },
+                                        "& .MuiFormControlLabel-label": {
+                                            fontSize: "50px",
+                                        }
+                                    }}
+                                />} label="Label" />
+                            </FormGroup>
 
                         </TourFilterRow>
                         <TourFilterRow>

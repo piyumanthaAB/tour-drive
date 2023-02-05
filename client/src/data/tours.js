@@ -82,7 +82,7 @@ export const tours = [
     {
         _id: '3',
         name: 'sample_tour_3',
-        tour_cover: 'https://images.unsplash.com/photo-1491497895121-1334fc14d8c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHNyaSUyMGxhbmthfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
+        tour_cover: 'https://images.unsplash.com/photo-1537551080512-fb7dd14fbf90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c3JpJTIwbGFua2F8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
         tour_gallery_images: [
             '',
             '',
