@@ -10,7 +10,7 @@ const SingleTour = () => {
             <SigleTourHeader />
             <SIngleTourOverview />
             <SingleTourIncludes />
-            <SingleTourMap/>
+            {/* <SingleTourMap/> */}
         </>
     );
 }
