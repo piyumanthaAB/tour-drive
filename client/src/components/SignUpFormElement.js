@@ -43,116 +43,153 @@ export const Decs1=styled.h3`
     color: #000000;
 `;
 
-export const Container1=styled.div`
-    position: relative;
-    width: 400px;
-    height: 113px;
-    left: 40px;
-    top: 50px;
-    background: #FFFBFF;
-    border-radius: 15px;
-    background: linear-gradient(0deg, rgba(168, 57, 0, 0.05), rgba(168, 57, 0, 0.05)), #FFFBFF;
+export const LabelText =styled.div`
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     padding:30px 5px 5px 5px;
 `;
 
-export const Container1LeftTop=styled.h1`
-    position: relative;
-    width: 177px;
-    height: 20px;
-    left: 10px;
-    top: 25px;
-    text-align: center;
-    color: #A83900;
+export const LabelTextEmail =styled.input`
+     position:relative;
+     width: 428px;
+     height: 52px;
+     border: 1px solid #D24900;
+     border-radius:20px;
+     text-align:left;
+     padding:15px;
 
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 20px;
+     &:hover {
+        
+        cursor:pointer;
+    }
 `;
 
-export const Container1LeftBottom=styled.p`
-    position: relative;
-    width: 177px;
-    height: 20px;
-    left: 10px;
-    top: 55px;
-    letter-spacing: 0.04em;
-    text-align: center;
-    color: #F6611D;
-
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
+export const LabelTextTwo =styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:20px 5px 5px 5px;
 `;
 
-export const Container1Right=styled.div`
-    position: relative;
-    width: 100px;
-    height: 100px;
-    left: 285px;
-    top: -32px;
 
-    background: #FFFBFF;
-    border-radius: 15px;
-    background:#FFFBFF;
 
+export const LabelTextPassword=styled.input`
+    position:relative;
+    width: 428px;
+    height: 52px;
+    border: 1px solid #D24900;
+    border-radius:20px;
+    text-align:left;
+    padding:15px;
+
+    &:hover {
+        
+        cursor:pointer;
+    }
 `;
 
-export const Container2=styled.div`
-    position: relative;
-    width: 400px;
-    height: 113px;
-    left: 40px;
-    top: 100px;
-
-    background: #FFFBFF;
-    border-radius: 15px;
-    background: linear-gradient(0deg, rgba(168, 57, 0, 0.05), rgba(168, 57, 0, 0.05)), #FFFBFF;
-`;
-export const Container2LeftTop=styled.h1`
-    position: relative;
-    width: 177px;
-    height: 20px;
-    left: 10px;
-    top: 25px;
-    text-align: center;
-    color: #A83900;
-
-
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 20px;
+export const LabelTextThree =styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:20px 5px 5px 5px;
 `;
 
-export const Container2LeftBottom=styled.p`
+export const SignButton = styled.button`
     position: relative;
-    width: 177px;
-    height: 20px;
-    left: 10px;
-    top: 55px;
-    letter-spacing: 0.05em;
-    text-align: center;
-    color: #F6611D;
+    width: 428px;
+    height: 48px;
+    left:35px;
+    top: 5px;
     
-    font-family: 'Roboto';
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    background: var(--main-color);
+    border-radius: 20px;
+    border: 0px solid #D24900;
+    color: #802A00;
+
+    font-family:'Roboto';
     font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 20px;
+
+    &:hover {
+        
+        cursor:pointer;
+    }
+`;
+
+export const Desc2=styled.h3`
+    position: relative;
+    width: 200px;
+    height: 21px;
+    left: 165px;
+    text-align:center;
+    padding:20px;
+
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
     line-height: 20px;
 `;
 
-export const Container2Right=styled.div`
+export const FacebookLoginButton = styled.button`
     position: relative;
-    width: 100px;
-    height: 100px;
-    left: 285px;
-    top: -32px;
+    width: 428px;
+    height: 48px;
+    left:35px;
+    top:20px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    color: #802A00;
 
-    background: #FFFBFF;
-    border-radius: 15px;
-     background:#FFFBFF;
+    font-family:'Roboto';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 20px;
+
+
+    border: 0px solid #D24900;
+
+    background: linear-gradient(0deg, rgba(168, 57, 0, 0.05), rgba(168, 57, 0, 0.05)), #FFFBFF;
+
+    &:hover {
+        
+        cursor:pointer;
+    }
 `;
+
+export const GoogleLoginButton=styled.button`
+    position: relative;
+    width: 428px;
+    height: 48px;
+    left:35px;
+    top:40px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+
+    color: #802A00;
+
+    font-family:'Roboto';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 20px;
+
+
+    border: 0px solid #D24900;
+
+    background: linear-gradient(0deg, rgba(168, 57, 0, 0.05), rgba(168, 57, 0, 0.05)), #FFFBFF;
+
+    &:hover {
+        
+        cursor:pointer;
+    }
+`;
+
