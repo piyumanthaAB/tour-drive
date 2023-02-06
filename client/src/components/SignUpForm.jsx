@@ -8,18 +8,21 @@ export default function SignUpForm() {
         <l1.SignUpContainer>
             <l1.SignName>Sign Up</l1.SignName>
             <l1.Decs1>Select your profile type.</l1.Decs1>
-            <l1.Container1>
-                <l1.Container1LeftTop>Tourist</l1.Container1LeftTop>
-                <l1.Container1LeftBottom>if you are not from SriLanka</l1.Container1LeftBottom>
-                <l1.Container1Right></l1.Container1Right>
-            </l1.Container1>
+            <l1.LabelText>
+              <l1.LabelTextEmail placeholder='  Enter Email'></l1.LabelTextEmail>
+            </l1.LabelText>
+            <l1.LabelTextTwo>
+              <l1.LabelTextPassword  type='password' placeholder='  Enter New Password'></l1.LabelTextPassword>
+            </l1.LabelTextTwo>
+            <l1.LabelTextThree>
+              <l1.LabelTextPassword  type='password' placeholder=' Re Enter Password'></l1.LabelTextPassword>
+            </l1.LabelTextThree>
+            <l1.SignButton>SignIn</l1.SignButton>
+            <l1.Desc2>-----or sign in with-----</l1.Desc2>
 
-            <l1.Container2>
-                <l1.Container2LeftTop>Local</l1.Container2LeftTop>
-                <l1.Container2LeftBottom>if You are from SriLanka</l1.Container2LeftBottom>
-                <l1.Container2Right></l1.Container2Right>
-            </l1.Container2>
-        </l1.SignUpContainer>
+            <l1.FacebookLoginButton>Continue with Facebook</l1.FacebookLoginButton>
+            <l1.GoogleLoginButton>Continue with Google</l1.GoogleLoginButton>
+            </l1.SignUpContainer>
     </l1.MainContainer>
   )
 }

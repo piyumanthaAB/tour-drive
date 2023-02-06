@@ -19,6 +19,7 @@ import Tours from './pages/public/Tours';
 import AdminCreateUser from './pages/admin/user related/AdminCreateUser';
 import SharedElementsPreview from './pages/SharedElementsPreview';
 import SingleTour from './pages/public/SingleTour';
+import AdminCreateVehicle from './pages/admin/vehicle related/AdminCreateVehicle';
 
 function App() {
   const GlobalStyle = createGlobalStyle`
@@ -46,7 +47,7 @@ function App() {
             <Route exact path="/admin/tours/view-all-bookings" element={<AdminHome />} />
 
             <Route exact path="/admin/vehicles/stat" element={<AdminHome />} />
-            <Route exact path="/admin/vehicles/add-vehicle" element={<AdminHome />} />
+            <Route exact path="/admin/vehicles/add-vehicle" element={<AdminCreateVehicle />} />
             <Route exact path="/admin/vehicles/update-vehicle" element={<AdminHome />} />
             <Route exact path="/admin/vehicles/view-all-bookings" element={<AdminHome />} />
             
