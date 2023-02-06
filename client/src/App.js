@@ -18,6 +18,7 @@ import Profile_2 from './pages/public/Profile_2';
 import Tours from './pages/public/Tours';
 import AdminCreateUser from './pages/admin/user related/AdminCreateUser';
 import SharedElementsPreview from './pages/SharedElementsPreview';
+import SingleTour from './pages/public/SingleTour';
 
 function App() {
   const GlobalStyle = createGlobalStyle`
@@ -50,7 +51,7 @@ function App() {
             <Route exact path="/admin/vehicles/view-all-bookings" element={<AdminHome />} />
             
             <Route exact path="/admin/users/all" element={<AdminHome />} />
-            <Route exact path="/admin/users/add" element={<AdminCreateUser/>} />
+            <Route exact path="/admin/users/add" element={<AdminCreateUser />} />
             <Route exact path="/admin/users/delete" element={<AdminHome />} />
             
             {/* ADMIN ROUTES ends here */}
@@ -82,7 +83,7 @@ function App() {
 
             <Route exact path="/contact-us" element={<Home />} />
             <Route exact path="/tours" element={<Tours />} />
-            <Route exact path="/tours/:id" element={<Tours />} />
+            
             <Route exact path="/vehicles" element={<Home />} />
             <Route exact path="/vehicles/:id" element={<Home />} />
           
@@ -96,6 +97,7 @@ function App() {
 
 
           <Route element={<WithColoredFooter />}>
+            <Route exact path="/tours/:id" element={<SingleTour />} />
             <Route path="*" element={<NotFound />} />
 
           </Route>
