@@ -60,6 +60,11 @@ export const LabelTextEmail =styled.input`
      border-radius:20px;
      text-align:left;
      padding:15px;
+
+     &:hover {
+        
+        cursor:pointer;
+    }
 `;
 
 
@@ -81,6 +86,11 @@ export const LabelTextPassword=styled.input`
     border-radius:20px;
     text-align:left;
     padding:15px;
+
+    &:hover {
+        
+        cursor:pointer;
+    }
 `;
 
 export const ForgetText=styled.p`
@@ -99,8 +109,8 @@ export const ForgetText=styled.p`
     color: #943100;
     
     &:hover {
-        color:red;
-        pointer:'cursor';
+        
+        cursor:pointer;
     }
 `;
 
@@ -124,7 +134,8 @@ export const LoginButton = styled.button`
     line-height: 20px;
 
     &:hover {
-        pointer:'cursor';
+        
+        cursor:pointer;
     }
 `;
 
@@ -162,6 +173,11 @@ export const FacebookLoginButton = styled.button`
     border: 0px solid #D24900;
 
     background: linear-gradient(0deg, rgba(168, 57, 0, 0.05), rgba(168, 57, 0, 0.05)), #FFFBFF;
+
+    &:hover {
+        
+        cursor:pointer;
+    }
 `;
 
 export const GoogleLoginButton=styled.button`
@@ -185,6 +201,11 @@ export const GoogleLoginButton=styled.button`
     border: 0px solid #D24900;
 
     background: linear-gradient(0deg, rgba(168, 57, 0, 0.05), rgba(168, 57, 0, 0.05)), #FFFBFF;
+
+    &:hover {
+        
+        cursor:pointer;
+    }
 `;
 
 export const Desc3=styled.h3`
@@ -205,5 +226,11 @@ export const Desc3=styled.h3`
     height: 14px;
     left:150px;
     top: -20px;
-    color:red;}
+    color:red;
+
+    &:hover {
+        
+        cursor:pointer;
+    }
+}
 `;

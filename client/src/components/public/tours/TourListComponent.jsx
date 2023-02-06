@@ -11,7 +11,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 
-import { FiMapPin,FiUsers,FiClock,FiHeart } from "react-icons/fi";
+import { FiMapPin,FiUsers,FiClock } from "react-icons/fi";
 import { BsFillStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 
 import FormGroup from '@mui/material/FormGroup';
@@ -19,7 +19,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 const TourListComponent = ({tours}) => {
     
-    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     return (
         <>
             <ContentContainer>

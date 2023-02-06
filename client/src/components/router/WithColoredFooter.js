@@ -9,7 +9,7 @@ const WithColoredFooter = () => {
     <>
       <Navbar />
       <Outlet />
-      <Footer color={'#1A1A3D'} textColor={'#ccc'} headingColor={ '#fff'} iconColor={'#999'} />
+      <Footer color={'#1A1A3D'} textColor={'#ddd'} headingColor={ '#fff'} iconColor={'#999'} />
     </>
   )
 }
