@@ -14,17 +14,17 @@ export const adminlinks = [
             {
                 icon: <FiPlusCircle/>,
                 text: 'Add Tours',
-                redirectURL:'/admin/tours/add-tours'
+                redirectURL:'/admin/tours/add'
             },
             {
                 icon: <FiSliders/>,
                 text: 'Update Tours',
-                redirectURL:'/admin/tours/update-tours'
+                redirectURL:'/admin/tours/update'
             },
             {
                 icon: <FiBookOpen/>,
                 text: 'View All Bookings',
-                redirectURL:'/admin/tours/view-all-bookings'
+                redirectURL:'/admin/tours/bookings'
             },
         ]
     },
@@ -40,17 +40,17 @@ export const adminlinks = [
             {
                 icon: <FiPlusCircle/>,
                 text: 'Add Vehicles',
-                redirectURL:'/admin/vehicles/add-vehicle'
+                redirectURL:'/admin/vehicles/add'
             },
             {
                 icon: <FiSliders/>,
                 text: 'Update Vehicles',
-                redirectURL:'/admin/vehicles/update-vehicle'
+                redirectURL:'/admin/vehicles/update'
             },
             {
                 icon: <FiBookOpen/>,
                 text: 'View All Rentings',
-                redirectURL:'/admin/vehicles/view-all-bookings'
+                redirectURL:'/admin/vehicles/bookings'
             },
         ]
     },

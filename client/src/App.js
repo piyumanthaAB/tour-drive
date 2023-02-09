@@ -42,14 +42,14 @@ function App() {
             <Route exact path="/admin" element={<AdminHome />} /> {/* this is admin home */}
             
             <Route exact path="/admin/tours/stat" element={<AdminHome />} />
-            <Route exact path="/admin/tours/add-tours" element={<AdminTourCreate />} />
-            <Route exact path="/admin/tours/update-tours" element={<AdminHome />} />
-            <Route exact path="/admin/tours/view-all-bookings" element={<AdminHome />} />
+            <Route exact path="/admin/tours/add" element={<AdminTourCreate />} />
+            <Route exact path="/admin/tours/update" element={<AdminHome />} />
+            <Route exact path="/admin/tours/bookings" element={<AdminHome />} />
 
             <Route exact path="/admin/vehicles/stat" element={<AdminHome />} />
-            <Route exact path="/admin/vehicles/add-vehicle" element={<AdminCreateVehicle />} />
-            <Route exact path="/admin/vehicles/update-vehicle" element={<AdminHome />} />
-            <Route exact path="/admin/vehicles/view-all-bookings" element={<AdminHome />} />
+            <Route exact path="/admin/vehicles/add" element={<AdminCreateVehicle />} />
+            <Route exact path="/admin/vehicles/update" element={<AdminHome />} />
+            <Route exact path="/admin/vehicles/bookings" element={<AdminHome />} />
             
             <Route exact path="/admin/users/all" element={<AdminHome />} />
             <Route exact path="/admin/users/add" element={<AdminCreateUser />} />
