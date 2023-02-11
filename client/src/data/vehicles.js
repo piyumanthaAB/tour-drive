@@ -11,6 +11,7 @@ export const vehicles = [
             'img1_url',
             'img2_url',
             'img3_url',
-        ]
+        ],
+        driver:''
     }
 ]

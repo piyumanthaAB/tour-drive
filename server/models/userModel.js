@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'A user must have a name']
+        // required: [true, 'A user must have a name']
     },
     email: {
         type: String,
@@ -12,6 +14,21 @@ const userSchema = new mongoose.Schema({
         required: [true, 'A user must have an email'],
         lowercase: true,
         validate: [validator.isEmail, 'please provide a valid email']
+    },
+    password: {
+        type: String,
+        minlength: 8,
+        select: false
+    },
+    passwordConfirm: {
+        type: String,
+        validate: {
+            validator: function (val) {
+                return this.password === val;
+            },
+            message: 'Passwords does not match !'
+        },
+        select: false
     },
     photo: {
         type: String,
@@ -22,10 +39,13 @@ const userSchema = new mongoose.Schema({
         default: 'user',
         required: [true, 'A user must have a role'],
         enum: {
-            values: ['admin', 'university', 'user'],
-            message: "admin user ' title ' must be one of :< 'admin', 'university', 'user' > "
+            values: ['admin', 'driver', 'user'],
+            message: "admin user ' title ' must be one of :< 'admin', 'driver', 'user' > "
         }
     },
+    passwordChangedAt: Date,
+    passwordResetToken: String,
+    passwordResetExpires: Date,
     active: {
         type: Boolean,
         default: true,
@@ -33,6 +53,40 @@ const userSchema = new mongoose.Schema({
     },
     
 }, { timestamps: true });
+
+
+
+userSchema.pre('save', async function (next) {
+    // Only run this if password is modified
+    if (!this.isModified('password')) return next();
+
+    // hash the password with 12 salt rounds
+    this.password = await bcrypt.hash(this.password, 12);
+
+    //delete the password confirm 
+    this.passwordConfirm = undefined;
+    next();
+});
+
+// this method is to check whether, the provided password is equal to the already saved password
+userSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
+    return await bcrypt.compare(candidatePassword, userPassword);
+}
+
+// this method is to generate a random passwordResetToken for password reset purpose
+userSchema.methods.createPasswordResetToken = function () {
+
+    const resetToken = crypto.randomBytes(32).toString('hex');
+
+    this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+    this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+
+    // console.log({ resetToken }, this.passwordResetToken);
+
+    return resetToken;
+
+}
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
