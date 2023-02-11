@@ -14,9 +14,32 @@ export const tours = [
         price: '599',
         duration: '5',
         locations: [
-            'location_1',
-            'location_2',
-            'location_3',
+            {'location_1':['latitude','longtitude']},
+            {'location_2':['latitude','longtitude']},
+            {'location_3':['latitude','longtitude']},
+        ],
+        tourPlan: [
+            {
+                'day': 1,
+                'description':'things will do in day 1'
+            },
+            {
+                'day': 2,
+                'description':'thisngs will do in day 2'
+            },
+            {
+                'day': 3,
+                'description':'thisngs will do in day 3'
+            }
+        ],
+        tourHighlights: [
+            'highligh 1','highligh 1','highligh 1','highligh 1'
+        ],
+        includes: [
+            'include_option 1','include_option2'
+        ],
+        excludes: [
+            'exclude_option 1','exclude_option2'
         ],
         active: true,
         description: "Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nIrure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
@@ -39,124 +62,4 @@ export const tours = [
         
         
     },
-    {
-        _id: '2',
-        name: 'sample_tour_2',
-        tour_cover: 'https://images.unsplash.com/photo-1552055568-e9943cd2a08f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c3JpJTIwbGFua2F8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-        tour_gallery_images: [
-            '',
-            '',
-            '',
-            ''
-        ],
-        category: 'hiking',
-        type: 'predefined',
-        price: '399',
-        duration: '5',
-        locations: [
-            'location_1',
-            'location_2',
-            'location_3',
-        ],
-        active: true,
-        description: "Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nIrure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-        start_date: '2023-03-01',
-        ratings_average: '4.0',
-        age_limit: '45',
-        max_seats: '15',
-        tour_guides: [
-            {
-                _id: 1,
-                name: 'guide-3',
-                photo:'https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
-            },
-            {
-                _id: 2,
-                name: 'guide-4',
-                photo:'https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
-            },
-        ]
-        
-        
-    },
-    {
-        _id: '3',
-        name: 'sample_tour_3',
-        tour_cover: 'https://images.unsplash.com/photo-1537551080512-fb7dd14fbf90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c3JpJTIwbGFua2F8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-        tour_gallery_images: [
-            '',
-            '',
-            '',
-            ''
-        ],
-        category: 'boat-riding',
-        type: 'predefined',
-        price: '299',
-        duration: '5',
-        locations: [
-            'location_1',
-            'location_2',
-            'location_3',
-        ],
-        active: true,
-        description: "Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nIrure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-        start_date: '2023-02-01',
-        ratings_average: '4.1',
-        age_limit: '45',
-        max_seats: '40',
-        tour_guides: [
-            {
-                _id: 1,
-                name: 'guide-5',
-                photo:'https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
-            },
-            {
-                _id: 2,
-                name: 'guide-6',
-                photo:'https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
-            },
-        ]
-        
-        
-    },
-    {
-        _id: '4',
-        name: 'sample_tour_4',
-        tour_cover: 'https://media.istockphoto.com/id/1285881901/photo/temple-of-the-sacred-tooth-relic-at-kandy-sri-lanka.jpg?b=1&s=170667a&w=0&k=20&c=RqbfMHFsJHiM2UG5xAhGjQOoCIPYF-0r3-neaNNbbcI=',
-        tour_gallery_images: [
-            '',
-            '',
-            '',
-            ''
-        ],
-        category: 'pilgrimage',
-        type: 'predefined',
-        price: '799',
-        duration: '15',
-        locations: [
-            'location_1',
-            'location_2',
-            'location_3',
-        ],
-        active: true,
-        description: "Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nIrure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-        start_date: '2023-07-01',
-        ratings_average: '4.8',
-        age_limit: '45',
-        max_seats: '10',
-        tour_guides: [
-            {
-                _id: 1,
-                name: 'guide-7',
-                photo:'https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
-            },
-            {
-                _id: 2,
-                name: 'guide-8',
-                photo:'https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
-            },
-        ]
-        
-        
-    }
 ]

@@ -7,7 +7,7 @@ const SingleTourIncludes = () => {
 
       <i.IncludesSection>
         <i.IncludesCOntainer>
-          <i.Text fontsize={'4.5rem'} fontweight={'700'}>Included/Excluded</i.Text>
+          <i.Text margin={'3rem 0'} fontsize={'4.5rem'} fontweight={'700'}>Included/Excluded</i.Text>
           <i.ListContainer>
             <i.Left>
               
