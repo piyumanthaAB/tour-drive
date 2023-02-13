@@ -1,6 +1,6 @@
-const AppError = require('../utils/AppError');
-const User = require('./../models/userModel');
-const catchAsync = require('./../utils/catchAsync');
+import { AppError } from "../utils/AppError.js";
+import {User} from './../models/userModel.js'
+import { catchAsync } from "../utils/catchAsync.js";
 
 // ============== MIDDLEWARE STACK START =================
 
@@ -16,7 +16,7 @@ const catchAsync = require('./../utils/catchAsync');
 // @ ACCESS                 =>  'admin'
 // @ CREATED BY             =>  piyumantha
 // @ CREATED DATE & TIME    =>  2022/12/6 @ 7.10pm
-exports.createUser = catchAsync(async (req, res,next) => {
+const createUser = catchAsync(async (req, res,next) => {
     
     const { email, name } = req.body;
 
@@ -34,3 +34,5 @@ exports.createUser = catchAsync(async (req, res,next) => {
 
 
 // ######### controllers END #############
+
+export { createUser };

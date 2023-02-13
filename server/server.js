@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+import mongoose from 'mongoose';
+import dotenv from 'dotenv'
 
 //catch synchronous errors
 process.on('uncaughtException', err => {
@@ -11,7 +11,8 @@ process.on('uncaughtException', err => {
 // set the path of the configuration file which stores the environment variables
 dotenv.config({ path: './config.env' });
 
-const app = require('./app');
+// const app = require('./app');
+import app from './app.js';
 
 console.log(`\n ============ ♦️♦️ Running Environment : ${process.env.NODE_ENV} ♦️♦️  ============\n`);
 

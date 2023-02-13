@@ -1,11 +1,13 @@
-const express = require('express');
-const authController = require('./../controllers/authController');
+import express from 'express';
+import {resetPassword,forgotPassword,continueWithFacebook,continueWithGoogle,login,signUp} from './../controllers/authController.js'
 
 const router = express.Router();
 
-router.post('/signup', authController.signUp);
-router.post('/login', authController.login);
-router.post('/google', authController.continueWithGoogle);
-router.post('/facebook', authController.continueWithFacebook);
+router.post('/signup', signUp);
+router.post('/login', login);
+router.post('/google', continueWithGoogle);
+router.post('/facebook', continueWithFacebook);
+router.post('/forgotPassword', forgotPassword);
+router.post('/resetPassword/:resetToken', resetPassword);
 
-module.exports = router;
+export {router as authRouter}
