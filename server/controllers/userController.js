@@ -20,14 +20,14 @@ const createUser = catchAsync(async (req, res,next) => {
     
     const { email, name } = req.body;
 
-     const newUser = await User.create({email,name});
+    //  const newUser = await User.create({email,name});
 
 
     res.status(201).json({
         status: 'success',
         msg: 'user account created successfully',
         data: {
-            newUser
+            newUser:'newUser'
         }
     })
 })

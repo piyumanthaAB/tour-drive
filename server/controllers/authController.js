@@ -6,10 +6,49 @@ import crypto from 'crypto'
 import jwt from "jsonwebtoken";
 import axios from "axios";
 import {Email} from './../utils/email.js'
+import { promisify } from "util";
 
 // ============== MIDDLEWARE STACK START =================
 
+// this middleware checks the request for JWT cookie and the whether the user exists before reaching it to the controller. 
+const protect = catchAsync(async (req, res, next) => {
+    
+    let token;
+
+    // 1) check for the JWT token
+    (req.cookies?.jwt) ? token = req.cookies.jwt : token = null;
+
+    if (!token) {
+        return next(new AppError('You are not logged in !. Please login again',401))
+    }
+
+    //2) Verification Token
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET)
+    
+    //3) Check if user still exists
+    const currentUser = await User.findById(decoded.id);
+
+    if (!currentUser) {
+        return next(new AppError('The user who had this token is no longer available !', 401));
+    }
+
+    req.user = currentUser;
+
+    next();
+})
+
 // ============== MIDDLEWARE STACK END =================
+
+// restrict users from accessing particular controllers
+const restrictTo = (...roles) => {
+    return (req, res, next) => {
+        // roles= ['admin','user']
+        if (!roles.includes(req.user.role)) {
+            return next(new AppError('You don\'t have permission to perform this action !', 403));
+        }
+        next();
+    }
+}
 
 // sign the JWT token and add the id of the user document 
 const signToken = id => {
@@ -256,4 +295,4 @@ const resetPassword = catchAsync(async (req, res, next) => {
 
 
 // ########################### controllers END ###############################
-export {resetPassword,forgotPassword,continueWithFacebook,continueWithGoogle,login,signUp}
+export {resetPassword,forgotPassword,continueWithFacebook,continueWithGoogle,login,signUp,protect,restrictTo}
