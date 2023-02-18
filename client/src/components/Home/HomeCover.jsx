@@ -5,7 +5,6 @@ const HomeCover = () => {
     <>
       <h.section>
         <h.panel>
-          <div className="overlay"></div>
           <h.tourH1>
             <h1>TOUR</h1>
           </h.tourH1>
@@ -14,8 +13,8 @@ const HomeCover = () => {
               GET STARTED
             </a>
           </h.btnTour>
-
           <div className="test">tour search</div>
+          <div className="overlay"></div>
         </h.panel>
         <h.panel>
           <h.driveH1>
@@ -27,6 +26,7 @@ const HomeCover = () => {
             </a>
           </h.btnDrive>
           <div className="test">renting search</div>
+          <div className="overlay"></div>
         </h.panel>
       </h.section>
     </>
