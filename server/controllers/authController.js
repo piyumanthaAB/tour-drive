@@ -1,13 +1,54 @@
-const AppError = require('./../utils/AppError');
-const catchAsync = require('./../utils/catchAsync');
+import { AppError } from "../utils/AppError.js";
+import {User} from './../models/userModel.js'
+import { catchAsync } from "../utils/catchAsync.js";
 
-const jwt = require('jsonwebtoken');
-const User = require('./../models/userModel');
-const axios = require('axios')
+import crypto from 'crypto'
+import jwt from "jsonwebtoken";
+import axios from "axios";
+import {Email} from './../utils/email.js'
+import { promisify } from "util";
 
 // ============== MIDDLEWARE STACK START =================
 
+// this middleware checks the request for JWT cookie and the whether the user exists before reaching it to the controller. 
+const protect = catchAsync(async (req, res, next) => {
+    
+    let token;
+
+    // 1) check for the JWT token
+    (req.cookies?.jwt) ? token = req.cookies.jwt : token = null;
+
+    if (!token) {
+        return next(new AppError('You are not logged in !. Please login again',401))
+    }
+
+    //2) Verification Token
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET)
+    
+    //3) Check if user still exists
+    const currentUser = await User.findById(decoded.id);
+
+    if (!currentUser) {
+        return next(new AppError('The user who had this token is no longer available !', 401));
+    }
+
+    req.user = currentUser;
+
+    next();
+})
+
 // ============== MIDDLEWARE STACK END =================
+
+// restrict users from accessing particular controllers
+const restrictTo = (...roles) => {
+    return (req, res, next) => {
+        // roles= ['admin','user']
+        if (!roles.includes(req.user.role)) {
+            return next(new AppError('You don\'t have permission to perform this action !', 403));
+        }
+        next();
+    }
+}
 
 // sign the JWT token and add the id of the user document 
 const signToken = id => {
@@ -21,7 +62,7 @@ const createSendToken = (user, statusCode,req, res) => {
     const token = signToken(user._id);
     
     const cookieOptions = {
-        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIReS_IN * 24 * 60 * 60 * 1000),
+        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
         httpOnly: true,
     };
     
@@ -47,7 +88,7 @@ const createSendToken = (user, statusCode,req, res) => {
 // @ DESCRIPTION            =>  sign up new users
 // @ ENDPOINT               =>  api/v1/auth/signup [POST]
 // @ ACCESS                 =>  'all'
-exports.signUp = catchAsync(async (req, res, next) => {
+const signUp = catchAsync(async (req, res, next) => {
     
     const { email, password, passwordConfirm } = req.body;
 
@@ -61,7 +102,11 @@ exports.signUp = catchAsync(async (req, res, next) => {
         return next(new AppError('Must provide password and password confirm !'));
     }
 
-    const newUser = await User.create({ email,password,passwordConfirm  });
+    const newUser = await User.create({ email, password, passwordConfirm });
+
+    const URL = `${req.protocol}://${req.get('host')}/login`
+    
+    await new Email(newUser, URL).sendWelcome();
 
     createSendToken(newUser, 201, req, res);
 
@@ -72,7 +117,7 @@ exports.signUp = catchAsync(async (req, res, next) => {
 // @ DESCRIPTION            =>  login to the system using email and password
 // @ ENDPOINT               =>  api/v1/auth/login [POST]
 // @ ACCESS                 =>  'all'
-exports.login = catchAsync(async (req, res, next) => {
+const login = catchAsync(async (req, res, next) => {
 
 
     const { email, password } = req.body;
@@ -100,7 +145,7 @@ exports.login = catchAsync(async (req, res, next) => {
 // @ DESCRIPTION            =>  access the system using client's google account 
 // @ ENDPOINT               =>  api/v1/auth/google [POST]
 // @ ACCESS                 =>  'all'
-exports.continueWithGoogle = catchAsync(async (req, res, next) => {
+const continueWithGoogle = catchAsync(async (req, res, next) => {
     const { googleAccessToken } = req.body;
 
     if (!googleAccessToken) {
@@ -132,7 +177,7 @@ exports.continueWithGoogle = catchAsync(async (req, res, next) => {
 // @ DESCRIPTION            =>  access the system using client's facebook account
 // @ ENDPOINT               =>  api/v1/auth/facebook [POST]
 // @ ACCESS                 =>  'all'
-exports.continueWithFacebook = catchAsync(async (req, res, next) => {
+const continueWithFacebook = catchAsync(async (req, res, next) => {
 
     const { facebookAccessToken } = req.body;
 
@@ -169,9 +214,9 @@ exports.continueWithFacebook = catchAsync(async (req, res, next) => {
 
 // @ DESCRIPTION            =>  if user forgot password, he will send a post request to this endpoint. a password resetToken will
                                 // be sent to his email, from this controller
-// @ ENDPOINT               =>  api/v1/auth/forgot-password [POST]
+// @ ENDPOINT               =>  api/v1/auth/forgotPassword [POST]
 // @ ACCESS                 =>  'all'
-exports.forgotPassword = catchAsync(async (req, res, next) => {
+const forgotPassword = catchAsync(async (req, res, next) => {
 
     const { email } = req.body;
 
@@ -190,10 +235,64 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     const resetToken = user.createPasswordResetToken();
     await user.save({ validateBeforeSave: false });
 
+     //3)Send it to users email
+    
+     try {
+        const resetUrl = `${req.protocol}://${req.get('host')}/resetPassword/${resetToken}`;
+        await new Email(user, resetUrl).sendPasswordReset();
+    
+        res.status(200).json({
+            status: 'success',
+            message: 'reset token has sent'
+        });
+    } catch (err) {
+        user.passwordResetToken  = undefined;
+        user.passwordResetExpires = undefined;
+
+        await user.save({ validateBeforeSave: false });
+
+        return next(new AppError('Something went wrong while trying to send the email. Please try again later !'), 500);
+    }
+
+
+
+
+
+})
+
+// @ DESCRIPTION            =>  user will submit his new password with passwordreset token. then his password will reset in this controller
+// @ ENDPOINT               =>  api/v1/auth/resetPassword/:token [POST]
+// @ ACCESS                 =>  'all'
+const resetPassword = catchAsync(async (req, res, next) => {
+    
+    const { resetToken } = req.params;
+    const { password, passwordConfirm } = req.body;
+     // 1) Get user based on the token
+     const hashedToken = crypto
+     .createHash('sha256')
+     .update(resetToken)
+     .digest('hex');
+ 
+   const user = await User.findOne({
+     passwordResetToken: hashedToken,
+     passwordResetExpires: { $gt: Date.now() }
+   });
+    
+     // 2) If token has not expired, and there is user, set the new password
+     if (!user) {
+        return next(new AppError('Token is invalid or has expired', 400));
+    }
+    
+    user.password = password;
+    user.passwordConfirm = passwordConfirm;
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save();
+
+    createSendToken(user, 200, req, res);
 
 })
 
 
-
-
 // ########################### controllers END ###############################
+export {resetPassword,forgotPassword,continueWithFacebook,continueWithGoogle,login,signUp,protect,restrictTo}

@@ -1,18 +1,20 @@
-const path = require('path');
-const { json } = require('express');
-const express = require('express');
-const morgan = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const AppError = require('./utils/AppError')
+import path from 'path'
+import { json } from 'express';
+import express from 'express';
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import {AppError} from './utils/AppError.js';
 
 
 //global error handler import
-const globalErrorHandler = require('./controllers/errorController');
+// const globalErrorHandler = require('./controllers/errorController');
+import { globalErrorHandler } from './controllers/errorController.js';
 
 //routers import
-const userRouter = require('./routes/userRoutes');
-const authRouter = require('./routes/authRoutes');
+// const userRouter = require('./routes/userRoutes');
+import {userRouter} from './routes/userRoutes.js'
+import {authRouter} from './routes/authRoutes.js'
 
 const app = express();
 
@@ -52,4 +54,4 @@ app.all('*', (req, res, next) => {
 //global error handler use
 app.use(globalErrorHandler);
 
-module.exports = app;
+export default app;

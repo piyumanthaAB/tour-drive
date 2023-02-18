@@ -20,6 +20,7 @@ import AdminCreateUser from './pages/admin/user related/AdminCreateUser';
 import SharedElementsPreview from './pages/SharedElementsPreview';
 import SingleTour from './pages/public/SingleTour';
 import AdminCreateVehicle from './pages/admin/vehicle related/AdminCreateVehicle';
+import Chat from './components/public/chat/Chat';
 
 function App() {
   const GlobalStyle = createGlobalStyle`
@@ -30,6 +31,7 @@ function App() {
     <Router>
       <GlobalStyle />
       <div className="App">
+        <Chat/>
         <Routes>
           
           {/*🚩 ==================== routes without nav bar starts here ========================= */}

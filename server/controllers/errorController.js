@@ -1,4 +1,4 @@
-const AppError = require('./../utils/AppError');
+import { AppError } from "../utils/AppError.js";
 
 // send errors in development environment. send all the error information to the console.
 const sendErrDev = (err, res) => {
@@ -75,10 +75,9 @@ const handleDuplicateFieldErrorDB = (error) => {
     )
 }
 
-// ================== CUSTOM error Methods defines END =================== 
+// ================== CUSTOM error Methods defines END ===================
 
-
-module.exports = (err, req, res, next) => {
+const globalErrorHandler= (err, req, res, next) => {
     err.statusCode = err.statusCode || 500;
     err.status = err.status || 'error';
 
@@ -108,3 +107,6 @@ module.exports = (err, req, res, next) => {
     }
 }
 
+
+
+export { globalErrorHandler};

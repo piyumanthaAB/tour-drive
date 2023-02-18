@@ -1,8 +1,12 @@
-const express = require('express');
-const userController = require('./../controllers/userController');
+import express from 'express';
+import { createUser } from './../controllers/userController.js';
+import { protect,restrictTo } from '../controllers/authController.js';
+
 
 const router = express.Router();
 
-router.post('/', userController.createUser);
+router.use(protect);
 
-module.exports = router;
+router.post('/',restrictTo('user'), createUser);
+
+export{ router as userRouter};
