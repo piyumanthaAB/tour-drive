@@ -21,6 +21,8 @@ import SharedElementsPreview from './pages/SharedElementsPreview';
 import SingleTour from './pages/public/SingleTour';
 import AdminCreateVehicle from './pages/admin/vehicle related/AdminCreateVehicle';
 import Chat from './components/public/chat/Chat';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   const GlobalStyle = createGlobalStyle`
