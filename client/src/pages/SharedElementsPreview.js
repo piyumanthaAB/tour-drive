@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import DropDown from '../components/shared/Form Elements/DropDown';
 import FormButton from '../components/shared/Form Elements/FormButton';
 import Label from '../components/shared/Form Elements/Label';
 import PasswordField from '../components/shared/Form Elements/PasswordField';
@@ -32,6 +33,12 @@ const SharedElementsPreview = () => {
     const [pwd, setPwd] = useState('');
     const [txtArea, setTxtArea] = useState('');
 
+    const [currentDropdownVal, setCurrentDropdownVal] = useState('select item from list');
+
+    const dropDownValues = [
+        'Item 1 🤖','Item 2 🚩','Item 3 🫡','Item 4 💥'
+    ]
+
     return (
         <>
             <Container>
@@ -43,7 +50,11 @@ const SharedElementsPreview = () => {
                 <h2>💥 Password Text field typed data showing here 💥: {pwd}</h2>
                 <br /><br />
                 <h2>👉 TextArea Text field typed data showing here 👉: {txtArea}</h2>
-              </TextDiv>
+                <br /><br />
+                <h2>🤖 Dropdown selected data showing here 🤖: {currentDropdownVal}</h2>
+                </TextDiv>
+                
+
                
 
                 <ElementContainer length={'500px'}>
@@ -65,6 +76,11 @@ const SharedElementsPreview = () => {
 
                 <ElementContainer length={'500px'}>
                     <TextArea rows={2} value={txtArea} setValue={setTxtArea}  placeholder={'description'} />
+                  
+                </ElementContainer>
+
+                <ElementContainer length={'500px'}>
+                    <DropDown dropDownValues={dropDownValues} currentDropdownVal={currentDropdownVal} setCurrentDropdownVal={setCurrentDropdownVal} />
                   
                 </ElementContainer>
 
