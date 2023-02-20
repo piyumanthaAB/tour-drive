@@ -21,6 +21,10 @@ import SharedElementsPreview from './pages/SharedElementsPreview';
 import SingleTour from './pages/public/SingleTour';
 import AdminCreateVehicle from './pages/admin/vehicle related/AdminCreateVehicle';
 import Chat from './components/public/chat/Chat';
+import Vehicles from './pages/public/Vehicles';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 
 function App() {
   const GlobalStyle = createGlobalStyle`
@@ -87,7 +91,7 @@ function App() {
             <Route exact path="/contact-us" element={<Home />} />
             <Route exact path="/tours" element={<Tours />} />
             
-            <Route exact path="/vehicles" element={<Home />} />
+            <Route exact path="/vehicles" element={<Vehicles />} />
             <Route exact path="/vehicles/:id" element={<Home />} />
           
             <Route exact path="/shared-elemets-preview" element={<SharedElementsPreview />} />
