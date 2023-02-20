@@ -5,20 +5,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "jest --json --outputFile=test-results.json --watchAll --no-cache",
+    "test": "mocha --require @babel/register  --recursive 'controllers/__tests__/**/*.js'",
     "start": "node server.js",
     "start_dev_server": "set NODE_ENV=development&&nodemon server.js",
     "start_prod_server": "set NODE_ENV=production&&nodemon server.js"
-  },
-  "jest": {
-    "testTimeout": 1000000,
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest"
-    },
-    "testEnvironment": "node",
-    "setupFilesAfterEnv": [
-      "./test/setup.js"
-    ]
   },
   "keywords": [],
   "author": "",
@@ -41,11 +31,15 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
+    "@babel/register": "^7.18.9",
     "@types/jest": "^29.4.0",
     "@types/mocha": "^10.0.1",
     "@types/supertest": "^2.0.12",
     "babel-jest": "^29.4.2",
+    "chai": "^4.3.7",
+    "is-port-reachable": "^4.0.0",
     "jest": "^29.4.2",
+    "mocha": "^10.2.0",
     "mongodb-memory-server": "^8.11.4",
     "supertest": "^6.3.3",
     "ts-jest": "^29.0.5"
