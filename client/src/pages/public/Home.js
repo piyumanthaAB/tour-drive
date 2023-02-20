@@ -3,6 +3,7 @@ import HomeCover from '../../components/Home/HomeCover'
 import HomeCoverNew from '../../components/Home/HomeCoverNew'
 import TourSlider from '../../components/Home/TourSlider'
 import CustomerReview from '../../components/Home/CustomerReview'
+import VehicleSlider from '../../components/Home/VehicleSlider'
 
 
 const Home = () => {
@@ -11,7 +12,8 @@ const Home = () => {
       <HomeCover/>
       {/* <HomeCoverNew/> */}
       <TourSlider/>
-      {/* <CustomerReview/> */}
+      {/* <VehicleSlider/> */}
+      <CustomerReview/>
     </>
   )
 }
