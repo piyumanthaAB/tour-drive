@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import cover from "../../images/home_cover.jpg"
+import cover from "../../images/toyota.jpg"
 import {Link} from 'react-router-dom';
 import Slider from "react-slick";
 
@@ -32,7 +32,7 @@ export const SliderSection = styled.div`
     flex-direction:column ;
     position: relative;
     z-index: 1;
-    background-color: #fff3f1;
+    background-color: #daf1f1;
 `;
 
 export const TopSliderSection = styled.div`

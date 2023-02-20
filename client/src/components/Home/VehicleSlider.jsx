@@ -83,8 +83,224 @@ export default class MultipleItems extends Component {
                       </s.ReviewsContainer>
                     </s.Row>
                     <s.TourPriceContainer>
-                      <s.Price>$ 300</s.Price>
-                      <s.ExploreBtn to={`/tours/test`}>Explore</s.ExploreBtn>
+                      <s.Price>$ 35/km</s.Price>
+                      <s.ExploreBtn to={`/tours/test`}>Preview</s.ExploreBtn>
+                    </s.TourPriceContainer>
+                  </s.SliderDescContainer>
+                </s.CardContainer>
+              </s.TourCard>
+              <s.TourCard>
+                <s.CardContainer>
+                  <s.SliderImgContainer></s.SliderImgContainer>
+                  <s.SliderDescContainer>
+                    <s.SliderTitle>Vehicle name</s.SliderTitle>
+                    <s.Row>
+                      <s.SliderSecondaryTitleContainer>
+                        <s.SliderSecondaryTitle>
+                          432 sales
+                        </s.SliderSecondaryTitle>
+                      </s.SliderSecondaryTitleContainer>
+                      <s.ReviewsContainer>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsStarHalf />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsStar />
+                        </s.ReviewIcon>
+                      </s.ReviewsContainer>
+                    </s.Row>
+                    <s.TourPriceContainer>
+                      <s.Price>$ 35/km</s.Price>
+                      <s.ExploreBtn to={`/tours/test`}>Preview</s.ExploreBtn>
+                    </s.TourPriceContainer>
+                  </s.SliderDescContainer>
+                </s.CardContainer>
+              </s.TourCard>
+              <s.TourCard>
+                <s.CardContainer>
+                  <s.SliderImgContainer></s.SliderImgContainer>
+                  <s.SliderDescContainer>
+                    <s.SliderTitle>Vehicle name</s.SliderTitle>
+                    <s.Row>
+                      <s.SliderSecondaryTitleContainer>
+                        <s.SliderSecondaryTitle>
+                          432 sales
+                        </s.SliderSecondaryTitle>
+                      </s.SliderSecondaryTitleContainer>
+                      <s.ReviewsContainer>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsStarHalf />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsStar />
+                        </s.ReviewIcon>
+                      </s.ReviewsContainer>
+                    </s.Row>
+                    <s.TourPriceContainer>
+                      <s.Price>$ 35/km</s.Price>
+                      <s.ExploreBtn to={`/tours/test`}>Preview</s.ExploreBtn>
+                    </s.TourPriceContainer>
+                  </s.SliderDescContainer>
+                </s.CardContainer>
+              </s.TourCard>
+              <s.TourCard>
+                <s.CardContainer>
+                  <s.SliderImgContainer></s.SliderImgContainer>
+                  <s.SliderDescContainer>
+                    <s.SliderTitle>Vehicle name</s.SliderTitle>
+                    <s.Row>
+                      <s.SliderSecondaryTitleContainer>
+                        <s.SliderSecondaryTitle>
+                          432 sales
+                        </s.SliderSecondaryTitle>
+                      </s.SliderSecondaryTitleContainer>
+                      <s.ReviewsContainer>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsStarHalf />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsStar />
+                        </s.ReviewIcon>
+                      </s.ReviewsContainer>
+                    </s.Row>
+                    <s.TourPriceContainer>
+                      <s.Price>$ 35/km</s.Price>
+                      <s.ExploreBtn to={`/tours/test`}>Preview</s.ExploreBtn>
+                    </s.TourPriceContainer>
+                  </s.SliderDescContainer>
+                </s.CardContainer>
+              </s.TourCard>
+              <s.TourCard>
+                <s.CardContainer>
+                  <s.SliderImgContainer></s.SliderImgContainer>
+                  <s.SliderDescContainer>
+                    <s.SliderTitle>Vehicle name</s.SliderTitle>
+                    <s.Row>
+                      <s.SliderSecondaryTitleContainer>
+                        <s.SliderSecondaryTitle>
+                          432 sales
+                        </s.SliderSecondaryTitle>
+                      </s.SliderSecondaryTitleContainer>
+                      <s.ReviewsContainer>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsStarHalf />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsStar />
+                        </s.ReviewIcon>
+                      </s.ReviewsContainer>
+                    </s.Row>
+                    <s.TourPriceContainer>
+                      <s.Price>$ 35/km</s.Price>
+                      <s.ExploreBtn to={`/tours/test`}>Preview</s.ExploreBtn>
+                    </s.TourPriceContainer>
+                  </s.SliderDescContainer>
+                </s.CardContainer>
+              </s.TourCard>
+              <s.TourCard>
+                <s.CardContainer>
+                  <s.SliderImgContainer></s.SliderImgContainer>
+                  <s.SliderDescContainer>
+                    <s.SliderTitle>Vehicle name</s.SliderTitle>
+                    <s.Row>
+                      <s.SliderSecondaryTitleContainer>
+                        <s.SliderSecondaryTitle>
+                          432 sales
+                        </s.SliderSecondaryTitle>
+                      </s.SliderSecondaryTitleContainer>
+                      <s.ReviewsContainer>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsStarHalf />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsStar />
+                        </s.ReviewIcon>
+                      </s.ReviewsContainer>
+                    </s.Row>
+                    <s.TourPriceContainer>
+                      <s.Price>$ 35/km</s.Price>
+                      <s.ExploreBtn to={`/tours/test`}>Preview</s.ExploreBtn>
+                    </s.TourPriceContainer>
+                  </s.SliderDescContainer>
+                </s.CardContainer>
+              </s.TourCard>
+              <s.TourCard>
+                <s.CardContainer>
+                  <s.SliderImgContainer></s.SliderImgContainer>
+                  <s.SliderDescContainer>
+                    <s.SliderTitle>Vehicle name</s.SliderTitle>
+                    <s.Row>
+                      <s.SliderSecondaryTitleContainer>
+                        <s.SliderSecondaryTitle>
+                          432 sales
+                        </s.SliderSecondaryTitle>
+                      </s.SliderSecondaryTitleContainer>
+                      <s.ReviewsContainer>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsFillStarFill />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsStarHalf />
+                        </s.ReviewIcon>
+                        <s.ReviewIcon>
+                          <BsStar />
+                        </s.ReviewIcon>
+                      </s.ReviewsContainer>
+                    </s.Row>
+                    <s.TourPriceContainer>
+                      <s.Price>$ 35/km</s.Price>
+                      <s.ExploreBtn to={`/tours/test`}>Preview</s.ExploreBtn>
                     </s.TourPriceContainer>
                   </s.SliderDescContainer>
                 </s.CardContainer>

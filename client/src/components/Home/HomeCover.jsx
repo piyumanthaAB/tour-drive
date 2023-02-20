@@ -21,7 +21,7 @@ const HomeCover = () => {
             <h1>DRIVE</h1>
           </h.driveH1>
           <h.btnDrive>
-            <a href="#" className="btn">
+            <a href="vehicles" className="btn">
               GET STARTED
             </a>
           </h.btnDrive>
