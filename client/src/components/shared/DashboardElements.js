@@ -26,10 +26,12 @@ export const ContainerRight = styled.div`
     ${'' /* background-color:blue ; */}
 `;
 
-export const LeftTopContainer = styled.div`
+export const LeftTopContainer = styled(Link)`
     display:flex ;
     width:100% ;
     padding:3rem 1rem 3rem 2rem ;
+    text-decoration:none ;
+    color:#333 ;
     ${'' /* justify-content:space-between ; */}
     
 `;

@@ -24,6 +24,8 @@ import Chat from './components/public/chat/Chat';
 import Vehicles from './pages/public/Vehicles';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 function App() {
@@ -32,86 +34,89 @@ function App() {
 `
   
   return (
-    <Router>
-      <GlobalStyle />
-      <div className="App">
-        <Chat/>
-        <Routes>
+    <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}>
+      <Router>
+        <GlobalStyle />
+        <div className="App">
+          <Chat />
+          <Toaster />
+          <Routes>
           
-          {/*🚩 ==================== routes without nav bar starts here ========================= */}
+            {/*🚩 ==================== routes without nav bar starts here ========================= */}
           
-          <Route element={<WithoutNav />}>
-            <Route exact path="/me" element={<ClientHome />} />
+            <Route element={<WithoutNav />}>
+              <Route exact path="/me" element={<ClientHome />} />
             
 
-            {/* ADMIN ROUTES starts here */}
-            <Route exact path="/admin" element={<AdminHome />} /> {/* this is admin home */}
+              {/* ADMIN ROUTES starts here */}
+              <Route exact path="/admin" element={<AdminHome />} /> {/* this is admin home */}
             
-            <Route exact path="/admin/tours/stat" element={<AdminHome />} />
-            <Route exact path="/admin/tours/add" element={<AdminTourCreate />} />
-            <Route exact path="/admin/tours/update" element={<AdminHome />} />
-            <Route exact path="/admin/tours/bookings" element={<AdminHome />} />
+              <Route exact path="/admin/tours/stat" element={<AdminHome />} />
+              <Route exact path="/admin/tours/add" element={<AdminTourCreate />} />
+              <Route exact path="/admin/tours/update" element={<AdminHome />} />
+              <Route exact path="/admin/tours/bookings" element={<AdminHome />} />
 
-            <Route exact path="/admin/vehicles/stat" element={<AdminHome />} />
-            <Route exact path="/admin/vehicles/add" element={<AdminCreateVehicle />} />
-            <Route exact path="/admin/vehicles/update" element={<AdminHome />} />
-            <Route exact path="/admin/vehicles/bookings" element={<AdminHome />} />
+              <Route exact path="/admin/vehicles/stat" element={<AdminHome />} />
+              <Route exact path="/admin/vehicles/add" element={<AdminCreateVehicle />} />
+              <Route exact path="/admin/vehicles/update" element={<AdminHome />} />
+              <Route exact path="/admin/vehicles/bookings" element={<AdminHome />} />
             
-            <Route exact path="/admin/users/all" element={<AdminHome />} />
-            <Route exact path="/admin/users/add" element={<AdminCreateUser />} />
-            <Route exact path="/admin/users/delete" element={<AdminHome />} />
+              <Route exact path="/admin/users/all" element={<AdminHome />} />
+              <Route exact path="/admin/users/add" element={<AdminCreateUser />} />
+              <Route exact path="/admin/users/delete" element={<AdminHome />} />
             
-            {/* ADMIN ROUTES ends here */}
+              {/* ADMIN ROUTES ends here */}
 
-          </Route>
+            </Route>
           
-          {/*🚩 ==================== routes without nav bar ends here ============================*/}
+            {/*🚩 ==================== routes without nav bar ends here ============================*/}
 
           
-          {/*💥 ==================== routes WITH nav bar starts here ========================= */}
+            {/*💥 ==================== routes WITH nav bar starts here ========================= */}
           
-          <Route element={<WithNav />}>
+            <Route element={<WithNav />}>
 
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/about" element={<Home />} />
-            <Route exact path="/contact-us" element={<Home />} />
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/about" element={<Home />} />
+              <Route exact path="/contact-us" element={<Home />} />
 
 
-            <Route exact path="/forgot-password" element={<ForgotPassword />} />
-            <Route exact path="/reset-password" element={<ResetPassword />} />
+              <Route exact path="/forgot-password" element={<ForgotPassword />} />
+              <Route exact path="/reset-password" element={<ResetPassword />} />
 
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/signup" element={<Signup />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/signup" element={<Signup />} />
             
-            <Route exact path="/signup-info-1" element={<Profile_1 />} />
-            <Route exact path="/signup-info-2" element={<Profile_2 />} />
+              <Route exact path="/signup-info-1" element={<Profile_1 />} />
+              <Route exact path="/signup-info-2" element={<Profile_2 />} />
 
 
 
-            <Route exact path="/contact-us" element={<Home />} />
-            <Route exact path="/tours" element={<Tours />} />
+              <Route exact path="/contact-us" element={<Home />} />
+              <Route exact path="/tours" element={<Tours />} />
             
-            <Route exact path="/vehicles" element={<Vehicles />} />
-            <Route exact path="/vehicles/:id" element={<Home />} />
+              <Route exact path="/vehicles" element={<Vehicles />} />
+              <Route exact path="/vehicles/:id" element={<Home />} />
           
-            <Route exact path="/shared-elemets-preview" element={<SharedElementsPreview />} />
+              <Route exact path="/shared-elemets-preview" element={<SharedElementsPreview />} />
             
 
-          </Route>
-          {/*💥 ==================== routes WITH nav bar ends here ========================= */}
+            </Route>
+            {/*💥 ==================== routes WITH nav bar ends here ========================= */}
 
 
 
 
-          <Route element={<WithColoredFooter />}>
-            <Route exact path="/tours/:id" element={<SingleTour />} />
-            <Route path="*" element={<NotFound />} />
+            <Route element={<WithColoredFooter />}>
+              <Route exact path="/tours/:id" element={<SingleTour />} />
+              <Route path="*" element={<NotFound />} />
 
-          </Route>
+            </Route>
           
-        </Routes>
-      </div>
-    </Router>
+          </Routes>
+        </div>
+      </Router>
+    </GoogleOAuthProvider>
   );
 }
 
