@@ -49,7 +49,7 @@ const AuthState = props => {
             const res = await axios.post('/api/v1/auth/login', {email,password},config);
             dispatch({
                 type: LOGIN_SUCCESS,
-                payload: res.data
+                payload: res.data.data.user
             });
 
             console.log({res});
@@ -103,7 +103,7 @@ const AuthState = props => {
             
             dispatch({
                 type: SIGNUP_SUCCESS,
-                payload:res.data.data
+                payload:res.data.data.user
             })
             toast.success('Signup Success', {
                 icon: '👏',

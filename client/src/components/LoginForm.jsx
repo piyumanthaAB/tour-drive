@@ -47,7 +47,7 @@ export default function LoginForm() {
 
     if (email && password) {
       
-      await login({ email, password })
+      login({ email, password })
     }
 
     
