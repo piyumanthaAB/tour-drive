@@ -20,6 +20,7 @@ import AdminCreateUser from './pages/admin/user related/AdminCreateUser';
 import SharedElementsPreview from './pages/SharedElementsPreview';
 import SingleTour from './pages/public/SingleTour';
 import AdminCreateVehicle from './pages/admin/vehicle related/AdminCreateVehicle';
+import AdminVehicleUpdate from './pages/admin/vehicle related/AdminVehicleUpdate';
 import Chat from './components/public/chat/Chat';
 
 function App() {
@@ -50,7 +51,7 @@ function App() {
 
             <Route exact path="/admin/vehicles/stat" element={<AdminHome />} />
             <Route exact path="/admin/vehicles/add" element={<AdminCreateVehicle />} />
-            <Route exact path="/admin/vehicles/update" element={<AdminHome />} />
+            <Route exact path="/admin/vehicles/update" element={<AdminVehicleUpdate />} />
             <Route exact path="/admin/vehicles/bookings" element={<AdminHome />} />
             
             <Route exact path="/admin/users/all" element={<AdminHome />} />
