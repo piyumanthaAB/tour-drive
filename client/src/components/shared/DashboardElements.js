@@ -94,7 +94,7 @@ export const MenueBar = styled.div`
 
     
 `;
-export const IconContainer = styled.button`
+export const IconContainer = styled(Link)`
     width:2rem ;
     height:2rem ;
     display:flex ;

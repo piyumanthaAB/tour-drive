@@ -84,7 +84,7 @@ export default function LoginForm() {
          <l.LabelTextTwo>
           <l.LabelTextPassword value={password} onChange={e=>setPassword(e.target.value)}  type='password' placeholder='  Enter Password'></l.LabelTextPassword>
          </l.LabelTextTwo>
-         <l.ForgetText>
+         <l.ForgetText to='/forgot-password'>
           Forgot your password ?
          </l.ForgetText>
          <l.LoginButton>SignIn</l.LoginButton>
