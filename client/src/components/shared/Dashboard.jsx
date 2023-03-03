@@ -2,34 +2,37 @@ import React, { useEffect, useState } from 'react'
 import * as d from './DashboardElements';
 import { adminlinks,clientLinks } from '../../data/links';
 import DashboardNav from './DashboardNav';
+import useAuth from '../../hooks/useAuth';
 
 const Dashboard = ({ rightContainerContent }) => {
+
+    const { user } = useAuth();
 
     const [nav, setNav] = useState(0)
     const [links, setLinks] = useState(adminlinks);
     const [selected, setSelected] = useState(0);
     const [linkSelected, setLinkSelected] = useState(null);
 
-    const currentUserRole = 'admin'
+    const currentUserRole = user?.role;
     
     useEffect(() => {
        switch (currentUserRole) {
         case 'admin':
                setLinks(adminlinks);
             break;
-           case 'client':
+           case 'user':
                setLinks(clientLinks)
                break;       
         default:
             break;
        } 
-    },[])
+    },[currentUserRole])
 
     return (
         <d.Conatiner>
             <d.ContainerLeft>
                 
-                <d.LeftTopContainer>
+                <d.LeftTopContainer to='/'>
                     <d.AvatarContainer />
                     <d.LeftContainerNameContainer>
                         <d.WelcomeText>Welcome ,</d.WelcomeText>
