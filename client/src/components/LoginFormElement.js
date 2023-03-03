@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
 export const LoginContainer = styled.form`
@@ -74,6 +75,7 @@ export const LabelTextEmail =styled.input`
     justify-content: center;
     align-items: center;
     padding:20px 5px 5px 5px;
+    margin:0 0 1rem 0 ;
 `;
 
 
@@ -93,7 +95,7 @@ export const LabelTextPassword=styled.input`
     }
 `;
 
-export const ForgetText=styled.p`
+export const ForgetText=styled(Link)`
     position: reletive;
     letter-spacing: 0.02em;
     
@@ -107,6 +109,8 @@ export const ForgetText=styled.p`
     padding:20px;
     padding-left:40px;
     color: #943100;
+
+    margin:2rem 0 ;
     
     &:hover {
         
@@ -119,6 +123,7 @@ export const LoginButton = styled.button`
     width: 428px;
     height: 48px;
     left:35px;
+    margin:2rem 0 ;
     ${'' /* // top: 315px; */}
     
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
