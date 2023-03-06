@@ -1,43 +1,57 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 
-export const FormContainer = styled.div`
-    flex:1 ;
-    ${'' /* background-color:#eee ; */}
-    padding:2rem 4rem ;
-    display:flex ;
-    justify-content:center ;
-    ${'' /* align-items:center ; */}
+
+export const Container = styled.div`
+    width:100% ;
+    min-height:10rem ;
+    ${'' /* background-color:red ; */}
+    padding:3rem 6rem ;
+`;
+
+export const FormTitle = styled.p`
+    font-size:2.5rem ;
+    color:#333 ;
+    font-weight:700 ;
 `;
 
 export const Form = styled.form`
-    flex:1 ;
-    min-height:30rem ;
-    ${'' /* display:flex ; */}
-    padding:2rem 4rem ;
-
-`;
-
-export const FormRow = styled.div`
-    flex:1 ;
+    width:100% ;
+    min-height:15rem ;
+    ${'' /* background-color:red; */}
     display:flex ;
-    justify-content:space-between ;
-    margin:2rem 0 ;
+    padding:2rem ;
     flex-wrap:wrap ;
+    justify-content:space-around ;
+    margin-bottom:3rem ;
 `;
 
 export const FormGroup = styled.div`
-    width:40% ;
-    min-height:5rem ;
-    margin:2rem 2rem ;
-    font-size:2rem ;
+    flex:0 1 40% ;
+    margin:1rem 0 ;
+    ${'' /* background-color:green ; */}
 `;
 
-export const FormSubmitBtnRow = styled.div`
-    display:flex ;
-    justify-content:flex-end ;
+export const DateInput = styled.input`
+    width:100% ;
+    font-size:1.6rem ;
+    border-radius:1rem ;
+    padding:1.5rem 2rem ;
+    outline:none ;
+    border:1px solid #333 ;
+    font-family:var(--primary-font) ;
+    font-weight:600 ;
 `;
-export const FormSubmitBtnContainer = styled.div`
-    display:flex ;
-    flex:0 1 10% ;
+
+export const SubmitBtn = styled.button`
+    outline:none ;
+    ${'' /* flex:0 1 20% ; */}
+    background-color:var(--main-color) ;
+    font-size:1.5rem ;
+    font-weight:600 ;
+    border:none ;
+    padding:1rem ;
+    border-radius:2rem ;
+    color:#fff ;
+    margin:2rem auto 0 0   ;
 `;

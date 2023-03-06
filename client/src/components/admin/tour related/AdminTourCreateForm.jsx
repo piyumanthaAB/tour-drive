@@ -105,9 +105,14 @@ const AdminTourCreateForm = () => {
             <Label labelText={'Tour Description'} />
             <TextArea rows={10} placeholder='Enter tour description here' />
           </f.FormGroup>
+
+          <f.FormGroup>
+
+            <f.SubmitBtn>Add Tour</f.SubmitBtn>
+            
+          </f.FormGroup>
           
 
-          <f.SubmitBtn>Add Tour</f.SubmitBtn>
         </f.Form>
       </f.Container>
     </>

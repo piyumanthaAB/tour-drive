@@ -45,7 +45,7 @@ export const DateInput = styled.input`
 
 export const SubmitBtn = styled.button`
     outline:none ;
-    ${'' /* flex:0 1 20% ; */}
+    flex:0 1 20% ;
     background-color:var(--main-color) ;
     font-size:1.5rem ;
     font-weight:600 ;

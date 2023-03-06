@@ -30,6 +30,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import toast, { Toaster } from 'react-hot-toast';
 import SingleVehicle from './pages/public/SingleVehicle';
 import ViewAllTours from './pages/admin/tour related/ViewAllTours';
+import AdminUpdateTour from './pages/admin/tour related/AdminUpdateTour';
 
 
 function App() {
@@ -58,13 +59,14 @@ function App() {
               <Route exact path="/admin/tours/all" element={<ViewAllTours/>} />
               <Route exact path="/admin/tours/stat" element={<AdminHome />} />
               <Route exact path="/admin/tours/add" element={<AdminTourCreate />} />
-              <Route exact path="/admin/tours/update" element={<AdminHome />} />
+              <Route exact path="/admin/tours/update/:id" element={<AdminUpdateTour/>} />
               <Route exact path="/admin/tours/bookings" element={<AdminHome />} />
 
               <Route exact path="/admin/vehicles/stat" element={<AdminHome />} />
+              <Route exact path="/admin/vehicles/all" element={<AdminVehicleView />} />
               <Route exact path="/admin/vehicles/add" element={<AdminCreateVehicle />} />
-              <Route exact path="/admin/vehicles/update" element={<AdminVehicleUpdate />} />
-              <Route exact path="/admin/vehicles/bookings" element={<AdminVehicleView />} />
+              <Route exact path="/admin/vehicles/update/:id" element={<AdminVehicleUpdate />} />
+              {/* <Route exact path="/admin/vehicles/bookings" element={<AdminVehicleView />} /> */}
             
               <Route exact path="/admin/users/all" element={<AdminHome />} />
               <Route exact path="/admin/users/add" element={<AdminCreateUser />} />
