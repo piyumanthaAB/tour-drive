@@ -28,6 +28,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import toast, { Toaster } from 'react-hot-toast';
+import SingleVehicle from './pages/public/SingleVehicle';
+import ViewAllTours from './pages/admin/tour related/ViewAllTours';
 
 
 function App() {
@@ -51,17 +53,18 @@ function App() {
             
 
               {/* ADMIN ROUTES starts here */}
-              <Route exact path="/admin" element={<AdminHome />} /> {/* this is admin home */}
+              <Route exact path="/admin/home" element={<AdminHome />} /> {/* this is admin home */}
             
-            <Route exact path="/admin/tours/stat" element={<AdminHome />} />
-            <Route exact path="/admin/tours/add" element={<AdminTourCreate />} />
-            <Route exact path="/admin/tours/update" element={<AdminHome />} />
-            <Route exact path="/admin/tours/bookings" element={<AdminHome />} />
+              <Route exact path="/admin/tours/all" element={<ViewAllTours/>} />
+              <Route exact path="/admin/tours/stat" element={<AdminHome />} />
+              <Route exact path="/admin/tours/add" element={<AdminTourCreate />} />
+              <Route exact path="/admin/tours/update" element={<AdminHome />} />
+              <Route exact path="/admin/tours/bookings" element={<AdminHome />} />
 
-            <Route exact path="/admin/vehicles/stat" element={<AdminHome />} />
-            <Route exact path="/admin/vehicles/add" element={<AdminCreateVehicle />} />
-            <Route exact path="/admin/vehicles/update" element={<AdminVehicleUpdate />} />
-            <Route exact path="/admin/vehicles/bookings" element={<AdminVehicleView />} />
+              <Route exact path="/admin/vehicles/stat" element={<AdminHome />} />
+              <Route exact path="/admin/vehicles/add" element={<AdminCreateVehicle />} />
+              <Route exact path="/admin/vehicles/update" element={<AdminVehicleUpdate />} />
+              <Route exact path="/admin/vehicles/bookings" element={<AdminVehicleView />} />
             
               <Route exact path="/admin/users/all" element={<AdminHome />} />
               <Route exact path="/admin/users/add" element={<AdminCreateUser />} />
@@ -98,7 +101,6 @@ function App() {
               <Route exact path="/tours" element={<Tours />} />
             
               <Route exact path="/vehicles" element={<Vehicles />} />
-              <Route exact path="/vehicles/:id" element={<Home />} />
           
               <Route exact path="/shared-elemets-preview" element={<SharedElementsPreview />} />
             
@@ -111,6 +113,7 @@ function App() {
 
             <Route element={<WithColoredFooter />}>
               <Route exact path="/tours/:id" element={<SingleTour />} />
+              <Route exact path="/vehicles/:id" element={<SingleVehicle />} />
               <Route path="*" element={<NotFound />} />
 
             </Route>
