@@ -12,9 +12,10 @@ import { globalErrorHandler } from "./controllers/errorController.js";
 
 //routers import
 // const userRouter = require('./routes/userRoutes');
+import { tourRouter } from "./routes/tourRoutes.js";
 import { userRouter } from "./routes/userRoutes.js";
 import { authRouter } from "./routes/authRoutes.js";
-import { tourRouter } from "./routes/tourRoutes.js";
+import { bookingRouter } from "./routes/bookingRoutes.js";
 
 const app = express();
 
@@ -33,9 +34,10 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(express.json({ limit: "10kb" }));
 
 // routes
+app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/tours", tourRouter);
+app.use("/api/v1/booking", bookingRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));

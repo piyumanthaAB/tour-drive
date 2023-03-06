@@ -2,34 +2,42 @@ import React, { useEffect, useState } from 'react'
 import * as d from './DashboardElements';
 import { adminlinks,clientLinks } from '../../data/links';
 import DashboardNav from './DashboardNav';
+import useAuth from '../../hooks/useAuth';
+import { useLocation } from "react-router-dom";
+import { FiMap,FiTruck,FiUser,FiActivity,FiPlusCircle,FiBarChart2,FiBookOpen,FiSliders,FiXCircle } from "react-icons/fi";
 
 const Dashboard = ({ rightContainerContent }) => {
 
-    const [nav, setNav] = useState(0)
-    const [links, setLinks] = useState(adminlinks);
-    const [selected, setSelected] = useState(0);
-    const [linkSelected, setLinkSelected] = useState(null);
+    const { user } = useAuth();
 
-    const currentUserRole = 'admin'
+    const location = useLocation();
+    const [currentPath, setCurrentPath] = useState('/admin/tours/add');
+
+    const [links, setLinks] = useState(adminlinks);
+    
+
+    const currentUserRole = user?.role;
     
     useEffect(() => {
+
        switch (currentUserRole) {
         case 'admin':
                setLinks(adminlinks);
             break;
-           case 'client':
+           case 'user':
                setLinks(clientLinks)
                break;       
         default:
             break;
-       } 
-    },[])
+        } 
+        setCurrentPath(location.pathname);
+    },[currentUserRole,location])
 
     return (
         <d.Conatiner>
             <d.ContainerLeft>
                 
-                <d.LeftTopContainer>
+                <d.LeftTopContainer to='/'>
                     <d.AvatarContainer />
                     <d.LeftContainerNameContainer>
                         <d.WelcomeText>Welcome ,</d.WelcomeText>
@@ -40,7 +48,19 @@ const Dashboard = ({ rightContainerContent }) => {
                 <d.HR />
                 <d.LeftBottomContainer>
                     <d.MenueBar>
-                        {links.map((e, i) => {
+                        {
+                            links.map((link, i) => {
+                                return (
+                                    <d.IconContainer to={''} key={i}>
+                                        {link.icon}
+                                    </d.IconContainer>
+                                )
+                            })
+                        }
+                        
+                        
+
+                        {/* {links.map((e, i) => {
                             return (
                                 <d.IconContainer selected={selected === i ? true : false} onClick={() => {
                                     setNav(i)
@@ -49,18 +69,19 @@ const Dashboard = ({ rightContainerContent }) => {
                                 }} key={i} > {e.icon} </d.IconContainer>
                                 
                             )
-                        })}
+                        })} */}
                     </d.MenueBar>
                     <d.OptionsContainer>
                         
-                        <d.OptionsTitle>{links[nav].resourceType}</d.OptionsTitle>
-                        {links[nav].options.map((e, i) => {
+                        {/* <d.OptionsTitle>{links[nav].resourceType}</d.OptionsTitle> */}
+                        <d.OptionsTitle>Tours</d.OptionsTitle>
+                        {/* {links[nav].options.map((e, i) => {
                             return (
                                 <d.OptionContainer
-                                    selected={linkSelected === i ? true : false}
+                                    selected={currentPath === e.redirectURL }
                                     onClick={
                                         () => {
-                                            setLinkSelected(i)
+                                            setCurrentPath(e.redirectURL)
                                         }
                                     }
                                     key={i}
@@ -70,7 +91,7 @@ const Dashboard = ({ rightContainerContent }) => {
                                     <d.Option>{e.text}</d.Option>
                                 </d.OptionContainer>
                             )
-                        })}
+                        })} */}
 
                     </d.OptionsContainer>
                                       
@@ -80,7 +101,7 @@ const Dashboard = ({ rightContainerContent }) => {
             </d.ContainerLeft>
     
             <d.ContainerRight>
-                <DashboardNav/>
+                <DashboardNav />
                 {rightContainerContent}
             </d.ContainerRight>
         </d.Conatiner>
