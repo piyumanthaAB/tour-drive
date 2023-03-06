@@ -1,5 +1,6 @@
 import { FiMap,FiTruck,FiUser,FiActivity,FiPlusCircle,FiBarChart2,FiBookOpen,FiSliders,FiXCircle } from "react-icons/fi";
 
+const toursBaseUrl=''
 
 export const adminlinks = [
     {

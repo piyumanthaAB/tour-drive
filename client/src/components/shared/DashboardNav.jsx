@@ -3,12 +3,17 @@ import * as n from './DashboardNavElements';
 
 const DashboardNav = () => {
   return (
-      <n.NavContainer>
-          <n.NavBrandContainer>
-              {/* <n.NavLogo /> */}
-              {/* <n.NavBrandText>TourDrive</n.NavBrandText> */}
-          </n.NavBrandContainer>
-    </n.NavContainer>
+    <>
+      <n.Container>
+        <n.NavContainer>
+          <n.NavBrand to={'/'} />
+          <n.NavLinksContainer>
+            {/* <li>link 1</li>          
+            <li>link 2</li>           */}
+          </n.NavLinksContainer>
+        </n.NavContainer>
+      </n.Container>
+      </>
   )
 }
 

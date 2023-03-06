@@ -5,7 +5,9 @@ import {
     LOGIN_FAIL,
     LOGIN_SUCCESS,
     AUTH_ERROR,
-    USER_LOADED
+    USER_LOADED,
+    SIGNUP_SUCCESS,
+    SIGNUP_FAIL
 } from './../types.js'
 
 
@@ -14,14 +16,17 @@ export default (state, action) => {
     
     switch (action.type) {
         case LOGIN_SUCCESS:
+        case SIGNUP_SUCCESS:
             return {
                 ...state,
                 ...action.payload,
                 isAuthenticated: true,
-                loading: false
+                loading: false,
+                user: action.payload
             }
         case LOGIN_FAIL:
         case AUTH_ERROR:
+        case SIGNUP_FAIL:
         case LOGOUT:
             return {
                 ...state,

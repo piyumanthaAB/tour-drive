@@ -132,8 +132,12 @@ const login = catchAsync(async (req, res, next) => {
         return next(new AppError('Account does not exists!', 404));
     }
 
+    if (!user.password) {
+        return next(new AppError('This account is associated with Gmail account. Try continue with google', 400));
+    }
+
     // check for the password match
-    if (!await user.correctPassword(password, user.password)) {
+    if (user?.password && !await user.correctPassword(password, user.password)) {
 
         return next(new AppError('Invalid email or password',401));
     }
@@ -294,5 +298,22 @@ const resetPassword = catchAsync(async (req, res, next) => {
 })
 
 
+
+// @ DESCRIPTION            =>  a get request to this endpoint will delete the jwt cookie content and will expire it. 
+// @ ENDPOINT               =>  api/v1/auth/logout[GET]
+// @ ACCESS                 =>  'all'
+const logout = catchAsync(async (req, res, next) => {
+    res.cookie('jwt', '', {
+        expires: new Date(Date.now() + 10 * 1000),
+        httpOnly: true
+    });
+    res.status(200).json({ status: 'success' });
+})
+
+// current user load
+
+
+
+
 // ########################### controllers END ###############################
-export {resetPassword,forgotPassword,continueWithFacebook,continueWithGoogle,login,signUp,protect,restrictTo}
+export {resetPassword,forgotPassword,continueWithFacebook,continueWithGoogle,login,signUp,protect,restrictTo,logout}

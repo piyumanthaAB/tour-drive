@@ -4,8 +4,29 @@ import { GoPrimitiveDot } from "react-icons/go";
 import { BiPurchaseTag } from "react-icons/bi";
 import { TbTag } from "react-icons/tb";
 import { AiOutlineCompass } from "react-icons/ai";
+import axios from 'axios'
 
 const SIngleTourOverview = () => {
+
+    const onCheckout = async() => {
+        
+        const tourData = {
+            name: 'sample-tour-1',
+            price:'20'
+        }
+
+        try {
+            const res = await axios.post('/api/v1/booking/create-checkout-session', { tourData })
+            
+            if (res.status === 201) {
+                window.location.href = res.data.data.url;
+            }
+        } catch (error) {
+            console.log(error.response.data);
+        }
+
+    }
+
     return (
         <>
             <o.OverviewSection>
@@ -29,15 +50,13 @@ const SIngleTourOverview = () => {
                     <o.BookingBodyContainer>
                         <o.Group>
                             <o.Text color='#555' margin={'1rem 1rem'} fontsize={'1.8rem'} fontweight={'600'}> Check In</o.Text>
-                            <o.Banner>
-                                <o.Text fontfamily={'var(--secondary-font)'} color='#555' fontsize={'1.5rem'} fontweight={'500'}> 2023-03-01</o.Text>
-                            </o.Banner>
+                            <o.DateInput type={'date'} />
+
                         </o.Group>
                         <o.Group>
                             <o.Text color='#555' margin={'1rem 1rem'} fontsize={'1.8rem'} fontweight={'600'}> Check Out</o.Text>
-                            <o.Banner>
-                                <o.Text fontfamily={'var(--secondary-font)'} color='#555' fontsize={'1.5rem'} fontweight={'500'}> 2023-03-01</o.Text>
-                            </o.Banner>
+                            <o.DateInput type={'date'} />
+
                         </o.Group>
                         <o.Group>
                             <o.Text color='#555' margin={'1rem 1rem'} fontsize={'1.8rem'} fontweight={'600'}> Available Seats</o.Text>
@@ -50,8 +69,8 @@ const SIngleTourOverview = () => {
 
                     </o.BookingBodyContainer>
 
-                    <o.BookNowBtn>
-                        <o.Text color='#fff' margin='0 1rem 0 0' fontsize={'1.7rem'}  fontweight='600'>Book Now</o.Text>
+                    <o.BookNowBtn onClick={onCheckout}>
+                        <o.Text color='#fff' margin='0 1rem 0 0' fontsize={'1.7rem'} fontweight='600'>Book Now</o.Text>
                         <o.IconContainer color='#fff' fontsize={'2rem'}>
                             <AiOutlineCompass />
                         </o.IconContainer>
