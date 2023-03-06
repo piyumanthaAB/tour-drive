@@ -24,7 +24,7 @@ const IconContainer = styled.div`
 
 const Container = styled.div`
     width:100% ;
-    padding:2rem ;
+    ${'' /* padding:1rem 2rem ; */}
     position: relative;
     ${'' /* background-color:#eee ; */}
 `;
@@ -38,7 +38,7 @@ const HeaderContainer = styled.div`
     display:flex ;
     justify-content:center ;
     align-items:center ;
-    padding:2rem 3rem ;
+    padding:1.5rem 3rem ;
 
     :hover{
         cursor: pointer;
@@ -47,16 +47,16 @@ const HeaderContainer = styled.div`
 `;
 
 const BodyContainer = styled.div`
-    width:90% ;
+    width:100% ;
     ${'' /* min-height:30rem ; */}
     background-color:#fff;
-    margin:1rem 0 ;
+    margin:2rem 0 ;
     border-radius:1rem ;
     padding:1rem 0 ;
     border:1px solid #ccc ;
     position:absolute ;
     top:80% ;
-    left:5% ;
+    left:0% ;
     display:${props=>props.open?'block':'none'} ;
 
 `;

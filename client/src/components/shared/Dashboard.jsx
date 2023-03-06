@@ -48,7 +48,7 @@ const Dashboard = ({ rightContainerContent }) => {
                 <d.HR />
                 <d.LeftBottomContainer>
                     <d.MenueBar>
-                        {
+                        {/* {
                             links.map((link, i) => {
                                 return (
                                     <d.IconContainer to={''} key={i}>
@@ -56,7 +56,7 @@ const Dashboard = ({ rightContainerContent }) => {
                                     </d.IconContainer>
                                 )
                             })
-                        }
+                        } */}
                         
                         
 

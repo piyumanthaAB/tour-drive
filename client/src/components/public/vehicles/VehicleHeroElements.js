@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import img from './../../../images/Vehicles/vehicles-hero-cover.jpg'
+// import img from './../../../images/Vehicles/vehicles-hero-cover.jpg'
+import img from './../../../images/vehicles/vehicles-hero-cover.jpg'
 
 export const Container = styled.div`
     width:100% ;

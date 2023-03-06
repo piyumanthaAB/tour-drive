@@ -7,7 +7,7 @@ const AdminTourCreate = () => {
         <>
             <Dashboard rightContainerContent={
                 <>
-                    <h1>this is AdminTourCreate PAGE 🫡</h1>
+                    
                     <AdminTourCreateForm />
                 </>
             } />
