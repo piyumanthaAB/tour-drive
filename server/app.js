@@ -17,12 +17,17 @@ import { userRouter } from "./routes/userRoutes.js";
 import { authRouter } from "./routes/authRoutes.js";
 import { bookingRouter } from "./routes/bookingRoutes.js";
 
+const __dirname = path.resolve();
+
 const app = express();
 
 // Log developmen t environment
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static('images'));
 
 // read cookies into req object
 app.use(cookieParser());

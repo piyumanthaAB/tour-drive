@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import * as d from './DashboardElements';
-import { adminlinks,clientLinks } from '../../data/links';
+import { adminlinks, clientLinks } from '../../data/links';
 import DashboardNav from './DashboardNav';
 import useAuth from '../../hooks/useAuth';
 import { useLocation } from "react-router-dom";
-import { FiMap,FiTruck,FiUser,FiActivity,FiPlusCircle,FiBarChart2,FiBookOpen,FiSliders,FiXCircle } from "react-icons/fi";
+import { FiMap, FiTruck, FiUser, FiActivity, FiPlusCircle, FiBarChart2, FiBookOpen, FiSliders, FiXCircle } from "react-icons/fi";
 
 const Dashboard = ({ rightContainerContent }) => {
 
@@ -18,53 +18,53 @@ const Dashboard = ({ rightContainerContent }) => {
     const [nav, setNav] = useState(0);
     const [selected, setSelected] = useState(0);
     const [linkSelected, setLinkSelected] = useState(null);
-    
+
 
     // const currentUserRole = user?.role;
-    const currentUserRole = 'user';
-    
+    const currentUserRole = 'admin';
+
     useEffect(() => {
 
-       switch (currentUserRole) {
-        case 'admin':
-               setLinks(adminlinks);
-            break;
-           case 'user':
-               setLinks(clientLinks)
-               break;       
-        default:
-            break;
-        } 
+        switch (currentUserRole) {
+            case 'admin':
+                setLinks(adminlinks);
+                break;
+            case 'user':
+                setLinks(clientLinks)
+                break;
+            default:
+                break;
+        }
         // setCurrentPath(location.pathname);
-    },[])
+    }, [])
 
     return (
         <d.Conatiner>
             <d.ContainerLeft>
-                
+
                 <d.LeftTopContainer to='/'>
                     <d.AvatarContainer />
                     <d.LeftContainerNameContainer>
                         <d.WelcomeText>Welcome ,</d.WelcomeText>
                         <d.NameText>John Doe</d.NameText>
-                        
+
                     </d.LeftContainerNameContainer>
                 </d.LeftTopContainer>
                 <d.HR />
                 <d.LeftBottomContainer>
                     <d.MenueBar>
-                    {links.map((e, i) => {
+                        {links.map((e, i) => {
                             return (
                                 <d.IconContainer selected={selected === i ? true : false} onClick={() => {
                                     setNav(i)
                                     setSelected(i)
                                     setLinkSelected(null)
                                 }} key={i} > {e.icon} </d.IconContainer>
-                                
+
                             )
                         })}
-                        
-                        
+
+
 
                         {/* {links.map((e, i) => {
                             return (
@@ -78,7 +78,7 @@ const Dashboard = ({ rightContainerContent }) => {
                         })} */}
                     </d.MenueBar>
                     <d.OptionsContainer>
-                        
+
                         <d.OptionsTitle>{links[nav].resourceType}</d.OptionsTitle>
                         {/* <d.OptionsTitle>Tours</d.OptionsTitle> */}
                         {/* {links[nav].options.map((e, i) => {
@@ -119,12 +119,12 @@ const Dashboard = ({ rightContainerContent }) => {
                         })}
 
                     </d.OptionsContainer>
-                                      
-                                    
+
+
                 </d.LeftBottomContainer>
 
             </d.ContainerLeft>
-    
+
             <d.ContainerRight>
                 <DashboardNav />
                 {rightContainerContent}

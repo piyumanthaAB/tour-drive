@@ -28,7 +28,7 @@ const TourListComponent = ({tours}) => {
                         {tours.map((tour, id) => {
                             return (
                                 <>
-                                    <TourItemContainer key={tour._id}>
+                                    <TourItemContainer key={tour?._id}>
                                         <TourImgContainer img={tour.tour_cover} >
                                             {/* mui check box with icon can use here */}
                                             
@@ -47,7 +47,7 @@ const TourListComponent = ({tours}) => {
                                             </FavouriteBtn>
                                         </TourImgContainer>
                                         <TourDescContainer>
-                                            <TourTitle>{tour.name}</TourTitle>
+                                            <TourTitle>{tour?.name}</TourTitle>
                                             <Row>
                                   
                                                 <TourSecondaryTitleContainer>

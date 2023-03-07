@@ -7,9 +7,10 @@ const tourSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-  //   tour_cover: {
-  //     type: String,
-  //   },
+    tour_cover: {
+      type: String,
+  },
+  tour_gallery: [String],
   max_seats: {
     type: Number,
   },
