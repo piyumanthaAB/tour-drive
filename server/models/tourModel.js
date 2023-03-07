@@ -7,8 +7,8 @@ const tourSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-    tour_cover: {
-      type: String,
+  tour_cover: {
+    type: String,
   },
   tour_gallery: [String],
   max_seats: {
@@ -27,15 +27,19 @@ const tourSchema = new mongoose.Schema({
   duration: {
     type: String,
   },
+  capacity: {
+    type: String,
+  },
+  description: {
+    types: String,
+  },
   //   locations: {
   //     type: [String],
   //   },
   //   active: {
   //     type: Boolean,
   //   },
-  //   description: {
-  //     types: String,
-  //   },
+    
   //   tour_guides: {
   //     type: [String],
   //   },

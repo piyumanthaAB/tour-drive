@@ -5,7 +5,7 @@ import multer from 'multer';
 
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null,'../client/public/test')
+    cb(null,'../client/public/tour-uploads')
   },
   filename: (req, file, cb) => {
     const ext = file.mimetype.split('/')[1];
@@ -58,15 +58,24 @@ const getTour = catchAsync(async (req, res, next) => {
 //  @access     Private
 const createTour = catchAsync(async (req, res, next) => {
 
-  console.log({
-    cover: req.files.tour_cover,
-    gallery:req.files.tour_gallery
-  });
+  // console.log({
+  //   cover: req.files.tour_cover,
+  //   gallery:req.files.tour_gallery
+  // });
 
-  const { name, price, ageLimit, capacity } = req.body;
-  const tour_cover=`${req.protocol}://${req.get('host')}/api/v1/users/resetPassword/${resetToken}`;
+  const { name, price, ageLimit, capacity ,description} = req.body;
+  const tour_cover = req.files.tour_cover[0].filename;
+  const tour_gallery = req.files.tour_gallery.map(img => {
+    return img.filename;
+  })
 
-  const tour = await Tour.create(req.body);
+
+  const data = {
+    name, price, ageLimit, capacity,tour_cover,tour_gallery,description
+  }
+
+  console.log({data});
+  const tour = await Tour.create(data);
 
   res.status(201).json({
     success: true,

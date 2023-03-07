@@ -29,7 +29,7 @@ const TourListComponent = ({tours}) => {
                             return (
                                 <>
                                     <TourItemContainer key={tour?._id}>
-                                        <TourImgContainer img={tour.tour_cover} >
+                                        <TourImgContainer img={`${process.env.PUBLIC_URL}/tour-uploads/${tour.tour_cover}`} >
                                             {/* mui check box with icon can use here */}
                                             
                                             <FavouriteBtn>
@@ -65,7 +65,7 @@ const TourListComponent = ({tours}) => {
                                             </Row>
                                             <Row>
                                                 <TourDesc>
-                                                    Copenhagen, Denmark’s capital, sits on the coastal islands of Zealand and Amager
+                                                    {tour.description}
                                                 </TourDesc>
                                             </Row>
                                         </TourDescContainer>
@@ -73,7 +73,7 @@ const TourListComponent = ({tours}) => {
 
                                             <PriceRow>
                                                 <BadgeContainer>
-                                                    <BadgeIcon><FiUsers /></BadgeIcon>{tour.max_seats}
+                                                    <BadgeIcon><FiUsers /></BadgeIcon>{tour.capacity}
                                                 </BadgeContainer>
                                                 <BadgeContainer>
                                                     <BadgeIcon><FiClock /></BadgeIcon>{tour.duration} Days

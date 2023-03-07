@@ -26,9 +26,6 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/images', express.static('images'));
-
 // read cookies into req object
 app.use(cookieParser());
 

@@ -17,6 +17,7 @@ const AdminTourCreateForm = () => {
   const[name,setName]=useState('')
   const[price,setPrice]=useState('')
   const[ageLimit,setAgeLimit]=useState('')
+  const[duration,setDuration]=useState('')
   const[capacity,setCapacity]=useState('')
   const[guide_1,setGuide_1]=useState('')
   const[guide_2,setGuide_2]=useState('')
@@ -43,6 +44,8 @@ const AdminTourCreateForm = () => {
     formData.append('price',price)
     formData.append('ageLimit',ageLimit)
     formData.append('capacity',capacity)
+    formData.append('description',description)
+    formData.append('duration',duration)
 
 
     for (const file of galleryImages) {
@@ -51,7 +54,7 @@ const AdminTourCreateForm = () => {
     
     console.log({formData});
     
-    toast.promise(
+    await toast.promise(
       submitForm('/api/v1/tours',formData,'post',headers),
       {
         loading: 'Adding Tour...',
@@ -93,7 +96,7 @@ const AdminTourCreateForm = () => {
           Add Tour
         </f.FormTitle>
         <f.Form onSubmit={onSubmit}>
-          
+ 
           <f.FormGroup>
             <Label labelText={'Tour Name'} />
             <TextField value={name} setValue={setName}  placeholder={'Enter tour name here'} />
@@ -149,9 +152,14 @@ const AdminTourCreateForm = () => {
           </f.FormGroup>
 
           <f.FormGroup>
+            <Label labelText={'Duration'} />
+            <TextField value={duration} setValue={setDuration} type='text' placeholder={'Enter tour duration here'} />
+          </f.FormGroup>
+
+          {/* <f.FormGroup>
             <Label labelText={'End Date'} />
             <f.DateInput value={endDate} setValue={setEndDate} type={'date'} />
-          </f.FormGroup>
+          </f.FormGroup> */}
 
           <f.FormGroup>
             <Label labelText={'Tour Category'} />
@@ -182,7 +190,7 @@ const AdminTourCreateForm = () => {
 
           <f.FormGroup>
 
-            <f.SubmitBtn>Add Tour</f.SubmitBtn>
+            <f.SubmitBtn type='submit'>Add Tour</f.SubmitBtn>
             <f.SubmitBtn color='#333' type='reset' >Clear</f.SubmitBtn>
 
             
