@@ -1,38 +1,33 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
-import img from './../../images/camper-van.png'
+import logo from './../../images/tour_drive_logo.png'
+
+export const Container = styled.div`
+    width:100% ;
+    min-height:5rem ;
+    ${'' /* background-color:red ; */}
+    padding:2rem ;
+`;
 
 export const NavContainer = styled.div`
     width:100% ;
-    min-height:5rem ;
-    background-color:#555 ;
-    padding: 1rem 2rem;
-`;
-
-export const NavBrandContainer = styled.div`
-    width:20% ;
-    ${'' /* background-color:#ccc ; */}
     display:flex ;
+    ${'' /* background-color:green ; */}
+    min-height:5rem ;
+    justify-content:center ;
 `;
 
-export const NavLogo = styled.div`
-
-    width:8rem ;
-    height:8rem ;
-    border-radius:5rem ;
-    background-color:#fff ;
-    background-image: url(${img});
+export const NavBrand = styled(Link)`
+    flex:0 1 20% ;
+    background-image: url(${logo});
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
 `;
-
-export const NavBrandText = styled.p`
-    font-size:2rem ;
-`;
-
 
 export const NavLinksContainer = styled.div`
+    flex:0 1 60% ;
+    margin:0 0 0 auto ;
 
 `;
 

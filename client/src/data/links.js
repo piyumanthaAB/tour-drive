@@ -1,5 +1,6 @@
-import { FiMap,FiTruck,FiUser,FiActivity,FiPlusCircle,FiBarChart2,FiBookOpen,FiSliders,FiXCircle } from "react-icons/fi";
+import { FiMap,FiAlignLeft,FiTruck,FiUser,FiActivity,FiPlusCircle,FiBarChart2,FiBookOpen,FiSliders,FiXCircle,FiBookmark } from "react-icons/fi";
 
+const toursBaseUrl=''
 
 export const adminlinks = [
     {
@@ -14,17 +15,17 @@ export const adminlinks = [
             {
                 icon: <FiPlusCircle/>,
                 text: 'Add Tours',
-                redirectURL:'/admin/tours/add-tours'
+                redirectURL:'/admin/tours/add'
             },
             {
                 icon: <FiSliders/>,
                 text: 'Update Tours',
-                redirectURL:'/admin/tours/update-tours'
+                redirectURL:'/admin/tours/update/:id'
             },
             {
                 icon: <FiBookOpen/>,
-                text: 'View All Bookings',
-                redirectURL:'/admin/tours/view-all-bookings'
+                text: 'View All Tours',
+                redirectURL:'/admin/tours/all'
             },
         ]
     },
@@ -40,17 +41,17 @@ export const adminlinks = [
             {
                 icon: <FiPlusCircle/>,
                 text: 'Add Vehicles',
-                redirectURL:'/admin/vehicles/add-vehicle'
+                redirectURL:'/admin/vehicles/add'
             },
             {
                 icon: <FiSliders/>,
                 text: 'Update Vehicles',
-                redirectURL:'/admin/vehicles/update-vehicle'
+                redirectURL:'/admin/vehicles/update/:id'
             },
             {
                 icon: <FiBookOpen/>,
-                text: 'View All Rentings',
-                redirectURL:'/admin/vehicles/view-all-bookings'
+                text: 'View All Vehicles',
+                redirectURL:'/admin/vehicles/all'
             },
         ]
     },
@@ -70,8 +71,8 @@ export const adminlinks = [
             },
             {
                 icon: <FiXCircle/>,
-                text: 'Delete Users',
-                redirectURL:'/admin/users/delete'
+                text: 'Update Users',
+                redirectURL:'/admin/users/update/:id'
             },
             
         ]
@@ -105,48 +106,27 @@ export const adminlinks = [
 ]
 export const clientLinks = [
     {
-        resourceType: 'Tour',
-        icon: <FiMap/>,
+        resourceType: '',
+        icon: <FiAlignLeft/>,
         options: [
             {
-                icon: <FiBarChart2/>,
-                text: 'aaaaaaaaa',
-                redirectURL:'/client/1'
+                icon: <FiUser/>,
+                text: 'My profile',
+                redirectURL:'/client/home'
             },
             {
-                icon: <FiPlusCircle/>,
-                text: 'bbbbbbbbbb',
-                redirectURL:'/client/2'
+                icon: <FiBookmark/>,
+                text: 'My booked tours',
+                redirectURL:'/client/my-tour-bookings'
             },
             {
-                icon: <FiSliders/>,
-                text: 'ccccccccc',
-                redirectURL:'/client/3'
+                icon: <FiTruck/>,
+                text: 'My booked vehicles',
+                redirectURL:'/client/my-vehicle-bookings'
             },
             
-        ]
-    },
-    {
-        resourceType: 'Vehicles',
-        icon: <FiTruck/>,
-        options: [
-            {
-                icon: <FiBarChart2/>,
-                text: 'dddddddddd',
-                redirectURL:'/client/1'
-            },
-            {
-                icon: <FiPlusCircle/>,
-                text: 'eeeeeeeeee',
-                redirectURL:'/client/2'
-            },
-            {
-                icon: <FiSliders/>,
-                text: 'ffffffffff',
-                redirectURL:'/client/3'
-            },
             
         ]
-    },
+    }
     
 ]

@@ -21,13 +21,17 @@ export const ContainerLeft = styled.div`
 
 export const ContainerRight = styled.div`
     flex:0 1 80% ;
+    display:flex ;
+    flex-direction:column ;
     ${'' /* background-color:blue ; */}
 `;
 
-export const LeftTopContainer = styled.div`
+export const LeftTopContainer = styled(Link)`
     display:flex ;
     width:100% ;
     padding:3rem 1rem 3rem 2rem ;
+    text-decoration:none ;
+    color:#333 ;
     ${'' /* justify-content:space-between ; */}
     
 `;
@@ -90,7 +94,7 @@ export const MenueBar = styled.div`
 
     
 `;
-export const IconContainer = styled.button`
+export const IconContainer = styled(Link)`
     width:2rem ;
     height:2rem ;
     display:flex ;
