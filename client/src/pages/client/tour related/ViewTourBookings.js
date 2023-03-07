@@ -1,14 +1,14 @@
 import React from 'react'
-import ViewAllUsers from '../../../components/admin/user related/ViewAllUsers'
+import { TourBookings } from '../../../components/client/ViewTourBookings'
 import Dashboard from '../../../components/shared/Dashboard'
 
-const AdminViewAllUsers = () => {
+const ViewTourBookings = () => {
   return (
       <>
           <Dashboard
               rightContainerContent={
                   <>
-                      <ViewAllUsers/>
+                      <TourBookings/>
                   </>
               }
           />
@@ -16,4 +16,4 @@ const AdminViewAllUsers = () => {
   )
 }
 
-export default AdminViewAllUsers
+export default ViewTourBookings

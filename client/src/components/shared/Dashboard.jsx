@@ -14,9 +14,14 @@ const Dashboard = ({ rightContainerContent }) => {
     const [currentPath, setCurrentPath] = useState('/admin/tours/add');
 
     const [links, setLinks] = useState(adminlinks);
+
+    const [nav, setNav] = useState(0);
+    const [selected, setSelected] = useState(0);
+    const [linkSelected, setLinkSelected] = useState(null);
     
 
-    const currentUserRole = user?.role;
+    // const currentUserRole = user?.role;
+    const currentUserRole = 'user';
     
     useEffect(() => {
 
@@ -30,8 +35,8 @@ const Dashboard = ({ rightContainerContent }) => {
         default:
             break;
         } 
-        setCurrentPath(location.pathname);
-    },[currentUserRole,location])
+        // setCurrentPath(location.pathname);
+    },[])
 
     return (
         <d.Conatiner>
@@ -48,15 +53,16 @@ const Dashboard = ({ rightContainerContent }) => {
                 <d.HR />
                 <d.LeftBottomContainer>
                     <d.MenueBar>
-                        {/* {
-                            links.map((link, i) => {
-                                return (
-                                    <d.IconContainer to={''} key={i}>
-                                        {link.icon}
-                                    </d.IconContainer>
-                                )
-                            })
-                        } */}
+                    {links.map((e, i) => {
+                            return (
+                                <d.IconContainer selected={selected === i ? true : false} onClick={() => {
+                                    setNav(i)
+                                    setSelected(i)
+                                    setLinkSelected(null)
+                                }} key={i} > {e.icon} </d.IconContainer>
+                                
+                            )
+                        })}
                         
                         
 
@@ -73,8 +79,8 @@ const Dashboard = ({ rightContainerContent }) => {
                     </d.MenueBar>
                     <d.OptionsContainer>
                         
-                        {/* <d.OptionsTitle>{links[nav].resourceType}</d.OptionsTitle> */}
-                        <d.OptionsTitle>Tours</d.OptionsTitle>
+                        <d.OptionsTitle>{links[nav].resourceType}</d.OptionsTitle>
+                        {/* <d.OptionsTitle>Tours</d.OptionsTitle> */}
                         {/* {links[nav].options.map((e, i) => {
                             return (
                                 <d.OptionContainer
@@ -92,6 +98,25 @@ const Dashboard = ({ rightContainerContent }) => {
                                 </d.OptionContainer>
                             )
                         })} */}
+                        {links[nav].options.map((e, i) => {
+                            return (
+                                <d.OptionContainer
+                                    // selected={linkSelected === i ? true : false}
+                                    // selected={currentPath === e.redirectURL }
+
+                                    onClick={
+                                        () => {
+                                            // setLinkSelected(i)
+                                        }
+                                    }
+                                    key={i}
+                                    to={`${e.redirectURL}`}
+                                >
+                                    <d.OptionIconContainer>{e.icon}</d.OptionIconContainer>
+                                    <d.Option>{e.text}</d.Option>
+                                </d.OptionContainer>
+                            )
+                        })}
 
                     </d.OptionsContainer>
                                       

@@ -97,7 +97,9 @@ const AdminVehiclecCreateForm = () => {
 
                     <n.FormGroup>
 
-                    <n.SubmitBtn>Add vehicle</n.SubmitBtn>
+                        <n.SubmitBtn>Add vehicle</n.SubmitBtn>
+                        <n.SubmitBtn color='#333' type='reset' >Clear</n.SubmitBtn>
+                        
                     </n.FormGroup>
 
 

@@ -64,6 +64,14 @@ const UpdateTour = () => {
                         <TextArea rows={10} placeholder='Enter tour description here' />
                     </u.FormGroup>
 
+                    <u.FormGroup>
+
+            <u.SubmitBtn>Update Tour</u.SubmitBtn>
+            <u.SubmitBtn color='#333' type='reset' >Clear</u.SubmitBtn>
+
+            
+          </u.FormGroup>
+
                 </u.Form>
 
             </u.Container>

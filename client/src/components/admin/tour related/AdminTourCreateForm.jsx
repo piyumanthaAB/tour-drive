@@ -109,6 +109,8 @@ const AdminTourCreateForm = () => {
           <f.FormGroup>
 
             <f.SubmitBtn>Add Tour</f.SubmitBtn>
+            <f.SubmitBtn color='#333' type='reset' >Clear</f.SubmitBtn>
+
             
           </f.FormGroup>
           

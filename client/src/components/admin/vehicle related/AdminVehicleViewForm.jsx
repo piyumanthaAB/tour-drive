@@ -3,9 +3,9 @@ import * as f from './AdminVehicleViewFormElements.js';
 
 const AdminVehiclecViewForm =()=>{
     <h1>Vehicle Details</h1>
-    return(
-        <>
-            <f.Container>
+  return (
+    <>
+      <f.Container>
         <f.FormTitle>
           View all Vehicles
         </f.FormTitle>
@@ -44,8 +44,8 @@ const AdminVehiclecViewForm =()=>{
         </f.TableContainer>
 
       </f.Container>
-</>
-    );
+    </>
+  );
 }
 
 export default AdminVehiclecViewForm
