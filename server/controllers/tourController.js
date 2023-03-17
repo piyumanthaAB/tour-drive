@@ -1,33 +1,32 @@
-import { Tour } from "../models/tourModel.js";
-import { AppError } from "../utils/AppError.js";
-import { catchAsync } from "../utils/catchAsync.js";
+import { Tour } from '../models/tourModel.js';
+import { AppError } from '../utils/AppError.js';
+import { catchAsync } from '../utils/catchAsync.js';
 import multer from 'multer';
 
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null,'../client/public/tour-uploads')
+    cb(null, '../client/public/tour-uploads');
   },
   filename: (req, file, cb) => {
     const ext = file.mimetype.split('/')[1];
-    cb(null,`tour-${Date.now()}.${ext}` )
-  }
+    cb(null, `tour-${Date.now()}.${ext}`);
+  },
 });
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
-      cb(null, true);
+    cb(null, true);
   } else {
-      cb(new AppError('Not an image!', 400), false);
+    cb(new AppError('Not an image!', 400), false);
   }
-}
+};
 
-const upload = multer({ storage:multerStorage,fileFilter:multerFilter});
+const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 
 const uploadTourPhoto = upload.fields([
   { name: 'tour_cover', maxCount: 1 },
   { name: 'tour_gallery', maxCount: 3 },
-  
-])
+]);
 
 //  @desc       Get all tours
 //  @route      GET /api/v1/tours
@@ -57,31 +56,50 @@ const getTour = catchAsync(async (req, res, next) => {
 //  @route      POST /api/v1/tours/
 //  @access     Private
 const createTour = catchAsync(async (req, res, next) => {
-
   // console.log({
   //   cover: req.files.tour_cover,
   //   gallery:req.files.tour_gallery
   // });
 
-  const { name, price, ageLimit, capacity ,description} = req.body;
-  const tour_cover = req.files.tour_cover[0].filename;
-  const tour_gallery = req.files.tour_gallery.map(img => {
-    return img.filename;
-  })
+  const {
+    name,
+    price,
+    ageLimit,
+    capacity,
+    description,
+    duration,
+    highlights,
+    includes,
+    excludes,
+  } = req.body;
 
+  const tour_cover = req.files.tour_cover[0].filename;
+  const tour_gallery = req.files.tour_gallery.map((img) => {
+    return img.filename;
+  });
 
   const data = {
-    name, price, ageLimit, capacity,tour_cover,tour_gallery,description
-  }
+    name,
+    price,
+    age_limit: ageLimit,
+    capacity,
+    tour_cover,
+    tour_gallery,
+    description,
+    duration,
+    highlights: highlights.split('.'),
+    includes: includes.split('.'),
+    excludes: excludes.split('.'),
+  };
 
-  console.log({data});
+  console.log({ data });
   const tour = await Tour.create(data);
 
   res.status(201).json({
     success: true,
-    message:'Tour added successfully !',
+    message: 'Tour added successfully !',
     data: {
-      tour
+      tour,
     },
   });
 });
@@ -119,4 +137,11 @@ const deleteTour = catchAsync(async (req, res, next) => {
   res.status(200).json({ success: true, data: {} });
 });
 
-export { getTour, getTours, updateTour, deleteTour, createTour,uploadTourPhoto };
+export {
+  getTour,
+  getTours,
+  updateTour,
+  deleteTour,
+  createTour,
+  uploadTourPhoto,
+};

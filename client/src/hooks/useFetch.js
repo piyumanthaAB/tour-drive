@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const useFetch = (url) => {
-
   const [data, setData] = useState(null);
   const [isPending, setIspending] = useState(true);
   const [isError, setIserror] = useState(false);
-  
+
   // const CancelToken = axios.CancelToken();
   // const source = CancelToken.source()
 
@@ -15,7 +14,7 @@ const useFetch = (url) => {
       try {
         const res = await axios({
           method: 'GET',
-          url
+          url,
         });
 
         if (res.status === 200 || res.status === 201) {
@@ -26,7 +25,6 @@ const useFetch = (url) => {
         }
         setIspending(false);
         // console.log(res);
-
       } catch (error) {
         // console.log(error);
         // console.log(error.response?.data);
@@ -34,29 +32,23 @@ const useFetch = (url) => {
         if (error.message === 'cancel request') {
           // console.log('fetch aborted');
         } else {
-                
           setIserror(true);
           setIspending(false);
           setData(null);
         }
       }
-    }
+    };
 
     setTimeout(() => {
-      
-      fetchData()
-    },2000)
-      
+      fetchData();
+    }, 2000);
 
     return () => {
       // source.cancel('cancel request');
-        
-    }
+    };
+  }, [url]);
 
-  },[url])
+  return { data, isPending, isError };
+};
 
-
-  return {data,isPending,isError}
-}
-
-export default useFetch
+export default useFetch;
