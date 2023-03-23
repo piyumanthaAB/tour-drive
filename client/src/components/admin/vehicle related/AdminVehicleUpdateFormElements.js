@@ -45,13 +45,17 @@ export const DateInput = styled.input`
 
 export const SubmitBtn = styled.button`
     outline:none ;
-    ${'' /* flex:0 1 20% ; */}
-    background-color:var(--main-color) ;
+    background-color:${props=>props.color || 'var(--main-color)'} ;
     font-size:1.5rem ;
     font-weight:600 ;
     border:none ;
     padding:1rem ;
     border-radius:2rem ;
     color:#fff ;
-    margin:2rem auto 0 0   ;
+    ${'' /* margin:2rem auto 0 0   ; */}
+    margin:2rem 1rem ;
+    min-width:40% ;
+    :hover{
+        cursor: pointer;
+    }
 `;

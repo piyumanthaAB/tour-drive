@@ -31,6 +31,10 @@ import toast, { Toaster } from 'react-hot-toast';
 import SingleVehicle from './pages/public/SingleVehicle';
 import ViewAllTours from './pages/admin/tour related/ViewAllTours';
 import AdminUpdateTour from './pages/admin/tour related/AdminUpdateTour';
+import AdminViewAllUsers from './pages/admin/user related/AdminViewAllUsers';
+import AdminUpdateUser from './pages/admin/user related/AdminUpdateUser';
+import ViewTourBookings from './pages/client/tour related/ViewTourBookings';
+import ViewVehicleRentals from './pages/client/vehicle related/ViewVehicleRentals';
 
 
 function App() {
@@ -50,7 +54,9 @@ function App() {
             {/*🚩 ==================== routes without nav bar starts here ========================= */}
           
             <Route element={<WithoutNav />}>
-              <Route exact path="/me" element={<ClientHome />} />
+              <Route exact path="/client/home" element={<ClientHome />} />
+              <Route exact path="/client/my-tour-bookings" element={<ViewTourBookings />} />
+              <Route exact path="/client/my-vehicle-bookings" element={<ViewVehicleRentals />} />
             
 
               {/* ADMIN ROUTES starts here */}
@@ -66,11 +72,10 @@ function App() {
               <Route exact path="/admin/vehicles/all" element={<AdminVehicleView />} />
               <Route exact path="/admin/vehicles/add" element={<AdminCreateVehicle />} />
               <Route exact path="/admin/vehicles/update/:id" element={<AdminVehicleUpdate />} />
-              {/* <Route exact path="/admin/vehicles/bookings" element={<AdminVehicleView />} /> */}
             
-              <Route exact path="/admin/users/all" element={<AdminHome />} />
+              <Route exact path="/admin/users/all" element={<AdminViewAllUsers />} />
               <Route exact path="/admin/users/add" element={<AdminCreateUser />} />
-              <Route exact path="/admin/users/delete" element={<AdminHome />} />
+              <Route exact path="/admin/users/update/:id" element={<AdminUpdateUser />} />
             
               {/* ADMIN ROUTES ends here */}
 

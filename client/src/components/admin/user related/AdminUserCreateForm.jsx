@@ -52,8 +52,8 @@ const AdminUserCreateForm = () => {
 
           
                     <f.FormGroup>
-                        <Label labelText={'Age'} />
-                        <TextField placeholder={'Enter age here'} />
+                        <Label labelText={'ID'} />
+                        <TextField placeholder={'Enter national ID here'} />
                     </f.FormGroup>
                     
                     
@@ -68,6 +68,7 @@ const AdminUserCreateForm = () => {
                     <f.FormGroup>
 
                         <f.SubmitBtn>Add User</f.SubmitBtn>
+                        <f.SubmitBtn color='#333' type='reset' >Clear</f.SubmitBtn>
             
                     </f.FormGroup>
           

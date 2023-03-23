@@ -1,14 +1,14 @@
 import React from 'react'
-import ViewAllUsers from '../../../components/admin/user related/ViewAllUsers'
+import UpdateUser from '../../../components/admin/user related/UpdateUser'
 import Dashboard from '../../../components/shared/Dashboard'
 
-const AdminViewAllUsers = () => {
+const AdminUpdateUser = () => {
   return (
       <>
           <Dashboard
               rightContainerContent={
                   <>
-                      <ViewAllUsers/>
+                      <UpdateUser/>
                   </>
               }
           />
@@ -16,4 +16,4 @@ const AdminViewAllUsers = () => {
   )
 }
 
-export default AdminViewAllUsers
+export default AdminUpdateUser

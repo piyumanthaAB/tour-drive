@@ -19,10 +19,23 @@ const InputField = styled.input`
     }
 `;
 
-const TextField = ({ placeholder, value, setValue, type }) => {
+const TextField = ({ placeholder, value, setValue, type,multiple }) => {
 
   const validateEmail = (value) => {
     
+  }
+
+  if (multiple) {
+    return (
+      <InputField
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        type={type || 'text'}
+        placeholder={placeholder || 'placeholder'}
+        onBlur={type === 'email' ? (e) => validateEmail(e.target.value) : () => { }}
+        multiple
+      />
+    );
   }
   
   
@@ -33,7 +46,8 @@ const TextField = ({ placeholder, value, setValue, type }) => {
       onChange={(e) => setValue(e.target.value)}
       type={type || 'text'}
       placeholder={placeholder || 'placeholder'}
-      onBlur={type==='email'?(e)=>validateEmail(e.target.value):()=>{}}
+      onBlur={type === 'email' ? (e) => validateEmail(e.target.value) : () => { }}
+      
     />
   );
 }

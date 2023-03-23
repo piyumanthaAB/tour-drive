@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import { stringify } from "ts-jest";
+import mongoose from 'mongoose';
+import { stringify } from 'ts-jest';
 
 const tourSchema = new mongoose.Schema({
   name: {
@@ -7,9 +7,13 @@ const tourSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-  //   tour_cover: {
-  //     type: String,
-  //   },
+  tour_cover: {
+    type: String,
+  },
+  tour_gallery: [String],
+  highlights: [String],
+  excludes: [String],
+  includes: [String],
   max_seats: {
     type: Number,
   },
@@ -26,15 +30,20 @@ const tourSchema = new mongoose.Schema({
   duration: {
     type: String,
   },
+  capacity: {
+    type: String,
+  },
+  description: {
+    type: String,
+    required: ['true', 'A tour must have a description'],
+  },
   //   locations: {
   //     type: [String],
   //   },
   //   active: {
   //     type: Boolean,
   //   },
-  //   description: {
-  //     types: String,
-  //   },
+
   //   tour_guides: {
   //     type: [String],
   //   },
@@ -49,5 +58,5 @@ const tourSchema = new mongoose.Schema({
   //   },
 });
 
-const Tour = mongoose.model("tour", tourSchema);
+const Tour = mongoose.model('tour', tourSchema);
 export { Tour };
