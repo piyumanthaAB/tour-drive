@@ -13,6 +13,7 @@ import { globalErrorHandler } from "./controllers/errorController.js";
 //routers import
 // const userRouter = require('./routes/userRoutes');
 import { tourRouter } from "./routes/tourRoutes.js";
+import { vehicleRouter } from "./routes/vehicleRoutes.js";
 import { userRouter } from "./routes/userRoutes.js";
 import { authRouter } from "./routes/authRoutes.js";
 import { bookingRouter } from "./routes/bookingRoutes.js";
@@ -35,6 +36,7 @@ app.use(express.json({ limit: "10kb" }));
 
 // routes
 app.use("/api/v1/tours", tourRouter);
+app.use("/api/v1/vehicles", vehicleRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/booking", bookingRouter);
