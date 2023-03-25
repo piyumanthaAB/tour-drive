@@ -52,7 +52,7 @@ const SingleTour = () => {
             includes={data.data.includes}
             excludes={data.data.excludes}
           />
-          <SingleTourMap />
+          <SingleTourMap locations={data.data.locations} />
           <TourPlan />
           <ReviewSummary />
           <DisplayReviews />

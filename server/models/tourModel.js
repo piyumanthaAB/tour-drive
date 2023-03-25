@@ -14,6 +14,7 @@ const tourSchema = new mongoose.Schema({
   highlights: [String],
   excludes: [String],
   includes: [String],
+  locations: [String],
   max_seats: {
     type: Number,
   },

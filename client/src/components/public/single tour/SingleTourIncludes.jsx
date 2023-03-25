@@ -11,50 +11,56 @@ const SingleTourIncludes = ({ excludes, includes }) => {
           </i.Text>
           <i.ListContainer>
             <i.Left>
-              {includes.map((inc, i) => {
+              {includes.map((inc, j) => {
                 return (
                   <>
-                    <i.IncludeRow key={i}>
-                      <i.IconContainer
-                        color='var(--secondary-color)'
-                        fontsize={'2.5rem'}
-                      >
-                        {' '}
-                        <AiOutlineCheckCircle />{' '}
-                      </i.IconContainer>
-                      <i.Text
-                        margin={'0 0 0 2rem'}
-                        fontsize={'1.7rem'}
-                        fontweight={'500'}
-                      >
-                        {/* {inc} */}asd
-                      </i.Text>
-                    </i.IncludeRow>
+                    {inc !== '' && (
+                      <i.IncludeRow key={j}>
+                        <i.IconContainer
+                          color='var(--secondary-color)'
+                          fontsize={'2.5rem'}
+                        >
+                          {' '}
+                          <AiOutlineCheckCircle />{' '}
+                        </i.IconContainer>
+                        <i.Text
+                          margin={'0 0 0 2rem'}
+                          fontsize={'1.7rem'}
+                          fontweight={'500'}
+                        >
+                          {inc}
+                        </i.Text>
+                      </i.IncludeRow>
+                    )}
                   </>
                 );
               })}
             </i.Left>
             <i.Right>
-              {/* {excludes.map((exc, i) => {
+              {excludes.map((exc, j) => {
                 return (
-                  <i.IncludeRow key={i}>
-                    <i.IconContainer
-                      color='var(--secondary-color)'
-                      fontsize={'2.5rem'}
-                    >
-                      {' '}
-                      <AiOutlineCheckCircle />{' '}
-                    </i.IconContainer>
-                    <i.Text
-                      margin={'0 0 0 2rem'}
-                      fontsize={'1.7rem'}
-                      fontweight={'500'}
-                    >
-                      {exc}
-                    </i.Text>
-                  </i.IncludeRow>
+                  <>
+                    {exc !== '' && (
+                      <i.IncludeRow key={j}>
+                        <i.IconContainer
+                          color='var(--main-color)'
+                          fontsize={'2.5rem'}
+                        >
+                          {' '}
+                          <AiOutlineCloseCircle />{' '}
+                        </i.IconContainer>
+                        <i.Text
+                          margin={'0 0 0 2rem'}
+                          fontsize={'1.7rem'}
+                          fontweight={'500'}
+                        >
+                          {exc}
+                        </i.Text>
+                      </i.IncludeRow>
+                    )}
+                  </>
                 );
-              })} */}
+              })}
             </i.Right>
           </i.ListContainer>
         </i.IncludesCOntainer>

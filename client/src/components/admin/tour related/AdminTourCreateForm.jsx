@@ -52,6 +52,7 @@ const AdminTourCreateForm = () => {
     formData.append('highlights', highlights);
     formData.append('includes', includes);
     formData.append('excludes', excludes);
+    formData.append('locations', locations);
 
     for (const file of galleryImages) {
       formData.append('tour_gallery', file);
@@ -258,7 +259,13 @@ const AdminTourCreateForm = () => {
               value={locations}
               setValue={setLocations}
               rows={10}
-              placeholder='Enter coordinates of the locations here'
+              placeholder='Enter coordinates of the locations here.
+              EX:
+              [latitude_1,longtitude_1] 
+              [latitude_2,longtitude_2] 
+              [latitude_3,longtitude_3] 
+
+              '
             />
           </f.FormGroup>
           <f.FormGroup>

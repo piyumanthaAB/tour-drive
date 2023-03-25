@@ -11,6 +11,10 @@ const router = express.Router();
 
 router.route('/').get(getTours).post(uploadTourPhoto, createTour);
 
-router.route('/:id').get(getTour).put(updateTour).delete(deleteTour);
+router
+  .route('/:id')
+  .get(getTour)
+  .patch(uploadTourPhoto, updateTour)
+  .delete(deleteTour);
 
 export { router as tourRouter };

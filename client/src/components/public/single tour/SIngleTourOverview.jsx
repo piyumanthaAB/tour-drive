@@ -148,14 +148,21 @@ const SIngleTourOverview = ({ description, highlights, price }) => {
           </o.Text>
           {highlights.map((item, i) => {
             return (
-              <o.HighLightRow key={i}>
-                <o.IconContainer fontsize={'1.8rem'} color='var(--main-color)'>
-                  <GoPrimitiveDot />
-                </o.IconContainer>
-                <o.Text fontsize={'1.7rem'} margin={'1rem 2rem '}>
-                  {item}
-                </o.Text>
-              </o.HighLightRow>
+              <>
+                {item !== '' && (
+                  <o.HighLightRow key={i}>
+                    <o.IconContainer
+                      fontsize={'1.8rem'}
+                      color='var(--main-color)'
+                    >
+                      <GoPrimitiveDot />
+                    </o.IconContainer>
+                    <o.Text fontsize={'1.7rem'} margin={'1rem 2rem '}>
+                      {item}
+                    </o.Text>
+                  </o.HighLightRow>
+                )}
+              </>
             );
           })}
         </o.TourHighlightContainer>

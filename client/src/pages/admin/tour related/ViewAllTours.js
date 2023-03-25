@@ -1,19 +1,35 @@
-import React from 'react'
-import { ViewAllToursForm } from '../../../components/admin/tour related/ViewAllTours'
-import Dashboard from './../../../components/shared/Dashboard'
+import React from 'react';
+import { ViewAllToursForm } from '../../../components/admin/tour related/ViewAllTours';
+import Dashboard from './../../../components/shared/Dashboard';
+import useFetch from '../../../hooks/useFetch';
+import ClipLoader from 'react-spinners/ClipLoader';
+
+const override = {
+  position: 'absolute',
+  margin: '0 auto',
+  top: '30%',
+  left: '60%',
+  transform: 'translate(-50%,-50%)',
+  // borderColor: "red",
+};
 
 const ViewAllTours = () => {
-  return (
-      <>
-          <Dashboard
-              rightContainerContent={
-                  <>
-                      <ViewAllToursForm/>
-                  </>
-              }
-          />
-    </>
-  )
-}
+  const { data, isPending, isError } = useFetch('/api/v1/tours');
 
-export default ViewAllTours
+  console.log({ data });
+
+  return (
+    <>
+      <Dashboard
+        rightContainerContent={
+          <>
+            {isPending && <ClipLoader size={60} cssOverride={override} />}
+            {data && <ViewAllToursForm tours={data.data} />}
+          </>
+        }
+      />
+    </>
+  );
+};
+
+export default ViewAllTours;

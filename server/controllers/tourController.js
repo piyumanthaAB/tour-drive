@@ -71,10 +71,72 @@ const createTour = catchAsync(async (req, res, next) => {
     highlights,
     includes,
     excludes,
+    locations,
   } = req.body;
 
-  const tour_cover = req.files.tour_cover[0].filename;
-  const tour_gallery = req.files.tour_gallery.map((img) => {
+  // const tour_cover = req.files.tour_cover[0].filename;
+  // const tour_gallery = req.files.tour_gallery.map((img) => {
+  //   return img.filename;
+  // });
+
+  const data = {
+    name,
+    price,
+    age_limit: ageLimit,
+    capacity,
+    tour_cover: 'tour-1679110448345.jpeg',
+    tour_gallery: [
+      'tour-1679110448365.jpeg',
+      'tour-1679110448351.jpeg',
+      'tour-1679110448350.jpeg',
+    ],
+    description,
+    duration,
+    highlights: highlights.split('.'),
+    includes: includes.split('.'),
+    excludes: excludes.split('.'),
+    locations: locations.split('\n'),
+  };
+
+  // console.log({ data });
+
+  // let loc = data.locations;
+  // loc = loc.map((loc) => {
+  //   return loc.split(',');
+  // });
+
+  console.log({ loc });
+
+  const tour = await Tour.create(data);
+
+  res.status(201).json({
+    success: true,
+    message: 'Tour added successfully !',
+    data: {
+      tour,
+    },
+  });
+});
+
+//  @desc       Update tour
+//  @route      PATCH /api/v1/tours/:id
+//  @access     Private
+const updateTour = catchAsync(async (req, res, next) => {
+  const {
+    name,
+    price,
+    ageLimit,
+    capacity,
+    description,
+    duration,
+    highlights,
+    includes,
+    excludes,
+    locations,
+  } = req.body;
+
+  const tour_cover = req.files?.tour_cover[0].filename;
+  const tour_gallery = req.files?.tour_gallery.map((img) => {
     return img.filename;
   });
 
@@ -90,25 +152,11 @@ const createTour = catchAsync(async (req, res, next) => {
     highlights: highlights.split('.'),
     includes: includes.split('.'),
     excludes: excludes.split('.'),
+    locations: locations.split('\n'),
   };
 
   console.log({ data });
-  const tour = await Tour.create(data);
-
-  res.status(201).json({
-    success: true,
-    message: 'Tour added successfully !',
-    data: {
-      tour,
-    },
-  });
-});
-
-//  @desc       Update tour
-//  @route      PUT /api/v1/tours/:id
-//  @access     Private
-const updateTour = catchAsync(async (req, res, next) => {
-  const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+  const tour = await Tour.findByIdAndUpdate(req.params.id, data, {
     new: true,
     runValidators: true,
   });
@@ -119,7 +167,13 @@ const updateTour = catchAsync(async (req, res, next) => {
     );
   }
 
-  res.status(200).json({ success: true, data: tour });
+  res.status(200).json({
+    success: true,
+    message: 'Tour updated successfully !',
+    data: {
+      tour,
+    },
+  });
 });
 
 //  @desc       Delete tour
