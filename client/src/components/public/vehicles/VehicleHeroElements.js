@@ -1,6 +1,5 @@
-import styled from "styled-components";
-import img from './../../../images/Vehicles/vehicles-hero-cover.jpg'
-// import img from "../../../images/Vehicles/vehicles-hero-cover.jpg";
+import styled from 'styled-components';
+import img from './../../../images/vehicles/vehicles-hero-cover.jpg';
 
 export const Container = styled.div`
   width: 100%;
@@ -20,7 +19,7 @@ export const Container = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    content: "";
+    content: '';
     background: rgb(0, 0, 0);
     background: linear-gradient(
       90deg,
@@ -38,5 +37,5 @@ export const MainTitle = styled.p`
   position: relative;
   z-index: 10;
   letter-spacing: 0.1rem;
-  ${"" /* text-align:center ; */}
+  ${'' /* text-align:center ; */}
 `;
