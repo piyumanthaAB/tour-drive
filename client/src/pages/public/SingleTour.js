@@ -47,6 +47,7 @@ const SingleTour = () => {
             highlights={data.data.highlights}
             description={data.data.description}
             price={data.data.price}
+            tour={data.data}
           />
           <SingleTourIncludes
             includes={data.data.includes}

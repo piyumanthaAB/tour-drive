@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import { stringify } from "ts-jest";
+import mongoose from 'mongoose';
+import { stringify } from 'ts-jest';
 
 const vehicleSchema = new mongoose.Schema({
   vehicle_No: {
@@ -64,5 +64,5 @@ const vehicleSchema = new mongoose.Schema({
   },
 });
 
-const Vehicle = mongoose.model("vehicle", vehicleSchema);
-export  default Vehicle; 
+const Vehicle = mongoose.model('Vehicle', vehicleSchema);
+export default Vehicle;

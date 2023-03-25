@@ -5,18 +5,38 @@ import { BiPurchaseTag } from 'react-icons/bi';
 import { TbTag } from 'react-icons/tb';
 import { AiOutlineCompass } from 'react-icons/ai';
 import axios from 'axios';
+import useAuth from './../../../hooks/useAuth';
 
-const SIngleTourOverview = ({ description, highlights, price }) => {
+const SIngleTourOverview = ({ description, highlights, price, tour }) => {
+  const { user, isAuthenticated } = useAuth();
+
   const onCheckout = async () => {
+    console.log({ user, tour });
+
     const tourData = {
-      name: 'sample-tour-1',
-      price: '20',
+      tourName: tour.name,
+      tourDesc: tour.description,
+      price,
+      bookingType: 'tour',
+      tourID: tour._id,
+      vehicle: null,
+      user: user._id,
     };
 
+    console.log({ tourData });
+
     try {
-      const res = await axios.post('/api/v1/booking/create-checkout-session', {
-        tourData,
+      const res = await axios({
+        method: 'POST',
+        url: '/api/v1/booking/create-checkout-session',
+        data: tourData,
+        headers: {
+          Content: 'application/json',
+        },
       });
+      // const res = await axios.post('/api/v1/booking/create-checkout-session', {
+      //   tourData,
+      // },);
 
       if (res.status === 201) {
         window.location.href = res.data.data.url;
@@ -110,7 +130,7 @@ const SIngleTourOverview = ({ description, highlights, price }) => {
               fontsize={'1.7rem'}
               fontweight='600'
             >
-              Book Now
+              {isAuthenticated ? 'Book Now' : 'Login to book this tour'}
             </o.Text>
             <o.IconContainer color='#fff' fontsize={'2rem'}>
               <AiOutlineCompass />

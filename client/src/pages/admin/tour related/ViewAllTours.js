@@ -14,7 +14,7 @@ const override = {
 };
 
 const ViewAllTours = () => {
-  const { data, isPending, isError } = useFetch('/api/v1/tours');
+  const { data, isPending, isError } = useFetch('/api/v1/booking/my-bookings');
 
   console.log({ data });
 
@@ -24,7 +24,8 @@ const ViewAllTours = () => {
         rightContainerContent={
           <>
             {isPending && <ClipLoader size={60} cssOverride={override} />}
-            {data && <ViewAllToursForm tours={data.data} />}
+            {isError && <h1>ERROR</h1>}
+            {data && <ViewAllToursForm bookings={data?.data} />}
           </>
         }
       />

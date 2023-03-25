@@ -1,4 +1,4 @@
-import { Tour } from '../models/tourModel.js';
+import Tour from '../models/tourModel.js';
 import { AppError } from '../utils/AppError.js';
 import { catchAsync } from '../utils/catchAsync.js';
 import multer from 'multer';
