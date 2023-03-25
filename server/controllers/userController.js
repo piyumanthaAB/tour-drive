@@ -86,6 +86,27 @@ const updateUser = catchAsync(async (req, res, next) => {
   });
 });
 
+// @ DESCRIPTION            =>  deactive a single user account
+// @ ENDPOINT               =>  api/v1/users/:id [DELETE]
+// @ ACCESS                 =>  'admin'
+const deactiveUser = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+
+  const user = await User.findByIdAndUpdate(
+    id,
+    { active: false },
+    { runValidators: true, new: true }
+  );
+
+  res.status(204).json({
+    status: 'success',
+    message: 'User deactivated successfully',
+    data: {
+      user,
+    },
+  });
+});
+
 // ######### controllers END #############
 
-export { createUser, getAllUsers, getSingleUser, updateUser };
+export { createUser, getAllUsers, getSingleUser, updateUser, deactiveUser };

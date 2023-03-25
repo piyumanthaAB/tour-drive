@@ -2,7 +2,8 @@ import React from 'react';
 import * as f from './ViewAllUsersElements';
 import { FiPlusCircle, FiEdit, FiTrash2 } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
-
+import toast from 'react-hot-toast';
+import submitForm from '../../../hooks/submitForm';
 const ViewAllUsers = ({ users }) => {
   const navigate = useNavigate();
 
@@ -10,6 +11,32 @@ const ViewAllUsers = ({ users }) => {
     // console.log(user);
     navigate(`/admin/users/update/${user._id}`);
   };
+
+  const onUserDeactive = async (e, user) => {
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    await toast.promise(
+      submitForm(`/api/v1/users/${user._id}`, {}, 'delete', headers),
+      {
+        loading: 'Deactivating User...',
+        success: (data) => {
+          console.log({ data });
+          return ` ${data.data.message} ` || 'success';
+        },
+        error: (err) => `${err.response.data.message}`,
+      },
+      {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '2rem',
+        },
+      }
+    );
+  };
+
   return (
     <>
       <f.Container>
@@ -46,7 +73,11 @@ const ViewAllUsers = ({ users }) => {
                     >
                       <FiEdit />
                     </f.TableActionBtn>
-                    <f.TableActionBtn>
+                    <f.TableActionBtn
+                      onClick={(e) => {
+                        onUserDeactive(e, user);
+                      }}
+                    >
                       <FiTrash2 />
                     </f.TableActionBtn>
                   </f.TableDataCell>
