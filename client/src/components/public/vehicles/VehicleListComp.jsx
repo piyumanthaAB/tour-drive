@@ -1,15 +1,15 @@
-import React from "react";
-import * as v from "./VehicleListElements";
+import React from 'react';
+import * as v from './VehicleListElements';
 
-import Checkbox from "@mui/material/Checkbox";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import Favorite from "@mui/icons-material/Favorite";
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 
-import { FiMapPin, FiUsers, FiClock } from "react-icons/fi";
-import { BsFillStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import { FiMapPin, FiUsers, FiClock } from 'react-icons/fi';
+import { BsFillStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 const VehicleListComp = ({ vehicles }) => {
   return (
@@ -20,8 +20,10 @@ const VehicleListComp = ({ vehicles }) => {
             {vehicles.map((vehicle, id) => {
               return (
                 <>
-                  <v.VehicleItemContainer key={vehicle.id}>
-                    <v.VehicleImgContainer img={vehicle.vehicle_cover}>
+                  <v.VehicleItemContainer key={id}>
+                    <v.VehicleImgContainer
+                      img={`${process.env.PUBLIC_URL}/vehicle-uploads/${vehicle.cover_URL}`}
+                    >
                       {/* mui check box with icon can use here */}
 
                       <v.FavouriteBtn>
@@ -29,17 +31,19 @@ const VehicleListComp = ({ vehicles }) => {
                           icon={<FavoriteBorder />}
                           checkedIcon={<Favorite />}
                           sx={{
-                            color: "#333",
-                            "&.Mui-checked": {
-                              color: "var(--main-color)",
+                            color: '#333',
+                            '&.Mui-checked': {
+                              color: 'var(--main-color)',
                             },
-                            "& .MuiSvgIcon-root": { fontSize: 20 },
+                            '& .MuiSvgIcon-root': { fontSize: 20 },
                           }}
                         />
                       </v.FavouriteBtn>
                     </v.VehicleImgContainer>
                     <v.VehicleDescContainer>
-                      <v.VehicleTitle>{vehicle.name}</v.VehicleTitle>
+                      <v.VehicleTitle>
+                        {`${vehicle.brand} ${vehicle.model}`}
+                      </v.VehicleTitle>
                       <v.Row>
                         <v.VehicleSecondaryTitleContainer>
                           <v.VehicleSecondaryTitle>
@@ -77,151 +81,13 @@ const VehicleListComp = ({ vehicles }) => {
                           <v.BadgeIcon>
                             <FiUsers />
                           </v.BadgeIcon>
-                          {vehicle.numberOfSeats} seats
+                          {vehicle.seats} seats
                         </v.BadgeContainer>
                       </v.PriceRow>
                       <v.Price>$ 45</v.Price>
-                      <v.ExploreBtn to={`/vehicles/`}>View</v.ExploreBtn>
-                    </v.VehiclePriceContainer>
-                  </v.VehicleItemContainer>
-                </>
-              );
-            })}
-            {vehicles.map((vehicle, id) => {
-              return (
-                <>
-                  <v.VehicleItemContainer key={vehicle.id}>
-                    <v.VehicleImgContainer img={vehicle.vehicle_cover}>
-                      {/* mui check box with icon can use here */}
-
-                      <v.FavouriteBtn>
-                        <Checkbox
-                          icon={<FavoriteBorder />}
-                          checkedIcon={<Favorite />}
-                          sx={{
-                            color: "#333",
-                            "&.Mui-checked": {
-                              color: "var(--main-color)",
-                            },
-                            "& .MuiSvgIcon-root": { fontSize: 20 },
-                          }}
-                        />
-                      </v.FavouriteBtn>
-                    </v.VehicleImgContainer>
-                    <v.VehicleDescContainer>
-                      <v.VehicleTitle>{vehicle.name}</v.VehicleTitle>
-                      <v.Row>
-                        <v.VehicleSecondaryTitleContainer>
-                          <v.VehicleSecondaryTitle>
-                            {vehicle.status}
-                          </v.VehicleSecondaryTitle>
-                        </v.VehicleSecondaryTitleContainer>
-                        <v.ReviewsContainer>
-                          <v.ReviewIcon>
-                            <BsFillStarFill />
-                          </v.ReviewIcon>
-                          <v.ReviewIcon>
-                            <BsFillStarFill />
-                          </v.ReviewIcon>
-                          <v.ReviewIcon>
-                            <BsFillStarFill />
-                          </v.ReviewIcon>
-                          <v.ReviewIcon>
-                            <BsStarHalf />
-                          </v.ReviewIcon>
-                          <v.ReviewIcon>
-                            <BsStar />
-                          </v.ReviewIcon>
-                          <v.ReviewTitle>2 reviews</v.ReviewTitle>
-                        </v.ReviewsContainer>
-                      </v.Row>
-                      <v.Row>
-                        <v.VehicleDesc>
-                          A/C, Power Steering, CD Player, Auto
-                        </v.VehicleDesc>
-                      </v.Row>
-                    </v.VehicleDescContainer>
-                    <v.VehiclePriceContainer>
-                      <v.PriceRow>
-                        <v.BadgeContainer>
-                          <v.BadgeIcon>
-                            <FiUsers />
-                          </v.BadgeIcon>
-                          {vehicle.numberOfSeats} seats
-                        </v.BadgeContainer>
-                      </v.PriceRow>
-                      <v.Price>$ 45</v.Price>
-                      <v.ExploreBtn to={`/vehicles/`}>View</v.ExploreBtn>
-                    </v.VehiclePriceContainer>
-                  </v.VehicleItemContainer>
-                </>
-              );
-            })}
-            {vehicles.map((vehicle, id) => {
-              return (
-                <>
-                  <v.VehicleItemContainer key={vehicle.id}>
-                    <v.VehicleImgContainer img={vehicle.vehicle_cover}>
-                      {/* mui check box with icon can use here */}
-
-                      <v.FavouriteBtn>
-                        <Checkbox
-                          icon={<FavoriteBorder />}
-                          checkedIcon={<Favorite />}
-                          sx={{
-                            color: "#333",
-                            "&.Mui-checked": {
-                              color: "var(--main-color)",
-                            },
-                            "& .MuiSvgIcon-root": { fontSize: 20 },
-                          }}
-                        />
-                      </v.FavouriteBtn>
-                    </v.VehicleImgContainer>
-                    <v.VehicleDescContainer>
-                      <v.VehicleTitle>{vehicle.name}</v.VehicleTitle>
-                      <v.Row>
-                        <v.VehicleSecondaryTitleContainer>
-                          <v.VehicleSecondaryTitle>
-                            {vehicle.status}
-                          </v.VehicleSecondaryTitle>
-                        </v.VehicleSecondaryTitleContainer>
-                        <v.ReviewsContainer>
-                          <v.ReviewIcon>
-                            <BsFillStarFill />
-                          </v.ReviewIcon>
-                          <v.ReviewIcon>
-                            <BsFillStarFill />
-                          </v.ReviewIcon>
-                          <v.ReviewIcon>
-                            <BsFillStarFill />
-                          </v.ReviewIcon>
-                          <v.ReviewIcon>
-                            <BsStarHalf />
-                          </v.ReviewIcon>
-                          <v.ReviewIcon>
-                            <BsStar />
-                          </v.ReviewIcon>
-                          <v.ReviewTitle>2 reviews</v.ReviewTitle>
-                        </v.ReviewsContainer>
-                      </v.Row>
-                      <v.Row>
-                        <v.VehicleDesc>
-                          A/C, Power Steering, CD Player, Auto
-                        </v.VehicleDesc>
-                      </v.Row>
-                    </v.VehicleDescContainer>
-                    <v.VehiclePriceContainer>
-                      <v.PriceRow>
-                        <v.BadgeContainer>
-                          <v.BadgeIcon>
-                            <FiUsers />
-                          </v.BadgeIcon>
-                          {vehicle.numberOfSeats} seats
-                        </v.BadgeContainer>
-                      </v.PriceRow>
-                      <v.Price>$ 45</v.Price>
-                      <v.ExploreBtn to={`/vehicles/`}>View</v.ExploreBtn>
+                      <v.ExploreBtn to={`/vehicles/${vehicle._id}`}>
+                        View
+                      </v.ExploreBtn>
                     </v.VehiclePriceContainer>
                   </v.VehicleItemContainer>
                 </>

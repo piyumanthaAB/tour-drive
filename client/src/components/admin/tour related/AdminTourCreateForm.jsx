@@ -53,12 +53,14 @@ const AdminTourCreateForm = () => {
     formData.append('includes', includes);
     formData.append('excludes', excludes);
     formData.append('locations', locations);
+    formData.append('startDate', startDate);
+    formData.append('endDate', endDate);
 
     for (const file of galleryImages) {
       formData.append('tour_gallery', file);
     }
 
-    console.log({ formData });
+    console.log({ startDate });
 
     await toast.promise(
       submitForm('/api/v1/tours', formData, 'post', headers),
@@ -179,7 +181,17 @@ const AdminTourCreateForm = () => {
             <Label labelText={'Start Date'} />
             <f.DateInput
               value={startDate}
-              setValue={setStartDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              // setValue={setStartDate}
+              type={'date'}
+            />
+          </f.FormGroup>
+          <f.FormGroup>
+            <Label labelText={'End Date'} />
+            <f.DateInput
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              // setValue={setStartDate}
               type={'date'}
             />
           </f.FormGroup>
@@ -208,14 +220,14 @@ const AdminTourCreateForm = () => {
             />
           </f.FormGroup>
 
-          <f.FormGroup>
-            {/* <Label labelText={'Select Tour type'} />
+          {/* <f.FormGroup>
+            <Label labelText={'Select Tour type'} />
             <DropDown
               dropDownValues={ availableGuides}
               currentDropdownVal={guideTwo}
               setCurrentDropdownVal={setGuideTwo}
-            /> */}
-          </f.FormGroup>
+            />
+          </f.FormGroup> */}
 
           <f.FormGroup>
             <Label labelText={'Tour Includes'} />

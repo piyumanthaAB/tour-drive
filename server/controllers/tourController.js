@@ -72,6 +72,8 @@ const createTour = catchAsync(async (req, res, next) => {
     includes,
     excludes,
     locations,
+    startDate,
+    endDate,
   } = req.body;
 
   // const tour_cover = req.files.tour_cover[0].filename;
@@ -96,6 +98,8 @@ const createTour = catchAsync(async (req, res, next) => {
     includes: includes.split('.'),
     excludes: excludes.split('.'),
     locations: locations.split('\n'),
+    start_date: startDate,
+    end_date: endDate,
   };
 
   // console.log({ data });
@@ -105,9 +109,9 @@ const createTour = catchAsync(async (req, res, next) => {
   //   return loc.split(',');
   // });
 
-  console.log({ loc });
-
   const tour = await Tour.create(data);
+
+  console.log({ body: req.body });
 
   res.status(201).json({
     success: true,

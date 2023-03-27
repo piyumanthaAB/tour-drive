@@ -85,7 +85,11 @@ const SIngleTourOverview = ({ description, highlights, price, tour }) => {
                 {' '}
                 Check In
               </o.Text>
-              <o.DateInput type={'date'} />
+              <o.DateInput
+                value={tour.start_date?.split('T')[0] || ''}
+                disabled
+                type={'date'}
+              />
             </o.Group>
             <o.Group>
               <o.Text
@@ -97,7 +101,11 @@ const SIngleTourOverview = ({ description, highlights, price, tour }) => {
                 {' '}
                 Check Out
               </o.Text>
-              <o.DateInput type={'date'} />
+              <o.DateInput
+                value={tour.end_date?.split('T')[0] || ''}
+                disabled
+                type={'date'}
+              />
             </o.Group>
             <o.Group>
               <o.Text

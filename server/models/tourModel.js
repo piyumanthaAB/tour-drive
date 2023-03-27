@@ -51,9 +51,12 @@ const tourSchema = new mongoose.Schema({
   //   type: {
   //     type: String,
   //   },
-  //   start_date: {
-  //     type: Date,
-  //   },
+  start_date: {
+    type: Date,
+  },
+  end_date: {
+    type: Date,
+  },
   //   rating_average: {
   //     type: Number,
   //   },
