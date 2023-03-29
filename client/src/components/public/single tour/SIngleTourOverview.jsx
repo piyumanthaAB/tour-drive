@@ -6,12 +6,26 @@ import { TbTag } from 'react-icons/tb';
 import { AiOutlineCompass } from 'react-icons/ai';
 import axios from 'axios';
 import useAuth from './../../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const SIngleTourOverview = ({ description, highlights, price, tour }) => {
   const { user, isAuthenticated } = useAuth();
 
+  console.log({ highlights });
+
   const onCheckout = async () => {
     console.log({ user, tour });
+
+    if (!isAuthenticated) {
+      toast.error('Please login to book this tour!', {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '1.5rem',
+        },
+      });
+    }
 
     const tourData = {
       tourName: tour.name,
@@ -174,7 +188,7 @@ const SIngleTourOverview = ({ description, highlights, price, tour }) => {
           >
             Tour Highlights
           </o.Text>
-          {highlights.map((item, i) => {
+          {highlights.split('\r').map((item, i) => {
             return (
               <>
                 {item !== '' && (

@@ -74,44 +74,53 @@ const createTour = catchAsync(async (req, res, next) => {
     locations,
     startDate,
     endDate,
+    tourPlan,
+    cities,
   } = req.body;
 
-  // const tour_cover = req.files.tour_cover[0].filename;
-  // const tour_gallery = req.files.tour_gallery.map((img) => {
-  //   return img.filename;
-  // });
+  console.log({ tourPlan });
 
-  const data = {
+  const tour_cover = req.files.tour_cover[0].filename;
+  const tour_gallery = req.files.tour_gallery.map((img) => {
+    return img.filename;
+  });
+
+  let data = {
     name,
     price,
     age_limit: ageLimit,
     capacity,
-    tour_cover: 'tour-1679110448345.jpeg',
-    tour_gallery: [
-      'tour-1679110448365.jpeg',
-      'tour-1679110448351.jpeg',
-      'tour-1679110448350.jpeg',
-    ],
+    tour_cover,
+    tour_gallery,
     description,
     duration,
-    highlights: highlights.split('.'),
-    includes: includes.split('.'),
-    excludes: excludes.split('.'),
-    locations: locations.split('\n'),
+    highlights,
+    includes,
+    excludes,
+    locations,
     start_date: startDate,
     end_date: endDate,
+    tourPlan,
+    cities,
   };
 
-  // console.log({ data });
+  let locs = locations;
 
-  // let loc = data.locations;
-  // loc = loc.map((loc) => {
-  //   return loc.split(',');
-  // });
+  let regex = /(\[.*?\])/g;
+  let matches = locs.match(regex);
+  let loc_array = JSON.parse(`[${matches}]`);
+
+  data.locations = loc_array;
+
+  let plans_arr = tourPlan.match(/\[([^\]]*)\]/g).map(function (item) {
+    return item.slice(1, -1);
+  });
+
+  data.tourPlan = plans_arr;
+
+  console.log({ plans_arr });
 
   const tour = await Tour.create(data);
-
-  console.log({ body: req.body });
 
   res.status(201).json({
     success: true,
@@ -137,6 +146,10 @@ const updateTour = catchAsync(async (req, res, next) => {
     includes,
     excludes,
     locations,
+    startDate,
+    endDate,
+    tourPlan,
+    cities,
   } = req.body;
 
   const tour_cover = req.files?.tour_cover[0].filename;
@@ -144,7 +157,7 @@ const updateTour = catchAsync(async (req, res, next) => {
     return img.filename;
   });
 
-  const data = {
+  let data = {
     name,
     price,
     age_limit: ageLimit,
@@ -153,13 +166,34 @@ const updateTour = catchAsync(async (req, res, next) => {
     tour_gallery,
     description,
     duration,
-    highlights: highlights.split('.'),
-    includes: includes.split('.'),
-    excludes: excludes.split('.'),
-    locations: locations.split('\n'),
+    highlights,
+    includes,
+    excludes,
+    locations,
+    start_date: startDate,
+    end_date: endDate,
+    tourPlan,
+    cities,
   };
 
   console.log({ data });
+
+  let locs = locations;
+
+  let regex = /(\[.*?\])/g;
+  let matches = locs.match(regex);
+  let loc_array = JSON.parse(`[${matches}]`);
+
+  data.locations = loc_array;
+
+  let plans_arr = tourPlan.match(/\[([^\]]*)\]/g).map(function (item) {
+    return item.slice(1, -1);
+  });
+
+  data.tourPlan = plans_arr;
+
+  console.log({ plans_arr });
+
   const tour = await Tour.findByIdAndUpdate(req.params.id, data, {
     new: true,
     runValidators: true,

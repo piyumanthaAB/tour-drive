@@ -7,11 +7,51 @@ import { FiKey } from 'react-icons/fi';
 
 import * as o from './SingleVehicleOverviewElements';
 import DropDown from '../../shared/Form Elements/DropDown';
+import useAuth from './../../../hooks/useAuth';
+import axios from 'axios';
 
 const SingleVehicleOverview = ({ vehicle }) => {
+  const { user, isAuthenticated } = useAuth();
+
   const [drivingOptDropdownVal, setDrivingOptDropdownVal] =
     useState('Without driver');
   const drivingOptDropDownValues = ['With driver', 'Without driver'];
+
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
+
+  const onCheckout = async () => {
+    // console.log({ user, tour });
+
+    const vehicleData = {
+      vehicleName: `${vehicle.brand} ${vehicle.model}`,
+      price: vehicle.price_per_day_with_dr,
+      bookingType: 'vehicle',
+      tourID: null,
+      vehicle: vehicle._id,
+      user: user._id,
+      from,
+      to,
+    };
+    console.log({ vehicleData });
+
+    try {
+      const res = await axios({
+        method: 'POST',
+        url: '/api/v1/booking/create-checkout-session',
+        data: vehicleData,
+        headers: {
+          Content: 'application/json',
+        },
+      });
+
+      if (res.status === 201) {
+        window.location.href = res.data.data.url;
+      }
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
   return (
     <>
       <o.OverviewSection>
@@ -55,7 +95,11 @@ const SingleVehicleOverview = ({ vehicle }) => {
                 {' '}
                 From
               </o.Text>
-              <o.DateInput type={'date'} />
+              <o.DateInput
+                value={from}
+                onChange={(e) => setFrom(e.target.value)}
+                type={'date'}
+              />
             </o.Group>
             <o.Group>
               <o.Text
@@ -67,7 +111,11 @@ const SingleVehicleOverview = ({ vehicle }) => {
                 {' '}
                 To
               </o.Text>
-              <o.DateInput type={'date'} />
+              <o.DateInput
+                value={to}
+                onChange={(e) => setTo(e.target.value)}
+                type={'date'}
+              />
             </o.Group>
             <o.Group>
               <o.Text
@@ -88,14 +136,14 @@ const SingleVehicleOverview = ({ vehicle }) => {
             </o.Group>
           </o.BookingBodyContainer>
 
-          <o.BookNowBtn>
+          <o.BookNowBtn onClick={onCheckout}>
             <o.Text
               color='#fff'
               margin='0 1rem 0 0'
               fontsize={'1.7rem'}
               fontweight='600'
             >
-              Rent Now
+              {isAuthenticated ? 'Rent Now' : 'Log In to rent a vehicle'}
             </o.Text>
             <o.IconContainer color='#fff' fontsize={'2rem'}>
               <AiOutlineCar />

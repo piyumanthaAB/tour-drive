@@ -21,8 +21,10 @@ const UpdateTour = ({ tour }) => {
   const [guide_1, setGuide_1] = useState('');
   const [guide_2, setGuide_2] = useState('');
   const [guide_3, setGuide_3] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [startDate, setStartDate] = useState(
+    new Date('2023-04-01') || 'not available'
+  );
+  const [endDate, setEndDate] = useState(tour.end_date || 'not available');
   const [category, setCategory] = useState('');
   const [locations, setLocations] = useState('');
   const [description, setDescription] = useState(
@@ -164,13 +166,19 @@ const UpdateTour = ({ tour }) => {
             <Label labelText={'Start Date'} />
             <u.DateInput
               value={startDate}
-              setValue={setStartDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              // setValue={setStartDate}
               type={'date'}
             />
           </u.FormGroup>
           <u.FormGroup>
             <Label labelText={'End Date'} />
-            <u.DateInput value={endDate} setValue={setEndDate} type={'date'} />
+            <u.DateInput
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              // setValue={setStartDate}
+              type={'date'}
+            />
           </u.FormGroup>
 
           <u.FormGroup>

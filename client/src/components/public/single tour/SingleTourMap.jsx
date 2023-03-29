@@ -5,11 +5,13 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 const SingleTourMap = ({ locations }) => {
   const [state, setState] = useState({
-    lng: 80.7454282860651,
-    lat: 7.9568286487016735,
-    zoom: 8,
+    lng: locations[0][1],
+    lat: locations[0][0],
+    zoom: 10,
   });
   const mapContainer = useRef(null);
+
+  console.log({ locations });
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -21,11 +23,9 @@ const SingleTourMap = ({ locations }) => {
       interactive: true,
     });
 
-    // locations.map((loc) => {
-    //   new mapboxgl.Marker()
-    //     .setLngLat([loc, 7.9568286487016735])
-    //     .addTo(map);
-    // });
+    locations.map((loc) => {
+      new mapboxgl.Marker().setLngLat([loc[1], loc[0]]).addTo(map);
+    });
     // const marker1 = new mapboxgl.Marker()
     //   .setLngLat([80.7454282860651, 7.9568286487016735])
     //   .addTo(map);

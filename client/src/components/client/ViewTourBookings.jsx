@@ -21,16 +21,16 @@ const ViewTourBookings = ({ bookings }) => {
               return (
                 <f.TableRow key={key}>
                   <f.TableDataCell>{key + 1} </f.TableDataCell>
-                  <f.TableDataCell>{item.tour.name} </f.TableDataCell>
+                  <f.TableDataCell>{item.tour?.name || ''} </f.TableDataCell>
                   <f.TableDataCell>
-                    {item.tour.start_date?.split('T')[0] || 'not available'}
+                    {item?.tour?.start_date?.split('T')[0] || 'not available'}
                   </f.TableDataCell>
                   <f.TableDataCell className='flex'>
                     {' '}
-                    ${item.tour.price}{' '}
+                    ${item.tour?.price}{' '}
                   </f.TableDataCell>
                   <f.TableDataCell>
-                    <Link to={`/tours/${item.tour._id}`}>View tour</Link>
+                    <Link to={`/tours/${item?.tour?._id}`}>View tour</Link>
                   </f.TableDataCell>
                 </f.TableRow>
               );

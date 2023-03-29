@@ -11,7 +11,7 @@ const SingleTourIncludes = ({ excludes, includes }) => {
           </i.Text>
           <i.ListContainer>
             <i.Left>
-              {includes.map((inc, j) => {
+              {includes.split('\r').map((inc, j) => {
                 return (
                   <>
                     {inc !== '' && (
@@ -37,7 +37,7 @@ const SingleTourIncludes = ({ excludes, includes }) => {
               })}
             </i.Left>
             <i.Right>
-              {excludes.map((exc, j) => {
+              {excludes.split('\r').map((exc, j) => {
                 return (
                   <>
                     {exc !== '' && (

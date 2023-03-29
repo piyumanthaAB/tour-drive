@@ -54,7 +54,7 @@ const SingleTour = () => {
             excludes={data.data.excludes}
           />
           <SingleTourMap locations={data.data.locations} />
-          <TourPlan />
+          <TourPlan plan={data.data.tourPlan} />
           <ReviewSummary />
           <DisplayReviews />
           <CreateReviewForm />

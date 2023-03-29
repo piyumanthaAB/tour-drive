@@ -1,19 +1,21 @@
-import React from 'react'
-import { VehicleRentals } from '../../../components/client/ViewVehicleRentals'
-import Dashboard from '../../../components/shared/Dashboard'
+import React from 'react';
+import { VehicleRentals } from '../../../components/client/ViewVehicleRentals';
+import Dashboard from '../../../components/shared/Dashboard';
+import useFetch from '../../../hooks/useFetch';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const ViewVehicleRentals = () => {
   return (
-      <>
-          <Dashboard
-              rightContainerContent={
-                  <>
-                      <VehicleRentals/>
-                  </>
-              }
-          />
+    <>
+      <Dashboard
+        rightContainerContent={
+          <>
+            <VehicleRentals />
+          </>
+        }
+      />
     </>
-  )
-}
+  );
+};
 
-export default ViewVehicleRentals
+export default ViewVehicleRentals;
