@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import { AppError } from './utils/AppError.js';
+const __dirname = path.resolve();
 
 //global error handler import
 // const globalErrorHandler = require('./controllers/errorController');
