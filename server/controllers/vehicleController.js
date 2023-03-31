@@ -63,7 +63,7 @@ const addVehicle = catchAsync(async (req, res, next) => {
   const data = {
     vehicle_No: req.body.vehicleNo,
     vehicle_type: req.body.type,
-    millage: req.body.millage,
+    milage: req.body.milage,
     seats: req.body.seatsCount,
     brand: req.body.vehicleBrand,
     model: req.body.vehicleModel,

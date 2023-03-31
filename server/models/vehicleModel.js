@@ -78,7 +78,7 @@ const vehicleSchema = new mongoose.Schema({
   fuel_type: {
     type: String,
   },
-  millage: {
+  milage: {
     type: Number,
   },
   transmission: {

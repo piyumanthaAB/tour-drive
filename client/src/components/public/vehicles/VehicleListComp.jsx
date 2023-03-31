@@ -84,7 +84,7 @@ const VehicleListComp = ({ vehicles }) => {
                           {vehicle.seats} seats
                         </v.BadgeContainer>
                       </v.PriceRow>
-                      <v.Price>$ 45</v.Price>
+                      <v.Price>$ {vehicle.price_per_day_without_dr}</v.Price>
                       <v.ExploreBtn to={`/vehicles/${vehicle._id}`}>
                         View
                       </v.ExploreBtn>
