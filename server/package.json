@@ -9,7 +9,7 @@
     "start": "node server.js",
     "start_dev_server": "set NODE_ENV=development&&nodemon server.js",
     "start_prod_server": "set NODE_ENV=production&&nodemon server.js",
-    "redner:build":"npm install --prefix ./../client && npm run build --prefix ./../client npm i",
+    "redner:build":"npm install --prefix ./../client && npm run build --prefix ./../client && npm i",
     "render:start":"set NODE_ENV=production && npm start"
   },
   "keywords": [],
