@@ -78,7 +78,7 @@ const createTour = catchAsync(async (req, res, next) => {
     cities,
   } = req.body;
 
-  console.log({ tourPlan });
+  console.log({ locations });
 
   const tour_cover = req.files.tour_cover[0].filename;
   const tour_gallery = req.files.tour_gallery.map((img) => {
@@ -112,13 +112,15 @@ const createTour = catchAsync(async (req, res, next) => {
 
   data.locations = loc_array;
 
+  console.log({ loc_array });
+
   let plans_arr = tourPlan.match(/\[([^\]]*)\]/g).map(function (item) {
     return item.slice(1, -1);
   });
 
   data.tourPlan = plans_arr;
 
-  console.log({ plans_arr });
+  // console.log({ plans_arr });
 
   const tour = await Tour.create(data);
 

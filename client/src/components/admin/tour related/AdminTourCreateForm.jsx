@@ -195,7 +195,9 @@ const AdminTourCreateForm = () => {
             <Label labelText={'Start Date'} />
             <f.DateInput
               value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              onChange={(e) => {
+                setStartDate(e.target.value);
+              }}
               // setValue={setStartDate}
               type={'date'}
             />

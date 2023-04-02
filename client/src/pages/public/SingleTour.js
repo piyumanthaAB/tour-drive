@@ -42,6 +42,7 @@ const SingleTour = () => {
             capacity={data.data.capacity}
             age_limit={data.data.age_limit}
             tour_gallery={data.data.tour_gallery}
+            cities={data.data.cities}
           />
           <SIngleTourOverview
             highlights={data.data.highlights}

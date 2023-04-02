@@ -1,14 +1,18 @@
-import React from 'react'
+import React from 'react';
 import * as f from './AdminVehicleViewFormElements.js';
+import { useNavigate } from 'react-router-dom';
+import { FiPlusCircle, FiEdit, FiTrash2 } from 'react-icons/fi';
 
-const AdminVehiclecViewForm =()=>{
-    <h1>Vehicle Details</h1>
+const AdminVehiclecViewForm = ({ vehicles }) => {
+  const navigate = useNavigate();
+  const onVehicleUpdate = (e, vehicle) => {
+    // console.log(vehicle);
+    navigate(`/admin/vehicles/update/${vehicle._id}`);
+  };
   return (
     <>
       <f.Container>
-        <f.FormTitle>
-          View all Vehicles
-        </f.FormTitle>
+        <f.FormTitle>View all Vehicles</f.FormTitle>
 
         <f.TableContainer>
           <f.Table>
@@ -16,36 +20,46 @@ const AdminVehiclecViewForm =()=>{
               <f.TableDataCell th={true}>#</f.TableDataCell>
               <f.TableDataCell th={true}>Vehicle No</f.TableDataCell>
               <f.TableDataCell th={true}>Type</f.TableDataCell>
-              <f.TableDataCell th={true}>Status</f.TableDataCell>
+              <f.TableDataCell th={true}>model-make</f.TableDataCell>
               <f.TableDataCell th={true}>Fuel</f.TableDataCell>
+              <f.TableDataCell th={true}>status</f.TableDataCell>
+              <f.TableDataCell th={true}>actions</f.TableDataCell>
             </f.TableRow>
-            <f.TableRow>
-              <f.TableDataCell>1</f.TableDataCell>
-              <f.TableDataCell>CBC-1111</f.TableDataCell>
-              <f.TableDataCell minwidth='1rem'>car</f.TableDataCell>
-              <f.TableDataCell className="flex"> available </f.TableDataCell>
-              <f.TableDataCell minwidth='1rem'>petrol</f.TableDataCell>
-            </f.TableRow>
-            <f.TableRow>
-              <f.TableDataCell>2</f.TableDataCell>
-              <f.TableDataCell>pw-1245</f.TableDataCell>
-              <f.TableDataCell minwidth='1rem'>van</f.TableDataCell>
-              <f.TableDataCell className="flex">rented</f.TableDataCell>
-              <f.TableDataCell minwidth='1rem'>diesal</f.TableDataCell>
-            </f.TableRow>
-            <f.TableRow>
-              <f.TableDataCell>3</f.TableDataCell>
-              <f.TableDataCell>tw-2563</f.TableDataCell>
-              <f.TableDataCell minwidth='1rem'>bike</f.TableDataCell>
-              <f.TableDataCell className="flex">rented</f.TableDataCell>
-              <f.TableDataCell minwidth='1rem'>petrol</f.TableDataCell>
-            </f.TableRow>
+            {vehicles.map((vehicle, i) => {
+              return (
+                <f.TableRow key={i}>
+                  <f.TableDataCell> {i + 1} </f.TableDataCell>
+                  <f.TableDataCell>{vehicle.vehicle_No}</f.TableDataCell>
+                  <f.TableDataCell minwidth='1rem'>
+                    {vehicle.vehicle_type}
+                  </f.TableDataCell>
+                  <f.TableDataCell className='flex'>{`${vehicle.model}, ${vehicle.brand}`}</f.TableDataCell>
+                  <f.TableDataCell minwidth='1rem'>
+                    {vehicle.fuel}
+                  </f.TableDataCell>
+                  <f.TableDataCell minwidth='1rem'>
+                    {vehicle.vehicle_state}
+                  </f.TableDataCell>
+                  <f.TableDataCell className='flex' minwidth='1rem'>
+                    <f.TableActionBtn
+                      onClick={(e) => {
+                        onVehicleUpdate(e, vehicle);
+                      }}
+                    >
+                      <FiEdit />
+                    </f.TableActionBtn>
+                    <f.TableActionBtn>
+                      <FiTrash2 />
+                    </f.TableActionBtn>
+                  </f.TableDataCell>
+                </f.TableRow>
+              );
+            })}
           </f.Table>
         </f.TableContainer>
-
       </f.Container>
     </>
   );
-}
+};
 
-export default AdminVehiclecViewForm
+export default AdminVehiclecViewForm;

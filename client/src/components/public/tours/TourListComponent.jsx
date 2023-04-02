@@ -45,6 +45,7 @@ const TourListComponent = ({ tours }) => {
         <ToursSection>
           <TourListContainer>
             {tours.map((tour, id) => {
+              console.log({ tour });
               return (
                 <>
                   <TourItemContainer key={tour?._id}>
@@ -75,7 +76,9 @@ const TourListComponent = ({ tours }) => {
                             <FiMapPin />
                           </SecondaryTitleIcon>
                           <TourSecondaryTitle>
-                            Copenhagen, Denmark
+                            {tour?.cities?.split(',').map((city, i) => {
+                              return `${city}, `;
+                            })}
                           </TourSecondaryTitle>
                         </TourSecondaryTitleContainer>
                         <ReviewsContainer>

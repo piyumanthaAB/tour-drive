@@ -94,7 +94,33 @@ const addVehicle = catchAsync(async (req, res, next) => {
 //  @route      PUT /api/v1/vehicles/:id
 //  @access     Private
 const updateVehicle = catchAsync(async (req, res, next) => {
-  const vehicle = await Vehicle.findByIdAndUpdate(req.params.id, req.body, {
+  // console.log({
+  //   cover: req.files.vehicle_cover,
+  //   gallery: req.files.vehicle_gallery,
+  // });
+
+  const data = {
+    vehicle_No: req.body.vehicleNo,
+    vehicle_type: req.body.type,
+    milage: req.body.milage,
+    seats: req.body.seats,
+    brand: req.body.brand,
+    model: req.body.model,
+    images_URL: req.files.vehicle_gallery.map((img) => {
+      return img.filename;
+    }),
+    cover_URL: req.files.vehicle_cover[0].filename,
+    description: req.body.description,
+    features: req.body.features,
+    transmission: req.body.transmission,
+    fuel: req.body.fuel,
+    price_per_day_with_dr: req.body.price_per_day_with_dr,
+    price_per_day_without_dr: req.body.price_per_day_without_dr,
+  };
+
+  console.log({ data });
+
+  const vehicle = await Vehicle.findByIdAndUpdate(req.params.id, data, {
     new: true,
     runValidators: true,
   });
@@ -105,7 +131,11 @@ const updateVehicle = catchAsync(async (req, res, next) => {
     );
   }
 
-  res.status(200).json({ success: true, data: vehicle });
+  res.status(201).json({
+    success: true,
+    message: 'Vehicle updated successfully',
+    data: { vehicle },
+  });
 });
 
 //  @desc       Delete vehicle
