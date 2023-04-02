@@ -1,4 +1,5 @@
 import Vehicle from '../models/vehicleModel.js';
+import APIFeatures from '../utils/APIFeatures.js';
 import { AppError } from '../utils/AppError.js';
 import { catchAsync } from '../utils/catchAsync.js';
 import multer from 'multer';
@@ -31,7 +32,13 @@ const uploadVehiclePhoto = upload.fields([
 //  @route       GET /api/v1/vehicles
 //  @access      Public
 const getVehicles = catchAsync(async (req, res, next) => {
-  const vehicles = await Vehicle.find({ vehicle_state: 'available' });
+  const features = new APIFeatures(Vehicle.find(), req.query)
+    .filter()
+    .sort()
+    .limiting()
+    .paging();
+
+  const vehicles = await features.query;
 
   res.status(200).json({ success: true, data: vehicles });
 });

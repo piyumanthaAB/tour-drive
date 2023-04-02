@@ -33,7 +33,7 @@ const uploadTourPhoto = upload.fields([
 //  @route      GET /api/v1/tours
 //  @access     Public
 const getTours = catchAsync(async (req, res, next) => {
-  console.log({ query: req.query });
+  // console.log({ query: req.query });
 
   const features = new APIFeatures(Tour.find(), req.query)
     .filter()
