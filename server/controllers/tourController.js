@@ -1,32 +1,32 @@
-import Tour from '../models/tourModel.js';
-import APIFeatures from '../utils/APIFeatures.js';
-import { AppError } from '../utils/AppError.js';
-import { catchAsync } from '../utils/catchAsync.js';
-import multer from 'multer';
+import Tour from "../models/tourModel.js";
+import APIFeatures from "../utils/APIFeatures.js";
+import { AppError } from "../utils/AppError.js";
+import { catchAsync } from "../utils/catchAsync.js";
+import multer from "multer";
 
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '../client/public/tour-uploads');
+    cb(null, "../client/public/tour-uploads");
   },
   filename: (req, file, cb) => {
-    const ext = file.mimetype.split('/')[1];
+    const ext = file.mimetype.split("/")[1];
     cb(null, `tour-${Date.now()}.${ext}`);
   },
 });
 
 const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image')) {
+  if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else {
-    cb(new AppError('Not an image!', 400), false);
+    cb(new AppError("Not an image!", 400), false);
   }
 };
 
 const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 
 const uploadTourPhoto = upload.fields([
-  { name: 'tour_cover', maxCount: 1 },
-  { name: 'tour_gallery', maxCount: 3 },
+  { name: "tour_cover", maxCount: 1 },
+  { name: "tour_gallery", maxCount: 3 },
 ]);
 
 //  @desc       Get all tours
@@ -135,7 +135,7 @@ const createTour = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     success: true,
-    message: 'Tour added successfully !',
+    message: "Tour added successfully !",
     data: {
       tour,
     },
@@ -218,7 +218,7 @@ const updateTour = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: 'Tour updated successfully !',
+    message: "Tour updated successfully !",
     data: {
       tour,
     },
