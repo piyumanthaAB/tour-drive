@@ -2,12 +2,15 @@ import mongoose from "mongoose";
 import { stringify } from "ts-jest";
 
 const customTourSchema = new mongoose.Schema({
-  name: {
+  Cname: {
     type: String,
     unique: true,
     required: true,
   },
   category: {
+    type: String,
+  },
+  galleryImg: {
     type: String,
   },
   price: {
@@ -36,5 +39,5 @@ const customTourSchema = new mongoose.Schema({
   },
 });
 
-const tour = mongoose.model("customTour", customTourSchema);
-export default customTour;
+const tour = mongoose.model("CustomTour", customTourSchema);
+export default CustomTour;
