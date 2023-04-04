@@ -37,6 +37,30 @@ const ClientCustomTour = () => {
   const [locations, setLocations] = useState("");
   const [tourType, setTourType] = useState("");
 
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    const headers = {
+      "Content-type": "multipart/form-data",
+    };
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("price", price);
+    formData.append("category", category);
+    formData.append("vehicle", vehicle);
+    formData.append("duration", duration);
+    formData.append("description", description);
+    formData.append("highlights", highlights);
+    formData.append("location", locations);
+    formData.append("tourType", tourType);
+
+    for (const file of galleryImg) {
+      formData.append("tourGallery", file);
+    }
+
+    console.log({ formData });
+  };
+
   const handleGalleryImg = (e) => {
     setGalleryImg(e.target.files);
   };
@@ -96,7 +120,6 @@ const ClientCustomTour = () => {
               type="text"
               placeholder={"Enter tour duration here"}
             />
-            k
           </c.FormGroup>
           <c.FormGroup>
             <Label labelText={"Tour Description"} />
