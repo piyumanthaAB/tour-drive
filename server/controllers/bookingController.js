@@ -2,14 +2,24 @@ import { Booking } from '../models/bookingModel.js';
 import { catchAsync } from '../utils/catchAsync.js';
 import Stripe from 'stripe';
 
-// @ DESCRIPTION            =>  deactive a single user account
+// @ DESCRIPTION            =>  create a booking
 // @ ENDPOINT               =>  api/v1/bookings/create-checkout-session [POST]
 // @ ACCESS                 =>  'admin'
 const createBooking = catchAsync(async (req, res, next) => {
   const stripe = new Stripe(process.env.STRIPE_KEY);
 
-  const { bookingType, tourID, tourName, tourDesc, price, vehicle, user } =
-    req.body;
+  const {
+    bookingType,
+    tourID,
+    tourName,
+    tourDesc,
+    price,
+    vehicle,
+    user,
+    vehicleName,
+    from,
+    to,
+  } = req.body;
 
   console.log({
     bookingType,
@@ -19,6 +29,9 @@ const createBooking = catchAsync(async (req, res, next) => {
     price,
     vehicle,
     user,
+    vehicleName,
+    from,
+    to,
   });
 
   const session = await stripe.checkout.sessions.create({
@@ -27,8 +40,8 @@ const createBooking = catchAsync(async (req, res, next) => {
         price_data: {
           currency: 'usd',
           product_data: {
-            name: tourName,
-            description: tourDesc,
+            name: tourName || vehicleName,
+            description: tourDesc || ' ',
           },
           unit_amount: price * 100,
         },
@@ -38,8 +51,12 @@ const createBooking = catchAsync(async (req, res, next) => {
     mode: 'payment',
     success_url:
       process.env.NODE_ENV === 'development'
-        ? `http://localhost:3000/client/my-tour-bookings`
-        : `${req.protocol}://${req.get('host')}/client/my-tour-bookings`,
+        ? `http://localhost:3000/client/${
+            bookingType === 'tour' ? 'my-tour-bookings' : 'my-vehicle-bookings'
+          }`
+        : `${req.protocol}://${req.get('host')}/client/${
+            bookingType === 'tour' ? 'my-tour-bookings' : 'my-vehicle-bookings'
+          }`,
     cancel_url: `${req.protocol}://${req.get('host')}/tours`,
   });
 
@@ -50,6 +67,7 @@ const createBooking = catchAsync(async (req, res, next) => {
     price,
     vehicle,
     user,
+    duration: `${from} - ${to}`,
   });
 
   res.status(201).json({
@@ -61,10 +79,28 @@ const createBooking = catchAsync(async (req, res, next) => {
   });
 });
 
-// @ DESCRIPTION            =>  get currently loggedin users bookings
+// @ DESCRIPTION            =>  get currently loggedin users vehicle bookings
 // @ ENDPOINT               =>  api/v1/bookings/my-bookings [GET]
 // @ ACCESS                 =>  'user'
-const getMyBookings = catchAsync(async (req, res, next) => {
+const getMyVehicleBookings = catchAsync(async (req, res, next) => {
+  const userId = new mongoose.Types.ObjectId('641eba2635a2c56e54d55da9');
+  const bookings = await Booking.find({
+    bookingType: 'vehicle',
+    // user: userId,
+  });
+
+  res.status(200).json({
+    status: 'success',
+    records: bookings.length,
+    data: {
+      bookings,
+    },
+  });
+});
+// @ DESCRIPTION            =>  get currently loggedin users tour bookings
+// @ ENDPOINT               =>  api/v1/bookings/my-bookings [GET]
+// @ ACCESS                 =>  'user'
+const getMyTourBookings = catchAsync(async (req, res, next) => {
   const bookings = await Booking.find({ user: req.user._id });
 
   res.status(200).json({
@@ -76,4 +112,4 @@ const getMyBookings = catchAsync(async (req, res, next) => {
   });
 });
 
-export { createBooking, getMyBookings };
+export { createBooking, getMyVehicleBookings, getMyTourBookings };

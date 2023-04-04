@@ -9,6 +9,7 @@ const ViewAllTours = ({ tours }) => {
     // console.log(tour);
     navigate(`/admin/tours/update/${tour._id}`);
   };
+  console.log({ tours });
   return (
     <>
       <f.Container>

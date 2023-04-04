@@ -42,6 +42,7 @@ const SingleTour = () => {
             capacity={data.data.capacity}
             age_limit={data.data.age_limit}
             tour_gallery={data.data.tour_gallery}
+            cities={data.data.cities}
           />
           <SIngleTourOverview
             highlights={data.data.highlights}
@@ -54,7 +55,7 @@ const SingleTour = () => {
             excludes={data.data.excludes}
           />
           <SingleTourMap locations={data.data.locations} />
-          <TourPlan />
+          <TourPlan plan={data.data.tourPlan} />
           <ReviewSummary />
           <DisplayReviews />
           <CreateReviewForm />

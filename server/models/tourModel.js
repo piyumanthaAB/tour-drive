@@ -11,10 +11,17 @@ const tourSchema = new mongoose.Schema({
     type: String,
   },
   tour_gallery: [String],
-  highlights: [String],
-  excludes: [String],
-  includes: [String],
-  locations: [String],
+  highlights: {
+    type: String,
+  },
+  excludes: {
+    type: String,
+  },
+  includes: {
+    type: String,
+  },
+  locations: [[Number]],
+  tourPlan: [String],
   max_seats: {
     type: Number,
   },
@@ -22,6 +29,9 @@ const tourSchema = new mongoose.Schema({
     type: Number,
   },
   category: {
+    type: String,
+  },
+  cities: {
     type: String,
   },
   price: {
@@ -51,9 +61,12 @@ const tourSchema = new mongoose.Schema({
   //   type: {
   //     type: String,
   //   },
-  //   start_date: {
-  //     type: Date,
-  //   },
+  start_date: {
+    type: Date,
+  },
+  end_date: {
+    type: Date,
+  },
   //   rating_average: {
   //     type: Number,
   //   },

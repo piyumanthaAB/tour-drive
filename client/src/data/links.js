@@ -29,11 +29,11 @@ export const adminlinks = [
         text: "Add Tours",
         redirectURL: "/admin/tours/add",
       },
-      {
-        icon: <FiSliders />,
-        text: "Update Tours",
-        redirectURL: "/admin/tours/update/:id",
-      },
+      //   {
+      //     icon: <FiSliders />,
+      //     text: 'Update Tours',
+      //     redirectURL: '/admin/tours/update/:id',
+      //   },
       {
         icon: <FiBookOpen />,
         text: "View All Tours",
@@ -55,11 +55,11 @@ export const adminlinks = [
         text: "Add Vehicles",
         redirectURL: "/admin/vehicles/add",
       },
-      {
-        icon: <FiSliders />,
-        text: "Update Vehicles",
-        redirectURL: "/admin/vehicles/update/:id",
-      },
+      //   {
+      //     icon: <FiSliders />,
+      //     text: 'Update Vehicles',
+      //     redirectURL: '/admin/vehicles/update/:id',
+      //   },
       {
         icon: <FiBookOpen />,
         text: "View All Vehicles",
@@ -81,11 +81,11 @@ export const adminlinks = [
         text: "Add Users",
         redirectURL: "/admin/users/add",
       },
-      {
-        icon: <FiXCircle />,
-        text: "Update Users",
-        redirectURL: "/admin/users/update/:id",
-      },
+      //   {
+      //     icon: <FiXCircle />,
+      //     text: 'Update Users',
+      //     redirectURL: '/admin/users/update/:id',
+      //   },
     ],
   },
   {
@@ -102,11 +102,11 @@ export const adminlinks = [
         text: "User Statistics",
         redirectURL: "/admin/vehicle-add",
       },
-      {
-        icon: <FiSliders />,
-        text: "Tour Statistics",
-        redirectURL: "/admin/vehicle-update",
-      },
+      // {
+      //     icon: <FiSliders/>,
+      //     text: 'Tour Statistics',
+      //     redirectURL:'/admin/vehicle-update'
+      // },
       {
         icon: <FiBookOpen />,
         text: "Reviews Statistics",

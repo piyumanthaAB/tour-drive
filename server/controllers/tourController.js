@@ -1,38 +1,47 @@
-import Tour from '../models/tourModel.js';
-import { AppError } from '../utils/AppError.js';
-import { catchAsync } from '../utils/catchAsync.js';
-import multer from 'multer';
+import Tour from "../models/tourModel.js";
+import APIFeatures from "../utils/APIFeatures.js";
+import { AppError } from "../utils/AppError.js";
+import { catchAsync } from "../utils/catchAsync.js";
+import multer from "multer";
 
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '../client/public/tour-uploads');
+    cb(null, "../client/public/tour-uploads");
   },
   filename: (req, file, cb) => {
-    const ext = file.mimetype.split('/')[1];
+    const ext = file.mimetype.split("/")[1];
     cb(null, `tour-${Date.now()}.${ext}`);
   },
 });
 
 const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image')) {
+  if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else {
-    cb(new AppError('Not an image!', 400), false);
+    cb(new AppError("Not an image!", 400), false);
   }
 };
 
 const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 
 const uploadTourPhoto = upload.fields([
-  { name: 'tour_cover', maxCount: 1 },
-  { name: 'tour_gallery', maxCount: 3 },
+  { name: "tour_cover", maxCount: 1 },
+  { name: "tour_gallery", maxCount: 3 },
 ]);
 
 //  @desc       Get all tours
 //  @route      GET /api/v1/tours
 //  @access     Public
 const getTours = catchAsync(async (req, res, next) => {
-  const tours = await Tour.find();
+  // console.log({ query: req.query });
+
+  const features = new APIFeatures(Tour.find(), req.query)
+    .filter()
+    .sort()
+    .limiting()
+    .paging();
+
+  const tours = await features.query;
 
   res.status(200).json({ success: true, data: tours });
 });
@@ -72,46 +81,61 @@ const createTour = catchAsync(async (req, res, next) => {
     includes,
     excludes,
     locations,
+    startDate,
+    endDate,
+    tourPlan,
+    cities,
   } = req.body;
 
-  // const tour_cover = req.files.tour_cover[0].filename;
-  // const tour_gallery = req.files.tour_gallery.map((img) => {
-  //   return img.filename;
-  // });
+  console.log({ locations });
 
-  const data = {
+  const tour_cover = req.files.tour_cover[0].filename;
+  const tour_gallery = req.files.tour_gallery.map((img) => {
+    return img.filename;
+  });
+
+  let data = {
     name,
     price,
     age_limit: ageLimit,
     capacity,
-    tour_cover: 'tour-1679110448345.jpeg',
-    tour_gallery: [
-      'tour-1679110448365.jpeg',
-      'tour-1679110448351.jpeg',
-      'tour-1679110448350.jpeg',
-    ],
+    tour_cover,
+    tour_gallery,
     description,
     duration,
-    highlights: highlights.split('.'),
-    includes: includes.split('.'),
-    excludes: excludes.split('.'),
-    locations: locations.split('\n'),
+    highlights,
+    includes,
+    excludes,
+    locations,
+    start_date: startDate,
+    end_date: endDate,
+    tourPlan,
+    cities,
   };
 
-  // console.log({ data });
+  let locs = locations;
 
-  // let loc = data.locations;
-  // loc = loc.map((loc) => {
-  //   return loc.split(',');
-  // });
+  let regex = /(\[.*?\])/g;
+  let matches = locs.match(regex);
+  let loc_array = JSON.parse(`[${matches}]`);
 
-  console.log({ loc });
+  data.locations = loc_array;
+
+  console.log({ loc_array });
+
+  let plans_arr = tourPlan.match(/\[([^\]]*)\]/g).map(function (item) {
+    return item.slice(1, -1);
+  });
+
+  data.tourPlan = plans_arr;
+
+  // console.log({ plans_arr });
 
   const tour = await Tour.create(data);
 
   res.status(201).json({
     success: true,
-    message: 'Tour added successfully !',
+    message: "Tour added successfully !",
     data: {
       tour,
     },
@@ -133,6 +157,10 @@ const updateTour = catchAsync(async (req, res, next) => {
     includes,
     excludes,
     locations,
+    startDate,
+    endDate,
+    tourPlan,
+    cities,
   } = req.body;
 
   const tour_cover = req.files?.tour_cover[0].filename;
@@ -140,7 +168,7 @@ const updateTour = catchAsync(async (req, res, next) => {
     return img.filename;
   });
 
-  const data = {
+  let data = {
     name,
     price,
     age_limit: ageLimit,
@@ -149,13 +177,34 @@ const updateTour = catchAsync(async (req, res, next) => {
     tour_gallery,
     description,
     duration,
-    highlights: highlights.split('.'),
-    includes: includes.split('.'),
-    excludes: excludes.split('.'),
-    locations: locations.split('\n'),
+    highlights,
+    includes,
+    excludes,
+    locations,
+    start_date: startDate,
+    end_date: endDate,
+    tourPlan,
+    cities,
   };
 
   console.log({ data });
+
+  let locs = locations;
+
+  let regex = /(\[.*?\])/g;
+  let matches = locs.match(regex);
+  let loc_array = JSON.parse(`[${matches}]`);
+
+  data.locations = loc_array;
+
+  let plans_arr = tourPlan.match(/\[([^\]]*)\]/g).map(function (item) {
+    return item.slice(1, -1);
+  });
+
+  data.tourPlan = plans_arr;
+
+  console.log({ plans_arr });
+
   const tour = await Tour.findByIdAndUpdate(req.params.id, data, {
     new: true,
     runValidators: true,
@@ -169,7 +218,7 @@ const updateTour = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: 'Tour updated successfully !',
+    message: "Tour updated successfully !",
     data: {
       tour,
     },

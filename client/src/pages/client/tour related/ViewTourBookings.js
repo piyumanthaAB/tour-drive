@@ -13,7 +13,9 @@ const override = {
   // borderColor: "red",
 };
 const ViewTourBookings = () => {
-  const { data, isPending, isError } = useFetch('/api/v1/booking/my-bookings');
+  const { data, isPending, isError } = useFetch(
+    '/api/v1/booking/my-bookings/tours'
+  );
 
   return (
     <>

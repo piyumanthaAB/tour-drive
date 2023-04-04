@@ -1,15 +1,20 @@
-import express from "express";
+import express from 'express';
 import {
-  getVehicle, 
-  getVehicles, 
-  updateVehicle, 
-  deleteVehicle, 
+  getVehicle,
+  getVehicles,
+  updateVehicle,
+  deleteVehicle,
   addVehicle,
-} from "../controllers/vehicleController.js";
+  uploadVehiclePhoto,
+} from '../controllers/vehicleController.js';
 const router = express.Router();
 
-router.route("/").get(getVehicles).post(addVehicle);
+router.route('/').get(getVehicles).post(uploadVehiclePhoto, addVehicle);
 
-router.route("/:id").get(getVehicle).put(updateVehicle).delete(deleteVehicle);
+router
+  .route('/:id')
+  .get(getVehicle)
+  .patch(uploadVehiclePhoto, updateVehicle)
+  .delete(deleteVehicle);
 
 export { router as vehicleRouter };

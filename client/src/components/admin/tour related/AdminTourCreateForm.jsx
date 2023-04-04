@@ -21,6 +21,7 @@ const AdminTourCreateForm = () => {
   const [highlights, setHighlights] = useState('');
   const [includes, setIncludes] = useState('');
   const [excludes, setExcludes] = useState('');
+  const [tourPlan, setTourPlan] = useState('');
 
   const [guide_1, setGuide_1] = useState('');
   const [guide_2, setGuide_2] = useState('');
@@ -30,6 +31,7 @@ const AdminTourCreateForm = () => {
   const [category, setCategory] = useState('');
   const [locations, setLocations] = useState('');
   const [description, setDescription] = useState('');
+  const [cities, setCities] = useState('');
   const [coverImg, setCoverImg] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
 
@@ -50,15 +52,19 @@ const AdminTourCreateForm = () => {
     formData.append('description', description);
     formData.append('duration', duration);
     formData.append('highlights', highlights);
+    formData.append('tourPlan', tourPlan);
     formData.append('includes', includes);
     formData.append('excludes', excludes);
     formData.append('locations', locations);
+    formData.append('startDate', startDate);
+    formData.append('endDate', endDate);
+    formData.append('cities', cities);
 
     for (const file of galleryImages) {
       formData.append('tour_gallery', file);
     }
 
-    console.log({ formData });
+    console.log({ startDate });
 
     await toast.promise(
       submitForm('/api/v1/tours', formData, 'post', headers),
@@ -174,12 +180,34 @@ const AdminTourCreateForm = () => {
               setCurrentDropdownVal={setGuideTwo}
             />
           </f.FormGroup>
+          <f.FormGroup>
+            <Label labelText={'Tour Visiting cities'} />
+            <TextField
+              value={cities}
+              setValue={setCities}
+              placeholder={
+                'Enter cities visit during the tour here. ex city1, city2, city3'
+              }
+            />
+          </f.FormGroup>
 
           <f.FormGroup>
             <Label labelText={'Start Date'} />
             <f.DateInput
               value={startDate}
-              setValue={setStartDate}
+              onChange={(e) => {
+                setStartDate(e.target.value);
+              }}
+              // setValue={setStartDate}
+              type={'date'}
+            />
+          </f.FormGroup>
+          <f.FormGroup>
+            <Label labelText={'End Date'} />
+            <f.DateInput
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              // setValue={setStartDate}
               type={'date'}
             />
           </f.FormGroup>
@@ -208,14 +236,14 @@ const AdminTourCreateForm = () => {
             />
           </f.FormGroup>
 
-          <f.FormGroup>
-            {/* <Label labelText={'Select Tour type'} />
+          {/* <f.FormGroup>
+            <Label labelText={'Select Tour type'} />
             <DropDown
               dropDownValues={ availableGuides}
               currentDropdownVal={guideTwo}
               setCurrentDropdownVal={setGuideTwo}
-            /> */}
-          </f.FormGroup>
+            />
+          </f.FormGroup> */}
 
           <f.FormGroup>
             <Label labelText={'Tour Includes'} />
@@ -264,6 +292,21 @@ const AdminTourCreateForm = () => {
               [latitude_1,longtitude_1] 
               [latitude_2,longtitude_2] 
               [latitude_3,longtitude_3] 
+
+              '
+            />
+          </f.FormGroup>
+          <f.FormGroup>
+            <Label labelText={'Tour Plan'} />
+            <TextArea
+              value={tourPlan}
+              setValue={setTourPlan}
+              rows={10}
+              placeholder='Enter tour plan here.
+              EX:
+              [day 1,title for the day 1 ,plan 1 of the day] 
+              [day 2,title for the day 2,plan 2 of the day] 
+              [day 3,title for the day 3,plan 3 of the day] 
 
               '
             />

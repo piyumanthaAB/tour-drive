@@ -19,23 +19,30 @@ const vehicleSchema = new mongoose.Schema({
   model: {
     type: String,
   },
-  self_driving_price: {
+  // self_driving_price: {
+  //   type: Number,
+  //   required: true,
+  // },
+  // self_driving_extra_price: {
+  //   type: Number,
+  //   required: true,
+  // },
+  // with_dr_price: {
+  //   type: Number,
+  //   required: true,
+  // },
+  // with_dr_extra_price: {
+  //   type: Number,
+  //   required: true,
+  // },
+  price_per_day_with_dr: {
     type: Number,
-    required: true,
   },
-  self_driving_extra_price: {
+  price_per_day_without_dr: {
     type: Number,
-    required: true,
   },
-  with_dr_price: {
-    type: Number,
-    required: true,
-  },
-  with_dr_extra_price: {
-    type: Number,
-    required: true,
-  },
-  images_URL: {
+  images_URL: [String],
+  cover_URL: {
     type: String,
   },
   rating_avarage: {
@@ -48,15 +55,30 @@ const vehicleSchema = new mongoose.Schema({
     type: Number,
   },
   vehicle_state: {
-    type: Boolean,
+    type: String,
+    default: 'available',
+    required: [true, 'A user must have a role'],
+    enum: {
+      values: ['rented', 'available', 'maintenance'],
+      message:
+        "vehicle state values  must be one of :< 'rented', 'available', 'maintenance > ",
+    },
+  },
+  fuel: {
+    type: String,
   },
   description: {
-    types: String,
+    type: String,
+    required: ['true', 'A Vehicle must have a description'],
+  },
+  features: {
+    type: String,
+    required: ['true', 'A Vehicle must have features'],
   },
   fuel_type: {
     type: String,
   },
-  initial_millage: {
+  milage: {
     type: Number,
   },
   transmission: {

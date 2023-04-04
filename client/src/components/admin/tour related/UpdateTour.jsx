@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Label from '../../shared/Form Elements/Label';
 import TextField from '../../shared/Form Elements/TextField';
 import TextArea from '../../shared/Form Elements/TextArea';
@@ -17,12 +17,16 @@ const UpdateTour = ({ tour }) => {
   );
   const [includes, setIncludes] = useState(tour?.includes || 'not available');
   const [excludes, setExcludes] = useState(tour?.excludes || 'not available');
+  const [tourPlan, setTourPlan] = useState('');
+  const [cities, setCities] = useState(tour?.cities || 'not available');
 
   const [guide_1, setGuide_1] = useState('');
   const [guide_2, setGuide_2] = useState('');
   const [guide_3, setGuide_3] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [startDate, setStartDate] = useState(
+    tour.start_date || 'not available'
+  );
+  const [endDate, setEndDate] = useState(tour.end_date || 'not available');
   const [category, setCategory] = useState('');
   const [locations, setLocations] = useState('');
   const [description, setDescription] = useState(
@@ -61,6 +65,8 @@ const UpdateTour = ({ tour }) => {
     formData.append('includes', includes);
     formData.append('excludes', excludes);
     formData.append('locations', locations);
+    formData.append('cities', cities);
+    formData.append('tourPlan', tourPlan);
 
     for (const file of galleryImages) {
       formData.append('tour_gallery', file);
@@ -86,6 +92,33 @@ const UpdateTour = ({ tour }) => {
       }
     );
   };
+
+  useEffect(() => {
+    const arr = tour.tourPlan;
+
+    let str = '';
+    for (let i = 0; i < arr.length; i++) {
+      const element = arr[i];
+      const formattedElement = `[${element.replace(/,/g, ', ')}]`;
+      str += formattedElement;
+      if (i < arr.length - 1) {
+        str += '\r\n';
+      }
+    }
+
+    const arr_loc = tour.locations;
+
+    const str_loc = arr_loc
+      .map((subArr) => `[${subArr.join(', ')}]`)
+      .join('\r\n');
+
+    console.log(str);
+    // Output: "[7.936152049469587, 81.01540945936875]\r\n[7.956717943688687, 80.75831144870159]\r\n[8.35960307387708, 80.4094904996409]"
+
+    setTourPlan(str);
+    setLocations(str_loc);
+  }, []);
+
   return (
     <>
       <u.Container>
@@ -159,18 +192,34 @@ const UpdateTour = ({ tour }) => {
               placeholder={'Enter tour duration here'}
             />
           </u.FormGroup>
+          <u.FormGroup>
+            <Label labelText={'Tour Visiting cities'} />
+            <TextField
+              value={cities}
+              setValue={setCities}
+              placeholder={
+                'Enter cities visit during the tour here. ex city1, city2, city3'
+              }
+            />
+          </u.FormGroup>
 
           <u.FormGroup>
             <Label labelText={'Start Date'} />
             <u.DateInput
               value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
               setValue={setStartDate}
               type={'date'}
             />
           </u.FormGroup>
           <u.FormGroup>
             <Label labelText={'End Date'} />
-            <u.DateInput value={endDate} setValue={setEndDate} type={'date'} />
+            <u.DateInput
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              // setValue={setStartDate}
+              type={'date'}
+            />
           </u.FormGroup>
 
           <u.FormGroup>
@@ -207,6 +256,21 @@ const UpdateTour = ({ tour }) => {
               EX: 
               highlight 1, 
               highlight 2,'
+            />
+          </u.FormGroup>
+          <u.FormGroup>
+            <Label labelText={'Tour Plan'} />
+            <TextArea
+              value={tourPlan}
+              setValue={setTourPlan}
+              rows={10}
+              placeholder='Enter tour plan here.
+              EX:
+              [day 1,title for the day 1 ,plan 1 of the day] 
+              [day 2,title for the day 2,plan 2 of the day] 
+              [day 3,title for the day 3,plan 3 of the day] 
+
+              '
             />
           </u.FormGroup>
           <u.FormGroup>

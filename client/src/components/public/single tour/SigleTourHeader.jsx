@@ -11,6 +11,7 @@ const SigleTourHeader = ({
   capacity,
   age_limit,
   tour_gallery,
+  cities,
 }) => {
   console.log({ name });
   return (
@@ -25,7 +26,11 @@ const SigleTourHeader = ({
               <FiMapPin color='var(--main-color)' />
             </t.IconContainer>
 
-            <t.HeaderSubTitle>Dambulla, Sri Lanka</t.HeaderSubTitle>
+            <t.HeaderSubTitle>
+              {cities?.split(',').map((city) => {
+                return `${city.slice(0, 1).toUpperCase()}${city.slice(1)}, `;
+              })}
+            </t.HeaderSubTitle>
 
             <t.ReviewsContainer>
               <t.IconContainer
