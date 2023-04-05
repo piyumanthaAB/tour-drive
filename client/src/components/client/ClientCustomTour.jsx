@@ -4,6 +4,8 @@ import Label from "../../components/shared/Form Elements/Label";
 import TextField from "../../components/shared/Form Elements/TextField";
 import DropDown from "../../components/shared/Form Elements/DropDown";
 import TextArea from "../shared/Form Elements/TextArea";
+import toast from "react-hot-toast";
+import submitForm from "../../hooks/submitForm";
 
 const ClientCustomTour = () => {
   const availableCategory = [
@@ -44,7 +46,7 @@ const ClientCustomTour = () => {
       "Content-type": "multipart/form-data",
     };
     const formData = new FormData();
-    formData.append("name", name);
+    formData.append("Cname", name);
     formData.append("price", price);
     formData.append("category", category);
     formData.append("vehicle", vehicle);
@@ -55,10 +57,28 @@ const ClientCustomTour = () => {
     formData.append("tourType", tourType);
 
     for (const file of galleryImg) {
-      formData.append("tourGallery", file);
+      formData.append("galleryImg", file);
     }
 
-    console.log({ formData });
+    await toast.promise(
+      submitForm("/api/v1/custom-tours", formData, "post", headers),
+      {
+        loading: "Adding Custom Tour...",
+        success: (data) => {
+          console.log({ data });
+          return ` ${data.data.message}` || "success";
+        },
+        error: (err) => `${err.response.data.message}`,
+      },
+      {
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+          fontSize: "2rem",
+        },
+      }
+    );
   };
 
   const handleGalleryImg = (e) => {
