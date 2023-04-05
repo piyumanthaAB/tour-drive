@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(express.json({ limit: "10kb" }));
 
 // routes
-app.use("/api/v1/custom-tour", customTourRouter);
+app.use("/api/v1/custom-tours", customTourRouter);
 app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/vehicles", vehicleRouter);
 app.use("/api/v1/users", userRouter);

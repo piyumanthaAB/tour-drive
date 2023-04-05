@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import { stringify } from 'ts-jest';
+import mongoose from "mongoose";
+import { stringify } from "ts-jest";
 
 const tourSchema = new mongoose.Schema({
   name: {
@@ -46,7 +46,7 @@ const tourSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: ['true', 'A tour must have a description'],
+    required: ["true", "A tour must have a description"],
   },
   //   locations: {
   //     type: [String],
@@ -72,5 +72,5 @@ const tourSchema = new mongoose.Schema({
   //   },
 });
 
-const Tour = mongoose.model('Tour', tourSchema);
+const Tour = mongoose.model("Tour", tourSchema);
 export default Tour;

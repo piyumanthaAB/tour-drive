@@ -145,11 +145,11 @@ const ClientCustomTour = () => {
               value={locations}
               setValue={setLocations}
               rows={10}
-              placeholder="Enter name and coordinates of the locations here
+              placeholder="Enter coordinates of the locations here
             EX:
-            name_1 [latitude_1,longtitude_1]
-            name_2 [latitude_2,longtitude_2]
-            name_3 [latitude_3,longtitude_3]"
+            [latitude_1,longtitude_1]
+            [latitude_2,longtitude_2]
+            [latitude_3,longtitude_3]"
             />
           </c.FormGroup>
           <c.FormGroup>

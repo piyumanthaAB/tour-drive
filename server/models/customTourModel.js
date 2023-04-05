@@ -11,7 +11,7 @@ const customTourSchema = new mongoose.Schema({
     type: String,
   },
   galleryImg: {
-    type: String,
+    type: [String],
   },
   price: {
     type: Number,
@@ -39,5 +39,5 @@ const customTourSchema = new mongoose.Schema({
   },
 });
 
-const tour = mongoose.model("CustomTour", customTourSchema);
+const CustomTour = mongoose.model("CustomTour", customTourSchema);
 export default CustomTour;
