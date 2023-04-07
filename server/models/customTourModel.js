@@ -2,20 +2,20 @@ import mongoose from "mongoose";
 import { stringify } from "ts-jest";
 
 const customTourSchema = new mongoose.Schema({
-  Cname: {
+  name: {
     type: String,
     unique: true,
-    required: true,
+    // required: true,
   },
   category: {
     type: String,
   },
-  galleryImg: {
-    type: [String],
-  },
+  // galleryImg: {
+  //   type: [String],
+  // },
   price: {
     type: Number,
-    required: true,
+    // required: true,
   },
   vehicle: {
     type: String,
@@ -30,12 +30,12 @@ const customTourSchema = new mongoose.Schema({
   highlights: {
     type: String,
   },
-  location: {
-    type: [String],
-  },
+  // location: {
+  //   type: [String],
+  // },
   tourType: {
     type: String,
-    required: true,
+    // required: true,
   },
 });
 

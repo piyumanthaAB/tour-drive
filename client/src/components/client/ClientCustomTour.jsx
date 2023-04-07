@@ -25,38 +25,43 @@ const ClientCustomTour = () => {
     "Minivan (7-8 passengers 5 bags)",
     "van (8-12 passengers 8 bags)",
   ];
-  //compact car feature low rates and great fuel efficiency, with slightly more room than economy cars.
+
   const availableTypes = ["Budget", "Standard", "Premium", "Luxury"];
 
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [vehicle, setVehicle] = useState("");
-  const [galleryImg, setGalleryImg] = useState(null);
+  const [galleryImages, setGalleryImages] = useState([]);
   const [duration, setDuration] = useState("");
   const [description, setDescription] = useState("");
   const [highlights, setHighlights] = useState("");
-  const [locations, setLocations] = useState("");
+  // const [locations, setLocations] = useState("");
   const [tourType, setTourType] = useState("");
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    // console.log(formData);
 
     const headers = {
-      "Content-type": "multipart/form-data",
+      "Content-Type": "multipart/form-data",
     };
+
     const formData = new FormData();
-    formData.append("Cname", name);
+
+    formData.append("name", name);
     formData.append("price", price);
     formData.append("category", category);
     formData.append("vehicle", vehicle);
     formData.append("duration", duration);
     formData.append("description", description);
     formData.append("highlights", highlights);
-    formData.append("location", locations);
+    // formData.append("location", locations);
     formData.append("tourType", tourType);
 
-    for (const file of galleryImg) {
+    console.log(formData, "form data...............");
+
+    for (const file of galleryImages) {
       formData.append("galleryImg", file);
     }
 
@@ -66,7 +71,7 @@ const ClientCustomTour = () => {
         loading: "Adding Custom Tour...",
         success: (data) => {
           console.log({ data });
-          return ` ${data.data.message}` || "success";
+          return ` ${data.data.message} ` || "success";
         },
         error: (err) => `${err.response.data.message}`,
       },
@@ -82,14 +87,14 @@ const ClientCustomTour = () => {
   };
 
   const handleGalleryImg = (e) => {
-    setGalleryImg(e.target.files);
+    setGalleryImages(e.target.files);
   };
 
   return (
     <>
       <c.Container>
         <c.FormTitle>Request Custom Tour </c.FormTitle>
-        <c.Form>
+        <c.Form onSubmit={onSubmit}>
           <c.FormGroup>
             <Label labelText={"Tour name"} />
             <TextField
@@ -118,10 +123,11 @@ const ClientCustomTour = () => {
           <c.FormGroup>
             <Label labelText={"Tour Images (if you have images upload here)"} />
             <input
-              name="coverImg"
+              name="galleryImages"
               onChange={handleGalleryImg}
+              multiple={true}
               type="file"
-              placeholder={"Upload tour cover image here"}
+              placeholder={"Upload tour gallery images here"}
             />
           </c.FormGroup>
           <c.FormGroup>
@@ -159,7 +165,7 @@ const ClientCustomTour = () => {
               placeholder="Enter your tour request important information here"
             />
           </c.FormGroup>
-          <c.FormGroup>
+          {/* <c.FormGroup>
             <Label labelText={"Tour Locations"} />
             <TextArea
               value={locations}
@@ -171,7 +177,7 @@ const ClientCustomTour = () => {
             [latitude_2,longtitude_2]
             [latitude_3,longtitude_3]"
             />
-          </c.FormGroup>
+          </c.FormGroup> */}
           <c.FormGroup>
             <Label labelText={"Select your tour package types"} />
             <DropDown

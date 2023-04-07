@@ -62,43 +62,45 @@ const getCustomTour = catchAsync(async (req, res, next) => {
 //@access Public
 const createCustomTour = catchAsync(async (req, res, next) => {
   const {
-    Cname,
+    name,
     price,
     category,
     vehicle,
     duration,
     description,
     highlights,
-    location,
+    // location,
     tourType,
   } = req.body;
-
-  const galleryImg = req.files.galleryImg((img) => {
+  console.log({ body: req.body });
+  const galleryImg = req.files.galleryImg.map((img) => {
     return img.filename;
   });
 
   let data = {
-    Cname,
+    name,
     price,
     category,
     vehicle,
     duration,
     description,
     highlights,
-    location,
+    // location,
     tourType,
     galleryImg,
   };
 
-  let locs = location;
+  console.log({ data });
 
-  let regex = /(\[.*?\])/g;
-  let matches = locs.match(regex);
-  let loc_array = JSON.parse(`[${matches}]`);
+  // let locs = location;
 
-  data.location = loc_array;
+  // let regex = /(\[.*?\])/g;
+  // let matches = locs.match(regex);
+  // let loc_array = JSON.parse(`[${matches}]`);
 
-  console.log({ loc_array });
+  // data.location = loc_array;
+
+  // console.log({ loc_array });
 
   const customTour = await CustomTour.create(data);
 
@@ -124,4 +126,10 @@ const deleteCustomTour = catchAsync(async (req, res, next) => {
   }
 });
 
-export { getCustomTour, getCustomTours, createCustomTour, deleteCustomTour };
+export {
+  getCustomTour,
+  getCustomTours,
+  createCustomTour,
+  deleteCustomTour,
+  uploadCustomTourPhoto,
+};

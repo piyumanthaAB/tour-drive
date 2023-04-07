@@ -4,10 +4,14 @@ import {
   getCustomTours,
   createCustomTour,
   deleteCustomTour,
+  uploadCustomTourPhoto,
 } from "../controllers/customTourController.js";
 const router = express.Router();
 
-router.route("/").get(getCustomTours).post(createCustomTour);
+router
+  .route("/")
+  .get(getCustomTours)
+  .post(uploadCustomTourPhoto, createCustomTour);
 
 router.route("/:id").get(getCustomTour).delete(deleteCustomTour);
 
