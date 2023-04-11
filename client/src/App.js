@@ -38,6 +38,7 @@ import ViewVehicleRentals from "./pages/client/vehicle related/ViewVehicleRental
 import useAuth from "./hooks/useAuth";
 import { useEffect } from "react";
 import AddCustomTour from "./pages/client/tour related/AddCustomTour";
+import AdminViewCustomTour from "./pages/admin/tour related/AdminViewCustomTour";
 
 function App() {
   const { loadUser } = useAuth();
@@ -82,6 +83,11 @@ function App() {
               {/* this is admin home */}
               <Route exact path="/admin/tours/all" element={<ViewAllTours />} />
               <Route exact path="/admin/tours/stat" element={<AdminHome />} />
+              <Route
+                exact
+                path="/admin/custom-tours/all"
+                element={<AdminViewCustomTour />}
+              />
               <Route
                 exact
                 path="/admin/tours/add"

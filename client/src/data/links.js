@@ -39,6 +39,11 @@ export const adminlinks = [
         text: "View All Tours",
         redirectURL: "/admin/tours/all",
       },
+      {
+        icon: <FiBookOpen />,
+        text: "View All Custom Tours",
+        redirectURL: "/admin/custom-tours/all",
+      },
     ],
   },
   {

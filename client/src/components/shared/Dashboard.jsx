@@ -29,7 +29,7 @@ const Dashboard = ({ rightContainerContent }) => {
   const [linkSelected, setLinkSelected] = useState(null);
 
   //   const currentUserRole = user?.role;
-  const currentUserRole = "user";
+  const currentUserRole = "admin";
 
   useEffect(() => {
     switch (currentUserRole) {
