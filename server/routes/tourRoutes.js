@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "express";
 import {
   getTour,
   getTours,
@@ -6,13 +6,13 @@ import {
   deleteTour,
   createTour,
   uploadTourPhoto,
-} from '../controllers/tourController.js';
+} from "../controllers/tourController.js";
 const router = express.Router();
 
-router.route('/').get(getTours).post(uploadTourPhoto, createTour);
+router.route("/").get(getTours).post(uploadTourPhoto, createTour);
 
 router
-  .route('/:id')
+  .route("/:id")
   .get(getTour)
   .patch(uploadTourPhoto, updateTour)
   .delete(deleteTour);
