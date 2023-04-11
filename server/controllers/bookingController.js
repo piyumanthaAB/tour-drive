@@ -80,14 +80,12 @@ const createBooking = catchAsync(async (req, res, next) => {
 });
 
 // @ DESCRIPTION            =>  get currently loggedin users vehicle bookings
-// @ ENDPOINT               =>  api/v1/bookings/my-bookings [GET]
+// @ ENDPOINT               =>  api/v1/bookings/my-bookings/vehicles [GET]
 // @ ACCESS                 =>  'user'
 const getMyVehicleBookings = catchAsync(async (req, res, next) => {
-  const userId = new mongoose.Types.ObjectId('641eba2635a2c56e54d55da9');
-  const bookings = await Booking.find({
-    bookingType: 'vehicle',
-    // user: userId,
-  });
+  let bookings = await Booking.find({ user: req.user._id });
+
+  bookings = bookings.filter((booking) => booking.bookingType === 'vehicle');
 
   res.status(200).json({
     status: 'success',
@@ -98,10 +96,12 @@ const getMyVehicleBookings = catchAsync(async (req, res, next) => {
   });
 });
 // @ DESCRIPTION            =>  get currently loggedin users tour bookings
-// @ ENDPOINT               =>  api/v1/bookings/my-bookings [GET]
+// @ ENDPOINT               =>  api/v1/bookings/my-bookings/tours [GET]
 // @ ACCESS                 =>  'user'
 const getMyTourBookings = catchAsync(async (req, res, next) => {
-  const bookings = await Booking.find({ user: req.user._id });
+  let bookings = await Booking.find({ user: req.user._id });
+
+  bookings = bookings.filter((booking) => booking.bookingType === 'tour');
 
   res.status(200).json({
     status: 'success',

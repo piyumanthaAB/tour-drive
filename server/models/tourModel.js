@@ -28,8 +28,20 @@ const tourSchema = new mongoose.Schema({
   age_limit: {
     type: Number,
   },
+  ratingsAverage: {
+    type: Number,
+    default: 4.5,
+    min: [1, 'Rating must above 1.0'],
+    max: [5, 'Rating must below 5.0'],
+    set: (val) => Math.round(val * 10) / 10,
+  },
   category: {
     type: String,
+    required: true,
+    enum: {
+      values: ['city', 'hiking', 'adventure', 'historical', 'cultural'],
+      message: `category should be one of these: < 'city','hiking','adventure','historical','cultural' >`,
+    },
   },
   cities: {
     type: String,
