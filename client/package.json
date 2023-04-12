@@ -4,6 +4,9 @@
   "private": true,
   "proxy": "http://127.0.0.1:8000",
   "dependencies": {
+    "@devexpress/dx-react-chart": "^4.0.3",
+    "@devexpress/dx-react-chart-material-ui": "^4.0.3",
+    "@devexpress/dx-react-core": "^4.0.3",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
@@ -31,6 +34,8 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
     "react-spinners": "^0.13.8",
+    "recharts": "^2.5.0",
+    "server": "file:../server",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.6",
     "swiper": "^9.0.5",

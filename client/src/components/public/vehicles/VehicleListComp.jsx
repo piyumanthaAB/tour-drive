@@ -15,10 +15,14 @@ import Slider, { SliderThumb } from '@mui/material/Slider';
 import useFetch from '../../../hooks/useFetch';
 import BounceLoader from 'react-spinners/ClipLoader';
 import NoRecordFound from '../../shared/NoRecordFound';
+import RadioButton from '../../shared/Form Elements/RadioButton';
 
 const minDistance = 5;
 
 const VehicleListComp = ({}) => {
+  const [fuel, setFuel] = useState('petrol');
+  const [transmission, setTransmission] = useState('auto');
+
   const [vehicleType, setVehicleType] = useState([]);
 
   const [checkBoxState, setCheckBox] = useState({
@@ -55,7 +59,9 @@ const VehicleListComp = ({}) => {
     vehicleType.length > 0 ? `&vehicle_type=${vehicleType}` : ''
   }&price_per_day_without_dr[gte]=${
     value2[0] * 0.5
-  }&price_per_day_without_dr[lte]=${value2[1] * 0.5}`;
+  }&price_per_day_without_dr[lte]=${
+    value2[1] * 0.5
+  }&fuel=${fuel}&transmission=${transmission}  `;
 
   const { data, isPending, isError } = useFetch(url);
 
@@ -213,31 +219,43 @@ const VehicleListComp = ({}) => {
             <v.TourFilterRow>
               <v.TourFilterRowTitle>Fuel Type</v.TourFilterRowTitle>
               <v.CheckBoxContainer>
-                <CheckBox
-                  // checked={checkBoxState['city']}
-                  // onChange={handleCheckboxChange}
-                  labelTxt={'petrol'}
-                />
-                <CheckBox
-                  // checked={checkBoxState['hiking']}
-                  // onChange={handleCheckboxChange}
-                  labelTxt={'diesal'}
-                />
+                <form onSubmit={(e) => e.preventDefault()}>
+                  <RadioButton
+                    checked={fuel === 'petrol' ? true : false}
+                    onChange={() => {
+                      setFuel('petrol');
+                    }}
+                    labelTxt={'Petrol'}
+                  />
+                  <RadioButton
+                    checked={fuel === 'diesal' ? true : false}
+                    onChange={() => {
+                      setFuel('diesal');
+                    }}
+                    labelTxt={'Diesal'}
+                  />
+                </form>
               </v.CheckBoxContainer>
             </v.TourFilterRow>
             <v.TourFilterRow>
               <v.TourFilterRowTitle>Transmission</v.TourFilterRowTitle>
               <v.CheckBoxContainer>
-                <CheckBox
-                  // checked={checkBoxState['city']}
-                  // onChange={handleCheckboxChange}
-                  labelTxt={'auto'}
-                />
-                <CheckBox
-                  // checked={checkBoxState['hiking']}
-                  // onChange={handleCheckboxChange}
-                  labelTxt={'manuel'}
-                />
+                <form onSubmit={(e) => e.preventDefault()}>
+                  <RadioButton
+                    checked={transmission === 'auto' ? true : false}
+                    onChange={() => {
+                      setTransmission('auto');
+                    }}
+                    labelTxt={'Auto'}
+                  />
+                  <RadioButton
+                    checked={transmission === 'manuel' ? true : false}
+                    onChange={() => {
+                      setTransmission('manuel');
+                    }}
+                    labelTxt={'Manuel'}
+                  />
+                </form>
               </v.CheckBoxContainer>
             </v.TourFilterRow>
             <v.TourFilterRow>

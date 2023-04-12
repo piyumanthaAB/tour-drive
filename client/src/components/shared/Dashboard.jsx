@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import * as d from "./DashboardElements";
-import { adminlinks, clientLinks } from "../../data/links";
-import DashboardNav from "./DashboardNav";
-import useAuth from "../../hooks/useAuth";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import * as d from './DashboardElements';
+import { adminlinks, clientLinks } from '../../data/links';
+import DashboardNav from './DashboardNav';
+import useAuth from '../../hooks/useAuth';
+import { useLocation } from 'react-router-dom';
 import {
   FiMap,
   FiTruck,
@@ -14,13 +14,13 @@ import {
   FiBookOpen,
   FiSliders,
   FiXCircle,
-} from "react-icons/fi";
+} from 'react-icons/fi';
 
 const Dashboard = ({ rightContainerContent }) => {
   const { user } = useAuth();
 
   const location = useLocation();
-  const [currentPath, setCurrentPath] = useState("/admin/tours/add");
+  const [currentPath, setCurrentPath] = useState('/admin/tours/add');
 
   const [links, setLinks] = useState(adminlinks);
 
@@ -29,14 +29,14 @@ const Dashboard = ({ rightContainerContent }) => {
   const [linkSelected, setLinkSelected] = useState(null);
 
   //   const currentUserRole = user?.role;
-  const currentUserRole = "user";
+  const currentUserRole = 'admin';
 
   useEffect(() => {
     switch (currentUserRole) {
-      case "admin":
+      case 'admin':
         setLinks(adminlinks);
         break;
-      case "user":
+      case 'user':
         setLinks(clientLinks);
         break;
       default:
@@ -69,8 +69,8 @@ const Dashboard = ({ rightContainerContent }) => {
                   }}
                   key={i}
                 >
-                  {" "}
-                  {e.icon}{" "}
+                  {' '}
+                  {e.icon}{' '}
                 </d.IconContainer>
               );
             })}
