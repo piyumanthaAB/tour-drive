@@ -5,10 +5,16 @@ const router = express.Router();
 
 router.post('/create-checkout-session', bookingController.createBooking);
 router.get(
-  '/my-bookings/:type',
+  '/my-bookings/tours',
   authController.protect,
   authController.restrictTo('user'),
   bookingController.getMyTourBookings
+);
+router.get(
+  '/my-bookings/vehicles',
+  authController.protect,
+  authController.restrictTo('user'),
+  bookingController.getMyVehicleBookings
 );
 
 export { router as bookingRouter };

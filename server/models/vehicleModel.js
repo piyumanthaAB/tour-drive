@@ -9,6 +9,11 @@ const vehicleSchema = new mongoose.Schema({
   },
   vehicle_type: {
     type: String,
+    required: true,
+    enum: {
+      values: ['car', 'van', 'bike', 'suv'],
+      message: `category should be one of these: < 'car', 'van', 'bike', 'suv' >`,
+    },
   },
   seats: {
     type: Number,

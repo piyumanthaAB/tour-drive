@@ -2,9 +2,13 @@ import React from 'react';
 import * as t from './SingleTourHeaderElements';
 import { FiMapPin } from 'react-icons/fi';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
+import { BsFillStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
+
 import { RxCalendar } from 'react-icons/rx';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 import { AiOutlineUser } from 'react-icons/ai';
+import Rating from 'react-rating';
+
 const SigleTourHeader = ({
   name,
   duration,
@@ -12,8 +16,9 @@ const SigleTourHeader = ({
   age_limit,
   tour_gallery,
   cities,
+  tour,
 }) => {
-  console.log({ name });
+  // console.log({ name });
   return (
     <>
       <t.HeaderSection>
@@ -23,7 +28,7 @@ const SigleTourHeader = ({
           </t.HeaderMainTitle>
           <t.HeaderSubTitleContainer>
             <t.IconContainer>
-              <FiMapPin color='var(--main-color)' />
+              <FiMapPin color="var(--main-color)" />
             </t.IconContainer>
 
             <t.HeaderSubTitle>
@@ -33,42 +38,21 @@ const SigleTourHeader = ({
             </t.HeaderSubTitle>
 
             <t.ReviewsContainer>
-              <t.IconContainer
-                color='var(--main-color)'
-                width={'2rem'}
-                height={'2rem'}
-              >
-                <AiFillStar />
-              </t.IconContainer>
-              <t.IconContainer
-                color='var(--main-color)'
-                width={'2rem'}
-                height={'2rem'}
-              >
-                <AiFillStar />
-              </t.IconContainer>
-              <t.IconContainer
-                color='var(--main-color)'
-                width={'2rem'}
-                height={'2rem'}
-              >
-                <AiFillStar />
-              </t.IconContainer>
-              <t.IconContainer
-                color='var(--main-color)'
-                width={'2rem'}
-                height={'2rem'}
-              >
-                <AiOutlineStar />
-              </t.IconContainer>
-              <t.IconContainer
-                color='var(--main-color)'
-                width={'2rem'}
-                height={'2rem'}
-              >
-                <AiOutlineStar />
-              </t.IconContainer>
-              <t.HeaderReviewText>( 3 reviews )</t.HeaderReviewText>
+              <Rating
+                emptySymbol={<BsFillStarFill color="#888" size={15} />}
+                fullSymbol={
+                  <BsFillStarFill color={'var(--main-color)'} size={15} />
+                }
+                initialRating={
+                  (tour?.locationRatingsAverage + tour?.serviceRatingsAverage) /
+                    2 || 0
+                }
+                readonly
+              />
+
+              <t.HeaderReviewText>
+                ( {tour.ratingsQuantity} reviews )
+              </t.HeaderReviewText>
             </t.ReviewsContainer>
           </t.HeaderSubTitleContainer>
         </t.HeaderTitleContainer>
@@ -96,7 +80,7 @@ const SigleTourHeader = ({
           <t.IconCard>
             <t.IconContainer fontsize={'3rem'}>
               {' '}
-              <RxCalendar color='var(--main-color)' />{' '}
+              <RxCalendar color="var(--main-color)" />{' '}
             </t.IconContainer>
             <t.IconCardTextContainer>
               <t.IconContainerText fontsize={'1.8rem'} fontweight={'600'}>
@@ -114,7 +98,7 @@ const SigleTourHeader = ({
           <t.IconCard>
             <t.IconContainer fontsize={'3rem'}>
               {' '}
-              <HiOutlineUserGroup color='var(--main-color)' />{' '}
+              <HiOutlineUserGroup color="var(--main-color)" />{' '}
             </t.IconContainer>
             <t.IconCardTextContainer>
               <t.IconContainerText fontsize={'1.8rem'} fontweight={'600'}>
@@ -132,7 +116,7 @@ const SigleTourHeader = ({
           <t.IconCard>
             <t.IconContainer fontsize={'3rem'}>
               {' '}
-              <AiOutlineUser color='var(--main-color)' />{' '}
+              <AiOutlineUser color="var(--main-color)" />{' '}
             </t.IconContainer>
             <t.IconCardTextContainer>
               <t.IconContainerText fontsize={'1.8rem'} fontweight={'600'}>
@@ -150,7 +134,7 @@ const SigleTourHeader = ({
           <t.IconCard>
             <t.IconContainer fontsize={'3rem'}>
               {' '}
-              <FiMapPin color='var(--main-color)' />{' '}
+              <FiMapPin color="var(--main-color)" />{' '}
             </t.IconContainer>
             <t.IconCardTextContainer>
               <t.IconContainerText fontsize={'1.8rem'} fontweight={'600'}>

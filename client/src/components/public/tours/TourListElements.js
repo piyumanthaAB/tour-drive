@@ -1,30 +1,30 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const ContentContainer = styled.div`
   width: 80%;
   min-height: 50rem;
-  ${"" /* background-color:#000 ; */}
+  ${'' /* background-color:#000 ; */}
   margin:10rem auto;
-  ${"" /* display:flex ; */}
-  ${"" /* padding:1rem ; */}
+  ${'' /* display:flex ; */}
+  ${'' /* padding:1rem ; */}
 `;
 
 export const ToursSection = styled.div`
   display: flex;
   flex: 0 1 90%;
-  ${"" /* justify-content:space-between ; */}
-  ${"" /* background-color:red ; */}
+  ${'' /* justify-content:space-between ; */}
+  ${'' /* background-color:red ; */}
     display:flex;
 `;
 
 export const TourListContainer = styled.div`
   flex: 0 1 70%;
   min-height: 10rem;
-  ${"" /* display:flex ; */}
-  ${"" /* justify-content:center ; */}
-    ${"" /* background-color:green ; */}
-    ${"" /* padding:2rem 1rem ; */}
+  ${'' /* display:flex ; */}
+  ${'' /* justify-content:center ; */}
+    ${'' /* background-color:green ; */}
+    ${'' /* padding:2rem 1rem ; */}
 `;
 
 export const TourItemContainer = styled.div`
@@ -39,7 +39,7 @@ export const TourItemContainer = styled.div`
 export const TourImgContainer = styled.div`
   flex: 0 1 30%;
   position: relative;
-  ${"" /* background-image: url(${img_1}); */}
+  ${'' /* background-image: url(${img_1}); */}
   background-image: url(${(props) => props.img});
   background-position: center;
   background-repeat: no-repeat;
@@ -59,7 +59,7 @@ export const TourDescContainer = styled.div`
     width: 1px;
     height: 80%;
     background-color: #ccc;
-    content: "";
+    content: '';
   }
 `;
 export const TourTitle = styled.p`
@@ -108,7 +108,7 @@ export const ReviewIcon = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
-  ${"" /* margin-right:0.5rem ; */}
+  ${'' /* margin-right:0.5rem ; */}
   color:var(--main-color);
 `;
 
@@ -193,7 +193,7 @@ export const FavouriteBtn = styled.button`
 
 export const TourFilterContainer = styled.div`
   flex: 0 1 30%;
-  ${"" /* background-color:#ccc ; */}
+  ${'' /* background-color:#ccc ; */}
   display:flex;
   padding: 1rem 5rem;
   flex-direction: column;
@@ -203,23 +203,45 @@ export const TourFilterContainer = styled.div`
 
 export const TourFilterTitle = styled.div`
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 2.5rem;
   text-align: center;
+  margin: 0 0 1rem;
 `;
 
 export const TourFilterRow = styled.div`
   width: 100%;
   margin: 1rem 0;
   min-height: 4rem;
-  ${"" /* background-color:green ; */}
+  ${'' /* background-color:green ; */}
 `;
 
 export const TourFilterRowTitle = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 600;
+  margin: 0 0 1rem;
 `;
 
 export const CheckBoxContainer = styled.div`
-  width: "2rem";
-  backgroundcolor: "red";
+  width: '2rem';
+  background-color: 'red';
+`;
+
+export const SliderContainer = styled.div``;
+
+export const PriceBox = styled.div`
+  width: 6rem;
+  height: 3rem;
+  background-color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+`;
+
+export const PriceBoxContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;

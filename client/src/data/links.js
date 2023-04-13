@@ -10,24 +10,24 @@ import {
   FiSliders,
   FiXCircle,
   FiBookmark,
-} from "react-icons/fi";
+} from 'react-icons/fi';
 
-const toursBaseUrl = "";
+const toursBaseUrl = '';
 
 export const adminlinks = [
   {
-    resourceType: "Tours",
+    resourceType: 'Tours',
     icon: <FiMap />,
     options: [
       {
         icon: <FiBarChart2 />,
-        text: "Tour Statistics",
-        redirectURL: "/admin/tours/stat",
+        text: 'Tour Statistics',
+        redirectURL: '/admin/tours/stat',
       },
       {
         icon: <FiPlusCircle />,
-        text: "Add Tours",
-        redirectURL: "/admin/tours/add",
+        text: 'Add Tours',
+        redirectURL: '/admin/tours/add',
       },
       //   {
       //     icon: <FiSliders />,
@@ -36,8 +36,8 @@ export const adminlinks = [
       //   },
       {
         icon: <FiBookOpen />,
-        text: "View All Tours",
-        redirectURL: "/admin/tours/all",
+        text: 'View All Tours',
+        redirectURL: '/admin/tours/all',
       },
       {
         icon: <FiBookOpen />,
@@ -47,18 +47,18 @@ export const adminlinks = [
     ],
   },
   {
-    resourceType: "Vehicles",
+    resourceType: 'Vehicles',
     icon: <FiTruck />,
     options: [
       {
         icon: <FiBarChart2 />,
-        text: "Vehicle Statistics",
-        redirectURL: "/admin/vehicles/stat",
+        text: 'Vehicle Statistics',
+        redirectURL: '/admin/vehicles/stat',
       },
       {
         icon: <FiPlusCircle />,
-        text: "Add Vehicles",
-        redirectURL: "/admin/vehicles/add",
+        text: 'Add Vehicles',
+        redirectURL: '/admin/vehicles/add',
       },
       //   {
       //     icon: <FiSliders />,
@@ -67,24 +67,24 @@ export const adminlinks = [
       //   },
       {
         icon: <FiBookOpen />,
-        text: "View All Vehicles",
-        redirectURL: "/admin/vehicles/all",
+        text: 'View All Vehicles',
+        redirectURL: '/admin/vehicles/all',
       },
     ],
   },
   {
-    resourceType: "Users",
+    resourceType: 'Users',
     icon: <FiUser />,
     options: [
       {
         icon: <FiBarChart2 />,
-        text: "View All Users",
-        redirectURL: "/admin/users/all",
+        text: 'View All Users',
+        redirectURL: '/admin/users/all',
       },
       {
         icon: <FiPlusCircle />,
-        text: "Add Users",
-        redirectURL: "/admin/users/add",
+        text: 'Add Users',
+        redirectURL: '/admin/users/add',
       },
       //   {
       //     icon: <FiXCircle />,
@@ -94,18 +94,18 @@ export const adminlinks = [
     ],
   },
   {
-    resourceType: "Statistics",
+    resourceType: 'Statistics',
     icon: <FiActivity />,
     options: [
       {
         icon: <FiBarChart2 />,
-        text: "Vehicle Statistics",
-        redirectURL: "/admin/vehicle-stats",
+        text: 'Vehicle Statistics',
+        redirectURL: '/admin/vehicles/stat',
       },
       {
         icon: <FiPlusCircle />,
-        text: "User Statistics",
-        redirectURL: "/admin/vehicle-add",
+        text: 'User Statistics',
+        redirectURL: '/admin/vehicle-add',
       },
       // {
       //     icon: <FiSliders/>,
@@ -114,36 +114,36 @@ export const adminlinks = [
       // },
       {
         icon: <FiBookOpen />,
-        text: "Reviews Statistics",
-        redirectURL: "/admin/vehicle-rentings",
+        text: 'Reviews Statistics',
+        redirectURL: '/admin/vehicle-rentings',
       },
     ],
   },
 ];
 export const clientLinks = [
   {
-    resourceType: "",
+    resourceType: '',
     icon: <FiAlignLeft />,
     options: [
       {
         icon: <FiUser />,
-        text: "My profile",
-        redirectURL: "/client/home",
+        text: 'My profile',
+        redirectURL: '/client/home',
       },
       {
         icon: <FiBookmark />,
-        text: "My booked tours",
-        redirectURL: "/client/my-tour-bookings",
+        text: 'My booked tours',
+        redirectURL: '/client/my-tour-bookings',
       },
       {
         icon: <FiTruck />,
-        text: "My booked vehicles",
-        redirectURL: "/client/my-vehicle-bookings",
+        text: 'My booked vehicles',
+        redirectURL: '/client/my-vehicle-bookings',
       },
       {
         icon: <FiPlusCircle />,
-        text: "Add Custom Tour",
-        redirectURL: "/client/add-custom-tour",
+        text: 'Add Custom Tour',
+        redirectURL: '/client/add-custom-tour',
       },
     ],
   },

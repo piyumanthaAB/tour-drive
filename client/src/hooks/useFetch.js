@@ -11,6 +11,7 @@ const useFetch = (url) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setIspending(true);
       try {
         const res = await axios({
           method: "GET",
@@ -38,9 +39,9 @@ const useFetch = (url) => {
       }
     };
 
-    setTimeout(() => {
-      fetchData();
-    }, 2000);
+    fetchData();
+    // setTimeout(() => {
+    // }, 5000);
 
     return () => {
       // source.cancel('cancel request');
