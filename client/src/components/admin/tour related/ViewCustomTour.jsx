@@ -1,17 +1,12 @@
 import React from "react";
 import * as f from "./ViewCustomTourElements";
 import { FiBookOpen } from "react-icons/fi";
-import { duration } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const ViewCustomTour = ({ tours }) => {
-  // const tours = {
-  //   cname: "test tour",
-  //   type: "hiking",
-  //   category: "budget",
-  //   duration: "4",
-  // };
+  const navigate = useNavigate();
   const onTourView = (e, tour) => {
-    console.log(tour);
+    navigate(`/admin/custom-tours/${tour._id}`);
   };
   return (
     <>
