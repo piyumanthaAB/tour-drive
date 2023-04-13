@@ -47,6 +47,7 @@ import './../../../variables.css';
 import useFetch from '../../../hooks/useFetch';
 import BounceLoader from 'react-spinners/ClipLoader';
 import NoRecordFound from '../../shared/NoRecordFound';
+import Rating from 'react-rating';
 
 const minDistance = 5;
 
@@ -198,22 +199,26 @@ const TourListComponent = ({ setUrl }) => {
                           </TourSecondaryTitleContainer>
 
                           <ReviewsContainer>
-                            <ReviewIcon>
-                              <BsFillStarFill />
-                            </ReviewIcon>
-                            <ReviewIcon>
-                              <BsFillStarFill />
-                            </ReviewIcon>
-                            <ReviewIcon>
-                              <BsFillStarFill />
-                            </ReviewIcon>
-                            <ReviewIcon>
-                              <BsStarHalf />
-                            </ReviewIcon>
-                            <ReviewIcon>
-                              <BsStar />
-                            </ReviewIcon>
-                            <ReviewTitle>2 reviews</ReviewTitle>
+                            <Rating
+                              emptySymbol={
+                                <BsFillStarFill color="#888" size={15} />
+                              }
+                              fullSymbol={
+                                <BsFillStarFill
+                                  color={'var(--main-color)'}
+                                  size={15}
+                                />
+                              }
+                              initialRating={
+                                (tour?.locationRatingsAverage +
+                                  tour?.serviceRatingsAverage) /
+                                  2 || 0
+                              }
+                              readonly
+                            />
+                            <ReviewTitle>
+                              {tour.ratingsQuantity || 0} review(s)
+                            </ReviewTitle>
                           </ReviewsContainer>
                         </Row>
                         <Row>

@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import { stringify } from "ts-jest";
+import mongoose from 'mongoose';
+import { stringify } from 'ts-jest';
 
 const tourSchema = new mongoose.Schema({
   name: {
@@ -28,9 +28,20 @@ const tourSchema = new mongoose.Schema({
   age_limit: {
     type: Number,
   },
-  ratingsAverage: {
+  ratingsQuantity: {
     type: Number,
-    default: 4.5,
+    default: 0,
+  },
+  locationRatingsAverage: {
+    type: Number,
+    default: 0,
+    min: [1, 'Rating must above 1.0'],
+    max: [5, 'Rating must below 5.0'],
+    set: (val) => Math.round(val * 10) / 10,
+  },
+  serviceRatingsAverage: {
+    type: Number,
+    default: 0,
     min: [1, 'Rating must above 1.0'],
     max: [5, 'Rating must below 5.0'],
     set: (val) => Math.round(val * 10) / 10,
@@ -58,7 +69,7 @@ const tourSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: ["true", "A tour must have a description"],
+    required: ['true', 'A tour must have a description'],
   },
   //   locations: {
   //     type: [String],
@@ -84,5 +95,5 @@ const tourSchema = new mongoose.Schema({
   //   },
 });
 
-const Tour = mongoose.model("Tour", tourSchema);
+const Tour = mongoose.model('Tour', tourSchema);
 export default Tour;

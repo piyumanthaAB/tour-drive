@@ -41,6 +41,8 @@ const useFetch = (url) => {
     };
 
     fetchData();
+    // setTimeout(() => {
+    // }, 5000);
 
     return () => {
       // source.cancel('cancel request');

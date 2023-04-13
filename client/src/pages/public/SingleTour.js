@@ -37,6 +37,7 @@ const SingleTour = () => {
       {data && (
         <>
           <SigleTourHeader
+            tour={data.data}
             name={data.data.name}
             duration={data.data.duration}
             capacity={data.data.capacity}
@@ -56,9 +57,9 @@ const SingleTour = () => {
           />
           <SingleTourMap locations={data.data.locations} />
           <TourPlan plan={data.data.tourPlan} />
-          <ReviewSummary />
-          <DisplayReviews />
-          <CreateReviewForm />
+          {<ReviewSummary tourId={id} />}
+          <DisplayReviews tourId={id} />
+          <CreateReviewForm tourId={id} />
         </>
       )}
     </>
