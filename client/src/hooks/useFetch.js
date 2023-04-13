@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);
@@ -13,10 +13,9 @@ const useFetch = (url) => {
     const fetchData = async () => {
       try {
         const res = await axios({
-          method: 'GET',
+          method: "GET",
           url,
         });
-
         if (res.status === 200 || res.status === 201) {
           setIserror(false);
           setData(res.data);
@@ -29,7 +28,7 @@ const useFetch = (url) => {
         // console.log(error);
         // console.log(error.response?.data);
         // console.log({ 'error.message': error?.message });
-        if (error.message === 'cancel request') {
+        if (error.message === "cancel request") {
           // console.log('fetch aborted');
         } else {
           setIserror(true);

@@ -73,9 +73,11 @@ const createCustomTour = catchAsync(async (req, res, next) => {
     tourType,
   } = req.body;
   console.log({ body: req.body });
+  // if (req.files.galleryImg) {
   const galleryImg = req.files.galleryImg.map((img) => {
     return img.filename;
   });
+  // }
 
   let data = {
     name,

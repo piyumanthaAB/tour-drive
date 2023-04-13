@@ -10,9 +10,9 @@ const customTourSchema = new mongoose.Schema({
   category: {
     type: String,
   },
-  // galleryImg: {
-  //   type: [String],
-  // },
+  galleryImg: {
+    type: [String],
+  },
   price: {
     type: Number,
     // required: true,
