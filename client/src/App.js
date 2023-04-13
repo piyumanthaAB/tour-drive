@@ -41,6 +41,7 @@ import AddCustomTour from "./pages/client/tour related/AddCustomTour";
 import TourStats from "./pages/admin/tour related/TourStats";
 import VehicleStats from "./pages/admin/vehicle related/VehicleStats";
 import AdminViewCustomTour from "./pages/admin/tour related/AdminViewCustomTour";
+import AdminSingleCustomTour from "./pages/admin/tour related/AdminSingleCustomTour";
 
 function App() {
   const { loadUser } = useAuth();
@@ -89,6 +90,11 @@ function App() {
                 exact
                 path="/admin/custom-tours/all"
                 element={<AdminViewCustomTour />}
+              />
+              <Route
+                exact
+                path="/admin/custom-tours/:id"
+                element={<AdminSingleCustomTour />}
               />
               <Route
                 exact
