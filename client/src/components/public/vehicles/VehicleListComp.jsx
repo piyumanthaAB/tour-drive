@@ -7,6 +7,7 @@ import Favorite from '@mui/icons-material/Favorite';
 
 import { FiMapPin, FiUsers, FiClock } from 'react-icons/fi';
 import { BsFillStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
+import Rating from 'react-rating';
 
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -145,28 +146,30 @@ const VehicleListComp = ({}) => {
                             </v.VehicleSecondaryTitle>
                           </v.VehicleSecondaryTitleContainer>
                           <v.ReviewsContainer>
-                            <v.ReviewIcon>
-                              <BsFillStarFill />
-                            </v.ReviewIcon>
-                            <v.ReviewIcon>
-                              <BsFillStarFill />
-                            </v.ReviewIcon>
-                            <v.ReviewIcon>
-                              <BsFillStarFill />
-                            </v.ReviewIcon>
-                            <v.ReviewIcon>
-                              <BsStarHalf />
-                            </v.ReviewIcon>
-                            <v.ReviewIcon>
-                              <BsStar />
-                            </v.ReviewIcon>
-                            <v.ReviewTitle>2 reviews</v.ReviewTitle>
+                            <Rating
+                              emptySymbol={
+                                <BsFillStarFill color="#888" size={15} />
+                              }
+                              fullSymbol={
+                                <BsFillStarFill
+                                  color={'var(--main-color)'}
+                                  size={15}
+                                />
+                              }
+                              initialRating={
+                                (vehicle?.driverRatingsAverage +
+                                  vehicle?.vehicleRatingsAverage) /
+                                  2 || 0
+                              }
+                              readonly
+                            />
+                            <v.ReviewTitle>
+                              {vehicle.ratingsQuantity || 0} review(s)
+                            </v.ReviewTitle>
                           </v.ReviewsContainer>
                         </v.Row>
                         <v.Row>
-                          <v.VehicleDesc>
-                            A/C, Power Steering, CD Player, Auto
-                          </v.VehicleDesc>
+                          <v.VehicleDesc>{vehicle.features}</v.VehicleDesc>
                         </v.Row>
                       </v.VehicleDescContainer>
                       <v.VehiclePriceContainer>

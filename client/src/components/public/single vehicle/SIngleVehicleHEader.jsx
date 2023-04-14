@@ -5,12 +5,14 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { RxCalendar } from 'react-icons/rx';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 import { AiOutlineUser } from 'react-icons/ai';
+import { BsFillStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
+import Rating from 'react-rating';
 
 import { BsSpeedometer2 } from 'react-icons/bs';
 import { TbManualGearbox } from 'react-icons/tb';
 import { MdAirlineSeatReclineNormal, MdLocalGasStation } from 'react-icons/md';
 const SIngleVehicleHEader = ({ vehicle }) => {
-  console.log({ vehicle });
+  // console.log({ vehicle });
 
   return (
     <>
@@ -25,42 +27,21 @@ const SIngleVehicleHEader = ({ vehicle }) => {
                       <t.HeaderSubTitle>Auto, Petrol</t.HeaderSubTitle> */}
 
             <t.ReviewsContainer>
-              <t.IconContainer
-                color='var(--main-color)'
-                width={'2rem'}
-                height={'2rem'}
-              >
-                <AiFillStar />
-              </t.IconContainer>
-              <t.IconContainer
-                color='var(--main-color)'
-                width={'2rem'}
-                height={'2rem'}
-              >
-                <AiFillStar />
-              </t.IconContainer>
-              <t.IconContainer
-                color='var(--main-color)'
-                width={'2rem'}
-                height={'2rem'}
-              >
-                <AiFillStar />
-              </t.IconContainer>
-              <t.IconContainer
-                color='var(--main-color)'
-                width={'2rem'}
-                height={'2rem'}
-              >
-                <AiOutlineStar />
-              </t.IconContainer>
-              <t.IconContainer
-                color='var(--main-color)'
-                width={'2rem'}
-                height={'2rem'}
-              >
-                <AiOutlineStar />
-              </t.IconContainer>
-              <t.HeaderReviewText>( 3 reviews )</t.HeaderReviewText>
+              <Rating
+                emptySymbol={<BsFillStarFill color="#888" size={15} />}
+                fullSymbol={
+                  <BsFillStarFill color={'var(--main-color)'} size={15} />
+                }
+                initialRating={
+                  (vehicle?.driverRatingsAverage +
+                    vehicle?.vehicleRatingsAverage) /
+                    2 || 0
+                }
+                readonly
+              />
+              <t.HeaderReviewText>
+                ( {vehicle.ratingsQuantity} reviews )
+              </t.HeaderReviewText>
             </t.ReviewsContainer>
           </t.HeaderSubTitleContainer>
         </t.HeaderTitleContainer>
@@ -79,7 +60,7 @@ const SIngleVehicleHEader = ({ vehicle }) => {
           <t.IconCard>
             <t.IconContainer fontsize={'3rem'}>
               {' '}
-              <BsSpeedometer2 color='var(--main-color)' />{' '}
+              <BsSpeedometer2 color="var(--main-color)" />{' '}
             </t.IconContainer>
             <t.IconCardTextContainer>
               <t.IconContainerText fontsize={'1.8rem'} fontweight={'600'}>
@@ -97,7 +78,7 @@ const SIngleVehicleHEader = ({ vehicle }) => {
           <t.IconCard>
             <t.IconContainer fontsize={'3rem'}>
               {' '}
-              <TbManualGearbox color='var(--main-color)' />{' '}
+              <TbManualGearbox color="var(--main-color)" />{' '}
             </t.IconContainer>
             <t.IconCardTextContainer>
               <t.IconContainerText fontsize={'1.8rem'} fontweight={'600'}>
@@ -115,7 +96,7 @@ const SIngleVehicleHEader = ({ vehicle }) => {
           <t.IconCard>
             <t.IconContainer fontsize={'3rem'}>
               {' '}
-              <MdAirlineSeatReclineNormal color='var(--main-color)' />{' '}
+              <MdAirlineSeatReclineNormal color="var(--main-color)" />{' '}
             </t.IconContainer>
             <t.IconCardTextContainer>
               <t.IconContainerText fontsize={'1.8rem'} fontweight={'600'}>
@@ -133,7 +114,7 @@ const SIngleVehicleHEader = ({ vehicle }) => {
           <t.IconCard>
             <t.IconContainer fontsize={'3rem'}>
               {' '}
-              <MdLocalGasStation color='var(--main-color)' />{' '}
+              <MdLocalGasStation color="var(--main-color)" />{' '}
             </t.IconContainer>
             <t.IconCardTextContainer>
               <t.IconContainerText fontsize={'1.8rem'} fontweight={'600'}>

@@ -24,6 +24,24 @@ const vehicleSchema = new mongoose.Schema({
   model: {
     type: String,
   },
+  ratingsQuantity: {
+    type: Number,
+    default: 0,
+  },
+  driverRatingsAverage: {
+    type: Number,
+    default: 4.5,
+    min: [1, 'Rating must above 1.0'],
+    max: [5, 'Rating must below 5.0'],
+    set: (val) => Math.round(val * 10) / 10,
+  },
+  vehicleRatingsAverage: {
+    type: Number,
+    default: 4.5,
+    min: [1, 'Rating must above 1.0'],
+    max: [5, 'Rating must below 5.0'],
+    set: (val) => Math.round(val * 10) / 10,
+  },
   // self_driving_price: {
   //   type: Number,
   //   required: true,
@@ -50,9 +68,7 @@ const vehicleSchema = new mongoose.Schema({
   cover_URL: {
     type: String,
   },
-  rating_avarage: {
-    type: Number,
-  },
+
   AC_non_AC: {
     type: Boolean,
   },

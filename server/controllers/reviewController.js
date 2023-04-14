@@ -13,6 +13,8 @@ const createReview = catchAsync(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     reviewType: req.body.reviewType,
+    vehicleRating: req.body.vehicleRating,
+    driverRating: req.body.driverRating,
   };
 
   console.log({ data });

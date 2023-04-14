@@ -23,12 +23,6 @@ const DisplayReviews = ({ tourId }) => {
     `/api/v1/reviews?tour=${tourId}`
   );
 
-  const StyledHalfStar = styled(BsStarHalf)`
-    margin-top: -3px;
-    margin-right: 2px;
-    margin-left: -2px;
-  `;
-
   return (
     <>
       <d.Section>
