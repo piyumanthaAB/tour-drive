@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import submitForm from '../../../hooks/submitForm';
 import DropDown from '../../shared/Form Elements/DropDown';
 
-const UpdateTour = ({ tour }) => {
+const UpdateTour = ({ tour, availableGuides }) => {
   const [name, setName] = useState(tour?.name || 'not available');
   const [price, setPrice] = useState(tour?.price || 'not available');
   const [ageLimit, setAgeLimit] = useState(tour?.age_limit || 'not available');
@@ -23,7 +23,7 @@ const UpdateTour = ({ tour }) => {
 
   const [guide_1, setGuide_1] = useState('');
   const [guide_2, setGuide_2] = useState('');
-  const [guide_3, setGuide_3] = useState('');
+
   const [startDate, setStartDate] = useState(
     tour.start_date || 'not available'
   );
@@ -43,6 +43,8 @@ const UpdateTour = ({ tour }) => {
     'historical',
     'cultural',
   ];
+
+  const availableGuidesVals = [];
 
   const handleCoverImg = (e) => {
     setCoverImg(e.target.files[0]);
@@ -122,16 +124,43 @@ const UpdateTour = ({ tour }) => {
       .map((subArr) => `[${subArr.join(', ')}]`)
       .join('\r\n');
 
-    console.log(str);
+    // console.log(str);
     // Output: "[7.936152049469587, 81.01540945936875]\r\n[7.956717943688687, 80.75831144870159]\r\n[8.35960307387708, 80.4094904996409]"
 
     setTourPlan(str);
     setLocations(str_loc);
   }, []);
 
+  const onUpdateGuide = (e, action) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <u.Container>
+        <u.FormTitle>Update Tour Guide</u.FormTitle>
+
+        <u.Form onSubmit={onUpdateGuide}>
+          <u.FormGroup>
+            <Label labelText={'Tour Guide One'} />
+
+            <DropDown
+              dropDownValues={categoryVals}
+              currentDropdownVal={category}
+              setCurrentDropdownVal={setCategory}
+            />
+          </u.FormGroup>
+          <u.FormGroup>
+            <Label labelText={'Tour Guide One'} />
+
+            <DropDown
+              dropDownValues={categoryVals}
+              currentDropdownVal={category}
+              setCurrentDropdownVal={setCategory}
+            />
+          </u.FormGroup>
+        </u.Form>
+
         <u.FormTitle>Update Tour</u.FormTitle>
 
         <u.Form onSubmit={onSubmit}>
@@ -240,6 +269,8 @@ const UpdateTour = ({ tour }) => {
               type={'date'}
             />
           </u.FormGroup>
+
+          <u.FormGroup></u.FormGroup>
 
           <u.FormGroup>
             <Label labelText={'Tour Includes'} />

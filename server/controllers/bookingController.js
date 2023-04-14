@@ -34,31 +34,31 @@ const createBooking = catchAsync(async (req, res, next) => {
     to,
   });
 
-  // const session = await stripe.checkout.sessions.create({
-  //   line_items: [
-  //     {
-  //       price_data: {
-  //         currency: 'usd',
-  //         product_data: {
-  //           name: tourName || vehicleName,
-  //           description: tourDesc || ' ',
-  //         },
-  //         unit_amount: price * 100,
-  //       },
-  //       quantity: 1,
-  //     },
-  //   ],
-  //   mode: 'payment',
-  //   success_url:
-  //     process.env.NODE_ENV === 'development'
-  //       ? `http://localhost:3000/client/${
-  //           bookingType === 'tour' ? 'my-tour-bookings' : 'my-vehicle-bookings'
-  //         }`
-  //       : `${req.protocol}://${req.get('host')}/client/${
-  //           bookingType === 'tour' ? 'my-tour-bookings' : 'my-vehicle-bookings'
-  //         }`,
-  //   cancel_url: `${req.protocol}://${req.get('host')}/tours`,
-  // });
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: tourName || vehicleName,
+            description: tourDesc || ' ',
+          },
+          unit_amount: price * 100,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url:
+      process.env.NODE_ENV === 'development'
+        ? `http://localhost:3000/client/${
+            bookingType === 'tour' ? 'my-tour-bookings' : 'my-vehicle-bookings'
+          }`
+        : `${req.protocol}://${req.get('host')}/client/${
+            bookingType === 'tour' ? 'my-tour-bookings' : 'my-vehicle-bookings'
+          }`,
+    cancel_url: `${req.protocol}://${req.get('host')}/tours`,
+  });
 
   // need to create the bookin doc in bookingCollection
   const booking = await Booking.create({
@@ -74,7 +74,7 @@ const createBooking = catchAsync(async (req, res, next) => {
     status: 'success',
     message: 'booking created success',
     data: {
-      // url: session.url,
+      url: session.url,
       booking,
     },
   });
