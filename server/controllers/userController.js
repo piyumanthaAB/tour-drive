@@ -109,7 +109,17 @@ const deactiveUser = catchAsync(async (req, res, next) => {
 });
 
 const getAvailableTourGuides = catchAsync(async (req, res, next) => {
-  const users = await User.find({ role: 'tour-guide', assignedToTour: false });
+  const users = await User.find({ role: 'tour_guide', assignedToTour: false });
+
+  res.status(200).json({
+    status: 'success',
+    results: users.length,
+    data: { users },
+  });
+});
+
+const getAvailableDrivers = catchAsync(async (req, res, next) => {
+  const users = await User.find({ role: 'driver', assignedToVehicle: false });
 
   res.status(200).json({
     status: 'success',
@@ -127,4 +137,5 @@ export {
   updateUser,
   deactiveUser,
   getAvailableTourGuides,
+  getAvailableDrivers,
 };

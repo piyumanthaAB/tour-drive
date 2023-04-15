@@ -8,7 +8,8 @@ import TextArea from '../../shared/Form Elements/TextArea.jsx';
 import toast from 'react-hot-toast';
 import submitForm from '../../../hooks/submitForm';
 
-const AdminVehicleUpdateForm = ({ vehicle }) => {
+const AdminVehicleUpdateForm = ({ vehicle, availableDrivers }) => {
+  console.log({ vehicle });
   const [vehicleNo, setVehicleNo] = useState(
     vehicle?.vehicle_No || 'not available'
   );
@@ -33,6 +34,11 @@ const AdminVehicleUpdateForm = ({ vehicle }) => {
     vehicle?.features || 'not available'
   );
 
+  const [vehicleStatus, setVehicleStatus] = useState({
+    label: vehicle?.vehicle_state || 'not available',
+    value: vehicle?.vehicle_state || 'not available',
+  });
+
   const [transmission, setTransmission] = useState({
     label: vehicle?.transmission || 'Select Transmission',
     value: vehicle?.transmission || 'Select Transmission',
@@ -41,7 +47,10 @@ const AdminVehicleUpdateForm = ({ vehicle }) => {
     label: vehicle?.vehicle_type || 'Select vehicle Type',
     value: vehicle?.vehicle_type || 'Select vehicle Type',
   });
-  const [driver, setDriver] = useState('Select driver');
+  const [driver, setDriver] = useState({
+    label: vehicle.driver?.name || 'not available',
+    value: vehicle.driver?._id || 'not available',
+  });
 
   const transmissionVals = [
     { label: 'Auto', value: 'auto' },
@@ -57,7 +66,17 @@ const AdminVehicleUpdateForm = ({ vehicle }) => {
     { label: 'Petrol', value: 'petrol' },
     { label: 'Diesal', value: 'diesal' },
   ];
-  const driverVals = ['driver_1', 'driver_2', 'driver_3'];
+  const vehicleStatusVals = [
+    { label: 'Rented', value: 'rented' },
+    { label: 'Available', value: 'available' },
+    { label: 'Maintenance', value: 'maintenance' },
+  ];
+  const driverVals = availableDrivers.map((val) => {
+    return {
+      label: val.name,
+      value: val._id,
+    };
+  });
 
   const [coverImg, setCoverImg] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
@@ -120,9 +139,138 @@ const AdminVehicleUpdateForm = ({ vehicle }) => {
     );
   };
 
+  const onUpdateDriver = async (e, action) => {
+    e.preventDefault();
+
+    const formData = {
+      action: action === 'update' ? 'update' : 'remove',
+      driver: driver.value,
+    };
+
+    await toast.promise(
+      submitForm(
+        `/api/v1/vehicles/driver/${vehicle._id}`,
+        formData,
+        'patch',
+        {}
+      ),
+      {
+        loading: 'Updating driver...',
+        success: (data) => {
+          console.log({ data });
+          return ` ${data.data.message} ` || 'success';
+        },
+        error: (err) => `${err.response.data.message}`,
+      },
+      {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '2rem',
+        },
+      }
+    );
+    if (action === 'remove') {
+      window.location.reload();
+    }
+  };
+
+  const onUpdateVehicleStatus = async (e) => {
+    e.preventDefault();
+    const formData = {
+      vehicle_state: vehicleStatus.value,
+    };
+
+    await toast.promise(
+      submitForm(
+        `/api/v1/vehicles/update-state/${vehicle._id}`,
+        formData,
+        'patch',
+        {}
+      ),
+      {
+        loading: 'Updating vehicle state...',
+        success: (data) => {
+          console.log({ data });
+          return ` ${data.data.message} ` || 'success';
+        },
+        error: (err) => `${err.response.data.message}`,
+      },
+      {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '2rem',
+        },
+      }
+    );
+    window.location.reload();
+  };
+
   return (
     <>
       <n.Container>
+        <n.FormTitle>Update Vehicle Status</n.FormTitle>
+        <n.Form>
+          <n.FormGroup>
+            <Label labelText={'Select status'} />
+
+            <DropDown
+              dropDownValues={vehicleStatusVals}
+              currentDropdownVal={vehicleStatus}
+              setCurrentDropdownVal={setVehicleStatus}
+            />
+          </n.FormGroup>
+          <n.FormGroup></n.FormGroup>
+
+          <n.FormGroup>
+            <n.SubmitBtn
+              type="submit"
+              onClick={(e) => {
+                onUpdateVehicleStatus(e);
+              }}
+            >
+              Update state
+            </n.SubmitBtn>
+          </n.FormGroup>
+        </n.Form>
+        <n.FormTitle>Update Driver</n.FormTitle>
+
+        <n.Form>
+          <n.FormGroup>
+            <Label labelText={'Select Driver'} />
+
+            <DropDown
+              dropDownValues={driverVals}
+              currentDropdownVal={driver}
+              setCurrentDropdownVal={setDriver}
+            />
+          </n.FormGroup>
+          <n.FormGroup></n.FormGroup>
+
+          <n.FormGroup>
+            <n.SubmitBtn
+              type="submit"
+              onClick={(e) => {
+                onUpdateDriver(e, 'update');
+              }}
+            >
+              Update driver
+            </n.SubmitBtn>
+            <n.SubmitBtn
+              onClick={(e) => {
+                onUpdateDriver(e, 'remove');
+              }}
+              color="#333"
+              type="reset"
+            >
+              Remove driver
+            </n.SubmitBtn>
+          </n.FormGroup>
+        </n.Form>
+
         <n.FormTitle>Update Vehicle</n.FormTitle>
 
         <n.Form onSubmit={onUpdate}>
@@ -236,14 +384,14 @@ const AdminVehicleUpdateForm = ({ vehicle }) => {
             />
           </n.FormGroup>
 
-          <n.FormGroup>
+          {/* <n.FormGroup>
             <Label labelText={'Assign Driver'} />
             <DropDown
               dropDownValues={driverVals}
               currentDropdownVal={driver}
               setCurrentDropdownVal={setDriver}
             />
-          </n.FormGroup>
+          </n.FormGroup> */}
 
           <n.FormGroup>
             <Label labelText={'Vehicle description'} />

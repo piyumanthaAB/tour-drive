@@ -25,6 +25,16 @@ const tourSchema = new mongoose.Schema({
   max_seats: {
     type: Number,
   },
+  guide_1: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    // required: [true, 'A Booking must have a user'],
+  },
+  guide_2: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    // required: [true, 'A Booking must have a user'],
+  },
   age_limit: {
     type: Number,
   },
@@ -93,6 +103,12 @@ const tourSchema = new mongoose.Schema({
   //   rating_average: {
   //     type: Number,
   //   },
+});
+
+tourSchema.pre(/^find/, function (next) {
+  this.populate('guide_2').populate('guide_1');
+
+  next();
 });
 
 const Tour = mongoose.model('Tour', tourSchema);

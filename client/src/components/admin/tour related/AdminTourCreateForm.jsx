@@ -175,7 +175,7 @@ const AdminTourCreateForm = () => {
             />
           </f.FormGroup>
 
-          <f.FormGroup>
+          {/* <f.FormGroup>
             <Label labelText={'Select Tour Guide 1'} />
             <DropDown
               dropDownValues={availableGuides}
@@ -191,7 +191,8 @@ const AdminTourCreateForm = () => {
               currentDropdownVal={guideTwo}
               setCurrentDropdownVal={setGuideTwo}
             />
-          </f.FormGroup>
+          </f.FormGroup> */}
+
           <f.FormGroup>
             <Label labelText={'Tour Visiting cities'} />
             <TextField

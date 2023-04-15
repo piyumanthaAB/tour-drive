@@ -56,7 +56,7 @@ const VehicleListComp = ({}) => {
     color: '#FC6522', // change the color to your desired color
   };
 
-  let url = `/api/v1/vehicles?limit=10${
+  let url = `/api/v1/vehicles?vehicle_state=available&limit=10${
     vehicleType.length > 0 ? `&vehicle_type=${vehicleType}` : ''
   }&price_per_day_without_dr[gte]=${
     value2[0] * 0.5

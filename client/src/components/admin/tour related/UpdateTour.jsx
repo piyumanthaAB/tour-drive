@@ -21,8 +21,14 @@ const UpdateTour = ({ tour, availableGuides }) => {
   const [tourPlan, setTourPlan] = useState('');
   const [cities, setCities] = useState(tour?.cities || 'not available');
 
-  const [guide_1, setGuide_1] = useState('');
-  const [guide_2, setGuide_2] = useState('');
+  const [guide_1, setGuide_1] = useState({
+    label: tour?.guide_1?.name || 'not available',
+    value: tour?.guide_1?._id || null,
+  });
+  const [guide_2, setGuide_2] = useState({
+    label: tour?.guide_2?.name || 'not available',
+    value: tour?.guide_2?._id || null,
+  });
 
   const [startDate, setStartDate] = useState(
     tour.start_date || 'not available'
@@ -47,7 +53,12 @@ const UpdateTour = ({ tour, availableGuides }) => {
     { label: 'cultural', value: 'cultural' },
   ];
 
-  const availableGuidesVals = [];
+  const availableTourGuides = availableGuides.map((guide) => {
+    return {
+      label: guide.name,
+      value: guide._id,
+    };
+  });
 
   const handleCoverImg = (e) => {
     setCoverImg(e.target.files[0]);
@@ -134,8 +145,39 @@ const UpdateTour = ({ tour, availableGuides }) => {
     setLocations(str_loc);
   }, []);
 
-  const onUpdateGuide = (e, action) => {
+  const onUpdateGuide = async (e, action) => {
     e.preventDefault();
+
+    // alert(action);
+
+    const formData = {
+      action: action === 'update' ? 'update' : 'remove',
+      guide_1: guide_1.value,
+      guide_2: guide_2.value,
+    };
+
+    await toast.promise(
+      submitForm(`/api/v1/tours/guides/${tour._id}`, formData, 'patch', {}),
+      {
+        loading: 'Updating Tour Guides...',
+        success: (data) => {
+          console.log({ data });
+          return ` ${data.data.message} ` || 'success';
+        },
+        error: (err) => `${err.response.data.message}`,
+      },
+      {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '2rem',
+        },
+      }
+    );
+    if (action === 'remove') {
+      window.location.reload();
+    }
   };
 
   return (
@@ -143,28 +185,47 @@ const UpdateTour = ({ tour, availableGuides }) => {
       <u.Container>
         <u.FormTitle>Update Tour Guide</u.FormTitle>
 
-        <u.Form onSubmit={onUpdateGuide}>
+        <u.Form>
           <u.FormGroup>
             <Label labelText={'Tour Guide One'} />
 
             <DropDown
-              dropDownValues={tourCategoryValues}
-              currentDropdownVal={category}
-              setCurrentDropdownVal={setCategory}
+              dropDownValues={availableTourGuides}
+              currentDropdownVal={guide_1}
+              setCurrentDropdownVal={setGuide_1}
             />
           </u.FormGroup>
           <u.FormGroup>
             <Label labelText={'Tour Guide One'} />
 
             <DropDown
-              dropDownValues={tourCategoryValues}
-              currentDropdownVal={category}
-              setCurrentDropdownVal={setCategory}
+              dropDownValues={availableTourGuides}
+              currentDropdownVal={guide_2}
+              setCurrentDropdownVal={setGuide_2}
             />
+          </u.FormGroup>
+          <u.FormGroup>
+            <u.SubmitBtn
+              type="submit"
+              onClick={(e) => {
+                onUpdateGuide(e, 'update');
+              }}
+            >
+              Update Guides
+            </u.SubmitBtn>
+            <u.SubmitBtn
+              onClick={(e) => {
+                onUpdateGuide(e, 'remove');
+              }}
+              color="#333"
+              type="reset"
+            >
+              Remove guides
+            </u.SubmitBtn>
           </u.FormGroup>
         </u.Form>
 
-        <u.FormTitle>Update Tour</u.FormTitle>
+        <u.FormTitle>Update Tour Details</u.FormTitle>
 
         <u.Form onSubmit={onSubmit}>
           <u.FormGroup>

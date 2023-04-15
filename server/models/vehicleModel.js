@@ -15,6 +15,11 @@ const vehicleSchema = new mongoose.Schema({
       message: `category should be one of these: < 'car', 'van', 'bike', 'suv' >`,
     },
   },
+  driver: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    // required: [true, 'A Booking must have a user'],
+  },
   seats: {
     type: Number,
   },
@@ -78,7 +83,7 @@ const vehicleSchema = new mongoose.Schema({
   vehicle_state: {
     type: String,
     default: 'available',
-    required: [true, 'A user must have a role'],
+    required: [true, 'A vehicle must have a state'],
     enum: {
       values: ['rented', 'available', 'maintenance'],
       message:
@@ -105,6 +110,12 @@ const vehicleSchema = new mongoose.Schema({
   transmission: {
     type: String,
   },
+});
+
+vehicleSchema.pre(/^find/, function (next) {
+  this.populate('driver');
+
+  next();
 });
 
 const Vehicle = mongoose.model('Vehicle', vehicleSchema);

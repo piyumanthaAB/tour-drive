@@ -28,8 +28,11 @@ const AdminUpdateTour = () => {
         rightContainerContent={
           <>
             {isPending && <ClipLoader size={60} cssOverride={override} />}
-            {data && (
-              <UpdateTour tour={data.data} availableGuides={availableGuides} />
+            {data && availableGuides && (
+              <UpdateTour
+                tour={data.data}
+                availableGuides={availableGuides.data.users}
+              />
             )}
           </>
         }

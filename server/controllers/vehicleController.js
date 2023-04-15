@@ -1,3 +1,4 @@
+import { User } from '../models/userModel.js';
 import Vehicle from '../models/vehicleModel.js';
 import APIFeatures from '../utils/APIFeatures.js';
 import { AppError } from '../utils/AppError.js';
@@ -176,6 +177,59 @@ const deleteVehicle = catchAsync(async (req, res, next) => {
   res.status(200).json({ success: true, data: {} });
 });
 
+//  @desc       assign or remove driver from a vehicle
+//  @route      patch /api/v1/vehicles/assign-driver/:id
+//  @access     Private
+const updateDriver = catchAsync(async (req, res, next) => {
+  console.log({ body: req.body });
+
+  const { id } = req.params;
+
+  const data = {
+    driver: req.body.driver,
+  };
+
+  if (req.body.action === 'update') {
+    const updateDriver = await User.findByIdAndUpdate(data?.driver, {
+      assignedToVehicle: true,
+    });
+    const updatedVehicle = await Vehicle.findByIdAndUpdate(id, data);
+  } else {
+    const updateDriver = await User.findByIdAndUpdate(data?.driver, {
+      assignedToVehicle: false,
+    });
+    const updatedVehicle = await Vehicle.findByIdAndUpdate(id, {
+      driver: null,
+    });
+  }
+
+  res.status(201).json({
+    status: 'success',
+    message: 'Driver updated successfully',
+    data: {},
+  });
+});
+
+//  @desc       update vehicle state at return of the vehicle
+//  @route      patch /api/v1/vehicles/update-state/:id
+//  @access     Private
+const updateVehicleState = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+
+  const updatedVehicle = await Vehicle.findByIdAndUpdate(id, {
+    vehicle_state: req.body.vehicle_state,
+  });
+
+  if (!updatedVehicle) {
+    return next(new AppError('No vehicle found for this ID', 400));
+  }
+
+  res.status(201).json({
+    status: 'success',
+    message: 'vehicle state updated successfully',
+  });
+});
+
 export {
   getVehicle,
   getVehicles,
@@ -183,4 +237,6 @@ export {
   deleteVehicle,
   addVehicle,
   uploadVehiclePhoto,
+  updateDriver,
+  updateVehicleState,
 };

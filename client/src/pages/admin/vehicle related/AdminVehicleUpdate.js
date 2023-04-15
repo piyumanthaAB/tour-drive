@@ -17,13 +17,21 @@ const AdminVehicleUpdate = () => {
   const { id } = useParams();
 
   const { data, isPending, isError } = useFetch(`/api/v1/vehicles/${id}`);
+  const { data: driversList, isPending: driverListPending } = useFetch(
+    `/api/v1/users/available-drivers`
+  );
   return (
     <>
       <Dashboard
         rightContainerContent={
           <>
             {isPending && <ClipLoader size={60} cssOverride={override} />}
-            {data && <AdminVehicleUpdateForm vehicle={data.data} />}
+            {data && driversList && (
+              <AdminVehicleUpdateForm
+                vehicle={data.data}
+                availableDrivers={driversList.data.users}
+              />
+            )}
             {/* <AdminVehicleUpdateForm /> */}
           </>
         }

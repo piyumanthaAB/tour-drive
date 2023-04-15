@@ -6,10 +6,15 @@ import {
   deleteVehicle,
   addVehicle,
   uploadVehiclePhoto,
+  updateDriver,
+  updateVehicleState,
 } from '../controllers/vehicleController.js';
 const router = express.Router();
 
 router.route('/').get(getVehicles).post(uploadVehiclePhoto, addVehicle);
+
+router.patch('/driver/:id', updateDriver);
+router.patch('/update-state/:id', updateVehicleState);
 
 router
   .route('/:id')
