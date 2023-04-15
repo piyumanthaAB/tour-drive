@@ -10,6 +10,10 @@ import submitForm from '../../../hooks/submitForm';
 const AdminTourCreateForm = () => {
   const [guideOne, setGuideOne] = useState('Select guide one');
   const [guideTwo, setGuideTwo] = useState('Select guide two');
+  const [category, setCategory] = useState({
+    label: 'select tour category',
+    value: '',
+  });
 
   const availableGuides = ['mark', 'john', 'mathew'];
 
@@ -28,12 +32,19 @@ const AdminTourCreateForm = () => {
   const [guide_3, setGuide_3] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [category, setCategory] = useState('');
   const [locations, setLocations] = useState('');
   const [description, setDescription] = useState('');
   const [cities, setCities] = useState('');
   const [coverImg, setCoverImg] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
+
+  const tourCategoryValues = [
+    { label: 'city', value: 'city' },
+    { label: 'hiking', value: 'hiking' },
+    { label: 'adventure', value: 'adventure' },
+    { label: 'historical', value: 'historical' },
+    { label: 'cultural', value: 'cultural' },
+  ];
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -59,6 +70,7 @@ const AdminTourCreateForm = () => {
     formData.append('startDate', startDate);
     formData.append('endDate', endDate);
     formData.append('cities', cities);
+    formData.append('category', category.value);
 
     for (const file of galleryImages) {
       formData.append('tour_gallery', file);
@@ -125,9 +137,9 @@ const AdminTourCreateForm = () => {
           <f.FormGroup>
             <Label labelText={'Tour Cover'} />
             <input
-              name='coverImg'
+              name="coverImg"
               onChange={handleCoverImg}
-              type='file'
+              type="file"
               placeholder={'Upload tour cover image here'}
             />
           </f.FormGroup>
@@ -135,10 +147,10 @@ const AdminTourCreateForm = () => {
           <f.FormGroup>
             <Label labelText={'Tour Images'} />
             <input
-              name='galleryImages'
+              name="galleryImages"
               onChange={handleGalleryImages}
               multiple={true}
-              type='file'
+              type="file"
               placeholder={'Upload tour gallery images here'}
             />
           </f.FormGroup>
@@ -148,7 +160,7 @@ const AdminTourCreateForm = () => {
             <TextField
               value={ageLimit}
               setValue={setAgeLimit}
-              type='text'
+              type="text"
               placeholder={'Enter tour maximum age limit here'}
             />
           </f.FormGroup>
@@ -158,7 +170,7 @@ const AdminTourCreateForm = () => {
             <TextField
               value={capacity}
               setValue={setCapacity}
-              type='text'
+              type="text"
               placeholder={'Enter maximum no of seats for this tour'}
             />
           </f.FormGroup>
@@ -217,7 +229,7 @@ const AdminTourCreateForm = () => {
             <TextField
               value={duration}
               setValue={setDuration}
-              type='text'
+              type="text"
               placeholder={'Enter tour duration here'}
             />
           </f.FormGroup>
@@ -230,9 +242,9 @@ const AdminTourCreateForm = () => {
           <f.FormGroup>
             <Label labelText={'Tour Category'} />
             <DropDown
-              dropDownValues={availableGuides}
-              currentDropdownVal={guideTwo}
-              setCurrentDropdownVal={setGuideTwo}
+              dropDownValues={tourCategoryValues}
+              currentDropdownVal={category}
+              setCurrentDropdownVal={setCategory}
             />
           </f.FormGroup>
 
@@ -251,10 +263,10 @@ const AdminTourCreateForm = () => {
               value={includes}
               setValue={setIncludes}
               rows={10}
-              placeholder='Enter Tour Includes here.
+              placeholder="Enter Tour Includes here.
               EX: 
               Include 1, 
-              Include 2,'
+              Include 2,"
             />
           </f.FormGroup>
           <f.FormGroup>
@@ -263,10 +275,10 @@ const AdminTourCreateForm = () => {
               value={excludes}
               setValue={setExcludes}
               rows={10}
-              placeholder='Enter Tour Excludes here.
+              placeholder="Enter Tour Excludes here.
               EX: 
               Exclude 1, 
-              Exclude 2,'
+              Exclude 2,"
             />
           </f.FormGroup>
           <f.FormGroup>
@@ -275,10 +287,10 @@ const AdminTourCreateForm = () => {
               value={highlights}
               setValue={setHighlights}
               rows={10}
-              placeholder='Enter Tour highlights here.
+              placeholder="Enter Tour highlights here.
               EX: 
               highlist 1, 
-              highlight 2,'
+              highlight 2,"
             />
           </f.FormGroup>
           <f.FormGroup>
@@ -287,13 +299,13 @@ const AdminTourCreateForm = () => {
               value={locations}
               setValue={setLocations}
               rows={10}
-              placeholder='Enter coordinates of the locations here.
+              placeholder="Enter coordinates of the locations here.
               EX:
               [latitude_1,longtitude_1] 
               [latitude_2,longtitude_2] 
               [latitude_3,longtitude_3] 
 
-              '
+              "
             />
           </f.FormGroup>
           <f.FormGroup>
@@ -302,13 +314,13 @@ const AdminTourCreateForm = () => {
               value={tourPlan}
               setValue={setTourPlan}
               rows={10}
-              placeholder='Enter tour plan here.
+              placeholder="Enter tour plan here.
               EX:
               [day 1,title for the day 1 ,plan 1 of the day] 
               [day 2,title for the day 2,plan 2 of the day] 
               [day 3,title for the day 3,plan 3 of the day] 
 
-              '
+              "
             />
           </f.FormGroup>
           <f.FormGroup>
@@ -317,13 +329,13 @@ const AdminTourCreateForm = () => {
               value={description}
               setValue={setDescription}
               rows={10}
-              placeholder='Enter tour description here'
+              placeholder="Enter tour description here"
             />
           </f.FormGroup>
 
           <f.FormGroup>
-            <f.SubmitBtn type='submit'>Add Tour</f.SubmitBtn>
-            <f.SubmitBtn color='#333' type='reset'>
+            <f.SubmitBtn type="submit">Add Tour</f.SubmitBtn>
+            <f.SubmitBtn color="#333" type="reset">
               Clear
             </f.SubmitBtn>
           </f.FormGroup>

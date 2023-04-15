@@ -17,9 +17,18 @@ const UpdateUser = ({ user }) => {
   const [id, setId] = useState(user.id || 'not available');
   const [mobile, setMobile] = useState(user.mobile || 'not available');
 
-  const [role, setRole] = useState(user.role || 'not available');
+  const [role, setRole] = useState({
+    label: user.role || 'not available',
+    value: user.role || '',
+  });
 
   const availableGuides = ['driver', 'tour_guide'];
+
+  const userRolesValues = [
+    { label: 'admin', value: 'admin' },
+    { label: 'driver', value: 'driver' },
+    { label: 'tour_guide', value: 'tour_guide' },
+  ];
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +44,7 @@ const UpdateUser = ({ user }) => {
           name: `${fName} ${lName}`,
           id,
           mobile,
-          role,
+          role: role.value,
         },
         'patch',
         headers
@@ -95,7 +104,7 @@ const UpdateUser = ({ user }) => {
           <n.FormGroup>
             <Label labelText={'Select user role'} />
             <DropDown
-              dropDownValues={availableGuides}
+              dropDownValues={userRolesValues}
               currentDropdownVal={role}
               setCurrentDropdownVal={setRole}
             />
@@ -120,7 +129,7 @@ const UpdateUser = ({ user }) => {
 
           <n.FormGroup>
             <n.SubmitBtn>Update user</n.SubmitBtn>
-            <n.SubmitBtn color='#333' type='reset'>
+            <n.SubmitBtn color="#333" type="reset">
               Clear
             </n.SubmitBtn>
           </n.FormGroup>

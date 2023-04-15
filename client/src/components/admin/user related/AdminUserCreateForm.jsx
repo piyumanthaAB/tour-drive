@@ -15,9 +15,15 @@ const AdminUserCreateForm = () => {
   const [id, setId] = useState('');
   const [mobile, setMobile] = useState('');
 
-  const [role, setRole] = useState('Select user role');
+  const [role, setRole] = useState({ label: 'Select user role', value: '' });
 
   const availableGuides = ['driver', 'tour_guide'];
+
+  const userRolesValues = [
+    { label: 'admin', value: 'admin' },
+    { label: 'driver', value: 'driver' },
+    { label: 'tour_guide', value: 'tour_guide' },
+  ];
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +35,7 @@ const AdminUserCreateForm = () => {
     await toast.promise(
       submitForm(
         '/api/v1/users',
-        { fName, lName, email, id, mobile, role },
+        { fName, lName, email, id, mobile, role: role.value },
         'post',
         headers
       ),
@@ -86,7 +92,7 @@ const AdminUserCreateForm = () => {
           <f.FormGroup>
             <Label labelText={'Select user role'} />
             <DropDown
-              dropDownValues={availableGuides}
+              dropDownValues={userRolesValues}
               currentDropdownVal={role}
               setCurrentDropdownVal={setRole}
             />
@@ -112,7 +118,7 @@ const AdminUserCreateForm = () => {
 
           <f.FormGroup>
             <f.SubmitBtn>Add User</f.SubmitBtn>
-            <f.SubmitBtn color='#333' type='reset'>
+            <f.SubmitBtn color="#333" type="reset">
               Clear
             </f.SubmitBtn>
           </f.FormGroup>

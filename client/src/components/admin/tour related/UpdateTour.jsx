@@ -28,7 +28,10 @@ const UpdateTour = ({ tour, availableGuides }) => {
     tour.start_date || 'not available'
   );
   const [endDate, setEndDate] = useState(tour.end_date || 'not available');
-  const [category, setCategory] = useState(tour.category || 'not available');
+  const [category, setCategory] = useState({
+    label: tour?.category || 'not available',
+    value: tour?.category || '',
+  });
   const [locations, setLocations] = useState('');
   const [description, setDescription] = useState(
     tour?.description || 'not available'
@@ -36,12 +39,12 @@ const UpdateTour = ({ tour, availableGuides }) => {
   const [coverImg, setCoverImg] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
 
-  const categoryVals = [
-    'city',
-    'hiking',
-    'adventure',
-    'historical',
-    'cultural',
+  const tourCategoryValues = [
+    { label: 'city', value: 'city' },
+    { label: 'hiking', value: 'hiking' },
+    { label: 'adventure', value: 'adventure' },
+    { label: 'historical', value: 'historical' },
+    { label: 'cultural', value: 'cultural' },
   ];
 
   const availableGuidesVals = [];
@@ -78,7 +81,7 @@ const UpdateTour = ({ tour, availableGuides }) => {
     formData.append('locations', locations);
     formData.append('cities', cities);
     formData.append('tourPlan', tourPlan);
-    formData.append('category', category);
+    formData.append('category', category.value);
 
     for (const file of galleryImages) {
       formData.append('tour_gallery', file);
@@ -145,7 +148,7 @@ const UpdateTour = ({ tour, availableGuides }) => {
             <Label labelText={'Tour Guide One'} />
 
             <DropDown
-              dropDownValues={categoryVals}
+              dropDownValues={tourCategoryValues}
               currentDropdownVal={category}
               setCurrentDropdownVal={setCategory}
             />
@@ -154,7 +157,7 @@ const UpdateTour = ({ tour, availableGuides }) => {
             <Label labelText={'Tour Guide One'} />
 
             <DropDown
-              dropDownValues={categoryVals}
+              dropDownValues={tourCategoryValues}
               currentDropdownVal={category}
               setCurrentDropdownVal={setCategory}
             />
@@ -215,7 +218,7 @@ const UpdateTour = ({ tour, availableGuides }) => {
             <Label labelText={'Tour Category'} />
 
             <DropDown
-              dropDownValues={categoryVals}
+              dropDownValues={tourCategoryValues}
               currentDropdownVal={category}
               setCurrentDropdownVal={setCategory}
             />

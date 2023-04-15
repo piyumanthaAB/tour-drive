@@ -19,7 +19,10 @@ const AdminVehicleUpdateForm = ({ vehicle }) => {
     vehicle?.price_per_day_without_dr || 'not available'
   );
   const [brand, setBrand] = useState(vehicle?.brand || 'not available');
-  const [fuel, setFuel] = useState(vehicle?.fuel || 'not available');
+  const [fuel, setFuel] = useState({
+    label: vehicle?.fuel || 'not available',
+    value: vehicle?.fuel || '',
+  });
   const [model, setModel] = useState(vehicle?.model || 'not available');
   const [seats, setSeats] = useState(vehicle?.seats || 'not available');
   const [milage, setMilage] = useState(vehicle?.milage || 'not available');
@@ -30,17 +33,30 @@ const AdminVehicleUpdateForm = ({ vehicle }) => {
     vehicle?.features || 'not available'
   );
 
-  const [transmission, setTransmission] = useState(
-    vehicle?.transmission || 'Select Transmission'
-  );
-  const [type, setType] = useState(
-    vehicle?.vehicle_type || 'Select vehicle Type'
-  );
+  const [transmission, setTransmission] = useState({
+    label: vehicle?.transmission || 'Select Transmission',
+    value: vehicle?.transmission || 'Select Transmission',
+  });
+  const [type, setType] = useState({
+    label: vehicle?.vehicle_type || 'Select vehicle Type',
+    value: vehicle?.vehicle_type || 'Select vehicle Type',
+  });
   const [driver, setDriver] = useState('Select driver');
 
-  const transmissionVals = ['auto', 'manuel'];
-  const fuelVals = ['petrol', 'diesal'];
-  const typeVals = ['car', 'Van', 'Bike'];
+  const transmissionVals = [
+    { label: 'Auto', value: 'auto' },
+    { label: 'Manuel', value: 'manuel' },
+  ];
+  const typeVals = [
+    { label: 'Car', value: 'car' },
+    { label: 'Van', value: 'van' },
+    { label: 'Bike', value: 'bike' },
+    { label: 'Suv', value: 'suv' },
+  ];
+  const fuelVals = [
+    { label: 'Petrol', value: 'petrol' },
+    { label: 'Diesal', value: 'diesal' },
+  ];
   const driverVals = ['driver_1', 'driver_2', 'driver_3'];
 
   const [coverImg, setCoverImg] = useState(null);
@@ -72,9 +88,9 @@ const AdminVehicleUpdateForm = ({ vehicle }) => {
     formData.append('milage', milage);
     formData.append('description', description);
     formData.append('features', features);
-    formData.append('transmission', transmission);
-    formData.append('type', type);
-    formData.append('fuel', fuel);
+    formData.append('transmission', transmission.value);
+    formData.append('type', type.value);
+    formData.append('fuel', fuel.value);
     formData.append('vehicle_cover', coverImg);
     formData.append('price_per_day_with_dr', priceWithDr);
     formData.append('price_per_day_without_dr', priceWithoutDr);
@@ -149,9 +165,9 @@ const AdminVehicleUpdateForm = ({ vehicle }) => {
           <n.FormGroup>
             <Label labelText={'Vehicle Cover'} />
             <input
-              name='coverImg'
+              name="coverImg"
               onChange={handleCoverImg}
-              type='file'
+              type="file"
               placeholder={'Upload vehicle cover image here'}
             />
           </n.FormGroup>
@@ -159,10 +175,10 @@ const AdminVehicleUpdateForm = ({ vehicle }) => {
           <n.FormGroup>
             <Label labelText={'Vehicle Images'} />
             <input
-              name='galleryImages'
+              name="galleryImages"
               onChange={handleGalleryImages}
               multiple={true}
-              type='file'
+              type="file"
               placeholder={'Upload vehicle gallery images here'}
             />
           </n.FormGroup>
@@ -250,7 +266,7 @@ const AdminVehicleUpdateForm = ({ vehicle }) => {
 
           <n.FormGroup>
             <n.SubmitBtn>Update vehicle</n.SubmitBtn>
-            <n.SubmitBtn color='#333' type='reset'>
+            <n.SubmitBtn color="#333" type="reset">
               Clear
             </n.SubmitBtn>
           </n.FormGroup>
