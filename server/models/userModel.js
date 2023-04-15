@@ -48,9 +48,9 @@ const userSchema = new mongoose.Schema(
       default: 'user',
       required: [true, 'A user must have a role'],
       enum: {
-        values: ['admin', 'driver', 'user', 'tour_guide'],
+        values: ['admin', 'driver', 'user', 'tour_guide', 'customer_care'],
         message:
-          "admin user ' title ' must be one of :< 'admin', 'driver', 'user' > ",
+          "admin user ' title ' must be one of :< 'admin', 'driver', 'user' ,'customer_care > ",
       },
     },
     passwordChangedAt: Date,

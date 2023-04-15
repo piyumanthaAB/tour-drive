@@ -1,46 +1,47 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
-import "./variables.css";
-import AdminHome from "./pages/admin/AdminHome";
-import ClientHome from "./pages/client/ClientHome";
-import Home from "./pages/public/Home";
-import WithoutNav from "./components/router/WithoutNav";
-import WithNav from "./components/router/WithNav";
-import WithColoredFooter from "./components/router/WithColoredFooter";
-import NotFound from "./pages/public/NotFound";
-import AdminTourCreate from "./pages/admin/tour related/AdminTourCreate";
-import Login from "./pages/public/Login";
-import Signup from "./pages/public/Signup";
-import ForgotPassword from "./pages/public/ForgotPassword";
-import ResetPassword from "./pages/public/ResetPassword";
-import Profile_1 from "./pages/public/Profile_1";
-import Profile_2 from "./pages/public/Profile_2";
-import Tours from "./pages/public/Tours";
-import AdminCreateUser from "./pages/admin/user related/AdminCreateUser";
-import SharedElementsPreview from "./pages/SharedElementsPreview";
-import SingleTour from "./pages/public/SingleTour";
-import AdminCreateVehicle from "./pages/admin/vehicle related/AdminCreateVehicle";
-import AdminVehicleUpdate from "./pages/admin/vehicle related/AdminVehicleUpdate";
-import AdminVehicleView from "./pages/admin/vehicle related/AdminVehicleView";
-import Chat from "./components/public/chat/Chat";
-import Vehicles from "./pages/public/Vehicles";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import toast, { Toaster } from "react-hot-toast";
-import SingleVehicle from "./pages/public/SingleVehicle";
-import ViewAllTours from "./pages/admin/tour related/ViewAllTours";
-import AdminUpdateTour from "./pages/admin/tour related/AdminUpdateTour";
-import AdminViewAllUsers from "./pages/admin/user related/AdminViewAllUsers";
-import AdminUpdateUser from "./pages/admin/user related/AdminUpdateUser";
-import ViewTourBookings from "./pages/client/tour related/ViewTourBookings";
-import ViewVehicleRentals from "./pages/client/vehicle related/ViewVehicleRentals";
-import useAuth from "./hooks/useAuth";
-import { useEffect } from "react";
-import AddCustomTour from "./pages/client/tour related/AddCustomTour";
-import TourStats from "./pages/admin/tour related/TourStats";
-import VehicleStats from "./pages/admin/vehicle related/VehicleStats";
-import AdminViewCustomTour from "./pages/admin/tour related/AdminViewCustomTour";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
+import './variables.css';
+import AdminHome from './pages/admin/AdminHome';
+import ClientHome from './pages/client/ClientHome';
+import Home from './pages/public/Home';
+import WithoutNav from './components/router/WithoutNav';
+import WithNav from './components/router/WithNav';
+import WithColoredFooter from './components/router/WithColoredFooter';
+import NotFound from './pages/public/NotFound';
+import AdminTourCreate from './pages/admin/tour related/AdminTourCreate';
+import Login from './pages/public/Login';
+import Signup from './pages/public/Signup';
+import ForgotPassword from './pages/public/ForgotPassword';
+import ResetPassword from './pages/public/ResetPassword';
+import Profile_1 from './pages/public/Profile_1';
+import Profile_2 from './pages/public/Profile_2';
+import Tours from './pages/public/Tours';
+import AdminCreateUser from './pages/admin/user related/AdminCreateUser';
+import SharedElementsPreview from './pages/SharedElementsPreview';
+import SingleTour from './pages/public/SingleTour';
+import AdminCreateVehicle from './pages/admin/vehicle related/AdminCreateVehicle';
+import AdminVehicleUpdate from './pages/admin/vehicle related/AdminVehicleUpdate';
+import AdminVehicleView from './pages/admin/vehicle related/AdminVehicleView';
+import Chat from './components/public/chat/Chat';
+import Vehicles from './pages/public/Vehicles';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import toast, { Toaster } from 'react-hot-toast';
+import SingleVehicle from './pages/public/SingleVehicle';
+import ViewAllTours from './pages/admin/tour related/ViewAllTours';
+import AdminUpdateTour from './pages/admin/tour related/AdminUpdateTour';
+import AdminViewAllUsers from './pages/admin/user related/AdminViewAllUsers';
+import AdminUpdateUser from './pages/admin/user related/AdminUpdateUser';
+import ViewTourBookings from './pages/client/tour related/ViewTourBookings';
+import ViewVehicleRentals from './pages/client/vehicle related/ViewVehicleRentals';
+import useAuth from './hooks/useAuth';
+import { useEffect } from 'react';
+import AddCustomTour from './pages/client/tour related/AddCustomTour';
+import TourStats from './pages/admin/tour related/TourStats';
+import VehicleStats from './pages/admin/vehicle related/VehicleStats';
+import AdminViewCustomTour from './pages/admin/tour related/AdminViewCustomTour';
+import ToTopBtn from './components/back-to-top/ToTopBtn';
 
 function App() {
   const { loadUser } = useAuth();
@@ -58,6 +59,7 @@ function App() {
       <Router>
         <GlobalStyle />
         <div className="App">
+          <ToTopBtn />
           <Chat />
           <Toaster />
           <Routes>
@@ -81,7 +83,7 @@ function App() {
                 element={<AddCustomTour />}
               />
               {/* ADMIN ROUTES starts here */}
-              <Route exact path="/admin/home" element={<AdminHome />} />{" "}
+              <Route exact path="/admin/home" element={<AdminHome />} />{' '}
               {/* this is admin home */}
               <Route exact path="/admin/tours/all" element={<ViewAllTours />} />
               <Route exact path="/admin/tours/stat" element={<TourStats />} />
