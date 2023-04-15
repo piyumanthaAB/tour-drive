@@ -28,7 +28,7 @@ const getAllEmergencyrequests = catchAsync(async (req, res, next) => {
 const getSingleEmergencyRequest = catchAsync(async (req, res, next) => {
   const { id } = req.params;
 
-  const request = await Emergency.findOne({ id });
+  const request = await Emergency.findById(id);
 
   if (!request) {
     return next(new AppError('No request found for this ID', 404));
@@ -86,7 +86,7 @@ const updateEmergencyRequest = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     status: 'success',
-    message: 'emergency request updated successfully',
+    message: 'Emergency request updated successfully',
     data: { updatedRequest },
   });
 });

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import img from './../../images/1.png';
+import img from './../../images/user.png';
 import { Link } from 'react-router-dom';
 
 export const Conatiner = styled.div`
