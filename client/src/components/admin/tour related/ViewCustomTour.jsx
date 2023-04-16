@@ -1,6 +1,6 @@
 import React from "react";
 import * as f from "./ViewCustomTourElements";
-import { FiBookOpen } from "react-icons/fi";
+import { FiBookOpen, FiDelete, FiTrash, FiTrash2 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
 const ViewCustomTour = ({ tours }) => {
@@ -37,6 +37,13 @@ const ViewCustomTour = ({ tours }) => {
                       }}
                     >
                       <FiBookOpen />
+                    </f.TableActionBtn>
+                    <f.TableActionBtn
+                      onClick={(e) => {
+                        console.log("custom tour deletion");
+                      }}
+                    >
+                      <FiTrash2 />
                     </f.TableActionBtn>
                   </f.TableData>
                 </f.TableRow>

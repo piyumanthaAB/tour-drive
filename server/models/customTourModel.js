@@ -37,6 +37,9 @@ const customTourSchema = new mongoose.Schema({
     type: String,
     // required: true,
   },
+  review: {
+    type: String,
+  },
 });
 
 const CustomTour = mongoose.model("CustomTour", customTourSchema);

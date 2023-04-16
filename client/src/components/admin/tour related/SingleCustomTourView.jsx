@@ -51,10 +51,7 @@ const SingleCustomTourView = ({ tour }) => {
             <TextArea placeholder={"Enter your comment"} />
           </c.FormGroup>
           <c.FormGroup>
-            <c.SubmitBtn type="submit">Create tour</c.SubmitBtn>
-            <c.SubmitBtn color="#333" type="submit">
-              Delete request
-            </c.SubmitBtn>
+            <c.SubmitBtn type="submit">Submit</c.SubmitBtn>
           </c.FormGroup>
         </c.Form>
       </c.Container>
