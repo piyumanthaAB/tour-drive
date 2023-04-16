@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import submitForm from '../../../hooks/submitForm';
 import DropDown from '../../shared/Form Elements/DropDown';
 
-const UpdateTour = ({ tour }) => {
+const UpdateTour = ({ tour, availableGuides }) => {
   const [name, setName] = useState(tour?.name || 'not available');
   const [price, setPrice] = useState(tour?.price || 'not available');
   const [ageLimit, setAgeLimit] = useState(tour?.age_limit || 'not available');
@@ -21,14 +21,23 @@ const UpdateTour = ({ tour }) => {
   const [tourPlan, setTourPlan] = useState('');
   const [cities, setCities] = useState(tour?.cities || 'not available');
 
-  const [guide_1, setGuide_1] = useState('');
-  const [guide_2, setGuide_2] = useState('');
-  const [guide_3, setGuide_3] = useState('');
+  const [guide_1, setGuide_1] = useState({
+    label: tour?.guide_1?.name || 'not available',
+    value: tour?.guide_1?._id || null,
+  });
+  const [guide_2, setGuide_2] = useState({
+    label: tour?.guide_2?.name || 'not available',
+    value: tour?.guide_2?._id || null,
+  });
+
   const [startDate, setStartDate] = useState(
     tour.start_date || 'not available'
   );
   const [endDate, setEndDate] = useState(tour.end_date || 'not available');
-  const [category, setCategory] = useState(tour.category || 'not available');
+  const [category, setCategory] = useState({
+    label: tour?.category || 'not available',
+    value: tour?.category || '',
+  });
   const [locations, setLocations] = useState('');
   const [description, setDescription] = useState(
     tour?.description || 'not available'
@@ -36,13 +45,20 @@ const UpdateTour = ({ tour }) => {
   const [coverImg, setCoverImg] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
 
-  const categoryVals = [
-    'city',
-    'hiking',
-    'adventure',
-    'historical',
-    'cultural',
+  const tourCategoryValues = [
+    { label: 'city', value: 'city' },
+    { label: 'hiking', value: 'hiking' },
+    { label: 'adventure', value: 'adventure' },
+    { label: 'historical', value: 'historical' },
+    { label: 'cultural', value: 'cultural' },
   ];
+
+  const availableTourGuides = availableGuides.map((guide) => {
+    return {
+      label: guide.name,
+      value: guide._id,
+    };
+  });
 
   const handleCoverImg = (e) => {
     setCoverImg(e.target.files[0]);
@@ -76,7 +92,7 @@ const UpdateTour = ({ tour }) => {
     formData.append('locations', locations);
     formData.append('cities', cities);
     formData.append('tourPlan', tourPlan);
-    formData.append('category', category);
+    formData.append('category', category.value);
 
     for (const file of galleryImages) {
       formData.append('tour_gallery', file);
@@ -122,17 +138,94 @@ const UpdateTour = ({ tour }) => {
       .map((subArr) => `[${subArr.join(', ')}]`)
       .join('\r\n');
 
-    console.log(str);
+    // console.log(str);
     // Output: "[7.936152049469587, 81.01540945936875]\r\n[7.956717943688687, 80.75831144870159]\r\n[8.35960307387708, 80.4094904996409]"
 
     setTourPlan(str);
     setLocations(str_loc);
   }, []);
 
+  const onUpdateGuide = async (e, action) => {
+    e.preventDefault();
+
+    // alert(action);
+
+    const formData = {
+      action: action === 'update' ? 'update' : 'remove',
+      guide_1: guide_1.value,
+      guide_2: guide_2.value,
+    };
+
+    await toast.promise(
+      submitForm(`/api/v1/tours/guides/${tour._id}`, formData, 'patch', {}),
+      {
+        loading: 'Updating Tour Guides...',
+        success: (data) => {
+          console.log({ data });
+          return ` ${data.data.message} ` || 'success';
+        },
+        error: (err) => `${err.response.data.message}`,
+      },
+      {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '2rem',
+        },
+      }
+    );
+    if (action === 'remove') {
+      window.location.reload();
+    }
+  };
+
   return (
     <>
       <u.Container>
-        <u.FormTitle>Update Tour</u.FormTitle>
+        <u.FormTitle>Update Tour Guide</u.FormTitle>
+
+        <u.Form>
+          <u.FormGroup>
+            <Label labelText={'Tour Guide One'} />
+
+            <DropDown
+              dropDownValues={availableTourGuides}
+              currentDropdownVal={guide_1}
+              setCurrentDropdownVal={setGuide_1}
+            />
+          </u.FormGroup>
+          <u.FormGroup>
+            <Label labelText={'Tour Guide One'} />
+
+            <DropDown
+              dropDownValues={availableTourGuides}
+              currentDropdownVal={guide_2}
+              setCurrentDropdownVal={setGuide_2}
+            />
+          </u.FormGroup>
+          <u.FormGroup>
+            <u.SubmitBtn
+              type="submit"
+              onClick={(e) => {
+                onUpdateGuide(e, 'update');
+              }}
+            >
+              Update Guides
+            </u.SubmitBtn>
+            <u.SubmitBtn
+              onClick={(e) => {
+                onUpdateGuide(e, 'remove');
+              }}
+              color="#333"
+              type="reset"
+            >
+              Remove guides
+            </u.SubmitBtn>
+          </u.FormGroup>
+        </u.Form>
+
+        <u.FormTitle>Update Tour Details</u.FormTitle>
 
         <u.Form onSubmit={onSubmit}>
           <u.FormGroup>
@@ -186,7 +279,7 @@ const UpdateTour = ({ tour }) => {
             <Label labelText={'Tour Category'} />
 
             <DropDown
-              dropDownValues={categoryVals}
+              dropDownValues={tourCategoryValues}
               currentDropdownVal={category}
               setCurrentDropdownVal={setCategory}
             />
@@ -240,6 +333,8 @@ const UpdateTour = ({ tour }) => {
               type={'date'}
             />
           </u.FormGroup>
+
+          <u.FormGroup></u.FormGroup>
 
           <u.FormGroup>
             <Label labelText={'Tour Includes'} />

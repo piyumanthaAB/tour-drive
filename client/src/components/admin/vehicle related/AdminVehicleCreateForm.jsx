@@ -21,15 +21,30 @@ const AdminVehiclecCreateForm = () => {
   const [coverImg, setCoverImg] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
 
-  const [transmission, setTransmission] = useState('Select Transmission');
-  const [type, setType] = useState('Select vehicle Type');
+  const [transmission, setTransmission] = useState({
+    label: 'Select transmission type',
+    value: '',
+  });
+  const [type, setType] = useState({ label: 'Select vehicle type', value: '' });
   const [driver, setDriver] = useState('Select driver');
-  const [fuel, setFuel] = useState('Select fuel type');
+  const [fuel, setFuel] = useState({ label: 'Select fuel type', value: '' });
 
-  const transmissionVals = ['auto', 'manuel'];
-  const typeVals = ['car', 'Van', 'Bike'];
+  const transmissionVals = [
+    { label: 'Auto', value: 'auto' },
+    { label: 'Manuel', value: 'manuel' },
+  ];
+  const typeVals = [
+    { label: 'Car', value: 'car' },
+    { label: 'Van', value: 'van' },
+    { label: 'Bike', value: 'bike' },
+    { label: 'Suv', value: 'suv' },
+  ];
+  const fuelVals = [
+    { label: 'Petrol', value: 'petrol' },
+    { label: 'Diesal', value: 'diesal' },
+  ];
+
   const driverVals = ['driver_1', 'driver_2', 'driver_3'];
-  const fuelVals = ['petrol', 'diesal'];
 
   const handleCoverImg = (e) => {
     setCoverImg(e.target.files[0]);
@@ -56,9 +71,9 @@ const AdminVehiclecCreateForm = () => {
     formData.append('milage', milage);
     formData.append('desc', desc);
     formData.append('features', features);
-    formData.append('type', type);
-    formData.append('transmission', transmission);
-    formData.append('fuel', fuel);
+    formData.append('type', type.value);
+    formData.append('transmission', transmission.value);
+    formData.append('fuel', fuel.value);
     formData.append('price_per_day_with_dr', priceWithDr);
     formData.append('price_per_day_without_dr', priceWithoutDr);
 
@@ -147,9 +162,9 @@ const AdminVehiclecCreateForm = () => {
           <n.FormGroup>
             <Label labelText={'Vehicle Cover'} />
             <input
-              name='coverImg'
+              name="coverImg"
               onChange={handleCoverImg}
-              type='file'
+              type="file"
               placeholder={'Upload vehicle cover image here'}
             />
           </n.FormGroup>
@@ -157,10 +172,10 @@ const AdminVehiclecCreateForm = () => {
           <n.FormGroup>
             <Label labelText={'Vehicle Images'} />
             <input
-              name='galleryImages'
+              name="galleryImages"
               onChange={handleGalleryImages}
               multiple={true}
-              type='file'
+              type="file"
               placeholder={'Upload vehicle gallery images here'}
             />
           </n.FormGroup>
@@ -228,7 +243,7 @@ const AdminVehiclecCreateForm = () => {
 
           <n.FormGroup>
             <n.SubmitBtn>Add vehicle</n.SubmitBtn>
-            <n.SubmitBtn color='#333' type='reset'>
+            <n.SubmitBtn color="#333" type="reset">
               Clear
             </n.SubmitBtn>
           </n.FormGroup>

@@ -24,10 +24,13 @@ export default function LoginForm() {
     if (isAuthenticated && user && !loading) {
       switch (user?.role) {
         case 'admin':
-          navigate('/admin/home');
+          navigate('/admin/tours/all');
           break;
         case 'user':
           navigate('/tours');
+          break;
+        case 'customer_care':
+          navigate('/customer-care/view-all-requests');
           break;
 
         default:
@@ -72,18 +75,18 @@ export default function LoginForm() {
           <l.LabelTextEmail
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder='  Enter Email'
+            placeholder="  Enter Email"
           ></l.LabelTextEmail>
         </l.LabelText>
         <l.LabelTextTwo>
           <l.LabelTextPassword
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            type='password'
-            placeholder='  Enter Password'
+            type="password"
+            placeholder="  Enter Password"
           ></l.LabelTextPassword>
         </l.LabelTextTwo>
-        <l.ForgetText to='/forgot-password'>
+        <l.ForgetText to="/forgot-password">
           Forgot your password ?
         </l.ForgetText>
         <l.LoginButton>SignIn</l.LoginButton>

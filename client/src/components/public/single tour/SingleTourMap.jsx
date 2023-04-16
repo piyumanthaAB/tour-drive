@@ -16,7 +16,7 @@ const SingleTourMap = ({ locations }) => {
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/cherinpiyumantha/cldsfgjm2004a01p5k1aiq0w0',
+      style: 'mapbox://styles/cherinpiyumantha/clgih5ylw006801pj91yv3tmp',
       center: [state.lng, state.lat],
       zoom: state.zoom,
       accessToken: `${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`,
@@ -42,7 +42,7 @@ const SingleTourMap = ({ locations }) => {
   return (
     <>
       <m.MapSection>
-        <m.Text color='#222' margin='3rem 0' fontweight='700' fontsize='4.5rem'>
+        <m.Text color="#222" margin="3rem 0" fontweight="700" fontsize="4.5rem">
           Tour Map
         </m.Text>
         <m.MapContainer ref={mapContainer} />

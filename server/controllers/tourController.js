@@ -1,4 +1,5 @@
 import Tour from '../models/tourModel.js';
+import { User } from '../models/userModel.js';
 import APIFeatures from '../utils/APIFeatures.js';
 import { AppError } from '../utils/AppError.js';
 import { catchAsync } from '../utils/catchAsync.js';
@@ -54,14 +55,12 @@ const getTours = catchAsync(async (req, res, next) => {
 
   const tours = await features.query;
 
-  res
-    .status(200)
-    .json({
-      success: true,
-      results: tours.length,
-      data: tours,
-      totalRecords: allRecords.length,
-    });
+  res.status(200).json({
+    success: true,
+    results: tours.length,
+    data: tours,
+    totalRecords: allRecords.length,
+  });
 });
 
 //  @desc       Get single tour
@@ -262,6 +261,54 @@ const deleteTour = catchAsync(async (req, res, next) => {
   res.status(200).json({ success: true, data: {} });
 });
 
+//  @desc       update tour guides of a given tour
+//  @route      PATCH /api/v1/tours/guides/:id
+//  @access     Private
+const updateTourGuides = catchAsync(async (req, res, next) => {
+  console.log({ body: req.body });
+
+  const { id } = req.params;
+
+  const data = {
+    guide_1: req.body.guide_1,
+    guide_2: req.body.guide_2,
+  };
+
+  if (req.body.action === 'update') {
+    const updatedUser_1 = await User.findByIdAndUpdate(data?.guide_1, {
+      assignedToTour: true,
+    });
+    const updatedUser_2 = await User.findByIdAndUpdate(data?.guide_2, {
+      assignedToTour: true,
+    });
+    const updatedTour = await Tour.findByIdAndUpdate(id, data);
+  } else {
+    const updatedUser_1 = await User.findByIdAndUpdate(data?.guide_1, {
+      assignedToTour: false,
+    });
+    const updatedUser_2 = await User.findByIdAndUpdate(data?.guide_2, {
+      assignedToTour: false,
+    });
+    const updatedTour = await Tour.findByIdAndUpdate(id, {
+      guide_1: null,
+      guide_2: null,
+    });
+  }
+
+  // if (!updatedTour) {
+  //   return next(new AppError('No tour found for this ID', 400));
+  // }
+
+  res.status(201).json({
+    success: true,
+    message: 'Tour guides updated successfully !',
+    data: {
+      // tour,
+      // updatedTour,
+    },
+  });
+});
+
 export {
   getTour,
   getTours,
@@ -269,4 +316,5 @@ export {
   deleteTour,
   createTour,
   uploadTourPhoto,
+  updateTourGuides,
 };

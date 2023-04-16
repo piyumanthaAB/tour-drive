@@ -15,6 +15,11 @@ const vehicleSchema = new mongoose.Schema({
       message: `category should be one of these: < 'car', 'van', 'bike', 'suv' >`,
     },
   },
+  driver: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    // required: [true, 'A Booking must have a user'],
+  },
   seats: {
     type: Number,
   },
@@ -23,6 +28,24 @@ const vehicleSchema = new mongoose.Schema({
   },
   model: {
     type: String,
+  },
+  ratingsQuantity: {
+    type: Number,
+    default: 0,
+  },
+  driverRatingsAverage: {
+    type: Number,
+    default: 4.5,
+    min: [1, 'Rating must above 1.0'],
+    max: [5, 'Rating must below 5.0'],
+    set: (val) => Math.round(val * 10) / 10,
+  },
+  vehicleRatingsAverage: {
+    type: Number,
+    default: 4.5,
+    min: [1, 'Rating must above 1.0'],
+    max: [5, 'Rating must below 5.0'],
+    set: (val) => Math.round(val * 10) / 10,
   },
   // self_driving_price: {
   //   type: Number,
@@ -50,9 +73,7 @@ const vehicleSchema = new mongoose.Schema({
   cover_URL: {
     type: String,
   },
-  rating_avarage: {
-    type: Number,
-  },
+
   AC_non_AC: {
     type: Boolean,
   },
@@ -62,7 +83,7 @@ const vehicleSchema = new mongoose.Schema({
   vehicle_state: {
     type: String,
     default: 'available',
-    required: [true, 'A user must have a role'],
+    required: [true, 'A vehicle must have a state'],
     enum: {
       values: ['rented', 'available', 'maintenance'],
       message:
@@ -89,6 +110,12 @@ const vehicleSchema = new mongoose.Schema({
   transmission: {
     type: String,
   },
+});
+
+vehicleSchema.pre(/^find/, function (next) {
+  this.populate('driver');
+
+  next();
 });
 
 const Vehicle = mongoose.model('Vehicle', vehicleSchema);

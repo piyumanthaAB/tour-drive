@@ -33,9 +33,9 @@ const SingleVehicle = () => {
         <>
           <SIngleVehicleHEader vehicle={data.data} />
           <SingleVehicleOverview vehicle={data.data} />
-          <ReviewSummary vehicle={data.data} />
-          <DisplayReviews vehicle={data.data} />
-          <CreateReviewForm vehicle={data.data} />
+          <ReviewSummary vehicle={data.data} vehicleId={id} />
+          <DisplayReviews vehicle={data.data} vehicleId={id} />
+          <CreateReviewForm vehicle={data.data} vehicleId={id} />
         </>
       )}
     </>

@@ -13,9 +13,14 @@ import axios from 'axios';
 const SingleVehicleOverview = ({ vehicle }) => {
   const { user, isAuthenticated } = useAuth();
 
-  const [drivingOptDropdownVal, setDrivingOptDropdownVal] =
-    useState('Without driver');
-  const drivingOptDropDownValues = ['With driver', 'Without driver'];
+  const [drivingOptDropdownVal, setDrivingOptDropdownVal] = useState({
+    label: 'Without driver',
+    value: 'Without driver',
+  });
+  const drivingOptDropDownValues = [
+    { label: 'With driver', value: 'With driver' },
+    { label: 'Without driver', value: 'Without driver' },
+  ];
 
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
@@ -33,7 +38,7 @@ const SingleVehicleOverview = ({ vehicle }) => {
       from,
       to,
     };
-    console.log({ vehicleData });
+    // console.log({ vehicleData });
 
     try {
       const res = await axios({
@@ -52,13 +57,14 @@ const SingleVehicleOverview = ({ vehicle }) => {
       console.log(error.response.data);
     }
   };
+
   return (
     <>
       <o.OverviewSection>
         <o.TourBookingContainer>
           <o.BookingTopContainer>
             <o.PriceTagContainer>
-              <o.IconContainer color='var(--main-color)' fontsize={'3rem'}>
+              <o.IconContainer color="var(--main-color)" fontsize={'3rem'}>
                 <TbTag />
               </o.IconContainer>
               <o.Text margin={'0 1rem'} fontsize={'2rem'} fontweight={'600'}>
@@ -68,14 +74,14 @@ const SingleVehicleOverview = ({ vehicle }) => {
             </o.PriceTagContainer>
 
             <o.Text
-              color='#00bb98'
+              color="#00bb98"
               margin={'2rem 1rem'}
               fontsize={'4rem'}
               fontweight={'600'}
             >
               {' '}
               $
-              {drivingOptDropdownVal === 'Without driver'
+              {drivingOptDropdownVal.value === 'Without driver'
                 ? vehicle.price_per_day_without_dr
                 : vehicle.price_per_day_with_dr}
               {/* $9.99 */}
@@ -87,7 +93,7 @@ const SingleVehicleOverview = ({ vehicle }) => {
           <o.BookingBodyContainer>
             <o.Group>
               <o.Text
-                color='#555'
+                color="#555"
                 margin={'1rem 1rem'}
                 fontsize={'1.8rem'}
                 fontweight={'600'}
@@ -103,7 +109,7 @@ const SingleVehicleOverview = ({ vehicle }) => {
             </o.Group>
             <o.Group>
               <o.Text
-                color='#555'
+                color="#555"
                 margin={'1rem 1rem'}
                 fontsize={'1.8rem'}
                 fontweight={'600'}
@@ -119,7 +125,7 @@ const SingleVehicleOverview = ({ vehicle }) => {
             </o.Group>
             <o.Group>
               <o.Text
-                color='#555'
+                color="#555"
                 margin={'1rem 1rem'}
                 fontsize={'1.8rem'}
                 fontweight={'600'}
@@ -138,14 +144,14 @@ const SingleVehicleOverview = ({ vehicle }) => {
 
           <o.BookNowBtn onClick={onCheckout}>
             <o.Text
-              color='#fff'
-              margin='0 1rem 0 0'
+              color="#fff"
+              margin="0 1rem 0 0"
               fontsize={'1.7rem'}
-              fontweight='600'
+              fontweight="600"
             >
               {isAuthenticated ? 'Rent Now' : 'Log In to rent a vehicle'}
             </o.Text>
-            <o.IconContainer color='#fff' fontsize={'2rem'}>
+            <o.IconContainer color="#fff" fontsize={'2rem'}>
               <AiOutlineCar />
             </o.IconContainer>
           </o.BookNowBtn>
@@ -154,7 +160,7 @@ const SingleVehicleOverview = ({ vehicle }) => {
         <o.OverviewContainer>
           <o.Text
             margin={'1rem 0 2rem 0'}
-            color='#222'
+            color="#222"
             fontsize={'4.5rem'}
             fontweight={'700'}
           >
@@ -162,7 +168,7 @@ const SingleVehicleOverview = ({ vehicle }) => {
           </o.Text>
           <o.Text
             margin={'1rem 0 2rem 0'}
-            color='#333'
+            color="#333"
             fontsize={'1.7rem'}
             fontweight={'500'}
             fontfamily={'var(--primary-font)'}
@@ -187,7 +193,7 @@ const SingleVehicleOverview = ({ vehicle }) => {
         <o.TourHighlightContainer>
           <o.Text
             margin={'1rem 0 2rem 0'}
-            color='#222'
+            color="#222"
             fontsize={'2.5rem'}
             fontweight={'600'}
           >
@@ -197,7 +203,7 @@ const SingleVehicleOverview = ({ vehicle }) => {
           {vehicle.features.split('\n').map((feature, key) => {
             return (
               <o.HighLightRow key={key}>
-                <o.IconContainer fontsize={'1.8rem'} color='var(--main-color)'>
+                <o.IconContainer fontsize={'1.8rem'} color="var(--main-color)">
                   <GoPrimitiveDot />
                 </o.IconContainer>
                 <o.Text fontsize={'1.7rem'} margin={'1rem 2rem '}>

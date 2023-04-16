@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import moment from 'moment';
 
 const bookingSchema = new mongoose.Schema(
   {
@@ -9,7 +10,7 @@ const bookingSchema = new mongoose.Schema(
     },
     vehicle: {
       type: mongoose.Schema.ObjectId,
-      ref: 'Tour',
+      ref: 'Vehicle',
       // required: [true, 'A Booking must have a vehicle']
     },
     user: {
@@ -40,6 +41,13 @@ const bookingSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// const currentMonth = moment().format('YYYY-MM');
+
+// console.log({
+//   gte: moment(currentMonth, 'YYYY-MM').toDate(),
+//   lte: moment(currentMonth, 'YYYY-MM').endOf('month').toDate(),
+// });
 
 bookingSchema.pre(/^find/, function (next) {
   this.populate('user').populate('tour').populate('vehicle');

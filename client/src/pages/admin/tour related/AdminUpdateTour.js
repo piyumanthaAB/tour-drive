@@ -18,6 +18,9 @@ const AdminUpdateTour = () => {
   const { id } = useParams();
 
   const { data, isPending, isError } = useFetch(`/api/v1/tours/${id}`);
+  const { data: availableGuides } = useFetch(
+    '/api/v1/users/available-tour-guides'
+  );
 
   return (
     <>
@@ -25,7 +28,12 @@ const AdminUpdateTour = () => {
         rightContainerContent={
           <>
             {isPending && <ClipLoader size={60} cssOverride={override} />}
-            {data && <UpdateTour tour={data.data} />}
+            {data && availableGuides && (
+              <UpdateTour
+                tour={data.data}
+                availableGuides={availableGuides.data.users}
+              />
+            )}
           </>
         }
       />

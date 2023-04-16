@@ -1,4 +1,5 @@
 import { Booking } from '../models/bookingModel.js';
+import Vehicle from './../models/vehicleModel.js';
 import { catchAsync } from '../utils/catchAsync.js';
 import Stripe from 'stripe';
 
@@ -70,11 +71,18 @@ const createBooking = catchAsync(async (req, res, next) => {
     duration: `${from} - ${to}`,
   });
 
+  if (bookingType === 'vehicle') {
+    const updatedVehicle = await Vehicle.findByIdAndUpdate(vehicle, {
+      vehicle_state: 'rented',
+    });
+  }
+
   res.status(201).json({
     status: 'success',
     message: 'booking created success',
     data: {
       url: session.url,
+      booking,
     },
   });
 });

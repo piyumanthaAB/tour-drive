@@ -1,5 +1,6 @@
 import { AppError } from '../utils/AppError.js';
 import { User } from './../models/userModel.js';
+import Tour from './../models/tourModel.js';
 import { catchAsync } from '../utils/catchAsync.js';
 
 // ============== MIDDLEWARE STACK START =================
@@ -107,6 +108,34 @@ const deactiveUser = catchAsync(async (req, res, next) => {
   });
 });
 
+const getAvailableTourGuides = catchAsync(async (req, res, next) => {
+  const users = await User.find({ role: 'tour_guide', assignedToTour: false });
+
+  res.status(200).json({
+    status: 'success',
+    results: users.length,
+    data: { users },
+  });
+});
+
+const getAvailableDrivers = catchAsync(async (req, res, next) => {
+  const users = await User.find({ role: 'driver', assignedToVehicle: false });
+
+  res.status(200).json({
+    status: 'success',
+    results: users.length,
+    data: { users },
+  });
+});
+
 // ######### controllers END #############
 
-export { createUser, getAllUsers, getSingleUser, updateUser, deactiveUser };
+export {
+  createUser,
+  getAllUsers,
+  getSingleUser,
+  updateUser,
+  deactiveUser,
+  getAvailableTourGuides,
+  getAvailableDrivers,
+};

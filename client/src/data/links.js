@@ -41,8 +41,8 @@ export const adminlinks = [
       },
       {
         icon: <FiBookOpen />,
-        text: "View All Custom Tours",
-        redirectURL: "/admin/custom-tours/all",
+        text: 'View All Custom Tours',
+        redirectURL: '/admin/custom-tours/all',
       },
     ],
   },
@@ -144,6 +144,24 @@ export const clientLinks = [
         icon: <FiPlusCircle />,
         text: 'Add Custom Tour',
         redirectURL: '/client/add-custom-tour',
+      },
+    ],
+  },
+];
+export const cutomer_care_links = [
+  {
+    resourceType: '',
+    icon: <FiAlignLeft />,
+    options: [
+      {
+        icon: <FiUser />,
+        text: 'My profile',
+        redirectURL: '/cutomer-care/home',
+      },
+      {
+        icon: <FiBookmark />,
+        text: 'All emergency requests',
+        redirectURL: '/customer-care/view-all-requests',
       },
     ],
   },

@@ -10,6 +10,10 @@ import submitForm from "../../../hooks/submitForm";
 const AdminTourCreateForm = () => {
   const [guideOne, setGuideOne] = useState("Select guide one");
   const [guideTwo, setGuideTwo] = useState("Select guide two");
+  const [category, setCategory] = useState({
+    label: "select tour category",
+    value: "",
+  });
 
   const availableGuides = ["mark", "john", "mathew"];
 
@@ -28,12 +32,19 @@ const AdminTourCreateForm = () => {
   const [guide_3, setGuide_3] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [category, setCategory] = useState("");
   const [locations, setLocations] = useState("");
   const [description, setDescription] = useState("");
   const [cities, setCities] = useState("");
   const [coverImg, setCoverImg] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
+
+  const tourCategoryValues = [
+    { label: "city", value: "city" },
+    { label: "hiking", value: "hiking" },
+    { label: "adventure", value: "adventure" },
+    { label: "historical", value: "historical" },
+    { label: "cultural", value: "cultural" },
+  ];
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -59,6 +70,7 @@ const AdminTourCreateForm = () => {
     formData.append("startDate", startDate);
     formData.append("endDate", endDate);
     formData.append("cities", cities);
+    formData.append("category", category.value);
 
     for (const file of galleryImages) {
       formData.append("tour_gallery", file);
@@ -163,8 +175,8 @@ const AdminTourCreateForm = () => {
             />
           </f.FormGroup>
 
-          <f.FormGroup>
-            <Label labelText={"Select Tour Guide 1"} />
+          {/* <f.FormGroup>
+            <Label labelText={'Select Tour Guide 1'} />
             <DropDown
               dropDownValues={availableGuides}
               currentDropdownVal={guideOne}
@@ -179,7 +191,8 @@ const AdminTourCreateForm = () => {
               currentDropdownVal={guideTwo}
               setCurrentDropdownVal={setGuideTwo}
             />
-          </f.FormGroup>
+          </f.FormGroup> */}
+
           <f.FormGroup>
             <Label labelText={"Tour Visiting cities"} />
             <TextField
@@ -230,9 +243,9 @@ const AdminTourCreateForm = () => {
           <f.FormGroup>
             <Label labelText={"Tour Category"} />
             <DropDown
-              dropDownValues={availableGuides}
-              currentDropdownVal={guideTwo}
-              setCurrentDropdownVal={setGuideTwo}
+              dropDownValues={tourCategoryValues}
+              currentDropdownVal={category}
+              setCurrentDropdownVal={setCategory}
             />
           </f.FormGroup>
 

@@ -20,6 +20,8 @@ import { userRouter } from './routes/userRoutes.js';
 import { authRouter } from './routes/authRoutes.js';
 import { bookingRouter } from './routes/bookingRoutes.js';
 import { reviewRouter } from './routes/reviewRoutes.js';
+import { statRouter } from './routes/statRoutes.js';
+import { emergencyRouter } from './routes/emergencyRoutes.js';
 
 const app = express();
 
@@ -43,6 +45,8 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/booking', bookingRouter);
 app.use('/api/v1/reviews', reviewRouter);
+app.use('/api/v1/stats', statRouter);
+app.use('/api/v1/emergencies', emergencyRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));

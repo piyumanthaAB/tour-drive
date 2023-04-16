@@ -48,9 +48,9 @@ const userSchema = new mongoose.Schema(
       default: 'user',
       required: [true, 'A user must have a role'],
       enum: {
-        values: ['admin', 'driver', 'user'],
+        values: ['admin', 'driver', 'user', 'tour_guide', 'customer_care'],
         message:
-          "admin user ' title ' must be one of :< 'admin', 'driver', 'user' > ",
+          "admin user ' title ' must be one of :< 'admin', 'driver', 'user' ,'customer_care > ",
       },
     },
     passwordChangedAt: Date,
@@ -60,6 +60,14 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
       select: false,
+    },
+    assignedToTour: {
+      type: Boolean,
+      default: false,
+    },
+    assignedToVehicle: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }

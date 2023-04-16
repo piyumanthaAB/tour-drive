@@ -41,6 +41,9 @@ import AddCustomTour from "./pages/client/tour related/AddCustomTour";
 import TourStats from "./pages/admin/tour related/TourStats";
 import VehicleStats from "./pages/admin/vehicle related/VehicleStats";
 import AdminViewCustomTour from "./pages/admin/tour related/AdminViewCustomTour";
+import ToTopBtn from "./components/back-to-top/ToTopBtn";
+import ViewAllEmergencyRequests from "./pages/customer-care/ViewAllEmergencyRequests";
+import ViewSingleEmergencyRequest from "./pages/customer-care/ViewSingleEmergencyRequest";
 import AdminSingleCustomTour from "./pages/admin/tour related/AdminSingleCustomTour";
 
 function App() {
@@ -59,6 +62,7 @@ function App() {
       <Router>
         <GlobalStyle />
         <div className="App">
+          <ToTopBtn />
           <Chat />
           <Toaster />
           <Routes>
@@ -80,6 +84,17 @@ function App() {
                 exact
                 path="/client/add-custom-tour"
                 element={<AddCustomTour />}
+              />
+              {/* CUSTOMER CARE routes starts here */}
+              <Route
+                exact
+                path="/customer-care/view-all-requests"
+                element={<ViewAllEmergencyRequests />}
+              />
+              <Route
+                exact
+                path="/customer-care/view-request/:id"
+                element={<ViewSingleEmergencyRequest />}
               />
               {/* ADMIN ROUTES starts here */}
               <Route exact path="/admin/home" element={<AdminHome />} />{" "}

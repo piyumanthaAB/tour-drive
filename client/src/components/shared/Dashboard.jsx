@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import * as d from "./DashboardElements";
-import { adminlinks, clientLinks } from "../../data/links";
-import DashboardNav from "./DashboardNav";
-import useAuth from "../../hooks/useAuth";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import * as d from './DashboardElements';
+import { adminlinks, clientLinks, cutomer_care_links } from '../../data/links';
+import DashboardNav from './DashboardNav';
+import useAuth from '../../hooks/useAuth';
+import { useLocation } from 'react-router-dom';
 import {
   FiMap,
   FiTruck,
@@ -14,13 +14,13 @@ import {
   FiBookOpen,
   FiSliders,
   FiXCircle,
-} from "react-icons/fi";
+} from 'react-icons/fi';
 
 const Dashboard = ({ rightContainerContent }) => {
   const { user } = useAuth();
 
   const location = useLocation();
-  const [currentPath, setCurrentPath] = useState("/admin/tours/add");
+  const [currentPath, setCurrentPath] = useState('/admin/tours/add');
 
   const [links, setLinks] = useState(adminlinks);
 
@@ -28,16 +28,19 @@ const Dashboard = ({ rightContainerContent }) => {
   const [selected, setSelected] = useState(0);
   const [linkSelected, setLinkSelected] = useState(null);
 
-  //   const currentUserRole = user?.role;
-  const currentUserRole = "admin";
+  const currentUserRole = user?.role;
+  // const currentUserRole = 'admin';
 
   useEffect(() => {
     switch (currentUserRole) {
-      case "admin":
+      case 'admin':
         setLinks(adminlinks);
         break;
-      case "user":
+      case 'user':
         setLinks(clientLinks);
+        break;
+      case 'customer_care':
+        setLinks(cutomer_care_links);
         break;
       default:
         break;
@@ -52,7 +55,7 @@ const Dashboard = ({ rightContainerContent }) => {
           <d.AvatarContainer />
           <d.LeftContainerNameContainer>
             <d.WelcomeText>Welcome ,</d.WelcomeText>
-            <d.NameText>John Doe</d.NameText>
+            <d.NameText>{user?.name || user?.email}</d.NameText>
           </d.LeftContainerNameContainer>
         </d.LeftTopContainer>
         <d.HR />
@@ -69,8 +72,8 @@ const Dashboard = ({ rightContainerContent }) => {
                   }}
                   key={i}
                 >
-                  {" "}
-                  {e.icon}{" "}
+                  {' '}
+                  {e.icon}{' '}
                 </d.IconContainer>
               );
             })}
