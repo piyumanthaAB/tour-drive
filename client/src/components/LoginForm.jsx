@@ -27,7 +27,7 @@ export default function LoginForm() {
           navigate('/admin/tours/all');
           break;
         case 'user':
-          navigate('/tours');
+          navigate('/client/home');
           break;
         case 'customer_care':
           navigate('/customer-care/view-all-requests');

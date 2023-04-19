@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
+    passport: {
+      type: String,
+      unique: true,
+    },
     mobile: {
       type: Number,
       unique: true,
