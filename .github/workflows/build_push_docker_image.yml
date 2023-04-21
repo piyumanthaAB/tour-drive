@@ -1,0 +1,27 @@
+name: Build and Deploy to Azure
+
+on:
+  push:
+    branches:
+      - master
+env:
+  IMAGE_NAME: tourdrive
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Login to Azure Container Registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.ACR_REGISTRY }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      - name: Build Docker image
+        run: docker build . -t $IMAGE_NAME:latest
+      - name: Tag Docker image
+        run: docker tag $IMAGE_NAME:latest ${{ secrets.ACR_REGISTRY }}/$IMAGE_NAME:latest
+      - name: Push Docker image to Azure Container Registry
+        run: docker push ${{ secrets.ACR_REGISTRY }}/$IMAGE_NAME:latest
