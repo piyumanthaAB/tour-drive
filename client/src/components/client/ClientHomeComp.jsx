@@ -7,9 +7,11 @@ import useAuth from '../../hooks/useAuth';
 const ClientHomeComp = () => {
   const { user } = useAuth();
 
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [mobile, setMobile] = useState('');
+  const [email, setEmail] = useState(user.email || 'not available');
+  const [name, setName] = useState(user.name || 'update your name ..');
+  const [mobile, setMobile] = useState(
+    user.mobile || 'update your mobile number'
+  );
   const [country, setCountry] = useState('Sri Lanka');
   const [local, setLocal] = useState(true);
   const [id, setId] = useState();
@@ -21,21 +23,33 @@ const ClientHomeComp = () => {
 
       <c.Form>
         <c.FormGroup>
-          <Label labelText={'First Name'} />
-          <TextField placeholder={'Enter firstname here'} />
+          <Label labelText={'Email'} />
+          <TextField placeholder={'Enter email here'} value={email} />
         </c.FormGroup>
         <c.FormGroup>
-          <Label labelText={'Last Name'} />
-          <TextField placeholder={'Enter lastname here'} />
+          <Label labelText={'Name'} />
+          <TextField
+            placeholder={'Enter name here'}
+            value={name}
+            setValue={setName}
+          />
         </c.FormGroup>
 
         <c.FormGroup>
           <Label labelText={'Mobile'} />
-          <TextField placeholder={'Enter mobile here'} />
+          <TextField
+            value={mobile}
+            setValue={setMobile}
+            placeholder={'Enter mobile here'}
+          />
         </c.FormGroup>
         <c.FormGroup>
           <Label labelText={'Country'} />
-          <TextField placeholder={'Enter country here'} />
+          <TextField
+            value={country}
+            setValue={setName}
+            placeholder={'Enter country here'}
+          />
         </c.FormGroup>
 
         <c.FormGroup>
