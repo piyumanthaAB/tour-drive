@@ -49,6 +49,7 @@ app.use('/api/v1/stats', statRouter);
 app.use('/api/v1/emergencies', emergencyRouter);
 
 if (process.env.NODE_ENV === 'production') {
+  // test
   app.use(express.static(path.join(__dirname, '../client/build')));
 
   app.get('*', (req, res) => {
