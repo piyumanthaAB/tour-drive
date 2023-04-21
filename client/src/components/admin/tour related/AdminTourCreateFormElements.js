@@ -21,7 +21,7 @@ export const Form = styled.form`
     ${'' /* background-color:red; */}
     display:flex ;
     padding:2rem ;
-    flex-wrap:wrap ;
+    flex-wrap: wrap ;
     justify-content:space-around ;
     margin-bottom:3rem ;
 `;
