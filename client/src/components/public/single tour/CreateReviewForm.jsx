@@ -6,10 +6,13 @@ import { BsFillStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 import FormButton from './../../shared/Form Elements/FormButton';
 import toast from 'react-hot-toast';
 import submitForm from '../../../hooks/submitForm';
+import useAuth from '../../../hooks/useAuth';
 
 const CreateReviewForm = ({ tourId }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const { user, isAuthenticated } = useAuth();
+
+  const [name, setName] = useState(user?.name || '');
+  const [email, setEmail] = useState(user?.email || '');
   const [reviewText, setReviewText] = useState('');
 
   const [locationRating, steLocationRating] = useState(0);

@@ -49,7 +49,6 @@ const SigleTourHeader = ({
                 }
                 readonly
               />
-
               <t.HeaderReviewText>
                 ( {tour.ratingsQuantity} reviews )
               </t.HeaderReviewText>
