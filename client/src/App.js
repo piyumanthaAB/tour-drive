@@ -48,6 +48,8 @@ import ViewSingleEmergencyRequest from './pages/customer-care/ViewSingleEmergenc
 function App() {
   const { loadUser } = useAuth();
 
+  console.log({ mapboxToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN });
+
   useEffect(() => {
     loadUser();
   }, []);

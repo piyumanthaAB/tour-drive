@@ -1,5 +1,5 @@
-import React from "react";
-import * as h from "./HomeCoverElements";
+import React from 'react';
+import * as h from './HomeCoverElements';
 const HomeCover = () => {
   return (
     <>
