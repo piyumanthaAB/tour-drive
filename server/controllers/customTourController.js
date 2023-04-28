@@ -133,9 +133,9 @@ const updateCustomTour = catchAsync(async (req, res, next) => {
   } = req.body;
   console.log({ body: req.body });
   // if (req.files.galleryImg) {
-  const galleryImg = req.files.galleryImg.map((img) => {
-    return img.filename;
-  });
+  // const galleryImg = req.files.galleryImg.map((img) => {
+  //   return img.filename;
+  // });
   // }
 
   let data = {
@@ -148,7 +148,7 @@ const updateCustomTour = catchAsync(async (req, res, next) => {
     highlights,
     // location,
     tourType,
-    galleryImg,
+    // galleryImg,
     review,
   };
 

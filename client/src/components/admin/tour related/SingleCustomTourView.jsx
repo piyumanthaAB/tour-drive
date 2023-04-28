@@ -1,10 +1,42 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import submitForm from "../../../hooks/submitForm";
 import Label from "../../shared/Form Elements/Label";
 import TextArea from "../../shared/Form Elements/TextArea";
 import TextField from "../../shared/Form Elements/TextField";
 import * as c from "./AdminTourCreateFormElements";
 
 const SingleCustomTourView = ({ tour }) => {
+  const [review, setReview] = useState("");
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    const headers = {
+      // "Content-Type": "application/json",
+    };
+    const tdata = { review };
+
+    await toast.promise(
+      submitForm(`/api/v1/custom-tours/${tour._id}`, tdata, "patch", headers),
+      {
+        loading: "Adding review....",
+        success: (data) => {
+          console.log({ data });
+          return `${data.data.message}` || "success";
+        },
+        error: (err) => `${err.response.data.message}`,
+      },
+      {
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+          fontSize: "2rem",
+        },
+      }
+    );
+  };
   return (
     <>
       <c.Container>
@@ -46,9 +78,13 @@ const SingleCustomTourView = ({ tour }) => {
       </c.Container>
       <c.Container>
         <c.FormTitle>Add comment for the client</c.FormTitle>
-        <c.Form>
+        <c.Form onSubmit={onSubmit}>
           <c.FormGroup>
-            <TextArea placeholder={"Enter your comment"} />
+            <TextArea
+              placeholder={"Enter your comment"}
+              value={review}
+              setValue={setReview}
+            />
           </c.FormGroup>
           <c.FormGroup>
             <c.SubmitBtn type="submit">Submit</c.SubmitBtn>

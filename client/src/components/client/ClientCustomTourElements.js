@@ -12,6 +12,24 @@ export const FormTitle = styled.p`
   font-weight: 700;
 `;
 
+export const HR = styled.hr`
+  width: 100%;
+  margin: 5rem auto;
+  border: 1px solid #ccc;
+  background-color: #ccc;
+`;
+
+export const TourCard = styled.div`
+  width: 100px;
+  display: flex;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 3rem 0;
+  display: flex;
+  box-shadow: 0px 0px 32px 0px rgba(143, 143, 143, 0.2);
+`;
+
 export const Form = styled.form`
   width: 100%;
   min-height: 15rem;
