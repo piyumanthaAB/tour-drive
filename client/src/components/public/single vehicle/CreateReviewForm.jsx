@@ -5,12 +5,15 @@ import { BsFillStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 import FormButton from './../../shared/Form Elements/FormButton';
 import toast from 'react-hot-toast';
 import submitForm from '../../../hooks/submitForm';
+import useAuth from '../../../hooks/useAuth';
 
 import * as r from './CreateReviewFormElements';
 
 const CreateReviewForm = ({ vehicleId }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const { user, isAuthenticated } = useAuth();
+
+  const [name, setName] = useState(user?.name || '');
+  const [email, setEmail] = useState(user?.email || '');
   const [reviewText, setReviewText] = useState('');
 
   const [vehicleRating, steVehicleRating] = useState(0);

@@ -20,6 +20,7 @@ const createBooking = catchAsync(async (req, res, next) => {
     vehicleName,
     from,
     to,
+    noOfSeats,
   } = req.body;
 
   console.log({
@@ -69,6 +70,7 @@ const createBooking = catchAsync(async (req, res, next) => {
     vehicle,
     user,
     duration: `${from} - ${to}`,
+    noOfSeats,
   });
 
   if (bookingType === 'vehicle') {
@@ -120,4 +122,30 @@ const getMyTourBookings = catchAsync(async (req, res, next) => {
   });
 });
 
-export { createBooking, getMyVehicleBookings, getMyTourBookings };
+// @ DESCRIPTION            =>  get total bookings of a given tour by tourId
+// @ ENDPOINT               =>  api/v1/bookings/bookings-count/:id [GET]
+// @ ACCESS                 =>  'user'
+const getBookingCounts = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+
+  const bookings = await Booking.find({ tour: id });
+
+  let bookedSeatsCount = 0;
+
+  bookings.forEach((book) => {
+    bookedSeatsCount += book.noOfSeats;
+  });
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      bookingCount: bookedSeatsCount,
+    },
+  });
+});
+export {
+  createBooking,
+  getMyVehicleBookings,
+  getMyTourBookings,
+  getBookingCounts,
+};

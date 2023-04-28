@@ -51,6 +51,7 @@ app.use("/api/v1/emergencies", emergencyRouter);
 // app.use("/api/v1/district-data", DistrictDataRouter);
 
 if (process.env.NODE_ENV === "production") {
+  // test
   app.use(express.static(path.join(__dirname, "../client/build")));
 
   app.get("*", (req, res) => {

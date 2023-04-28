@@ -18,6 +18,10 @@ const bookingSchema = new mongoose.Schema(
       ref: 'User',
       required: [true, 'A Booking must have a user'],
     },
+    noOfSeats: {
+      type: Number,
+      required: [true, 'Booking must have number of seats required'],
+    },
     bookingType: {
       type: String,
       required: [true, 'A booking must have a type. '],

@@ -40,9 +40,11 @@ const ReviewSummary = ({ tourId }) => {
                     <r.LeftTop>
                       <r.LeftTopLeft>
                         <r.Text fontsize="2rem" fontweight="600" color="#222">
-                          {(data.data.reviews[0].tour.locationRatingsAverage +
-                            data.data.reviews[0].tour.serviceRatingsAverage) /
-                            2}
+                          {(
+                            (data.data.reviews[0].tour.locationRatingsAverage +
+                              data.data.reviews[0].tour.serviceRatingsAverage) /
+                            2
+                          ).toFixed(2)}
                           /5
                         </r.Text>
                         <r.ReviewStarsContainer>
@@ -109,19 +111,21 @@ const ReviewSummary = ({ tourId }) => {
                           margin="0 0 0 0"
                           fontweight="600"
                           color={
-                            (data.data.reviews[0].tour.locationRatingsAverage /
-                              5) *
-                              100 <=
-                            50
+                            (
+                              (data.data.reviews[0].tour
+                                .locationRatingsAverage /
+                                5) *
+                              100
+                            ).toFixed(2) <= 50
                               ? '#333'
                               : '#eee'
                           }
                         >
-                          {`${
+                          {`${(
                             (data.data.reviews[0].tour.locationRatingsAverage /
                               5) *
                             100
-                          }%`}
+                          ).toFixed(2)}%`}
                         </r.Text>
                       </r.Percentage>
                       <r.ReviewRow
@@ -180,11 +184,11 @@ const ReviewSummary = ({ tourId }) => {
                               : '#eee'
                           }
                         >
-                          {`${
+                          {`${(
                             (data.data.reviews[0].tour.serviceRatingsAverage /
                               5) *
                             100
-                          }%`}
+                          ).toFixed(2)}%`}
                         </r.Text>
                       </r.Percentage>
 

@@ -142,7 +142,7 @@ export const clientLinks = [
       },
       {
         icon: <FiPlusCircle />,
-        text: 'Add Custom Tour',
+        text: 'Request Custom Tour',
         redirectURL: '/client/add-custom-tour',
       },
     ],
