@@ -1,99 +1,99 @@
-import React, { useState } from 'react';
-import DropDown from '../../shared/Form Elements/DropDown';
-import Label from '../../shared/Form Elements/Label';
-import TextArea from '../../shared/Form Elements/TextArea';
-import TextField from '../../shared/Form Elements/TextField';
-import * as f from './AdminTourCreateFormElements';
-import toast from 'react-hot-toast';
-import submitForm from '../../../hooks/submitForm';
+import React, { useState } from "react";
+import DropDown from "../../shared/Form Elements/DropDown";
+import Label from "../../shared/Form Elements/Label";
+import TextArea from "../../shared/Form Elements/TextArea";
+import TextField from "../../shared/Form Elements/TextField";
+import * as f from "./AdminTourCreateFormElements";
+import toast from "react-hot-toast";
+import submitForm from "../../../hooks/submitForm";
 
 const AdminTourCreateForm = () => {
-  const [guideOne, setGuideOne] = useState('Select guide one');
-  const [guideTwo, setGuideTwo] = useState('Select guide two');
+  const [guideOne, setGuideOne] = useState("Select guide one");
+  const [guideTwo, setGuideTwo] = useState("Select guide two");
   const [category, setCategory] = useState({
-    label: 'select tour category',
-    value: '',
+    label: "select tour category",
+    value: "",
   });
 
-  const availableGuides = ['mark', 'john', 'mathew'];
+  const availableGuides = ["mark", "john", "mathew"];
 
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [ageLimit, setAgeLimit] = useState('');
-  const [duration, setDuration] = useState('');
-  const [capacity, setCapacity] = useState('');
-  const [highlights, setHighlights] = useState('');
-  const [includes, setIncludes] = useState('');
-  const [excludes, setExcludes] = useState('');
-  const [tourPlan, setTourPlan] = useState('');
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [ageLimit, setAgeLimit] = useState("");
+  const [duration, setDuration] = useState("");
+  const [capacity, setCapacity] = useState("");
+  const [highlights, setHighlights] = useState("");
+  const [includes, setIncludes] = useState("");
+  const [excludes, setExcludes] = useState("");
+  const [tourPlan, setTourPlan] = useState("");
 
-  const [guide_1, setGuide_1] = useState('');
-  const [guide_2, setGuide_2] = useState('');
-  const [guide_3, setGuide_3] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [locations, setLocations] = useState('');
-  const [description, setDescription] = useState('');
-  const [cities, setCities] = useState('');
+  const [guide_1, setGuide_1] = useState("");
+  const [guide_2, setGuide_2] = useState("");
+  const [guide_3, setGuide_3] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [locations, setLocations] = useState("");
+  const [description, setDescription] = useState("");
+  const [cities, setCities] = useState("");
   const [coverImg, setCoverImg] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
 
   const tourCategoryValues = [
-    { label: 'city', value: 'city' },
-    { label: 'hiking', value: 'hiking' },
-    { label: 'adventure', value: 'adventure' },
-    { label: 'historical', value: 'historical' },
-    { label: 'cultural', value: 'cultural' },
+    { label: "city", value: "city" },
+    { label: "hiking", value: "hiking" },
+    { label: "adventure", value: "adventure" },
+    { label: "historical", value: "historical" },
+    { label: "cultural", value: "cultural" },
   ];
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const headers = {
-      'Content-Type': 'multipart/form-data',
+      "Content-Type": "multipart/form-data",
     };
 
     const formData = new FormData();
 
-    formData.append('tour_cover', coverImg);
-    formData.append('name', name);
-    formData.append('price', price);
-    formData.append('ageLimit', ageLimit);
-    formData.append('capacity', capacity);
-    formData.append('description', description);
-    formData.append('duration', duration);
-    formData.append('highlights', highlights);
-    formData.append('tourPlan', tourPlan);
-    formData.append('includes', includes);
-    formData.append('excludes', excludes);
-    formData.append('locations', locations);
-    formData.append('startDate', startDate);
-    formData.append('endDate', endDate);
-    formData.append('cities', cities);
-    formData.append('category', category.value);
+    formData.append("tour_cover", coverImg);
+    formData.append("name", name);
+    formData.append("price", price);
+    formData.append("ageLimit", ageLimit);
+    formData.append("capacity", capacity);
+    formData.append("description", description);
+    formData.append("duration", duration);
+    formData.append("highlights", highlights);
+    formData.append("tourPlan", tourPlan);
+    formData.append("includes", includes);
+    formData.append("excludes", excludes);
+    formData.append("locations", locations);
+    formData.append("startDate", startDate);
+    formData.append("endDate", endDate);
+    formData.append("cities", cities);
+    formData.append("category", category.value);
 
     for (const file of galleryImages) {
-      formData.append('tour_gallery', file);
+      formData.append("tour_gallery", file);
     }
 
     console.log({ startDate });
 
     await toast.promise(
-      submitForm('/api/v1/tours', formData, 'post', headers),
+      submitForm("/api/v1/tours", formData, "post", headers),
       {
-        loading: 'Adding Tour...',
+        loading: "Adding Tour...",
         success: (data) => {
           console.log({ data });
-          return ` ${data.data.message} ` || 'success';
+          return ` ${data.data.message} ` || "success";
         },
         error: (err) => `${err.response.data.message}`,
       },
       {
         style: {
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-          fontSize: '2rem',
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+          fontSize: "2rem",
         },
       }
     );
@@ -117,61 +117,61 @@ const AdminTourCreateForm = () => {
         <f.FormTitle>Add Tour</f.FormTitle>
         <f.Form onSubmit={onSubmit}>
           <f.FormGroup>
-            <Label labelText={'Tour Name'} />
+            <Label labelText={"Tour Name"} />
             <TextField
               value={name}
               setValue={setName}
-              placeholder={'Enter tour name here'}
+              placeholder={"Enter tour name here"}
             />
           </f.FormGroup>
 
           <f.FormGroup>
-            <Label labelText={'Tour Price'} />
+            <Label labelText={"Tour Price"} />
             <TextField
               value={price}
               setValue={setPrice}
-              placeholder={'Enter tour price here'}
+              placeholder={"Enter tour price here"}
             />
           </f.FormGroup>
 
           <f.FormGroup>
-            <Label labelText={'Tour Cover'} />
+            <Label labelText={"Tour Cover"} />
             <input
               name="coverImg"
               onChange={handleCoverImg}
               type="file"
-              placeholder={'Upload tour cover image here'}
+              placeholder={"Upload tour cover image here"}
             />
           </f.FormGroup>
 
           <f.FormGroup>
-            <Label labelText={'Tour Images'} />
+            <Label labelText={"Tour Images"} />
             <input
               name="galleryImages"
               onChange={handleGalleryImages}
               multiple={true}
               type="file"
-              placeholder={'Upload tour gallery images here'}
+              placeholder={"Upload tour gallery images here"}
             />
           </f.FormGroup>
 
           <f.FormGroup>
-            <Label labelText={'Age Limit'} />
+            <Label labelText={"Age Limit"} />
             <TextField
               value={ageLimit}
               setValue={setAgeLimit}
               type="text"
-              placeholder={'Enter tour maximum age limit here'}
+              placeholder={"Enter tour maximum age limit here"}
             />
           </f.FormGroup>
 
           <f.FormGroup>
-            <Label labelText={'Capacity'} />
+            <Label labelText={"Capacity"} />
             <TextField
               value={capacity}
               setValue={setCapacity}
               type="text"
-              placeholder={'Enter maximum no of seats for this tour'}
+              placeholder={"Enter maximum no of seats for this tour"}
             />
           </f.FormGroup>
 
@@ -185,7 +185,7 @@ const AdminTourCreateForm = () => {
           </f.FormGroup>
 
           <f.FormGroup>
-            <Label labelText={'Select Tour Guide 2'} />
+            <Label labelText={"Select Tour Guide 2"} />
             <DropDown
               dropDownValues={availableGuides}
               currentDropdownVal={guideTwo}
@@ -194,44 +194,44 @@ const AdminTourCreateForm = () => {
           </f.FormGroup> */}
 
           <f.FormGroup>
-            <Label labelText={'Tour Visiting cities'} />
+            <Label labelText={"Tour Visiting cities"} />
             <TextField
               value={cities}
               setValue={setCities}
               placeholder={
-                'Enter cities visit during the tour here. ex city1, city2, city3'
+                "Enter cities visit during the tour here. ex city1, city2, city3"
               }
             />
           </f.FormGroup>
 
           <f.FormGroup>
-            <Label labelText={'Start Date'} />
+            <Label labelText={"Start Date"} />
             <f.DateInput
               value={startDate}
               onChange={(e) => {
                 setStartDate(e.target.value);
               }}
               // setValue={setStartDate}
-              type={'date'}
+              type={"date"}
             />
           </f.FormGroup>
           <f.FormGroup>
-            <Label labelText={'End Date'} />
+            <Label labelText={"End Date"} />
             <f.DateInput
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
               // setValue={setStartDate}
-              type={'date'}
+              type={"date"}
             />
           </f.FormGroup>
 
           <f.FormGroup>
-            <Label labelText={'Duration'} />
+            <Label labelText={"Duration"} />
             <TextField
               value={duration}
               setValue={setDuration}
               type="text"
-              placeholder={'Enter tour duration here'}
+              placeholder={"Enter tour duration here"}
             />
           </f.FormGroup>
 
@@ -241,7 +241,7 @@ const AdminTourCreateForm = () => {
           </f.FormGroup> */}
 
           <f.FormGroup>
-            <Label labelText={'Tour Category'} />
+            <Label labelText={"Tour Category"} />
             <DropDown
               dropDownValues={tourCategoryValues}
               currentDropdownVal={category}
@@ -259,7 +259,7 @@ const AdminTourCreateForm = () => {
           </f.FormGroup> */}
 
           <f.FormGroup>
-            <Label labelText={'Tour Includes'} />
+            <Label labelText={"Tour Includes"} />
             <TextArea
               value={includes}
               setValue={setIncludes}
@@ -271,7 +271,7 @@ const AdminTourCreateForm = () => {
             />
           </f.FormGroup>
           <f.FormGroup>
-            <Label labelText={'Tour Excludes'} />
+            <Label labelText={"Tour Excludes"} />
             <TextArea
               value={excludes}
               setValue={setExcludes}
@@ -283,7 +283,7 @@ const AdminTourCreateForm = () => {
             />
           </f.FormGroup>
           <f.FormGroup>
-            <Label labelText={'Tour Highlights'} />
+            <Label labelText={"Tour Highlights"} />
             <TextArea
               value={highlights}
               setValue={setHighlights}
@@ -295,7 +295,7 @@ const AdminTourCreateForm = () => {
             />
           </f.FormGroup>
           <f.FormGroup>
-            <Label labelText={'Tour Locations'} />
+            <Label labelText={"Tour Locations"} />
             <TextArea
               value={locations}
               setValue={setLocations}
@@ -310,7 +310,7 @@ const AdminTourCreateForm = () => {
             />
           </f.FormGroup>
           <f.FormGroup>
-            <Label labelText={'Tour Plan'} />
+            <Label labelText={"Tour Plan"} />
             <TextArea
               value={tourPlan}
               setValue={setTourPlan}
@@ -325,7 +325,7 @@ const AdminTourCreateForm = () => {
             />
           </f.FormGroup>
           <f.FormGroup>
-            <Label labelText={'Tour Description'} />
+            <Label labelText={"Tour Description"} />
             <TextArea
               value={description}
               setValue={setDescription}

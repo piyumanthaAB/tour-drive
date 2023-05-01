@@ -115,6 +115,75 @@ const createCustomTour = catchAsync(async (req, res, next) => {
   });
 });
 
+//@Desc  Update cutom tour
+//@route PATCH /api/v1/custom-tour/:id
+//@access Private
+const updateCustomTour = catchAsync(async (req, res, next) => {
+  const {
+    name,
+    price,
+    category,
+    vehicle,
+    duration,
+    description,
+    highlights,
+    // location,
+    tourType,
+    review,
+  } = req.body;
+  console.log({ body: req.body });
+  // if (req.files.galleryImg) {
+  // const galleryImg = req.files.galleryImg.map((img) => {
+  //   return img.filename;
+  // });
+  // }
+
+  let data = {
+    name,
+    price,
+    category,
+    vehicle,
+    duration,
+    description,
+    highlights,
+    // location,
+    tourType,
+    // galleryImg,
+    review,
+  };
+
+  console.log({ data });
+
+  // let locs = location;
+
+  // let regex = /(\[.*?\])/g;
+  // let matches = locs.match(regex);
+  // let loc_array = JSON.parse(`[${matches}]`);
+
+  // data.location = loc_array;
+
+  // console.log({ loc_array });
+
+  const customTour = await CustomTour.findByIdAndUpdate(req.params.id, data, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!customTour) {
+    return next(
+      new AppError(`Tour not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    message: "Custom Tour update successfully.",
+    data: {
+      customTour,
+    },
+  });
+});
+
 //@desc Delete tour
 //@route DELETE /api/v1/tours/:id
 //@access Private
@@ -134,4 +203,5 @@ export {
   createCustomTour,
   deleteCustomTour,
   uploadCustomTourPhoto,
+  updateCustomTour,
 };

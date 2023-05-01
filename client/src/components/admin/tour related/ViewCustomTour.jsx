@@ -1,17 +1,12 @@
 import React from "react";
 import * as f from "./ViewCustomTourElements";
-import { FiBookOpen } from "react-icons/fi";
-import { duration } from "@mui/material";
+import { FiBookOpen, FiDelete, FiTrash, FiTrash2 } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const ViewCustomTour = ({ tours }) => {
-  // const tours = {
-  //   cname: "test tour",
-  //   type: "hiking",
-  //   category: "budget",
-  //   duration: "4",
-  // };
+  const navigate = useNavigate();
   const onTourView = (e, tour) => {
-    console.log(tour);
+    navigate(`/admin/custom-tours/${tour._id}`);
   };
   return (
     <>
@@ -42,6 +37,13 @@ const ViewCustomTour = ({ tours }) => {
                       }}
                     >
                       <FiBookOpen />
+                    </f.TableActionBtn>
+                    <f.TableActionBtn
+                      onClick={(e) => {
+                        console.log("custom tour deletion");
+                      }}
+                    >
+                      <FiTrash2 />
                     </f.TableActionBtn>
                   </f.TableData>
                 </f.TableRow>

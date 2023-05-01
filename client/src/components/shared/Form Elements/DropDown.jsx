@@ -1,38 +1,38 @@
-import React, { useState, useRef, useEffect } from 'react';
-import styled from 'styled-components';
-import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai';
-import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
+import React, { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
+import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
+import { FiChevronUp, FiChevronDown } from "react-icons/fi";
 
 const Text = styled.p`
-  font-size: ${(props) => props.fontsize || '1.5rem'};
-  color: ${(props) => props.color || '1.5rem'};
-  font-weight: ${(props) => props.fontweight || '1.5rem'};
-  margin: ${(props) => props.margin || '0'};
-  font-family: ${(props) => props.fontfamily || 'var(--primary-font)'};
-  line-height: ${(props) => props.lineheight || '2.5rem'};
+  font-size: ${(props) => props.fontsize || "1.5rem"};
+  color: ${(props) => props.color || "1.5rem"};
+  font-weight: ${(props) => props.fontweight || "1.5rem"};
+  margin: ${(props) => props.margin || "0"};
+  font-family: ${(props) => props.fontfamily || "var(--primary-font)"};
+  line-height: ${(props) => props.lineheight || "2.5rem"};
 `;
 
 const IconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: ${(props) => props.fontsize || '1.5rem'};
-  color: ${(props) => props.color || '1.5rem'};
-  font-weight: ${(props) => props.fontweight || '1.5rem'};
-  margin: ${(props) => props.margin || '0'};
-  ${'' /* padding:2rem ; */}
+  font-size: ${(props) => props.fontsize || "1.5rem"};
+  color: ${(props) => props.color || "1.5rem"};
+  font-weight: ${(props) => props.fontweight || "1.5rem"};
+  margin: ${(props) => props.margin || "0"};
+  ${"" /* padding:2rem ; */}
 `;
 
 const Container = styled.div`
   width: 100%;
   /* padding: 0rem 1rem; */
   position: relative;
-  ${'' /* background-color:#eee ; */}
+  ${"" /* background-color:#eee ; */}
 `;
 
 const HeaderContainer = styled.div`
   width: 100%;
-  ${'' /* min-height:5rem ; */}
+  ${"" /* min-height:5rem ; */}
   /* background-color:var(--fourth-blue); */
   border: 1px solid #333;
   border-radius: 1rem;
@@ -40,7 +40,6 @@ const HeaderContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1rem 2rem;
-
   :hover {
     cursor: pointer;
   }
@@ -48,7 +47,7 @@ const HeaderContainer = styled.div`
 
 const BodyContainer = styled.div`
   width: 90%;
-  ${'' /* min-height:30rem ; */}
+  ${"" /* min-height:30rem ; */}
   background-color:#fff;
   margin: 1.5rem 0;
   border-radius: 1rem;
@@ -58,17 +57,15 @@ const BodyContainer = styled.div`
   top: 80%;
   left: 5%;
   z-index: 13;
-  display: ${(props) => (props.open ? 'block' : 'none')};
+  display: ${(props) => (props.open ? "block" : "none")};
   max-height: 20rem;
   overflow-y: scroll;
   box-shadow: 0px 0px 32px 0px rgba(143, 143, 143, 0.2);
-
   ::-webkit-scrollbar {
     background-color: #ccc;
     width: 1rem;
     height: 10%;
   }
-
   ::-webkit-scrollbar-thumb {
     background-color: var(--fourth-blue);
     border-radius: 0.5rem;
@@ -77,11 +74,10 @@ const BodyContainer = styled.div`
 
 const ItemContainer = styled.div`
   width: 100%;
-  ${'' /* background-color: blue; */}
+  ${"" /* background-color: blue; */}
   padding:1rem 2rem;
   margin: 2rem 0;
   transition: all 0.3s;
-
   :hover {
     cursor: pointer;
     background-color: #ccc;
@@ -114,10 +110,10 @@ const DropDown = ({
   };
 
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, []);
 

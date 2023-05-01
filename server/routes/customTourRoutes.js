@@ -5,6 +5,7 @@ import {
   createCustomTour,
   deleteCustomTour,
   uploadCustomTourPhoto,
+  updateCustomTour,
 } from "../controllers/customTourController.js";
 const router = express.Router();
 
@@ -13,6 +14,10 @@ router
   .get(getCustomTours)
   .post(uploadCustomTourPhoto, createCustomTour);
 
-router.route("/:id").get(getCustomTour).delete(deleteCustomTour);
+router
+  .route("/:id")
+  .get(getCustomTour)
+  .delete(deleteCustomTour)
+  .patch(updateCustomTour);
 
 export { router as customTourRouter };
