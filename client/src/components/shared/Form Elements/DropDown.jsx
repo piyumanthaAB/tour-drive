@@ -100,6 +100,7 @@ const DropDown = ({
   dropDownValues,
   currentDropdownVal,
   setCurrentDropdownVal,
+  onChange,
 }) => {
   const [open, setOpen] = useState(false);
   //   const [currentVal, setCurrentVal] = useState('Select Item');
@@ -146,6 +147,7 @@ const DropDown = ({
                   label: item.label,
                   value: item.value,
                 });
+                onChange();
               }}
             >
               <Text fontsize="1.6rem">{item.label} </Text>

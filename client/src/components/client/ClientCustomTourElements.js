@@ -55,16 +55,20 @@ export const CheckBoxListContainer = styled.div`
   /* background-color: red; */
   overflow-y: scroll;
   border: 1px solid #333;
+  border-right: 0px;
   border-radius: 1rem;
   padding: 2rem;
-  border-right: 0px;
 `;
 
 export const ListItemsContainer = styled.div`
   width: 100%;
-  max-height: 20rem;
+  max-height: 30rem;
   /* background-color: green; */
   overflow-y: scroll;
+  border: 1px solid #333;
+  border-right: 0px;
+  padding: 2rem;
+  border-radius: 1rem;
 `;
 
 export const ListItem = styled.div`
@@ -95,6 +99,9 @@ export const ViewOnlyItem = styled.div`
   transition: all 0.2s;
   /* border-bottom: 1px solid #333; */
   margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   :hover {
     /* cursor: none; */
@@ -108,7 +115,88 @@ export const HR = styled.hr`
   margin: 5rem 0;
 `;
 
-// export const AddCityBtn=styled.div`
-//   width: 20%;
-//   padd
-// `;
+export const AddCityBtn = styled.div`
+  width: 50%;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-size: 1.3rem;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: var(--main-color); */
+  background-color: #333;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+export const RemoveIcon = styled.div`
+  width: 2rem;
+  height: 2rem;
+  /* background-color: ; */
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #333;
+  color: #fff;
+  transition: all 0.2s;
+
+  :hover {
+    cursor: pointer;
+    background-color: var(--main-color);
+  }
+`;
+
+export const CardContainer = styled.div`
+  width: 100%;
+  min-height: 30rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 32px 0px rgba(143, 143, 143, 0.2);
+`;
+
+export const CardHeader = styled.div`
+  width: 100%;
+  background-color: var(--main-color);
+  min-height: 5rem;
+  /* border-radius: 1rem; */
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  display: flex;
+`;
+
+export const CardDayContainer = styled.div`
+  flex: 0 1 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 600;
+`;
+export const CardCityContainer = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.8rem;
+  color: #fff;
+  padding: 0 2rem;
+  font-weight: 700;
+`;
+
+export const CardBodyContainer = styled.div``;
+
+export const AccomodationCardContainer = styled.div`
+  width: 80%;
+  background-color: #ccc;
+  min-height: 20rem;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 32px 0px rgba(143, 143, 143, 0.2);
+`;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import * as c from './ClientCustomTourElements';
 import Label from '../../components/shared/Form Elements/Label';
 import TextField from '../../components/shared/Form Elements/TextField';
@@ -7,71 +7,40 @@ import TextArea from '../shared/Form Elements/TextArea';
 import toast from 'react-hot-toast';
 import submitForm from '../../hooks/submitForm';
 import ListCheckBox from '../shared/Form Elements/ListCheckBox';
+import { MdOutlineClose } from 'react-icons/md';
+import { CheckBox } from '../shared/Form Elements/Checkbox';
+import CustomTourCard from '../shared/CustomTourCard';
+import CustomTourContext from '../../context/tour/customTourContext';
 
 const ClientCustomTour = ({ customTourLocations }) => {
+  const { updateCustomTour } = useContext(CustomTourContext);
+  // al available cities in display
   const [selectedCity, setSelectedCity] = useState(0);
 
-  const [customrSelectedLocations, setCustomrSelectedLocations] = [];
+  // cities that customer added to his list
+  const [customrSelectedLocations, setCustomrSelectedLocations] = useState([]);
 
-  const availableCategory = [
-    'hiking',
-    'camping',
-    'Pilgrimage',
-    'traditional excursion',
-  ];
-
-  const availableVehicle = [
-    'Car (economy 4 Passengers 2 bags)',
-    'car (standard 5 Passengers 3 bags)',
-    'car (Premium 5 passengers 4 bags)',
-    'SUV (Compact 5 passengers 3 bags)',
-    'SUV (Standard 5 passengers 4 bags)',
-    'SUV (Premium 6 passengers 5 bags)',
-    'Minivan (7-8 passengers 5 bags)',
-    'van (8-12 passengers 8 bags)',
-  ];
-
-  const availableTypes = ['Budget', 'Standard', 'Premium', 'Luxury'];
-
-  const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
-  const [price, setPrice] = useState('');
-  const [vehicle, setVehicle] = useState('');
-  const [galleryImages, setGalleryImages] = useState([]);
-  const [duration, setDuration] = useState('');
-  const [description, setDescription] = useState('');
-  const [highlights, setHighlights] = useState('');
-  // const [locations, setLocations] = useState("");
-  const [tourType, setTourType] = useState('');
+  // final custom tour data with selected locations in each city
+  // const [tour, setTour] = useState([
+  //   {
+  //     day: 1,
+  //     city: 'galle',
+  //     visitingLocations: {
+  //       loc_1: '',
+  //       loc_2: '',
+  //       loc_3: '',
+  //       loc_4: '',
+  //     },
+  //     accomodation: '',
+  //   },
+  // ]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
     // console.log(formData);
 
-    const headers = {
-      'Content-Type': 'multipart/form-data',
-    };
-
-    const formData = new FormData();
-
-    formData.append('name', name);
-    formData.append('price', price);
-    formData.append('category', category);
-    formData.append('vehicle', vehicle);
-    formData.append('duration', duration);
-    formData.append('description', description);
-    formData.append('highlights', highlights);
-    // formData.append("location", locations);
-    formData.append('tourType', tourType);
-
-    console.log(formData, 'form data...............');
-
-    for (const file of galleryImages) {
-      formData.append('galleryImg', file);
-    }
-
     await toast.promise(
-      submitForm('/api/v1/custom-tours', formData, 'post', headers),
+      // submitForm('/api/v1/custom-tours', formData, 'post', headers),
       {
         loading: 'Adding Custom Tour...',
         success: (data) => {
@@ -91,10 +60,6 @@ const ClientCustomTour = ({ customTourLocations }) => {
     );
   };
 
-  const handleGalleryImg = (e) => {
-    setGalleryImages(e.target.files);
-  };
-
   return (
     <>
       <c.Container>
@@ -105,16 +70,16 @@ const ClientCustomTour = ({ customTourLocations }) => {
             <c.FormGroup>
               <Label labelText={'Tour Start date'} />
               <TextField
-                value={name}
-                setValue={setName}
+                // value={name}
+                // setValue={setName}
                 placeholder={'Enter tour start date here'}
               />
             </c.FormGroup>
             <c.FormGroup>
               <Label labelText={'Tour duration'} />
               <TextField
-                value={name}
-                setValue={setName}
+                // value={name}
+                // setValue={setName}
                 placeholder={'Enter tour duration'}
               />
             </c.FormGroup>
@@ -134,7 +99,14 @@ const ClientCustomTour = ({ customTourLocations }) => {
                   return (
                     <c.ListItem
                       selected={selectedCity === i}
-                      onClick={() => setSelectedCity(i)}
+                      onClick={() => {
+                        setSelectedCity(i);
+                        // customrSelectedLocations.push(loc.city);
+                        // setCustomrSelectedLocations([
+                        //   ...customrSelectedLocations,
+                        //   loc.city,
+                        // ]);
+                      }}
                       key={i}
                     >
                       {loc.city}
@@ -142,7 +114,16 @@ const ClientCustomTour = ({ customTourLocations }) => {
                   );
                 })}
               </c.CheckBoxListContainer>
-              <button>add</button>
+              <c.AddCityBtn
+                onClick={() => {
+                  setCustomrSelectedLocations([
+                    ...customrSelectedLocations,
+                    customTourLocations[selectedCity].city,
+                  ]);
+                }}
+              >
+                Add selected city to the list
+              </c.AddCityBtn>
             </c.FormGroup>
             <c.FormGroup>
               <Label
@@ -158,6 +139,68 @@ const ClientCustomTour = ({ customTourLocations }) => {
               </c.ListItemsContainer>
             </c.FormGroup>
           </c.Row>
+
+          <c.Row>
+            <c.FormGroup>
+              <Label labelText={`Currently added cities`} />
+
+              <c.ListItemsContainer>
+                {customrSelectedLocations.length === 0 && (
+                  <h3>no items available</h3>
+                )}
+                {customrSelectedLocations.length > 0 &&
+                  customrSelectedLocations.map((loc, i) => {
+                    return (
+                      <>
+                        <c.ViewOnlyItem key={i}>
+                          {loc}
+
+                          <c.RemoveIcon
+                            onClick={() => {
+                              const currentList = customrSelectedLocations;
+                              const newList = currentList.filter((item, j) => {
+                                return i !== j;
+                              });
+                              setCustomrSelectedLocations(newList);
+                            }}
+                          >
+                            <MdOutlineClose />{' '}
+                          </c.RemoveIcon>
+                        </c.ViewOnlyItem>
+                      </>
+                    );
+                  })}
+              </c.ListItemsContainer>
+              {/* {customrSelectedLocations.length > 0 && (
+                <c.AddCityBtn>Process the list</c.AddCityBtn>
+              )} */}
+            </c.FormGroup>
+          </c.Row>
+
+          <c.Row>
+            {' '}
+            <c.HR />{' '}
+          </c.Row>
+
+          {customrSelectedLocations.length > 0 &&
+            customrSelectedLocations.map((loc, i) => {
+              return (
+                <c.Row key={i}>
+                  <c.FormGroup>
+                    <CustomTourCard
+                      cityName={loc}
+                      day={i + 1}
+                      locationsInCity={customTourLocations[i]}
+                      // setTour={setTour}
+                      // tour={tour}
+                    />
+                  </c.FormGroup>
+                  <c.FormGroup>
+                    <c.AccomodationCardContainer></c.AccomodationCardContainer>
+                  </c.FormGroup>
+                </c.Row>
+              );
+            })}
 
           {/* <c.Row>
             <c.FormGroup>
