@@ -1,16 +1,61 @@
-const data = {
-  Colombo: {
-    distance: {
-      Gampaha: 30,
-      Kalutara: 44,
-      Kandy: 115,
-      Matale: 145,
-      Nuwara_Eliya: 165,
-      Galle: 126,
-      Matara: 157,
+const locations = [
+  {
+    city: "galle",
+    availableLocations: [
+      "Unawatuna Beach",
+      "Galle Fort",
+      "Jungle Beach",
+      "Mihiripenna Beach",
+      "Japanese Peace Pagoda",
+    ],
+    distances: {
+      Colombo: 147,
+      Gampaha: 135,
+      Kalutara: 82,
+      Kandy: 223,
+      Matale: 251,
+      Nuwara_Eliya: 251,
+      Galle: 0,
+      Matara: 48,
+      Hambantota: 130,
+      Jaffna: 502,
+      Kilinochchi: 442,
+      Mannar: 424,
+      Vavuniya: 363,
+      Mullaitivu: 438,
+      Batticaloa: 348,
+      Ampara: 300,
+      Trincomalee: 364,
+      Kurunegala: 201,
+      Puttalam: 255,
+      Anuradhapura: 310,
+      Polonnaruwa: 328,
+      Badulla: 220,
+      Moneragala: 209,
+      Ratnapura: 142,
+      Kegalle: 185,
     },
-    location: {},
   },
-};
+  {
+    city: "matara",
+    availableLocations: [
+      "Parey Dewa Buddhist Temple",
+      "Weherahena Buddhist Temple",
+      "Dondra Head Lighthouse",
+      "Polhena Beach",
+      "Mirissa Beach",
+    ],
+  },
+  {
+    city: "hambantota",
+    availableLocations: [
+      "Yala National Park",
+      "Bundala National Park",
+      "Tissamaharama ",
+      "Kataragama ",
+      "Sithulpawwa Rock Temple",
+    ],
+  },
+];
 
-export default data;
+export { locations as customTourLocations };

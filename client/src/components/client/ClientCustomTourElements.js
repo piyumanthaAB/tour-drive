@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
@@ -10,13 +10,6 @@ export const FormTitle = styled.p`
   font-size: 2.5rem;
   color: #333;
   font-weight: 700;
-`;
-
-export const HR = styled.hr`
-  width: 100%;
-  margin: 5rem auto;
-  border: 1px solid #ccc;
-  background-color: #ccc;
 `;
 
 export const TourCard = styled.div`
@@ -47,7 +40,7 @@ export const FormGroup = styled.div`
 
 export const SubmitBtn = styled.button`
   outline: none;
-  background-color: ${(props) => props.color || 'var(--main-color)'};
+  background-color: ${(props) => props.color || "var(--main-color)"};
   font-size: 1.5rem;
   font-weight: 600;
   border: none;
@@ -95,8 +88,8 @@ export const ListItem = styled.div`
   /* border-bottom: 1px solid #333; */
   margin: 0.5rem 0;
 
-  background-color: ${(props) => props.selected && 'var(--main-color)'};
-  color: ${(props) => props.selected && '#fff'};
+  background-color: ${(props) => props.selected && "var(--main-color)"};
+  color: ${(props) => props.selected && "#fff"};
 
   :hover {
     cursor: pointer;

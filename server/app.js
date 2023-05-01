@@ -48,7 +48,7 @@ app.use("/api/v1/booking", bookingRouter);
 app.use("/api/v1/reviews", reviewRouter);
 app.use("/api/v1/stats", statRouter);
 app.use("/api/v1/emergencies", emergencyRouter);
-// app.use("/api/v1/district-data", DistrictDataRouter);
+app.use("/api/v1/district-data", DistrictDataRouter);
 
 if (process.env.NODE_ENV === "production") {
   // test
