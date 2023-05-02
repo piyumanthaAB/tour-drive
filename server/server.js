@@ -18,7 +18,7 @@ console.log(
   `\n ============ ♦️♦️ Running Environment : ${process.env.NODE_ENV} ♦️♦️  ============\n`
 );
 
-console.log({ env: process.env });
+// console.log({ env: process.env });
 
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',

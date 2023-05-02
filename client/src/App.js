@@ -49,8 +49,8 @@ import AdminSingleCustomTour from "./pages/admin/tour related/AdminSingleCustomT
 function App() {
   const { loadUser } = useAuth();
 
-  console.log({ mapboxToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN });
-  console.log({ env: process.env });
+  // console.log({ mapboxToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN });
+  // console.log({ env: process.env });
 
   useEffect(() => {
     loadUser();
