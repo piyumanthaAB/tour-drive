@@ -8,23 +8,23 @@ import { catchAsync } from "../utils/catchAsync.js";
 //@access Private
 const getDistance = catchAsync(async (req, res, nex) => {
   // console.log(req.query.from);
-
+  let index = 0;
   customTourLocations.map((loc, i) => {
     const from = req.query.from;
     // const to = req.query.to;
-    if (loc.city === from) {
-      const index = i;
-      console.log(customTourLocations[index].distances);
+    if (loc.city === req.query.from) {
+      index = i;
+      console.log(customTourLocations[index].city);
     }
   });
 
   // customTourLocations[index].distances.map((distance, i) => {
   //   console.log(distance.Colombo);
   // });
-  // const distance = customTourLocations["2"].city;
+  const data = customTourLocations[index];
   // console.log(distance);
   // console.log("test");
-  // res.status(201).json({ success: true, data: distance });
+  res.status(201).json({ success: true, data: data });
 });
 
 export { getDistance };
