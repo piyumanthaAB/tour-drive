@@ -7,13 +7,23 @@ import VehicleSlider from "../../components/Home/VehicleSlider";
 import useFetch from "../../hooks/useFetch";
 
 const Home = () => {
-  const { data, isPending, isError } = useFetch("/api/v1/tours");
+  const vehicles = useFetch("/api/v1/vehicles");
+  const tours = useFetch("/api/v1/tours");
+
   return (
     <>
       <HomeCover />
       {/* <HomeCoverNew/> */}
-      <TourSlider data={data} isPending={isPending} isError={isError} />
-      <VehicleSlider />
+      <TourSlider
+        data={tours.data}
+        isPending={tours.isPending}
+        isError={tours.isError}
+      />
+      <VehicleSlider
+        data={vehicles.data}
+        isError={vehicles.isError}
+        isPending={vehicles.isPending}
+      />
       <CustomerReview />
     </>
   );
