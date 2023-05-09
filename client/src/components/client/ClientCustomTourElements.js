@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -47,7 +47,7 @@ export const FormGroup = styled.div`
 
 export const SubmitBtn = styled.button`
   outline: none;
-  background-color: ${(props) => props.color || "var(--main-color)"};
+  background-color: ${(props) => props.color || 'var(--main-color)'};
   font-size: 1.5rem;
   font-weight: 600;
   border: none;
@@ -99,8 +99,8 @@ export const ListItem = styled.div`
   /* border-bottom: 1px solid #333; */
   margin: 0.5rem 0;
 
-  background-color: ${(props) => props.selected && "var(--main-color)"};
-  color: ${(props) => props.selected && "#fff"};
+  background-color: ${(props) => props.selected && 'var(--main-color)'};
+  color: ${(props) => props.selected && '#fff'};
 
   :hover {
     cursor: pointer;
@@ -128,12 +128,22 @@ export const ViewOnlyItem = styled.div`
   }
 `;
 
+export const StartLocationLabel = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  background-color: var(--main-color);
+  color: #fff;
+`;
+
 export const HR = styled.hr`
   width: 100%;
   margin: 5rem 0;
 `;
 
-export const AddCityBtn = styled.div`
+export const AddCityBtn = styled.button`
   width: 50%;
   padding: 1rem;
   margin: 1rem 0;

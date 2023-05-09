@@ -19,6 +19,9 @@ const ClientCustomTour = ({ customTourLocations }) => {
 
   // cities that customer added to his list
   const [customrSelectedLocations, setCustomrSelectedLocations] = useState([]);
+  // console.log({ customrSelectedLocations });
+
+  const [sortedCities, setSortedCities] = useState([]);
 
   // final custom tour data with selected locations in each city
   // const [tour, setTour] = useState([
@@ -38,11 +41,19 @@ const ClientCustomTour = ({ customTourLocations }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     // console.log(formData);
-
-    await toast.promise(
-      // submitForm('/api/v1/custom-tours', formData, 'post', headers),
+    const res = await toast.promise(
+      submitForm(
+        '/api/v1/district-data/locations',
+        {
+          customSelectedLocations: customrSelectedLocations.map(
+            (city) => city.charAt(0).toUpperCase() + city.slice(1)
+          ),
+        },
+        'post',
+        {}
+      ),
       {
-        loading: 'Adding Custom Tour...',
+        loading: 'Submitting tour locations...',
         success: (data) => {
           console.log({ data });
           return ` ${data.data.message} ` || 'success';
@@ -58,6 +69,9 @@ const ClientCustomTour = ({ customTourLocations }) => {
         },
       }
     );
+    // console.log({ res });
+    setSortedCities(res.data.data.outputData);
+    console.log({ sortedCities });
   };
 
   return (
@@ -109,13 +123,14 @@ const ClientCustomTour = ({ customTourLocations }) => {
                       }}
                       key={i}
                     >
-                      {loc.city}
+                      {i + 1}. {loc.city}
                     </c.ListItem>
                   );
                 })}
               </c.CheckBoxListContainer>
               <c.AddCityBtn
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   setCustomrSelectedLocations([
                     ...customrSelectedLocations,
                     customTourLocations[selectedCity].city,
@@ -133,7 +148,11 @@ const ClientCustomTour = ({ customTourLocations }) => {
               <c.ListItemsContainer>
                 {customTourLocations[selectedCity].availableLocations.map(
                   (loc, i) => {
-                    return <c.ViewOnlyItem key={i}>{loc}</c.ViewOnlyItem>;
+                    return (
+                      <c.ViewOnlyItem key={i}>
+                        {i + 1}. {loc}
+                      </c.ViewOnlyItem>
+                    );
                   }
                 )}
               </c.ListItemsContainer>
@@ -153,8 +172,12 @@ const ClientCustomTour = ({ customTourLocations }) => {
                     return (
                       <>
                         <c.ViewOnlyItem key={i}>
-                          {loc}
-
+                          {loc.charAt(0).toUpperCase() + loc.slice(1)}
+                          {i === 0 && (
+                            <c.StartLocationLabel>
+                              Start Location
+                            </c.StartLocationLabel>
+                          )}
                           <c.RemoveIcon
                             onClick={() => {
                               const currentList = customrSelectedLocations;
@@ -171,9 +194,9 @@ const ClientCustomTour = ({ customTourLocations }) => {
                     );
                   })}
               </c.ListItemsContainer>
-              {/* {customrSelectedLocations.length > 0 && (
-                <c.AddCityBtn>Process the list</c.AddCityBtn>
-              )} */}
+              {customrSelectedLocations.length > 0 && (
+                <c.AddCityBtn type="submit">Process the list</c.AddCityBtn>
+              )}
             </c.FormGroup>
           </c.Row>
 
@@ -182,8 +205,8 @@ const ClientCustomTour = ({ customTourLocations }) => {
             <c.HR />{' '}
           </c.Row>
 
-          {customrSelectedLocations.length > 0 &&
-            customrSelectedLocations.map((loc, i) => {
+          {sortedCities.length > 0 &&
+            sortedCities.map((loc, i) => {
               return (
                 <c.Row key={i}>
                   <c.FormGroup>

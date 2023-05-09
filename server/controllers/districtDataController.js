@@ -1,29 +1,30 @@
-import { loadOptions } from "@babel/core";
-import { customTourLocations } from "../data/locationData.js";
-import { AppError } from "../utils/AppError.js";
-import { catchAsync } from "../utils/catchAsync.js";
+import { loadOptions } from '@babel/core';
+import { customTourLocations } from '../data/locationData.js';
+import { AppError } from '../utils/AppError.js';
+import { catchAsync } from '../utils/catchAsync.js';
 
 //@desc Get all custom tours request
 //@route GET /api/v1/district-data
 //@access Private
 const getDistance = catchAsync(async (req, res, nex) => {
-  // console.log(req.query.from);
-  let index = 0;
-  customTourLocations.map((loc, i) => {
-    const from = req.query.from;
-    // const to = req.query.to;
-    if (loc.city === req.query.from) {
-      index = i;
-      console.log(customTourLocations[index].city);
-    }
-  });
-
-  // customTourLocations[index].distances.map((distance, i) => {
-  //   console.log(distance.Colombo);
+  // // console.log(req.query.from);
+  // let index = 0;
+  // customTourLocations.map((loc, i) => {
+  //   const from = req.query.from;
+  //   // const to = req.query.to;
+  //   if (loc.city === req.query.from) {
+  //     index = i;
+  //     console.log(customTourLocations[index].city);
+  //   }
   // });
-  const data = customTourLocations[index];
-  // console.log(distance);
-  // console.log("test");
+
+  // // customTourLocations[index].distances.map((distance, i) => {
+  // //   console.log(distance.Colombo);
+  // // });
+  // const data = customTourLocations[index];
+  // // console.log(distance);
+  // // console.log("test");
+  const data = customTourLocations;
   res.status(201).json({ success: true, data: data });
 });
 
@@ -32,6 +33,7 @@ const getDistance = catchAsync(async (req, res, nex) => {
 //@access Private
 const getSortedLocations = catchAsync(async (req, res, next) => {
   // console.log("inside controller");
+  // console.log({ body: req.body.customSelectedLocations });
   const input = req.body.customSelectedLocations;
   // console.log(array);
 
@@ -91,7 +93,7 @@ const getSortedLocations = catchAsync(async (req, res, next) => {
     if (tourDistance >= limit) {
       console.log(tourDistance);
       tourDistance = 0;
-      outputData.push("acc");
+      outputData.push('acc');
     }
     console.log(output[i]);
   }
@@ -100,7 +102,7 @@ const getSortedLocations = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     success: true,
-    message: "success",
+    message: 'success',
     data: {
       outputData,
       distance,
