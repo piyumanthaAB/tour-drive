@@ -207,6 +207,15 @@ const ClientCustomTour = ({ customTourLocations }) => {
 
           {sortedCities.length > 0 &&
             sortedCities.map((loc, i) => {
+              const locationsInCity = sortedCities.map((city) => {
+                const locations = customTourLocations.for((obj) => {
+                  return obj.city === city;
+                });
+                return locations;
+              });
+
+              console.log({ bbbbbbb: locationsInCity });
+              console.log({ aaaaaa: customTourLocations[0] });
               return (
                 <c.Row key={i}>
                   <c.FormGroup>
@@ -214,6 +223,7 @@ const ClientCustomTour = ({ customTourLocations }) => {
                       cityName={loc}
                       day={i + 1}
                       locationsInCity={customTourLocations[i]}
+                      // locationsInCity={locationsInCity[i]}
                       // setTour={setTour}
                       // tour={tour}
                     />
