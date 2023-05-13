@@ -5,6 +5,7 @@ import { customTourLocations } from '../../../data/custom-tour-locations';
 import useFetch from '../../../hooks/useFetch';
 
 const AddCustomTour = () => {
+  console.log({ customTourLocations: customTourLocations[0] });
   return (
     <>
       <Dashboard

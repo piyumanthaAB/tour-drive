@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import * as c from './ClientCustomTourElements';
 import Label from '../../components/shared/Form Elements/Label';
 import TextField from '../../components/shared/Form Elements/TextField';
@@ -22,6 +22,12 @@ const ClientCustomTour = ({ customTourLocations }) => {
   // console.log({ customrSelectedLocations });
 
   const [sortedCities, setSortedCities] = useState([]);
+
+  const [locationsInTheCity, setLocationsInTheCity] = useState([]);
+
+  const [accomodations, setAccomodations] = useState([]);
+
+  const [tour, setTour] = useState([]);
 
   // final custom tour data with selected locations in each city
   // const [tour, setTour] = useState([
@@ -73,6 +79,29 @@ const ClientCustomTour = ({ customTourLocations }) => {
     setSortedCities(res.data.data.outputData);
     console.log({ sortedCities });
   };
+
+  const accomodationDropdownValues = [
+    { label: 'accomodation not required', value: null },
+    { label: 'guest house', value: 'guest house' },
+    { label: 'guest house', value: 'guest house' },
+    { label: 'guest house', value: 'guest house' },
+  ];
+
+  useEffect(() => {
+    if (sortedCities.length > 0) {
+      let arr = [];
+      const locationsInCities = sortedCities.map((city) => {
+        customTourLocations.forEach((loc) => {
+          if (loc.city === city) {
+            arr.push(loc);
+          }
+          // return loc.city===city
+        });
+        // return arr;
+      });
+      setLocationsInTheCity(arr);
+    }
+  }, [sortedCities]);
 
   return (
     <>
@@ -195,7 +224,12 @@ const ClientCustomTour = ({ customTourLocations }) => {
                   })}
               </c.ListItemsContainer>
               {customrSelectedLocations.length > 0 && (
-                <c.AddCityBtn type="submit">Process the list</c.AddCityBtn>
+                <c.AddCityBtn
+                  type="submit"
+                  onClick={() => setLocationsInTheCity([])}
+                >
+                  Process the list
+                </c.AddCityBtn>
               )}
             </c.FormGroup>
           </c.Row>
@@ -207,29 +241,36 @@ const ClientCustomTour = ({ customTourLocations }) => {
 
           {sortedCities.length > 0 &&
             sortedCities.map((loc, i) => {
-              const locationsInCity = sortedCities.map((city) => {
-                const locations = customTourLocations.for((obj) => {
-                  return obj.city === city;
-                });
-                return locations;
-              });
-
-              console.log({ bbbbbbb: locationsInCity });
-              console.log({ aaaaaa: customTourLocations[0] });
+              // skip rendering for 'acc' values
+              if (loc === 'acc') {
+                return null;
+              }
               return (
                 <c.Row key={i}>
                   <c.FormGroup>
                     <CustomTourCard
                       cityName={loc}
                       day={i + 1}
-                      locationsInCity={customTourLocations[i]}
-                      // locationsInCity={locationsInCity[i]}
-                      // setTour={setTour}
-                      // tour={tour}
+                      // locationsInCity={customTourLocations[i]}
+                      // locationsInCity={locationsInTheCity[i]}
+                      locationsInCity={
+                        sortedCities[i - 1] === 'acc'
+                          ? locationsInTheCity[i - 1]
+                          : locationsInTheCity[i]
+                      }
+                      setTour={setTour}
+                      tour={tour}
                     />
                   </c.FormGroup>
                   <c.FormGroup>
-                    <c.AccomodationCardContainer></c.AccomodationCardContainer>
+                    <c.AccomodationCardContainer>
+                      {/* <DropDown
+                        dropDownValues={accomodationDropdownValues}
+                        currentDropdownVal={accomodationDropdownValues[i]}
+                        setCurrentDropdownVal={setAccomodations}
+                        
+                      /> */}
+                    </c.AccomodationCardContainer>
                   </c.FormGroup>
                 </c.Row>
               );
