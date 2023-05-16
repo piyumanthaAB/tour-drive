@@ -6,6 +6,7 @@ import {
   LOCATION_THREE_UPDATE,
   LOCATION_FOUR_UPDATE,
   ADD_CITY,
+  RESET_CUSTOM_TOUR,
 } from '../types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -15,6 +16,12 @@ export default (state, action) => {
       return {
         ...state,
         customTour: state.customTour.concat(action.payload),
+        // customTour: [...state, action.payload],
+      };
+    case RESET_CUSTOM_TOUR:
+      return {
+        ...state,
+        customTour: [],
         // customTour: [...state, action.payload],
       };
 

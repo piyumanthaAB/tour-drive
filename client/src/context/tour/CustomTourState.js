@@ -5,6 +5,7 @@ import {
   LOCATION_THREE_UPDATE,
   LOCATION_FOUR_UPDATE,
   ADD_CITY,
+  RESET_CUSTOM_TOUR,
 } from '../types';
 
 import React, { useReducer } from 'react';
@@ -54,6 +55,14 @@ const CustomTourState = (props) => {
       payload: data,
     });
   };
+  const resetCustomTour = (data) => {
+    // console.log('tour updated');
+    // console.log({ 'here is data': data });
+    dispatch({
+      type: RESET_CUSTOM_TOUR,
+      payload: data,
+    });
+  };
 
   return (
     <CustomTourContext.Provider
@@ -61,6 +70,7 @@ const CustomTourState = (props) => {
         customTour: state.customTour,
         tour: state.tour,
         updateCustomTour,
+        resetCustomTour,
       }}
     >
       {props.children}

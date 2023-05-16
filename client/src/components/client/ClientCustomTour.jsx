@@ -13,7 +13,7 @@ import CustomTourCard from '../shared/CustomTourCard';
 import CustomTourContext from '../../context/tour/customTourContext';
 
 const ClientCustomTour = ({ customTourLocations }) => {
-  const { updateCustomTour } = useContext(CustomTourContext);
+  const { updateCustomTour, resetCustomTour } = useContext(CustomTourContext);
   // al available cities in display
   const [selectedCity, setSelectedCity] = useState(0);
 
@@ -24,8 +24,6 @@ const ClientCustomTour = ({ customTourLocations }) => {
   const [sortedCities, setSortedCities] = useState([]);
 
   const [locationsInTheCity, setLocationsInTheCity] = useState([]);
-
-  const [accomodations, setAccomodations] = useState([]);
 
   const [tour, setTour] = useState([]);
 
@@ -79,13 +77,6 @@ const ClientCustomTour = ({ customTourLocations }) => {
     setSortedCities(res.data.data.outputData);
     console.log({ sortedCities });
   };
-
-  const accomodationDropdownValues = [
-    { label: 'accomodation not required', value: null },
-    { label: 'guest house', value: 'guest house' },
-    { label: 'guest house', value: 'guest house' },
-    { label: 'guest house', value: 'guest house' },
-  ];
 
   useEffect(() => {
     if (sortedCities.length > 0) {
@@ -224,12 +215,30 @@ const ClientCustomTour = ({ customTourLocations }) => {
                   })}
               </c.ListItemsContainer>
               {customrSelectedLocations.length > 0 && (
-                <c.AddCityBtn
-                  type="submit"
-                  onClick={() => setLocationsInTheCity([])}
-                >
-                  Process the list
-                </c.AddCityBtn>
+                <c.ButtonContainer>
+                  <c.AddCityBtn
+                    width="40%"
+                    type="submit"
+                    onClick={() => {
+                      resetCustomTour([]);
+                      setLocationsInTheCity([]);
+                    }}
+                  >
+                    Process the list
+                  </c.AddCityBtn>
+                  <c.AddCityBtn
+                    width="40%"
+                    type="reset"
+                    onClick={() => {
+                      resetCustomTour([]);
+                      setLocationsInTheCity([]);
+                      setCustomrSelectedLocations([]);
+                      setSortedCities([]);
+                    }}
+                  >
+                    Clear the list
+                  </c.AddCityBtn>
+                </c.ButtonContainer>
               )}
             </c.FormGroup>
           </c.Row>
@@ -276,14 +285,14 @@ const ClientCustomTour = ({ customTourLocations }) => {
               })}
           </c.CustomCardContainer>
 
-          {/* <c.Row>
-            <c.FormGroup>
-              <c.SubmitBtn type="submit">Submit Request</c.SubmitBtn>
-              <c.SubmitBtn color="#333" type="reset">
+          <c.Row>
+            {/* <c.FormGroup> */}
+            <c.SubmitBtn type="submit">View Estimation</c.SubmitBtn>
+            {/* <c.SubmitBtn color="#333" type="reset">
                 Clear
-              </c.SubmitBtn>
-            </c.FormGroup>
-          </c.Row> */}
+              </c.SubmitBtn> */}
+            {/* </c.FormGroup> */}
+          </c.Row>
         </c.Form>
       </c.Container>
     </>

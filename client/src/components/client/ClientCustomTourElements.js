@@ -56,6 +56,7 @@ export const SubmitBtn = styled.button`
   color: #fff;
   margin: 2rem 1rem;
   min-width: 40%;
+  font-family: var(--primary-font);
   :hover {
     cursor: pointer;
   }
@@ -101,6 +102,11 @@ export const ListItemsContainer = styled.div`
   border-right: 0px;
   padding: 2rem;
   border-radius: 1rem;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;
 
 export const ListItem = styled.div`
@@ -158,7 +164,8 @@ export const HR = styled.hr`
 `;
 
 export const AddCityBtn = styled.button`
-  width: 50%;
+  /* width: 50%; */
+  width: ${(props) => props.width || '50%'};
   padding: 1rem;
   margin: 1rem 0;
   font-size: 1.3rem;
@@ -170,6 +177,8 @@ export const AddCityBtn = styled.button`
   align-items: center;
   /* background-color: var(--main-color); */
   background-color: #333;
+  outline: none;
+  border: none;
 
   :hover {
     cursor: pointer;

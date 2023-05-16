@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import DropDown from './Form Elements/DropDown';
 import CustomTourContext from '../../context/tour/customTourContext';
+import { toast } from 'react-hot-toast';
 export const CardContainer = styled.div`
   width: 100%;
   min-height: 30rem;
@@ -9,6 +10,9 @@ export const CardContainer = styled.div`
   border-radius: 1rem;
   box-shadow: 0px 0px 32px 0px rgba(143, 143, 143, 0.2);
   margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 1rem 0;
 `;
 
 export const CardHeader = styled.div`
@@ -49,13 +53,30 @@ export const DropdownContainer = styled.div`
   margin: 1rem 0;
 `;
 
-const CradSUbmitBtn = styled.button``;
+const CardSubmitBtn = styled.button`
+  background-color: var(--main-color);
+  border: none;
+  outline: none;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  color: #fff;
+  font-weight: bold;
+  margin: 0 auto;
+  font-family: var(--primary-font);
+  :hover {
+    cursor: pointer;
+  }
+`;
 
 const AccomodationContainer = styled.div`
   width: 100%;
   margin: 2rem 0;
   border-top: 1px solid #333;
-  padding: 1rem 0;
+  padding: 1rem 0 0;
+`;
+
+const LocationGroup = styled.div`
+  margin: 2rem 0;
 `;
 const CustomTourCard = ({ cityName, locationsInCity, day, setTour, tour }) => {
   const { updateCustomTour } = useContext(CustomTourContext);
@@ -155,38 +176,53 @@ const CustomTourCard = ({ cityName, locationsInCity, day, setTour, tour }) => {
         <CardCityContainer> {cityName} </CardCityContainer>
       </CardHeader>
       <CardBodyContainer>
-        <DropdownContainer>
-          <DropDown
-            dropDownValues={cityDropdownValues}
-            currentDropdownVal={cityOne}
-            setCurrentDropdownVal={setCityOne}
-            onChange={() => {}}
-          />
-        </DropdownContainer>
-        <DropdownContainer>
-          <DropDown
-            dropDownValues={cityDropdownValues}
-            currentDropdownVal={cityTwo}
-            setCurrentDropdownVal={setCityTwo}
-            onChange={() => {}}
-          />
-        </DropdownContainer>
-        <DropdownContainer>
-          <DropDown
-            dropDownValues={cityDropdownValues}
-            currentDropdownVal={cityThree}
-            setCurrentDropdownVal={setCityThree}
-            onChange={() => {}}
-          />
-        </DropdownContainer>
-        <DropdownContainer>
-          <DropDown
-            dropDownValues={cityDropdownValues}
-            currentDropdownVal={cityFour}
-            setCurrentDropdownVal={setCityFour}
-            onChange={() => {}}
-          />
-        </DropdownContainer>
+        <LocationGroup>
+          <h2>Select Location One</h2>
+          <DropdownContainer>
+            <DropDown
+              dropDownValues={cityDropdownValues}
+              currentDropdownVal={cityOne}
+              setCurrentDropdownVal={setCityOne}
+              onChange={() => {}}
+            />
+          </DropdownContainer>
+        </LocationGroup>
+        <LocationGroup>
+          <h2>Select Location Two</h2>
+
+          <DropdownContainer>
+            <DropDown
+              dropDownValues={cityDropdownValues}
+              currentDropdownVal={cityTwo}
+              setCurrentDropdownVal={setCityTwo}
+              onChange={() => {}}
+            />
+          </DropdownContainer>
+        </LocationGroup>
+        <LocationGroup>
+          <h2>Select Location Three</h2>
+
+          <DropdownContainer>
+            <DropDown
+              dropDownValues={cityDropdownValues}
+              currentDropdownVal={cityThree}
+              setCurrentDropdownVal={setCityThree}
+              onChange={() => {}}
+            />
+          </DropdownContainer>
+        </LocationGroup>
+        <LocationGroup>
+          <h2>Select Location Four</h2>
+
+          <DropdownContainer>
+            <DropDown
+              dropDownValues={cityDropdownValues}
+              currentDropdownVal={cityFour}
+              setCurrentDropdownVal={setCityFour}
+              onChange={() => {}}
+            />
+          </DropdownContainer>
+        </LocationGroup>
         <AccomodationContainer>
           <h2>Select Accomodation</h2>
           <DropdownContainer>
@@ -199,16 +235,24 @@ const CustomTourCard = ({ cityName, locationsInCity, day, setTour, tour }) => {
           </DropdownContainer>
         </AccomodationContainer>
       </CardBodyContainer>
-      <button
+      <CardSubmitBtn
         onClick={(e) => {
           e.preventDefault();
           updateCustomTour(cardTour);
+          toast.success('success', {
+            style: {
+              borderRadius: '10px',
+              background: '#333',
+              color: '#fff',
+              fontSize: '1.7rem',
+            },
+          });
           // setTour([...tour, cardTour]);
           // console.log({ tour });
         }}
       >
-        Complete
-      </button>
+        Submit
+      </CardSubmitBtn>
     </CardContainer>
   );
 };
