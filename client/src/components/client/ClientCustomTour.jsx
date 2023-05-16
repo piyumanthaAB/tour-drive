@@ -238,16 +238,16 @@ const ClientCustomTour = ({ customTourLocations }) => {
             {' '}
             <c.HR />{' '}
           </c.Row>
-
-          {sortedCities.length > 0 &&
-            sortedCities.map((loc, i) => {
-              // skip rendering for 'acc' values
-              if (loc === 'acc') {
-                return null;
-              }
-              return (
-                <c.Row key={i}>
-                  <c.FormGroup>
+          <c.CustomCardContainer>
+            {sortedCities.length > 0 &&
+              sortedCities.map((loc, i) => {
+                // skip rendering for 'acc' values
+                if (loc === 'acc') {
+                  return null;
+                }
+                return (
+                  <c.CardRow key={i}>
+                    {/* <c.FormGroup> */}
                     <CustomTourCard
                       cityName={loc}
                       day={i + 1}
@@ -261,20 +261,20 @@ const ClientCustomTour = ({ customTourLocations }) => {
                       setTour={setTour}
                       tour={tour}
                     />
-                  </c.FormGroup>
-                  <c.FormGroup>
+                    {/* </c.FormGroup> */}
+                    {/* <c.FormGroup>
                     <c.AccomodationCardContainer>
-                      {/* <DropDown
+                      <DropDown
                         dropDownValues={accomodationDropdownValues}
                         currentDropdownVal={accomodationDropdownValues[i]}
                         setCurrentDropdownVal={setAccomodations}
-                        
-                      /> */}
+                      />
                     </c.AccomodationCardContainer>
-                  </c.FormGroup>
-                </c.Row>
-              );
-            })}
+                  </c.FormGroup> */}
+                  </c.CardRow>
+                );
+              })}
+          </c.CustomCardContainer>
 
           {/* <c.Row>
             <c.FormGroup>

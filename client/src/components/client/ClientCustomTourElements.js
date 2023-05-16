@@ -66,6 +66,20 @@ export const Row = styled.div`
   justify-content: space-around;
   align-items: center;
 `;
+export const CardRow = styled.div`
+  display: flex;
+  width: 40%;
+  justify-content: space-around;
+  align-items: center;
+  /* background-color: red; */
+  margin: 1rem 0;
+`;
+
+export const CustomCardContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
 
 export const CheckBoxListContainer = styled.div`
   width: 100%;

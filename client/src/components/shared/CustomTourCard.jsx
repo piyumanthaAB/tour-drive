@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import DropDown from './Form Elements/DropDown';
 import CustomTourContext from '../../context/tour/customTourContext';
@@ -48,8 +48,17 @@ export const CardBodyContainer = styled.div`
 export const DropdownContainer = styled.div`
   margin: 1rem 0;
 `;
+
+const CradSUbmitBtn = styled.button``;
+
+const AccomodationContainer = styled.div`
+  width: 100%;
+  margin: 2rem 0;
+  border-top: 1px solid #333;
+  padding: 1rem 0;
+`;
 const CustomTourCard = ({ cityName, locationsInCity, day, setTour, tour }) => {
-  const { updateCustomTour, updateLocationOne } = useContext(CustomTourContext);
+  const { updateCustomTour } = useContext(CustomTourContext);
 
   const [cardTour, setCardTour] = useState({
     city: cityName,
@@ -57,6 +66,7 @@ const CustomTourCard = ({ cityName, locationsInCity, day, setTour, tour }) => {
     locationTwo: null,
     locationThree: null,
     locationFour: null,
+    accomodation: null,
   });
 
   const [cityOne, setCityOne] = useState({
@@ -75,6 +85,10 @@ const CustomTourCard = ({ cityName, locationsInCity, day, setTour, tour }) => {
     label: 'Select location',
     value: null,
   });
+  const [accomodation, setAccomodation] = useState({
+    label: 'Select accomodation type',
+    value: null,
+  });
 
   const cityDropdownValues = locationsInCity?.availableLocations.map((loc) => {
     return {
@@ -82,6 +96,30 @@ const CustomTourCard = ({ cityName, locationsInCity, day, setTour, tour }) => {
       value: loc || 'not available',
     };
   });
+
+  const accomodationValues = [
+    { label: 'Not required', value: 'not-required' },
+    { label: 'Guest house', value: 'guest-house' },
+    { label: '3 Star', value: '3-star' },
+  ];
+
+  useEffect(() => {
+    setCardTour({
+      city: cityName,
+      locationOne: cityOne.value,
+      locationTwo: cityTwo.value,
+      locationThree: cityThree.value,
+      locationFour: cityFour.value,
+      accomodation: accomodation.value,
+    });
+    // updateCustomTour({
+    //   city: cityName,
+    //   locationOne: cityOne.value,
+    //   locationTwo: cityTwo.value,
+    //   locationThree: cityThree.value,
+    //   locationFour: cityFour.value,
+    // });
+  }, [cityOne, cityTwo, cityThree, cityFour, accomodation]);
 
   // updateCustomTour({
   //   day,
@@ -122,15 +160,7 @@ const CustomTourCard = ({ cityName, locationsInCity, day, setTour, tour }) => {
             dropDownValues={cityDropdownValues}
             currentDropdownVal={cityOne}
             setCurrentDropdownVal={setCityOne}
-            onChange={() => {
-              setCardTour({
-                city: cityName,
-                locationOne: cityOne.value,
-                locationTwo: cityTwo.value,
-                locationThree: cityThree.value,
-                locationFour: cityFour.value,
-              });
-            }}
+            onChange={() => {}}
           />
         </DropdownContainer>
         <DropdownContainer>
@@ -138,15 +168,7 @@ const CustomTourCard = ({ cityName, locationsInCity, day, setTour, tour }) => {
             dropDownValues={cityDropdownValues}
             currentDropdownVal={cityTwo}
             setCurrentDropdownVal={setCityTwo}
-            onChange={() => {
-              setCardTour({
-                city: cityName,
-                locationOne: cityOne.value,
-                locationTwo: cityTwo.value,
-                locationThree: cityThree.value,
-                locationFour: cityFour.value,
-              });
-            }}
+            onChange={() => {}}
           />
         </DropdownContainer>
         <DropdownContainer>
@@ -154,15 +176,7 @@ const CustomTourCard = ({ cityName, locationsInCity, day, setTour, tour }) => {
             dropDownValues={cityDropdownValues}
             currentDropdownVal={cityThree}
             setCurrentDropdownVal={setCityThree}
-            onChange={() => {
-              setCardTour({
-                city: cityName,
-                locationOne: cityOne.value,
-                locationTwo: cityTwo.value,
-                locationThree: cityThree.value,
-                locationFour: cityFour.value,
-              });
-            }}
+            onChange={() => {}}
           />
         </DropdownContainer>
         <DropdownContainer>
@@ -170,23 +184,27 @@ const CustomTourCard = ({ cityName, locationsInCity, day, setTour, tour }) => {
             dropDownValues={cityDropdownValues}
             currentDropdownVal={cityFour}
             setCurrentDropdownVal={setCityFour}
-            onChange={() => {
-              setCardTour({
-                city: cityName,
-                locationOne: cityOne.value,
-                locationTwo: cityTwo.value,
-                locationThree: cityThree.value,
-                locationFour: cityFour.value,
-              });
-            }}
+            onChange={() => {}}
           />
         </DropdownContainer>
+        <AccomodationContainer>
+          <h2>Select Accomodation</h2>
+          <DropdownContainer>
+            <DropDown
+              dropDownValues={accomodationValues}
+              currentDropdownVal={accomodation}
+              setCurrentDropdownVal={setAccomodation}
+              onChange={() => {}}
+            />
+          </DropdownContainer>
+        </AccomodationContainer>
       </CardBodyContainer>
       <button
         onClick={(e) => {
           e.preventDefault();
-          setTour([...tour, cardTour]);
-          console.log({ tour });
+          updateCustomTour(cardTour);
+          // setTour([...tour, cardTour]);
+          // console.log({ tour });
         }}
       >
         Complete
