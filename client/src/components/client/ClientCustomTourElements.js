@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -57,6 +58,24 @@ export const SubmitBtn = styled.button`
   margin: 2rem 1rem;
   min-width: 40%;
   font-family: var(--primary-font);
+  :hover {
+    cursor: pointer;
+  }
+`;
+export const LinkBtn = styled(Link)`
+  outline: none;
+  background-color: ${(props) => props.color || 'var(--main-color)'};
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  padding: 1rem;
+  border-radius: 2rem;
+  color: #fff;
+  margin: 2rem 1rem;
+  min-width: 40%;
+  font-family: var(--primary-font);
+  text-align: center;
+  text-decoration: none;
   :hover {
     cursor: pointer;
   }

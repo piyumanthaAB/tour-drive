@@ -287,7 +287,9 @@ const ClientCustomTour = ({ customTourLocations }) => {
 
           <c.Row>
             {/* <c.FormGroup> */}
-            <c.SubmitBtn type="submit">View Estimation</c.SubmitBtn>
+            <c.LinkBtn to={'/client/custom-tour/summary'}>
+              View Estimation
+            </c.LinkBtn>
             {/* <c.SubmitBtn color="#333" type="reset">
                 Clear
               </c.SubmitBtn> */}
