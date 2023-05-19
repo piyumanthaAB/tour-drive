@@ -119,9 +119,12 @@ const CustomTourCard = ({ cityName, locationsInCity, day, setTour, tour }) => {
   });
 
   const accomodationValues = [
-    { label: 'Not required', value: 'not-required' },
-    { label: 'Guest house', value: 'guest-house' },
-    { label: '3 Star', value: '3-star' },
+    { label: 'Not required', value: null },
+    { label: 'Guest house', value: 'guestHouse' },
+    { label: 'Villa', value: 'villa' },
+    { label: '1 Star', value: 'star_1' },
+    { label: '2 Star', value: 'star_2' },
+    { label: '3 Star', value: 'star_3' },
   ];
 
   useEffect(() => {

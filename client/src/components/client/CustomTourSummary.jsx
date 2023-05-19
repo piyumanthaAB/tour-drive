@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import * as c from './CustomTourSummaryElements';
 import CustomTourContext from '../../context/tour/customTourContext';
 import Label from '../shared/Form Elements/Label';
-import TextField from '../shared/Form Elements/TextField';
+import { vehiclePrice, accomodationPrices } from '../../data/prices';
+import customTourCost from '../../utils/customTourCost';
 
-const CustomTourSummary = () => {
+const CustomTourSummary = ({ distanceData }) => {
   const {
     customTour,
     startDate,
@@ -14,6 +15,46 @@ const CustomTourSummary = () => {
     vehicleTransmission,
     vehicleFuel,
   } = useContext(CustomTourContext);
+
+  const [duration, setDuration] = useState('-');
+  const [totalDistance, setTotalDistance] = useState('');
+  const [distanceCost, setDistanceCost] = useState('');
+  const [accomodationCost, setAccomodationCost] = useState('');
+  const [totalCost, setTotalCost] = useState('');
+
+  useEffect(() => {
+    const date1 = new Date(startDate);
+    const date2 = new Date(endDate);
+
+    // Calculate the difference in milliseconds
+    const differenceInMs = Math.abs(date2 - date1);
+
+    // Calculate the difference in days
+    const differenceInDays = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+    setDuration(differenceInDays);
+
+    const {
+      totalDistance,
+      totalCost,
+      accomodationAllPassengersPrice,
+      distanceTotalPrice,
+    } = customTourCost(customTour, distanceData, vehicleType, passengerCount);
+
+    setTotalDistance(totalDistance);
+    setDistanceCost(distanceTotalPrice);
+    setAccomodationCost(accomodationAllPassengersPrice);
+    setTotalCost(totalCost);
+  }, []);
+
+  const accomodationValues = [
+    { label: 'Not required', value: null },
+    { label: 'Guest house', value: 'guestHouse' },
+    { label: 'Villa', value: 'villa' },
+    { label: '1 Star', value: 'star_1' },
+    { label: '2 Star', value: 'star_2' },
+    { label: '3 Star', value: 'star_3' },
+  ];
+
   return (
     <>
       <c.Container>
@@ -30,6 +71,10 @@ const CustomTourSummary = () => {
               <h2>{endDate}</h2>
             </c.DescGroup>
             <c.DescGroup>
+              <Label labelText={'Duration'} />
+              <h2>{duration || '-'} Days</h2>
+            </c.DescGroup>
+            <c.DescGroup>
               <Label labelText={'Passenger count'} />
               <h2>{passengerCount}</h2>
             </c.DescGroup>
@@ -44,6 +89,22 @@ const CustomTourSummary = () => {
             <c.DescGroup>
               <Label labelText={'Vehicle fuel'} />
               <h2>{vehicleFuel}</h2>
+            </c.DescGroup>
+            <c.DescGroup>
+              <Label labelText={'Total distance'} />
+              <h2>{totalDistance}KM</h2>
+            </c.DescGroup>
+            <c.DescGroup>
+              <Label labelText={'Vehicle cost'} />
+              <h2>$ {distanceCost}</h2>
+            </c.DescGroup>
+            <c.DescGroup>
+              <Label labelText={'Accomodation cost'} />
+              <h2>$ {accomodationCost}</h2>
+            </c.DescGroup>
+            <c.DescGroup>
+              <Label labelText={'Estimated total price'} />
+              <h2>$ {totalCost}</h2>
             </c.DescGroup>
           </c.DescriptionContainer>
         </c.Row>
@@ -77,7 +138,7 @@ const CustomTourSummary = () => {
                     {tour.locationFour}
                   </c.TableDataCell>
                   <c.TableDataCell minwidth="1rem">
-                    {tour.accomodation}
+                    {tour.accomodation || 'not-required'}
                   </c.TableDataCell>
                 </c.TableRow>
               );

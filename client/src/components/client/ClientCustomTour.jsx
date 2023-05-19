@@ -93,7 +93,7 @@ const ClientCustomTour = ({ customTourLocations }) => {
     );
     // console.log({ res });
     setSortedCities(res.data.data.outputData);
-    console.log({ sortedCities });
+    // console.log({ sortedCities });
   };
 
   const onEstimation = async (e) => {
@@ -141,6 +141,7 @@ const ClientCustomTour = ({ customTourLocations }) => {
     { label: 'Car', value: 'car' },
     { label: 'Van', value: 'van' },
     { label: 'SUV', value: 'suv' },
+    { label: 'Cab', value: 'cab' },
   ];
   const vehicleTransmissionTypesValues = [
     { label: 'Auto', value: 'auto' },
