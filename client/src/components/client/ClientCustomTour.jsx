@@ -11,9 +11,12 @@ import { MdOutlineClose } from 'react-icons/md';
 import { CheckBox } from '../shared/Form Elements/Checkbox';
 import CustomTourCard from '../shared/CustomTourCard';
 import CustomTourContext from '../../context/tour/customTourContext';
+import { useNavigate } from 'react-router-dom';
 
 const ClientCustomTour = ({ customTourLocations }) => {
-  const { updateCustomTour, resetCustomTour } = useContext(CustomTourContext);
+  const navigate = useNavigate();
+  const { updateCustomTour, resetCustomTour, updaetState } =
+    useContext(CustomTourContext);
   // al available cities in display
   const [selectedCity, setSelectedCity] = useState(0);
 
@@ -26,6 +29,21 @@ const ClientCustomTour = ({ customTourLocations }) => {
   const [locationsInTheCity, setLocationsInTheCity] = useState([]);
 
   const [tour, setTour] = useState([]);
+
+  const [vehicleType, setVehicleType] = useState({
+    label: 'Select vehicle type',
+    value: '',
+  });
+
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
+  const [transmission, setTransmission] = useState({
+    label: 'Auto',
+    value: 'auto',
+  });
+  const [fuel, setFuel] = useState({ label: 'Petrol', value: 'petrol' });
+
+  const [passengerCount, setPassengerCount] = useState(1);
 
   // final custom tour data with selected locations in each city
   // const [tour, setTour] = useState([
@@ -78,6 +96,61 @@ const ClientCustomTour = ({ customTourLocations }) => {
     console.log({ sortedCities });
   };
 
+  const onEstimation = async (e) => {
+    if (from === '') {
+      toast.error('Please fill start date', {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '2rem',
+        },
+      });
+    } else if (to === '') {
+      toast.error('Please fill end date', {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '2rem',
+        },
+      });
+    } else if (vehicleType.value === '') {
+      toast.error('Please select vehicle type', {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '2rem',
+        },
+      });
+    } else {
+      updaetState({
+        startDate: from,
+        endDate: to,
+        vehicleTransmission: transmission.value,
+        vehicleFuel: fuel.value,
+        passengerCount,
+        vehicleType: vehicleType.value,
+      });
+      navigate('/client/custom-tour/summary');
+    }
+  };
+
+  const vehicleTypesValues = [
+    { label: 'Car', value: 'car' },
+    { label: 'Van', value: 'van' },
+    { label: 'SUV', value: 'suv' },
+  ];
+  const vehicleTransmissionTypesValues = [
+    { label: 'Auto', value: 'auto' },
+    { label: 'Manuel', value: 'maunel' },
+  ];
+  const vehicleFuelTypesValues = [
+    { label: 'Petrol', value: 'petrol' },
+    { label: 'Diesal', value: 'diesal' },
+  ];
+
   useEffect(() => {
     if (sortedCities.length > 0) {
       let arr = [];
@@ -103,22 +176,62 @@ const ClientCustomTour = ({ customTourLocations }) => {
           <c.Row>
             <c.FormGroup>
               <Label labelText={'Tour Start date'} />
-              <TextField
-                // value={name}
-                // setValue={setName}
-                placeholder={'Enter tour start date here'}
+              <c.DateInput
+                value={from}
+                onChange={(e) => setFrom(e.target.value)}
+                type={'date'}
               />
             </c.FormGroup>
             <c.FormGroup>
-              <Label labelText={'Tour duration'} />
-              <TextField
-                // value={name}
-                // setValue={setName}
-                placeholder={'Enter tour duration'}
+              <Label labelText={'Tour End date'} />
+              <c.DateInput
+                value={to}
+                onChange={(e) => setTo(e.target.value)}
+                type={'date'}
               />
             </c.FormGroup>
           </c.Row>
+          <c.Row>
+            <c.FormGroup>
+              <Label labelText={'Passenger count'} />
+              <TextField
+                value={passengerCount}
+                setValue={setPassengerCount}
+                placeholder={'Enter passenger count here'}
+              />
+            </c.FormGroup>
+            <c.FormGroup>
+              <Label labelText={'Vehicle type'} />
 
+              <DropDown
+                dropDownValues={vehicleTypesValues}
+                currentDropdownVal={vehicleType}
+                setCurrentDropdownVal={setVehicleType}
+                onChange={() => {}}
+              />
+            </c.FormGroup>
+          </c.Row>
+          <c.Row>
+            <c.FormGroup>
+              <Label labelText={'Vehicle Transmission'} />
+              <DropDown
+                dropDownValues={vehicleTransmissionTypesValues}
+                currentDropdownVal={transmission}
+                setCurrentDropdownVal={setTransmission}
+                onChange={() => {}}
+              />
+            </c.FormGroup>
+            <c.FormGroup>
+              <Label labelText={'Vehicle Fuel type'} />
+
+              <DropDown
+                dropDownValues={vehicleFuelTypesValues}
+                currentDropdownVal={fuel}
+                setCurrentDropdownVal={setFuel}
+                onChange={() => {}}
+              />
+            </c.FormGroup>
+          </c.Row>
           <c.Row>
             {' '}
             <c.HR />{' '}
@@ -287,12 +400,18 @@ const ClientCustomTour = ({ customTourLocations }) => {
 
           <c.Row>
             {/* <c.FormGroup> */}
-            <c.LinkBtn to={'/client/custom-tour/summary'}>
+            {/* <c.LinkBtn to={'/client/custom-tour/summary'}>
               View Estimation
-            </c.LinkBtn>
-            {/* <c.SubmitBtn color="#333" type="reset">
-                Clear
-              </c.SubmitBtn> */}
+            </c.LinkBtn> */}
+            <c.SubmitBtn
+              onClick={(e) => {
+                e.preventDefault();
+                onEstimation();
+              }}
+              color="var(--main-color)"
+            >
+              View estimation
+            </c.SubmitBtn>
             {/* </c.FormGroup> */}
           </c.Row>
         </c.Form>

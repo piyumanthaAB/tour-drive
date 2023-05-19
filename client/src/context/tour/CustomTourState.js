@@ -1,12 +1,4 @@
-import {
-  CUSTOM_TOUR_UPDATE,
-  LOCATION_ONE_UPDATE,
-  LOCATION_TWO_UPDATE,
-  LOCATION_THREE_UPDATE,
-  LOCATION_FOUR_UPDATE,
-  ADD_CITY,
-  RESET_CUSTOM_TOUR,
-} from '../types';
+import { ADD_CITY, RESET_CUSTOM_TOUR, UPDATE_STATE } from '../types';
 
 import React, { useReducer } from 'react';
 import customTourReducer from './customTourReducer';
@@ -15,6 +7,12 @@ import CustomTourContext from './customTourContext';
 const CustomTourState = (props) => {
   const initialState = {
     customTour: [],
+    startDate: '',
+    endDate: '',
+    passengerCount: 1,
+    vehicleType: '',
+    vehicleTransmission: '',
+    vehicleFuel: '',
   };
 
   // ================= customTour should look like this ============================
@@ -48,8 +46,8 @@ const CustomTourState = (props) => {
   const [state, dispatch] = useReducer(customTourReducer, initialState);
 
   const updateCustomTour = (data) => {
-    console.log('tour updated');
-    console.log({ 'here is data': data });
+    // console.log('tour updated');
+    // console.log({ 'here is data': data });
     dispatch({
       type: ADD_CITY,
       payload: data,
@@ -64,13 +62,29 @@ const CustomTourState = (props) => {
     });
   };
 
+  const updaetState = (data) => {
+    // console.log('tour updated');
+    console.log({ 'here is data': data });
+    dispatch({
+      type: UPDATE_STATE,
+      payload: data,
+    });
+  };
+
   return (
     <CustomTourContext.Provider
       value={{
         customTour: state.customTour,
         tour: state.tour,
+        startDate: state.startDate,
+        endDate: state.endDate,
+        passengerCount: state.passengerCount,
+        vehicleType: state.vehicleType,
+        vehicleTransmission: state.vehicleTransmission,
+        vehicleFuel: state.vehicleFuel,
         updateCustomTour,
         resetCustomTour,
+        updaetState,
       }}
     >
       {props.children}

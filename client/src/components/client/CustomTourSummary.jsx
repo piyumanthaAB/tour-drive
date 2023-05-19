@@ -1,13 +1,52 @@
 import React, { useContext } from 'react';
 import * as c from './CustomTourSummaryElements';
 import CustomTourContext from '../../context/tour/customTourContext';
+import Label from '../shared/Form Elements/Label';
+import TextField from '../shared/Form Elements/TextField';
 
 const CustomTourSummary = () => {
-  const { customTour } = useContext(CustomTourContext);
+  const {
+    customTour,
+    startDate,
+    endDate,
+    passengerCount,
+    vehicleType,
+    vehicleTransmission,
+    vehicleFuel,
+  } = useContext(CustomTourContext);
   return (
     <>
       <c.Container>
         <c.FormTitle>Custom tour summary</c.FormTitle>
+
+        <c.Row>
+          <c.DescriptionContainer>
+            <c.DescGroup>
+              <Label labelText={'Start Date'} />
+              <h2>{startDate}</h2>
+            </c.DescGroup>
+            <c.DescGroup>
+              <Label labelText={'End Date'} />
+              <h2>{endDate}</h2>
+            </c.DescGroup>
+            <c.DescGroup>
+              <Label labelText={'Passenger count'} />
+              <h2>{passengerCount}</h2>
+            </c.DescGroup>
+            <c.DescGroup>
+              <Label labelText={'Vehicle type'} />
+              <h2>{vehicleType}</h2>
+            </c.DescGroup>
+            <c.DescGroup>
+              <Label labelText={'Vehicle transmission'} />
+              <h2>{vehicleTransmission}</h2>
+            </c.DescGroup>
+            <c.DescGroup>
+              <Label labelText={'Vehicle fuel'} />
+              <h2>{vehicleFuel}</h2>
+            </c.DescGroup>
+          </c.DescriptionContainer>
+        </c.Row>
 
         <c.TableContainer>
           <c.Table>

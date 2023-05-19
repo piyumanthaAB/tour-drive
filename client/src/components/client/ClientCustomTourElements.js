@@ -46,6 +46,17 @@ export const FormGroup = styled.div`
   margin: 1rem 0;
 `;
 
+export const DateInput = styled.input`
+  width: 100%;
+  font-size: 1.6rem;
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  outline: none;
+  border: 1px solid #333;
+  font-family: var(--primary-font);
+  font-weight: 600;
+`;
+
 export const SubmitBtn = styled.button`
   outline: none;
   background-color: ${(props) => props.color || 'var(--main-color)'};

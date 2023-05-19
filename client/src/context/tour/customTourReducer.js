@@ -1,13 +1,5 @@
 /* eslint-disable no-duplicate-case */
-import {
-  CUSTOM_TOUR_UPDATE,
-  LOCATION_ONE_UPDATE,
-  LOCATION_TWO_UPDATE,
-  LOCATION_THREE_UPDATE,
-  LOCATION_FOUR_UPDATE,
-  ADD_CITY,
-  RESET_CUSTOM_TOUR,
-} from '../types';
+import { ADD_CITY, RESET_CUSTOM_TOUR, UPDATE_STATE } from '../types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action) => {
@@ -23,6 +15,17 @@ export default (state, action) => {
         ...state,
         customTour: [],
         // customTour: [...state, action.payload],
+      };
+    case UPDATE_STATE:
+      console.log({ payload: action.payload });
+      return {
+        ...state,
+        startDate: action.payload.startDate,
+        endDate: action.payload.endDate,
+        passengerCount: action.payload.passengerCount,
+        vehicleType: action.payload.vehicleType,
+        vehicleTransmission: action.payload.vehicleTransmission,
+        vehicleFuel: action.payload.vehicleFuel,
       };
 
     default:

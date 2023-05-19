@@ -11,6 +11,10 @@ export const FormTitle = styled.p`
   color: #333;
   font-weight: 700;
 `;
+export const FormGroup = styled.div`
+  flex: 0 1 40%;
+  margin: 1rem 0;
+`;
 
 export const TableContainer = styled.div`
   width: 100%;
@@ -81,4 +85,28 @@ export const SubmitBtn = styled.div`
   :hover {
     cursor: pointer;
   }
+`;
+export const Row = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+export const DescriptionContainer = styled.div`
+  margin: 2rem 0;
+  flex: 0 1 80%;
+  /* min-height: 20rem; */
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+`;
+
+export const DescGroup = styled.div`
+  flex: 0 1 35%;
+  display: flex;
+  /* justify-content: flex-start; */
+  justify-content: space-between;
+  align-items: center;
 `;
