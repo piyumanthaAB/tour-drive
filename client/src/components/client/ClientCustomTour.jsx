@@ -44,6 +44,7 @@ const ClientCustomTour = ({ customTourLocations }) => {
   const [fuel, setFuel] = useState({ label: 'Petrol', value: 'petrol' });
 
   const [passengerCount, setPassengerCount] = useState(1);
+  const [name, setName] = useState('');
 
   // final custom tour data with selected locations in each city
   // const [tour, setTour] = useState([
@@ -132,6 +133,7 @@ const ClientCustomTour = ({ customTourLocations }) => {
         vehicleFuel: fuel.value,
         passengerCount,
         vehicleType: vehicleType.value,
+        customTourName: name,
       });
       navigate('/client/custom-tour/summary');
     }
@@ -174,6 +176,17 @@ const ClientCustomTour = ({ customTourLocations }) => {
         <c.FormTitle>Request Custom Tour </c.FormTitle>
 
         <c.Form onSubmit={onSubmit}>
+          <c.Row>
+            <c.FormGroup>
+              <Label labelText={'Tour name'} />
+              <TextField
+                value={name}
+                setValue={setName}
+                placeholder={'Enter tour name here'}
+              />
+            </c.FormGroup>
+            <c.FormGroup></c.FormGroup>
+          </c.Row>
           <c.Row>
             <c.FormGroup>
               <Label labelText={'Tour Start date'} />

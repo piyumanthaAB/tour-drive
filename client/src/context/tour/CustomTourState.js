@@ -7,6 +7,7 @@ import CustomTourContext from './customTourContext';
 const CustomTourState = (props) => {
   const initialState = {
     customTour: [],
+    customTourName: '',
     startDate: '',
     endDate: '',
     passengerCount: 1,
@@ -82,6 +83,7 @@ const CustomTourState = (props) => {
         vehicleType: state.vehicleType,
         vehicleTransmission: state.vehicleTransmission,
         vehicleFuel: state.vehicleFuel,
+        customTourName: state.customTourName,
         updateCustomTour,
         resetCustomTour,
         updaetState,

@@ -4,6 +4,9 @@ import CustomTourContext from '../../context/tour/customTourContext';
 import Label from '../shared/Form Elements/Label';
 import { vehiclePrice, accomodationPrices } from '../../data/prices';
 import customTourCost from '../../utils/customTourCost';
+import { toast } from 'react-hot-toast';
+import submitForm from '../../hooks/submitForm';
+import AuthContext from '../../context/auth/authContext';
 
 const CustomTourSummary = ({ distanceData }) => {
   const {
@@ -14,7 +17,10 @@ const CustomTourSummary = ({ distanceData }) => {
     vehicleType,
     vehicleTransmission,
     vehicleFuel,
+    customTourName,
   } = useContext(CustomTourContext);
+
+  const { user } = useContext(AuthContext);
 
   const [duration, setDuration] = useState('-');
   const [totalDistance, setTotalDistance] = useState('');
@@ -55,6 +61,47 @@ const CustomTourSummary = ({ distanceData }) => {
     { label: '3 Star', value: 'star_3' },
   ];
 
+  const onSubmit = async (e) => {
+    const data = {
+      customTour,
+      name: customTourName,
+      startDate,
+      endDate,
+      duration,
+      passengerCount,
+      vehicleType,
+      vehicleTransmission,
+      vehicleFuel,
+      totalDistance,
+      estimatedVehicleCost: distanceCost,
+      estimatedAccomodationCost: accomodationCost,
+      estimatedTotalCost: totalCost,
+      user: user._id,
+    };
+
+    console.log({ data });
+
+    await toast.promise(
+      submitForm('/api/v1/custom-tours', data, 'post', {}),
+      {
+        loading: 'Submitting Tour request...',
+        success: (data) => {
+          console.log({ data });
+          return ` ${data.data.message} ` || 'success';
+        },
+        error: (err) => `${err.response.data.message}`,
+      },
+      {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '2rem',
+        },
+      }
+    );
+  };
+
   return (
     <>
       <c.Container>
@@ -62,6 +109,10 @@ const CustomTourSummary = ({ distanceData }) => {
 
         <c.Row>
           <c.DescriptionContainer>
+            <c.DescGroup>
+              <Label labelText={'Tour name'} />
+              <h2>{customTourName}</h2>
+            </c.DescGroup>
             <c.DescGroup>
               <Label labelText={'Start Date'} />
               <h2>{startDate}</h2>
@@ -107,6 +158,10 @@ const CustomTourSummary = ({ distanceData }) => {
               <h2>$ {totalCost}</h2>
             </c.DescGroup>
           </c.DescriptionContainer>
+        </c.Row>
+
+        <c.Row>
+          <h3>*click here to view terms and conditions*</h3>
         </c.Row>
 
         <c.TableContainer>
@@ -174,7 +229,13 @@ const CustomTourSummary = ({ distanceData }) => {
             })} */}
           </c.Table>
         </c.TableContainer>
-        <c.SubmitBtn>Submit for validation</c.SubmitBtn>
+        <c.SubmitBtn
+          onClick={() => {
+            onSubmit();
+          }}
+        >
+          Submit for validation
+        </c.SubmitBtn>
       </c.Container>
     </>
   );

@@ -30,8 +30,14 @@ const customTourCost = (
       accomodationTotalPrice += 0;
     } else {
       accomodationTotalPrice += accomodationPrices[accomodations[i]];
+      console.log({
+        'accomodationPrices[accomodations[i]]':
+          accomodationPrices[accomodations[i]],
+      });
     }
   });
+
+  console.log({ accomodations, accomodationTotalPrice });
 
   const accomodationAllPassengersPrice =
     accomodationTotalPrice * passengerCount;

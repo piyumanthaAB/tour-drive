@@ -1,14 +1,14 @@
 export const vehiclePrice = {
-  car: 35,
-  van: 40,
-  suv: 45,
-  cab: 50,
+  car: 10,
+  van: 15,
+  suv: 20,
+  cab: 18,
 };
 
 export const accomodationPrices = {
-  guestHouse: 20,
-  villa: 60,
-  star_1: 30,
-  start_2: 40,
-  star_3: 50,
+  guestHouse: 10,
+  villa: 15,
+  star_1: 18,
+  star_2: 25,
+  star_3: 30,
 };

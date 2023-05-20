@@ -1,4 +1,4 @@
-import express from "express";
+import express from 'express';
 import {
   getCustomTour,
   getCustomTours,
@@ -6,16 +6,13 @@ import {
   deleteCustomTour,
   uploadCustomTourPhoto,
   updateCustomTour,
-} from "../controllers/customTourController.js";
+} from '../controllers/customTourController.js';
 const router = express.Router();
 
-router
-  .route("/")
-  .get(getCustomTours)
-  .post(uploadCustomTourPhoto, createCustomTour);
+router.route('/').get(getCustomTours).post(createCustomTour);
 
 router
-  .route("/:id")
+  .route('/:id')
   .get(getCustomTour)
   .delete(deleteCustomTour)
   .patch(updateCustomTour);

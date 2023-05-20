@@ -26,6 +26,7 @@ export default (state, action) => {
         vehicleType: action.payload.vehicleType,
         vehicleTransmission: action.payload.vehicleTransmission,
         vehicleFuel: action.payload.vehicleFuel,
+        customTourName: action.payload.customTourName,
       };
 
     default:
