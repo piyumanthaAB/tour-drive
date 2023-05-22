@@ -8,6 +8,8 @@ import {
   signUp,
   logout,
   getCUrrentUser,
+  updateMyPassword,
+  protect,
 } from './../controllers/authController.js';
 
 const router = express.Router();
@@ -20,5 +22,6 @@ router.post('/google', continueWithGoogle);
 router.post('/facebook', continueWithFacebook);
 router.post('/forgotPassword', forgotPassword);
 router.post('/resetPassword/:resetToken', resetPassword);
+router.patch('/update-password', protect, updateMyPassword);
 
 export { router as authRouter };

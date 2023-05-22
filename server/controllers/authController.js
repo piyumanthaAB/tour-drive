@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import { Email } from './../utils/email.js';
 import { promisify } from 'util';
+import { log } from 'console';
 
 // ============== MIDDLEWARE STACK START =================
 
@@ -331,6 +332,31 @@ const getCUrrentUser = catchAsync(async (req, res, next) => {
   });
 });
 
+// @ DESCRIPTION            =>  for logged in users to update their passwords
+// @ ENDPOINT               =>  api/v1/auth/update-password[POST]
+// @ ACCESS                 =>  'all logged in users'
+const updateMyPassword = catchAsync(async (req, res, next) => {
+  //1) GEt user from collection
+  const user = await User.findById(req.user._id).select('+password');
+
+  log({ user });
+
+  //2) Check if POSTed current password is correct
+  if (!(await user.correctPassword(req.body.passwordCurrent, user.password)))
+    return next(new AppError('Invalid password !', 401));
+
+  //3) If so, update password
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+
+  // console.log(user);
+
+  await user.save();
+
+  //4) Log user in, send JWT
+  createSendToken(user, 200, req, res);
+});
+
 // ########################### controllers END ###############################
 export {
   resetPassword,
@@ -343,4 +369,5 @@ export {
   restrictTo,
   logout,
   getCUrrentUser,
+  updateMyPassword,
 };
