@@ -10,6 +10,7 @@ import {
   getCUrrentUser,
   updateMyPassword,
   protect,
+  updateMe,
 } from './../controllers/authController.js';
 
 const router = express.Router();
@@ -23,5 +24,6 @@ router.post('/facebook', continueWithFacebook);
 router.post('/forgotPassword', forgotPassword);
 router.post('/resetPassword/:resetToken', resetPassword);
 router.patch('/update-password', protect, updateMyPassword);
+router.patch('/update-me', protect, updateMe);
 
 export { router as authRouter };

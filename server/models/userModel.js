@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       // required: [true, 'A user must have a name']
     },
+    country: {
+      type: String,
+      // required: [true, 'A user must have a name']
+    },
     email: {
       type: String,
       unique: true,
@@ -20,7 +24,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
-    passport: {
+    passportID: {
       type: String,
       unique: true,
     },

@@ -357,6 +357,31 @@ const updateMyPassword = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, req, res);
 });
 
+// @ DESCRIPTION            =>  for currently loggedin user to update their profile
+// @ ENDPOINT               =>  api/v1/auth/update-me [PATCH]
+// @ ACCESS                 =>  'currently loggedin user'
+const updateMe = catchAsync(async (req, res, next) => {
+  const data = {
+    email: req.body.email,
+    name: req.body.name,
+    mobile: req.body.mobile,
+    country: req.body.country,
+    passportID: req.body.passportID,
+  };
+  const updatedUser = await User.findByIdAndUpdate(req.user._id, data, {
+    runValidators: true,
+    new: true,
+  });
+
+  res.status(201).json({
+    status: 'success',
+    message: 'Profile updated successfully',
+    data: {
+      updatedUser,
+    },
+  });
+});
+
 // ########################### controllers END ###############################
 export {
   resetPassword,
@@ -370,4 +395,5 @@ export {
   logout,
   getCUrrentUser,
   updateMyPassword,
+  updateMe,
 };

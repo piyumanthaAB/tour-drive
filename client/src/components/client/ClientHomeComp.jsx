@@ -20,8 +20,9 @@ const ClientHomeComp = () => {
   );
   const [country, setCountry] = useState('Sri Lanka');
   const [local, setLocal] = useState(true);
-  const [id, setId] = useState();
-  const [passport, setPassport] = useState();
+  const [passportID, setPassportID] = useState(
+    user?.passportID || 'update your passport or ID here'
+  );
 
   const onPwdReset = async (e) => {
     e.preventDefault();
@@ -57,11 +58,42 @@ const ClientHomeComp = () => {
     );
   };
 
+  const onUpdate = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      name: name,
+      country: country,
+      passportID: passportID,
+      mobile: mobile,
+    };
+
+    await toast.promise(
+      submitForm('/api/v1/auth/update-me', data, 'patch', {}),
+      {
+        loading: 'Updating profile data ....',
+        success: (data) => {
+          console.log({ data });
+          return 'success';
+        },
+        error: (err) => `${err.response.data.message}`,
+      },
+      {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '2rem',
+        },
+      }
+    );
+  };
+
   return (
     <c.Container>
       <c.FormTitle>My Profile</c.FormTitle>
 
-      <c.Form>
+      <c.Form onSubmit={onUpdate}>
         <c.FormGroup>
           <Label labelText={'Email'} />
           <TextField placeholder={'Enter email here'} value={email} />
@@ -87,22 +119,27 @@ const ClientHomeComp = () => {
           <Label labelText={'Country'} />
           <TextField
             value={country}
-            setValue={setName}
+            setValue={setCountry}
             placeholder={'Enter country here'}
           />
         </c.FormGroup>
 
         <c.FormGroup>
-          <Label labelText={'ID or Passport'} />
-          <TextField placeholder={'Enter ID or Passport here'} />
+          <Label labelText={'ID or Passport  number'} />
+          <TextField
+            value={passportID}
+            setValue={setPassportID}
+            placeholder={'Enter ID or Passport number here'}
+          />
         </c.FormGroup>
-        <c.FormGroup>
+        <c.FormGroup></c.FormGroup>
+        {/* <c.FormGroup>
           <Label labelText={'Profile photo'} />
           <TextField
             type="file"
             placeholder={'Upload tour gallery images here'}
           />
-        </c.FormGroup>
+        </c.FormGroup> */}
 
         <c.FormGroup>
           <c.SubmitBtn>Update profile</c.SubmitBtn>
