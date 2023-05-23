@@ -63,7 +63,7 @@ const customTourSchema = new mongoose.Schema(
       required: [true, 'custom tour must have an estimated total cost'],
     },
     finalCost: {
-      type: Number,
+      type: String,
       // required: true,
     },
     duration: {
@@ -96,6 +96,10 @@ const customTourSchema = new mongoose.Schema(
     },
     adminOtherComment: {
       type: String,
+    },
+    isPaid: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }

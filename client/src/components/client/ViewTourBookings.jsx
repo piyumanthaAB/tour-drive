@@ -13,6 +13,7 @@ const ViewTourBookings = ({ bookings }) => {
             <f.TableRow>
               <f.TableDataCell th={true}>#</f.TableDataCell>
               <f.TableDataCell th={true}>Tour Name</f.TableDataCell>
+              <f.TableDataCell th={true}>Type</f.TableDataCell>
               <f.TableDataCell th={true}>Start Date</f.TableDataCell>
               <f.TableDataCell th={true}>Fee</f.TableDataCell>
               <f.TableDataCell th={true}>View</f.TableDataCell>
@@ -21,16 +22,30 @@ const ViewTourBookings = ({ bookings }) => {
               return (
                 <f.TableRow key={key}>
                   <f.TableDataCell>{key + 1} </f.TableDataCell>
-                  <f.TableDataCell>{item.tour?.name || ''} </f.TableDataCell>
                   <f.TableDataCell>
-                    {item?.tour?.start_date?.split('T')[0] || 'not available'}
+                    {item.tour?.name || item.customTour.name || ''}{' '}
                   </f.TableDataCell>
-                  <f.TableDataCell className='flex'>
+                  <f.TableDataCell>{item.bookingType || ''} </f.TableDataCell>
+                  <f.TableDataCell>
+                    {item?.tour?.start_date?.split('T')[0] ||
+                      item.customTour.startDate ||
+                      'not available'}
+                  </f.TableDataCell>
+                  <f.TableDataCell className="flex">
                     {' '}
-                    ${item.tour?.price}{' '}
+                    ${item.tour?.price || item.customTour.finalCost}{' '}
                   </f.TableDataCell>
                   <f.TableDataCell>
-                    <Link to={`/tours/${item?.tour?._id}`}>View tour</Link>
+                    {item.bookingType === 'custom-tour' && (
+                      <Link
+                        to={`/client/my-custom-tours/${item?.customTour._id}`}
+                      >
+                        View tour
+                      </Link>
+                    )}
+                    {item.bookingType === 'tour' && (
+                      <Link to={`/tours/${item?.tour?._id}`}>View tour</Link>
+                    )}
                   </f.TableDataCell>
                 </f.TableRow>
               );

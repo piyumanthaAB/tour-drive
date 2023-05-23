@@ -107,6 +107,7 @@ const updateCustomTour = catchAsync(async (req, res, next) => {
     adminVehicleComment: req.body.adminVehicleComment,
     adminOtherComment: req.body.adminOtherComment,
     status: req.body.status,
+    finalCost: req.body.finalCost,
   };
   const updatedCustomTour = await CustomTour.findByIdAndUpdate(id, data, {
     new: true,

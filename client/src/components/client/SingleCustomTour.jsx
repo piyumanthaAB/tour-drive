@@ -156,42 +156,51 @@ const SingleCustomTour = ({ tour }) => {
             })} */}
           </c.Table>
         </c.TableContainer>
-        <c.Container>
-          <c.FormTitle>Rejection comments</c.FormTitle>
+        {tour.status !== 'pending' && (
+          <c.Container>
+            <c.FormTitle>
+              {tour?.status === 'approved'
+                ? 'Approved'
+                : tour?.status === 'rejected'
+                ? 'Rejected'
+                : ''}{' '}
+              comments
+            </c.FormTitle>
 
-          <c.FormGroup>
-            <Label labelText={'Pricing related '} />
-            <TextArea
-              //   placeholder={'Enter your comment'}
-              value={tour?.adminPriceComment || 'currently not available'}
-              //   setValue={setPriceComment}
-            />
-          </c.FormGroup>
-          <c.FormGroup>
-            <Label labelText={'Location related '} />
-            <TextArea
-              //   placeholder={'Location related'}
-              value={tour?.adminLocationComment || 'currently not available'}
-              //   setValue={setLocationComment}
-            />
-          </c.FormGroup>
-          <c.FormGroup>
-            <Label labelText={'Vehicle related '} />
-            <TextArea
-              //   placeholder={'Enter your comment'}
-              value={tour?.adminVehicleComment || 'currently not available'}
-              //   setValue={setVehicleComment}
-            />
-          </c.FormGroup>
-          <c.FormGroup>
-            <Label labelText={'Other'} />
-            <TextArea
-              //   placeholder={'Enter your comment'}
-              value={tour?.adminOtherComment || 'currently not available'}
-              //   setValue={setOtherComment}
-            />
-          </c.FormGroup>
-        </c.Container>
+            <c.FormGroup>
+              <Label labelText={'Pricing related '} />
+              <TextArea
+                //   placeholder={'Enter your comment'}
+                value={tour?.adminPriceComment || 'currently not available'}
+                //   setValue={setPriceComment}
+              />
+            </c.FormGroup>
+            <c.FormGroup>
+              <Label labelText={'Location related '} />
+              <TextArea
+                //   placeholder={'Location related'}
+                value={tour?.adminLocationComment || 'currently not available'}
+                //   setValue={setLocationComment}
+              />
+            </c.FormGroup>
+            <c.FormGroup>
+              <Label labelText={'Vehicle related '} />
+              <TextArea
+                //   placeholder={'Enter your comment'}
+                value={tour?.adminVehicleComment || 'currently not available'}
+                //   setValue={setVehicleComment}
+              />
+            </c.FormGroup>
+            <c.FormGroup>
+              <Label labelText={'Other'} />
+              <TextArea
+                //   placeholder={'Enter your comment'}
+                value={tour?.adminOtherComment || 'currently not available'}
+                //   setValue={setOtherComment}
+              />
+            </c.FormGroup>
+          </c.Container>
+        )}
       </c.Container>
     </>
   );

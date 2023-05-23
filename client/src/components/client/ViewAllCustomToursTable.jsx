@@ -1,10 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as f from './ViewAllCustomToursTableElements';
 import { FiPlusCircle, FiEdit, FiTrash2 } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
+import axios from 'axios';
 
 const ViewAllCustomToursTable = ({ tours }) => {
   const navigate = useNavigate();
+
+  const [clickedTour, setClickedTour] = useState('');
+  const { data, isPending, isError } = useFetch(
+    `/api/v1/custom-tours/my-custom-tours/${clickedTour}`
+  );
+
+  if (data) {
+    console.log({ data });
+  }
+
+  const onPayment = async (e, id) => {
+    // alert(id);
+    setClickedTour(id);
+    const tourData = {
+      tourName: data.data.myCustomTour[0].name,
+      tourDesc:
+        data.data.myCustomTour[0].description || 'no description for this tour',
+      price: data.data.myCustomTour[0].finalCost,
+      bookingType: 'custom-tour',
+      tourID: data.data.myCustomTour[0]._id,
+      vehicle: null,
+      vehicleName: null,
+      user: data.data.myCustomTour[0].user,
+      noOfSeats: data.data.myCustomTour[0].passengerCount,
+      from: data.data.myCustomTour[0].startDate,
+      to: data.data.myCustomTour[0].endDate,
+    };
+
+    try {
+      const res = await axios({
+        method: 'POST',
+        url: '/api/v1/booking/create-checkout-session',
+        data: tourData,
+        headers: {
+          Content: 'application/json',
+        },
+      });
+      // const res = await axios.post('/api/v1/booking/create-checkout-session', {
+      //   tourData,
+      // },);
+
+      if (res.status === 201) {
+        window.location.href = res.data.data.url;
+      }
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
   return (
     <>
       <f.Container>
@@ -22,6 +73,9 @@ const ViewAllCustomToursTable = ({ tours }) => {
               <f.TableDataCell th={true}>Actions</f.TableDataCell>
             </f.TableRow>
             {tours.map((tour, key) => {
+              if (tour.isPaid) {
+                return null;
+              }
               return (
                 <f.TableRow>
                   <f.TableDataCell>{key + 1} </f.TableDataCell>
@@ -55,7 +109,9 @@ const ViewAllCustomToursTable = ({ tours }) => {
                     {tour.status === 'approved' && (
                       <f.TableActionBtn
                         onClick={(e) => {
+                          e.preventDefault();
                           // onTourUpdate(e, tour);
+                          onPayment(e, tour._id);
                         }}
                       >
                         Payment

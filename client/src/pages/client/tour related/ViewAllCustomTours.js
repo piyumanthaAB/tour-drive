@@ -16,6 +16,7 @@ const ViewAllCustomTours = () => {
   const { data, isPending, isError } = useFetch(
     '/api/v1/custom-tours/my-custom-tours'
   );
+
   return (
     <>
       <Dashboard
