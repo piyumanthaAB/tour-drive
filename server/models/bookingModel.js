@@ -8,6 +8,10 @@ const bookingSchema = new mongoose.Schema(
       ref: 'Tour',
       // required: [true, 'A Booking must have a tour']
     },
+    customTour: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'CustomTour',
+    },
     vehicle: {
       type: mongoose.Schema.ObjectId,
       ref: 'Vehicle',
@@ -26,8 +30,9 @@ const bookingSchema = new mongoose.Schema(
       type: String,
       required: [true, 'A booking must have a type. '],
       enum: {
-        values: ['tour', 'vehicle'],
-        message: 'bookingType values should be either <tour> or <vehicle> ',
+        values: ['tour', 'vehicle', 'custom-tour'],
+        message:
+          'bookingType values should be either <tour> or <vehicle> or <custom-tour> ',
       },
     },
     price: {
@@ -54,7 +59,10 @@ const bookingSchema = new mongoose.Schema(
 // });
 
 bookingSchema.pre(/^find/, function (next) {
-  this.populate('user').populate('tour').populate('vehicle');
+  this.populate('user')
+    .populate('tour')
+    .populate('vehicle')
+    .populate('customTour');
 
   next();
 });

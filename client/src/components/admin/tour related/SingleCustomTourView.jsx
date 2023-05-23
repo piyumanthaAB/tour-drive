@@ -20,6 +20,10 @@ const SingleCustomTourView = ({ tour }) => {
     tour?.adminOtherComment || 'not available'
   );
 
+  const [finalPrice, setFinalPrice] = useState(
+    tour?.finalCost || 'not available'
+  );
+
   const onSubmit = async (e, type) => {
     e.preventDefault();
 
@@ -29,6 +33,7 @@ const SingleCustomTourView = ({ tour }) => {
       adminLocationComment: locationComment,
       adminVehicleComment: vehicleComment,
       adminOtherComment: otherComment,
+      finalCost: finalPrice,
       status: type === 'accept' ? 'approved' : 'rejected',
     };
 
@@ -232,6 +237,15 @@ const SingleCustomTourView = ({ tour }) => {
       <c.Container>
         <c.FormTitle>Validate tour</c.FormTitle>
         <c.Form>
+          <c.FormGroup>
+            <Label labelText={'Enter final total cost ( $ )'} />
+            <TextField
+              placeholder={'Enter final total cost here'}
+              value={finalPrice}
+              setValue={setFinalPrice}
+            />
+          </c.FormGroup>
+          <c.FormGroup></c.FormGroup>
           <c.FormGroup>
             <Label labelText={'Enter any price changes here '} />
             <TextArea
