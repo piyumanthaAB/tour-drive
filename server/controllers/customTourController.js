@@ -152,6 +152,22 @@ const getMyCustomTours = catchAsync(async (req, res, next) => {
     data: { myCustomTours },
   });
 });
+//@desc get currently loggedin users single custom tour requests
+//@route GET /api/v1/custom-tours/my-custom-tours/:id
+//@access Private
+const getMyCustomTourOne = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+
+  const myCustomTour = await CustomTour.find({
+    user: req.user._id,
+    _id: id,
+  });
+
+  res.status(200).json({
+    status: 'success',
+    data: { myCustomTour },
+  });
+});
 
 export {
   getCustomTour,
@@ -161,4 +177,5 @@ export {
   uploadCustomTourPhoto,
   updateCustomTour,
   getMyCustomTours,
+  getMyCustomTourOne,
 };

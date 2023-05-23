@@ -1,8 +1,10 @@
 import React from 'react';
 import * as f from './ViewAllCustomToursTableElements';
 import { FiPlusCircle, FiEdit, FiTrash2 } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 const ViewAllCustomToursTable = ({ tours }) => {
+  const navigate = useNavigate();
   return (
     <>
       <f.Container>
@@ -59,7 +61,13 @@ const ViewAllCustomToursTable = ({ tours }) => {
                         Payment
                       </f.TableActionBtn>
                     )}
-                    <f.TableActionBtn color={'#333'} backgroundColor={'#ccc'}>
+                    <f.TableActionBtn
+                      color={'#333'}
+                      backgroundColor={'#ccc'}
+                      onClick={() => {
+                        navigate(`/client/my-custom-tours/${tour._id}`);
+                      }}
+                    >
                       View
                     </f.TableActionBtn>
                   </f.TableDataCell>

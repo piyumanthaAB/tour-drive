@@ -47,6 +47,7 @@ import ViewSingleEmergencyRequest from './pages/customer-care/ViewSingleEmergenc
 import AdminSingleCustomTour from './pages/admin/tour related/AdminSingleCustomTour';
 import ViewCustomTourSummary from './pages/client/tour related/ViewCustomTourSummary';
 import ViewAllCustomTours from './pages/client/tour related/ViewAllCustomTours';
+import ViewSingleCustomTour from './pages/client/tour related/ViewSingleCustomTour';
 
 function App() {
   const { loadUser } = useAuth();
@@ -99,6 +100,11 @@ function App() {
                 exact
                 path="/client/my-custom-tours"
                 element={<ViewAllCustomTours />}
+              />
+              <Route
+                exact
+                path="/client/my-custom-tours/:id"
+                element={<ViewSingleCustomTour />}
               />
               {/* CUSTOMER CARE routes starts here */}
               <Route
