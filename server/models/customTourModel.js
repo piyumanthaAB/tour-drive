@@ -85,6 +85,18 @@ const customTourSchema = new mongoose.Schema(
           "custom tour status must be one of :< 'pending', 'approved', 'rejected' > ",
       },
     },
+    adminPriceComment: {
+      type: String,
+    },
+    adminLocationComment: {
+      type: String,
+    },
+    adminVehicleComment: {
+      type: String,
+    },
+    adminOtherComment: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

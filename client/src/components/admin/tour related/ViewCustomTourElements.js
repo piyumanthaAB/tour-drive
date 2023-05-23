@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
-    width: 100;
-    min-height; 10rem;
-    padding: 3rem 6rem;
+  width: 100;
+  min-height: 10rem;
+  padding: 3rem 6rem;
 `;
 
 export const FormTitle = styled.p`
@@ -36,30 +36,44 @@ export const TableRow = styled.tr`
 
 export const TableData = styled.td`
   padding: 1rem 1rem;
-  font-weight: ${(props) => (props.th ? "500" : "400")};
-  font-size: ${(props) => (props.th ? "1.3rem" : "1.4rem")};
-  color: ${(props) => (props.th ? "#999" : "#555")};
-  min-width: ${(props) => props.minwidth || "auto"};
+  font-weight: ${(props) => (props.th ? '500' : '400')};
+  font-size: ${(props) => (props.th ? '1.3rem' : '1.4rem')};
+  color: ${(props) => (props.th ? '#999' : '#555')};
+  min-width: ${(props) => props.minwidth || 'auto'};
   &.flex {
     display: flex;
     align-items: center;
   }
 `;
 
+export const LabelIndicator = styled.div`
+  background-color: ${(props) => props.backgroundColor || '#333'};
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  margin: 0 0.5rem;
+`;
+
+export const LabelGroup = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
 export const TableActionBtn = styled.div`
-    width: 3.5rem;
-    height: 3.5rem;
-    background-fcolor: #fff;
-    border: 1px solid #333;
-    margin: 0 1rem 0 0;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius; 2rem;
-    font-size: 1.6rem;
-    :hover {
-        cursor: pointer;
-        background-color: #ccc;
-    }
+  width: 3.5rem;
+  height: 3.5rem;
+  background-fcolor: #fff;
+  border: 1px solid #333;
+  margin: 0 1rem 0 0;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  font-size: 1.6rem;
+  :hover {
+    cursor: pointer;
+    background-color: #ccc;
+  }
 `;

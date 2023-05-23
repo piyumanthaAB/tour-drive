@@ -167,7 +167,7 @@ const CustomTourSummary = ({ distanceData }) => {
         <c.TableContainer>
           <c.Table>
             <c.TableRow>
-              <c.TableDataCell th={true}>#</c.TableDataCell>
+              <c.TableDataCell th={true}>Day</c.TableDataCell>
               <c.TableDataCell th={true}>City</c.TableDataCell>
               <c.TableDataCell th={true}>Location One</c.TableDataCell>
               <c.TableDataCell th={true}>Location Two</c.TableDataCell>
