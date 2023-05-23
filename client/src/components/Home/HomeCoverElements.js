@@ -54,7 +54,8 @@ export const btnTour = styled.a`
     padding: 1.5rem;
     width: 16rem;
     text-decoration: none;
-    border: 3px solid #fff;
+    border: 5px solid #fff;
+    border-radius: 15px;
     color: #fff;
     font-size: 15px;
     font-weight: bold;
@@ -80,6 +81,7 @@ export const btnTour = styled.a`
     top: 0;
     width: 100%;
     height: 100%;
+    border-radius: 9px;
     background: #fff;
     z-index: -1;
     transition: transform 0.5s;
@@ -128,7 +130,8 @@ export const btnDrive = styled.a`
     padding: 1.5rem;
     width: 16rem;
     text-decoration: none;
-    border: 3px solid #fff;
+    border: 5px solid #b6b6b6;
+    border-radius: 15px;
     color: #fff;
     font-size: 15px;
     font-weight: bold;
@@ -154,7 +157,8 @@ export const btnDrive = styled.a`
     top: 0;
     width: 100%;
     height: 100%;
-    background: #fff;
+    border-radius: 9px;
+    background: #b6b6b6;
     z-index: -1;
     transition: transform 0.5s;
     transform-origin: 0 0;
