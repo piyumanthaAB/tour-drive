@@ -141,6 +141,11 @@ export const clientLinks = [
         redirectURL: '/client/my-vehicle-bookings',
       },
       {
+        icon: <FiTruck />,
+        text: 'My custom tours',
+        redirectURL: '/client/my-custom-tours',
+      },
+      {
         icon: <FiPlusCircle />,
         text: 'Request Custom Tour',
         redirectURL: '/client/add-custom-tour',

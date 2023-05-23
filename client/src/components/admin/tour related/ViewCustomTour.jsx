@@ -12,7 +12,7 @@ const ViewCustomTour = ({ tours }) => {
   return (
     <>
       <f.Container>
-        <f.FormTitle>View all Requested Custom Tours</f.FormTitle>
+        <f.FormTitle>Requested Custom Tours</f.FormTitle>
         <f.TableContainer>
           <f.Table>
             <f.TableRow>

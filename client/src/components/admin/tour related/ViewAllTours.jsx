@@ -9,7 +9,7 @@ const ViewAllTours = ({ tours }) => {
     // console.log(tour);
     navigate(`/admin/tours/update/${tour._id}`);
   };
-  console.log({ tours });
+  // console.log({ tours });
   return (
     <>
       <f.Container>
@@ -30,15 +30,15 @@ const ViewAllTours = ({ tours }) => {
                 <f.TableRow>
                   <f.TableDataCell>{key + 1} </f.TableDataCell>
                   <f.TableDataCell>{tour.name} </f.TableDataCell>
-                  <f.TableDataCell minwidth='1rem'>
+                  <f.TableDataCell minwidth="1rem">
                     {tour.price}
                   </f.TableDataCell>
-                  <f.TableDataCell className='flex'>
+                  <f.TableDataCell className="flex">
                     {' '}
                     03-06-2023{' '}
                   </f.TableDataCell>
-                  <f.TableDataCell minwidth='1rem'>08-06-2023</f.TableDataCell>
-                  <f.TableDataCell className='flex' minwidth='1rem'>
+                  <f.TableDataCell minwidth="1rem">08-06-2023</f.TableDataCell>
+                  <f.TableDataCell className="flex" minwidth="1rem">
                     <f.TableActionBtn
                       onClick={(e) => {
                         onTourUpdate(e, tour);

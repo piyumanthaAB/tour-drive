@@ -7,6 +7,7 @@ import customTourCost from '../../utils/customTourCost';
 import { toast } from 'react-hot-toast';
 import submitForm from '../../hooks/submitForm';
 import AuthContext from '../../context/auth/authContext';
+import { useNavigate } from 'react-router-dom';
 
 const CustomTourSummary = ({ distanceData }) => {
   const {
@@ -19,6 +20,8 @@ const CustomTourSummary = ({ distanceData }) => {
     vehicleFuel,
     customTourName,
   } = useContext(CustomTourContext);
+
+  const navigate = useNavigate();
 
   const { user } = useContext(AuthContext);
 
@@ -100,6 +103,8 @@ const CustomTourSummary = ({ distanceData }) => {
         },
       }
     );
+
+    navigate('/client/my-custom-tours');
   };
 
   return (

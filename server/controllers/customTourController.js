@@ -137,6 +137,22 @@ const deleteCustomTour = catchAsync(async (req, res, next) => {
   }
 });
 
+//@desc get currently loggedin users all custom tour requests
+//@route GET /api/v1/custom-tours/my-custom-tours
+//@access Private
+const getMyCustomTours = catchAsync(async (req, res, next) => {
+  // console.log({ user: req.user._id });
+  // console.log({ user: req.user });
+
+  const myCustomTours = await CustomTour.find({ user: req.user._id });
+
+  res.status(200).json({
+    status: 'success',
+    results: myCustomTours.length,
+    data: { myCustomTours },
+  });
+});
+
 export {
   getCustomTour,
   getCustomTours,
@@ -144,4 +160,5 @@ export {
   deleteCustomTour,
   uploadCustomTourPhoto,
   updateCustomTour,
+  getMyCustomTours,
 };

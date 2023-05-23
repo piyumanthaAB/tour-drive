@@ -7,10 +7,18 @@ import TextField from '../../shared/Form Elements/TextField';
 import * as c from './AdminTourCreateFormElements';
 
 const SingleCustomTourView = ({ tour }) => {
-  const [priceComment, setPriceComment] = useState('');
-  const [locationComment, setLocationComment] = useState('');
-  const [vehicleComment, setVehicleComment] = useState('');
-  const [otherComment, setOtherComment] = useState('');
+  const [priceComment, setPriceComment] = useState(
+    tour?.adminPriceComment || 'not available'
+  );
+  const [locationComment, setLocationComment] = useState(
+    tour?.adminLocationComment || 'not available'
+  );
+  const [vehicleComment, setVehicleComment] = useState(
+    tour?.adminVehicleComment || 'not available'
+  );
+  const [otherComment, setOtherComment] = useState(
+    tour?.adminOtherComment || 'not available'
+  );
 
   const onSubmit = async (e, type) => {
     e.preventDefault();
@@ -257,27 +265,29 @@ const SingleCustomTourView = ({ tour }) => {
             />
           </c.FormGroup>
         </c.Form>
-        <c.ButtonRow>
-          <c.SubmitBtn
-            onClick={(e) => {
-              e.preventDefault();
-              onSubmit(e, 'accept');
-            }}
-            backgroundColor="var(--main-color)"
-            type="submit"
-          >
-            Accept
-          </c.SubmitBtn>
-          <c.SubmitBtn
-            onClick={(e) => {
-              e.preventDefault();
-              onSubmit(e, 'reject');
-            }}
-            type="reset"
-          >
-            Reject
-          </c.SubmitBtn>
-        </c.ButtonRow>
+        {tour.status === 'pending' && (
+          <c.ButtonRow>
+            <c.SubmitBtn
+              onClick={(e) => {
+                e.preventDefault();
+                onSubmit(e, 'accept');
+              }}
+              backgroundColor="var(--main-color)"
+              type="submit"
+            >
+              Accept
+            </c.SubmitBtn>
+            <c.SubmitBtn
+              onClick={(e) => {
+                e.preventDefault();
+                onSubmit(e, 'reject');
+              }}
+              type="reset"
+            >
+              Reject
+            </c.SubmitBtn>
+          </c.ButtonRow>
+        )}
       </c.Container>
     </>
   );
