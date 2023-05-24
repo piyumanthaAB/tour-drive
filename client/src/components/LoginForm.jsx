@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import useAuth from '../hooks/useAuth';
-import * as l from './LoginFormElement';
-import { useGoogleLogin } from '@react-oauth/google';
-import { Link, useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import React, { useEffect, useState } from "react";
+import useAuth from "../hooks/useAuth";
+import * as l from "./LoginFormElement";
+import { useGoogleLogin } from "@react-oauth/google";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function LoginForm() {
   const { login, continueWithGoogle, user, isAuthenticated, loading } =
@@ -24,14 +24,14 @@ export default function LoginForm() {
   useEffect(() => {
     if (isAuthenticated && user && !loading) {
       switch (user?.role) {
-        case 'admin':
-          navigate('/admin/tours/all');
+        case "admin":
+          navigate("/admin/tours/all");
           break;
-        case 'user':
-          navigate('/client/home');
+        case "user":
+          navigate("/client/home");
           break;
-        case 'customer_care':
-          navigate('/customer-care/view-all-requests');
+        case "customer_care":
+          navigate("/customer-care/view-all-requests");
           break;
 
         default:
@@ -47,49 +47,49 @@ export default function LoginForm() {
       toast.promise(
         login({ email, password }),
         {
-          loading: 'Logging In ...',
+          loading: "Logging In ...",
           success: (data) => `Logged in successfully `,
           error: (err) => {
             if (!err.response.data.message) {
-              return 'Something went wrong. Try again.';
+              return "Something went wrong. Try again.";
             }
             return `${err?.response?.data?.message?.toString()}`;
           },
         },
         {
           style: {
-            borderRadius: '10px',
-            background: '#333',
-            color: '#fff',
-            fontSize: '1.7rem',
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+            fontSize: "1.7rem",
           },
         }
       );
     } else if (!email && !password) {
-      toast.error('Please enter email and password', {
+      toast.error("Please enter email and password", {
         style: {
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-          fontSize: '1.7rem',
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+          fontSize: "1.7rem",
         },
       });
     } else if (!email) {
-      toast.error('Please enter password', {
+      toast.error("Please enter password", {
         style: {
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-          fontSize: '1.7rem',
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+          fontSize: "1.7rem",
         },
       });
     } else if (!password) {
-      toast.error('Please enter password', {
+      toast.error("Please enter password", {
         style: {
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-          fontSize: '1.7rem',
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+          fontSize: "1.7rem",
         },
       });
     }
@@ -145,9 +145,9 @@ export default function LoginForm() {
           Continue with Google
         </l.GoogleLoginButton>
         <l.Desc3>
-          Don’t have an account?{' '}
+          Don’t have an account?{" "}
           <h3>
-            <Link to={'/signup'}>Register now</Link>
+            <Link to={"/signup"}>Register now</Link>
           </h3>
         </l.Desc3>
       </l.LoginContainer>

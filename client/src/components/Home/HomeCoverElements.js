@@ -100,6 +100,7 @@ export const panel = styled.div`
   flex-grow: 1;
   transition: all 1.7s ease;
   position: relative;
+
   &:hover .overlay {
     opacity: 0.6;
     backdrop-filter: blur(12px);
