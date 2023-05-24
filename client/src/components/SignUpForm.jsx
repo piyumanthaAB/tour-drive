@@ -3,6 +3,8 @@ import * as l1 from './SignUpFormElement';
 import useAuth from './../hooks/useAuth';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import FacebookLogin from 'react-facebook-login';
 
 export default function SignUpForm() {
   const { signup, continueWithGoogle, user, isAuthenticated, loading } =
@@ -21,6 +23,11 @@ export default function SignUpForm() {
     },
   });
 
+  const responseFacebook = (response) => {
+    console.log(response);
+    // Handle the Facebook login response here
+  };
+
   useEffect(() => {
     if (isAuthenticated && user && !loading) {
       switch (user?.role) {
@@ -28,7 +35,7 @@ export default function SignUpForm() {
           navigate('/admin');
           break;
         case 'user':
-          navigate('/me');
+          navigate('/client/home');
           break;
 
         default:
@@ -40,8 +47,49 @@ export default function SignUpForm() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (email && password && confirmPassword) {
-      signup({ email, password, confirmPassword });
+    if (password !== confirmPassword) {
+      toast.error("Password and Password Confirm doesn't match", {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '2rem',
+        },
+      });
+      setPassword('');
+      setConfirmPassword('');
+    } else if (!email || !password || !confirmPassword) {
+      // signup({ email, password, confirmPassword });
+      toast.error('Please fill Eamil, Password and Password Confirm', {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '2rem',
+        },
+      });
+    } else {
+      toast.promise(
+        signup({ email, password, confirmPassword }),
+        {
+          loading: 'Signing Up ...',
+          success: (data) => `Signed Up successfully `,
+          error: (err) => {
+            if (!err.response.data.message) {
+              return 'Something went wrong. Try again.';
+            }
+            return `${err?.response?.data?.message?.toString()}`;
+          },
+        },
+        {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+            fontSize: '1.7rem',
+          },
+        }
+      );
     }
   };
 
@@ -77,8 +125,27 @@ export default function SignUpForm() {
         <l1.SignButton>SignUp</l1.SignButton>
         <l1.Desc2>-----or sign in with-----</l1.Desc2>
 
-        <l1.FacebookLoginButton>Continue with Facebook</l1.FacebookLoginButton>
-        <l1.GoogleLoginButton onClick={() => googleLogin()}>
+        {/* <l1.FacebookLoginButton
+          onClick={(e) => {
+            e.preventDefault();
+          }}
+        >
+          Continue with Facebook
+        </l1.FacebookLoginButton> */}
+        {/* <div>
+          <FacebookLogin
+            appId={`${process.env.REACT_FACEBOOK_APP_ID}`}
+            autoLoad={false}
+            fields="name,email,picture"
+            callback={responseFacebook}
+          />
+        </div> */}
+        <l1.GoogleLoginButton
+          onClick={(e) => {
+            e.preventDefault();
+            googleLogin();
+          }}
+        >
           Continue with Google
         </l1.GoogleLoginButton>
       </l1.SignUpContainer>
