@@ -169,7 +169,7 @@ const TourListComponent = ({ setUrl }) => {
                         img={`${process.env.PUBLIC_URL}/tour-uploads/${tour.tour_cover}`}
                       >
                         {/* mui check box with icon can use here */}
-
+                        {/* 
                         <FavouriteBtn>
                           <Checkbox
                             icon={<FavoriteBorder />}
@@ -182,7 +182,7 @@ const TourListComponent = ({ setUrl }) => {
                               '& .MuiSvgIcon-root': { fontSize: 20 },
                             }}
                           />
-                        </FavouriteBtn>
+                        </FavouriteBtn> */}
                       </TourImgContainer>
                       <TourDescContainer>
                         <TourTitle>{tour?.name}</TourTitle>
@@ -296,7 +296,7 @@ const TourListComponent = ({ setUrl }) => {
                 />
               </CheckBoxContainer>
             </TourFilterRow>
-            <TourFilterRow>
+            {/* <TourFilterRow>
               <TourFilterRowTitle>Reviews Score</TourFilterRowTitle>
               <CheckBoxContainer>
                 <CheckBox
@@ -330,7 +330,7 @@ const TourListComponent = ({ setUrl }) => {
                   checked={reviews['1']}
                 />
               </CheckBoxContainer>
-            </TourFilterRow>
+            </TourFilterRow> */}
             <TourFilterRow>
               <TourFilterRowTitle>Filter Price</TourFilterRowTitle>
               <SliderContainer>
