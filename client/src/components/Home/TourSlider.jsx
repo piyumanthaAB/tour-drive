@@ -27,19 +27,19 @@ export default function TourSlider({ data, isPending, isError }) {
 
   // isPending = true;
 
-  data = {
-    data: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  };
+  // data = {
+  //   data: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  // };
 
   return (
     <>
       <s.SliderSection>
         <s.TopSliderSection>
           <s.Text margin={"3rem 0"} fontsize={"4.5rem"} fontweight={"700"}>
-            Select Your Vehicle
+            Select Your Popular tour
           </s.Text>
           <s.Text fontsize={"2rem"} color={"gray"}>
-            you can choose your favourite vehicle here.
+            you can choose your favourite tour.
           </s.Text>
         </s.TopSliderSection>
 

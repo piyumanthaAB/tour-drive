@@ -22,9 +22,9 @@ export default function VehicleSlider({ data, isPending, isError }) {
 
   // isPending = true;
 
-  data = {
-    data: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  };
+  // data = {
+  //   data: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  // };
 
   const style = { color: "var(--main-color)" };
   console.log(data);
