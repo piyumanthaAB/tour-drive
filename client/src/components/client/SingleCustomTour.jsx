@@ -37,7 +37,7 @@ const SingleCustomTour = ({ tour }) => {
         <c.Row>
           <c.DescriptionContainer>
             <c.DescGroup>
-              <Label labelText={'Tour name'} />
+              <Label labelText={'Tour Request ID'} />
               <h2>{tour.name}</h2>
             </c.DescGroup>
             <c.DescGroup>

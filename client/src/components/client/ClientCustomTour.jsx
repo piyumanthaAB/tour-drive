@@ -12,11 +12,13 @@ import { CheckBox } from '../shared/Form Elements/Checkbox';
 import CustomTourCard from '../shared/CustomTourCard';
 import CustomTourContext from '../../context/tour/customTourContext';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const ClientCustomTour = ({ customTourLocations }) => {
   const navigate = useNavigate();
   const { updateCustomTour, resetCustomTour, updaetState } =
     useContext(CustomTourContext);
+  const { user } = useAuth();
   // al available cities in display
   const [selectedCity, setSelectedCity] = useState(0);
 
@@ -44,7 +46,7 @@ const ClientCustomTour = ({ customTourLocations }) => {
   const [fuel, setFuel] = useState({ label: 'Petrol', value: 'petrol' });
 
   const [passengerCount, setPassengerCount] = useState(1);
-  const [name, setName] = useState('');
+  const [name, setName] = useState(`${Math.random()}`);
 
   // final custom tour data with selected locations in each city
   // const [tour, setTour] = useState([
@@ -178,10 +180,10 @@ const ClientCustomTour = ({ customTourLocations }) => {
         <c.Form onSubmit={onSubmit}>
           <c.Row>
             <c.FormGroup>
-              <Label labelText={'Tour name'} />
+              <Label labelText={'Tour Request ID'} />
               <TextField
                 value={name}
-                setValue={setName}
+                // setValue={setName}
                 placeholder={'Enter tour name here'}
               />
             </c.FormGroup>

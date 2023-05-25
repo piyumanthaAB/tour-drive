@@ -110,11 +110,19 @@ const signUp = catchAsync(async (req, res, next) => {
     return next(new AppError('Must provide password and password confirm !'));
   }
 
+  console.log('aaaaaaaaaaaa');
+
   const newUser = await User.create({ email, password, passwordConfirm });
 
-  const URL = `${req.protocol}://${req.get('host')}/login`;
+  // const URL = `${req.protocol}://${req.get('host')}/login`;
 
-  await new Email(newUser, URL).sendWelcome();
+  // try {
+  //   await new Email(newUser, URL).sendWelcome();
+  // } catch (error) {
+  //   throw error;
+  // }
+
+  console.log('bbbbbbbbbbbb');
 
   createSendToken(newUser, 201, req, res);
 });

@@ -24,7 +24,7 @@ const bookingSchema = new mongoose.Schema(
     },
     noOfSeats: {
       type: Number,
-      required: [true, 'Booking must have number of seats required'],
+      // required: [true, 'Booking must have number of seats required'],
     },
     bookingType: {
       type: String,
