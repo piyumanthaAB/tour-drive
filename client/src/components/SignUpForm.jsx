@@ -4,7 +4,6 @@ import useAuth from './../hooks/useAuth';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import FacebookLogin from 'react-facebook-login';
 
 export default function SignUpForm() {
   const { signup, continueWithGoogle, user, isAuthenticated, loading } =
