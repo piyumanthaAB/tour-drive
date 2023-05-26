@@ -199,25 +199,66 @@ export default function ResetForm() {
       }
 } */
 
-import React from 'react';
+import React,{useState} from 'react';
 import * as l from './ResetFormElement';
+import TextField from './shared/Form Elements/TextField';
+import { toast } from 'react-hot-toast';
+import submitForm from '../hooks/submitForm';
+import { useParams } from 'react-router-dom';
 
 
 export default function ResetForm() {
+
+  const{token}=useParams()
+
+  const[pwd,setPwd]=useState('');
+  const[pwdConfirm,setPwdConfirm]=useState('');
+
+  const onSubmit=async e=>{
+    e.preventDefault();
+// alert(token)
+
+toast.promise(
+  submitForm(`/api/v1/auth/resetPassword/${token}`,{password:pwd,passwordConfirm:pwdConfirm},'post',{}),
+  {
+    loading: 'Resetting password...',
+    success: (data) => `Password reset successfully `,
+    error: (err) => {
+      if (!err.response.data.message) {
+        return 'Something went wrong. Try again.';
+      }
+      return `${err?.response?.data?.message?.toString()}`;
+    },
+  },
+  {
+    style: {
+      borderRadius: '10px',
+      background: '#333',
+      color: '#fff',
+      fontSize: '1.7rem',
+    },
+  }
+);
+
+
+
+  }
   return (
     <l.MainContainer>
-      <l.LoginContainer>
+      <l.LoginContainer onSubmit={onSubmit}>
         <l.LoginName>Password Reset</l.LoginName>
         <l.LoginDes>
         Type new password and confirm it
         </l.LoginDes>
          
-         <l.LabelText>
-          <l.LabelTextEmail placeholder='  New Password'></l.LabelTextEmail>
-         </l.LabelText>
-         <l.LabelTextTwo>
-          <l.LabelTextPassword  type='password' placeholder='  Re-Type New Password'></l.LabelTextPassword>
-         </l.LabelTextTwo>
+        <l.EmailInputContainer>
+
+<TextField value={pwd} setValue={setPwd} placeholder='  Enter new password here'/>
+</l.EmailInputContainer>
+        <l.EmailInputContainer>
+
+<TextField value={pwdConfirm} setValue={setPwdConfirm} placeholder='  Confirm new password here'/>
+</l.EmailInputContainer>
          
          <l.LoginButton selected={true}>Continue</l.LoginButton>
 
