@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import tour from "../../images/tour_back.jpg";
-import renting from "../../images/renting.jpg";
-import { keyframes } from "styled-components";
+import styled from 'styled-components';
+import tour from '../../images/tour_back.jpg';
+import renting from '../../images/renting.jpg';
+import { keyframes } from 'styled-components';
 
 export const section = styled.div`
     min-width: 100%;
@@ -75,7 +75,7 @@ export const btnTour = styled.a`
     color: #000;
   }
   .btn: before {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: 0;
@@ -152,7 +152,7 @@ export const btnDrive = styled.a`
     color: #000;
   }
   .btn: before {
-    content: "";
+    content: '';
     position: absolute;
     left: 100%;
     top: 0;

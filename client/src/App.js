@@ -48,7 +48,8 @@ import AdminSingleCustomTour from './pages/admin/tour related/AdminSingleCustomT
 import ViewCustomTourSummary from './pages/client/tour related/ViewCustomTourSummary';
 import ViewAllCustomTours from './pages/client/tour related/ViewAllCustomTours';
 import ViewSingleCustomTour from './pages/client/tour related/ViewSingleCustomTour';
-
+import Blogs from './pages/public/Blogs';
+import BlogPost from './pages/public/BlogPost';
 function App() {
   const { loadUser } = useAuth();
 
@@ -214,6 +215,9 @@ function App() {
 
               <Route exact path="/contact-us" element={<Home />} />
               <Route exact path="/tours" element={<Tours />} />
+
+              <Route exact path="/blogs" element={<Blogs />} />
+              <Route exact path="/blogs/:id" element={<BlogPost />} />
 
               <Route exact path="/vehicles" element={<Vehicles />} />
 

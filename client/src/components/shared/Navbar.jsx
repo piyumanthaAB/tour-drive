@@ -64,8 +64,8 @@ const Navbar = () => {
             Vehicles
           </n.NavLink>
           <n.NavLink
-            selected={currentPath === '/blog' ? true : false}
-            to="/blog"
+            selected={currentPath === '/blogs' ? true : false}
+            to="/blogs"
           >
             Blog
           </n.NavLink>
