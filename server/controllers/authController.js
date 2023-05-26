@@ -114,13 +114,13 @@ const signUp = catchAsync(async (req, res, next) => {
 
   const newUser = await User.create({ email, password, passwordConfirm });
 
-  // const URL = `${req.protocol}://${req.get('host')}/login`;
+  const URL = `${req.protocol}://${req.get('host')}/login`;
 
-  // try {
-  //   await new Email(newUser, URL).sendWelcome();
-  // } catch (error) {
-  //   throw error;
-  // }
+  try {
+    await new Email(newUser, URL).sendWelcome();
+  } catch (error) {
+    throw error;
+  }
 
   console.log('bbbbbbbbbbbb');
 
