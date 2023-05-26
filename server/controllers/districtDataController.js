@@ -1,29 +1,12 @@
-import { loadOptions } from '@babel/core';
-import { customTourLocations } from '../data/locationData.js';
-import { AppError } from '../utils/AppError.js';
-import { catchAsync } from '../utils/catchAsync.js';
+import { loadOptions } from "@babel/core";
+import { customTourLocations } from "../data/locationData.js";
+import { AppError } from "../utils/AppError.js";
+import { catchAsync } from "../utils/catchAsync.js";
 
 //@desc Get all custom tours request
 //@route GET /api/v1/district-data
 //@access Private
 const getDistance = catchAsync(async (req, res, nex) => {
-  // // console.log(req.query.from);
-  // let index = 0;
-  // customTourLocations.map((loc, i) => {
-  //   const from = req.query.from;
-  //   // const to = req.query.to;
-  //   if (loc.city === req.query.from) {
-  //     index = i;
-  //     console.log(customTourLocations[index].city);
-  //   }
-  // });
-
-  // // customTourLocations[index].distances.map((distance, i) => {
-  // //   console.log(distance.Colombo);
-  // // });
-  // const data = customTourLocations[index];
-  // // console.log(distance);
-  // // console.log("test");
   const data = customTourLocations;
   res.status(201).json({ success: true, data: data });
 });
@@ -32,35 +15,7 @@ const getDistance = catchAsync(async (req, res, nex) => {
 //@route POST /api/v1/district-data/locations
 //@access Private
 const getSortedLocations = catchAsync(async (req, res, next) => {
-  // console.log("inside controller");
-  // console.log({ body: req.body.customSelectedLocations });
   const input = req.body.customSelectedLocations;
-  // console.log(array);
-
-  // ################################### test code
-
-  // const started_city = array[0];
-  // let closest_city = array[0];
-  // const sorted_array = [];
-  // for (let i = 0; i < array.length; i++) {
-  //   const city = array[i];
-  //   let min_distance_city = city;
-  //   for (let j = i + 2; j < array.length; j++) {
-  //     if (
-  //       customTourLocations[array[i]].distances[array[j - 1]] <=
-  //       customTourLocations[array[i]].distances[array[j]]
-  //     ) {
-  //       // console.log(array[j - 1]);
-  //       closest_city = array[j - 1];
-  //     } else {
-  //       // console.log(array[j]);
-  //       closest_city = array[j];
-  //     }
-  //   }
-  //   console.log(closest_city);
-  // }
-
-  //######################test code end here
 
   const starting_index = 0;
 
@@ -93,16 +48,14 @@ const getSortedLocations = catchAsync(async (req, res, next) => {
     if (tourDistance >= limit) {
       console.log(tourDistance);
       tourDistance = 0;
-      outputData.push('acc');
+      outputData.push("acc");
     }
     console.log(output[i]);
   }
 
-  // const location = ["galle", "matara", "kandy"];
-
   res.status(201).json({
     success: true,
-    message: 'success',
+    message: "success",
     data: {
       outputData,
       distance,
