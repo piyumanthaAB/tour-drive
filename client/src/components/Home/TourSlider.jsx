@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { FiMapPin } from "react-icons/fi";
-import { BsFillStarFill, BsStarHalf, BsStar } from "react-icons/bs";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import * as s from "./TourSliderElements.js";
-import NoRecordFound from "../shared/NoRecordFound.jsx";
-import Rating from "react-rating";
-import BounceLoader from "react-spinners/ClipLoader.js";
+import React, { useState } from 'react';
+import { FiMapPin } from 'react-icons/fi';
+import { BsFillStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import * as s from './TourSliderElements.js';
+import NoRecordFound from '../shared/NoRecordFound.jsx';
+import Rating from 'react-rating';
+import BounceLoader from 'react-spinners/ClipLoader.js';
 
 export default function TourSlider({ data, isPending, isError }) {
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
 
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -35,10 +35,10 @@ export default function TourSlider({ data, isPending, isError }) {
     <>
       <s.SliderSection>
         <s.TopSliderSection>
-          <s.Text margin={"3rem 0"} fontsize={"4.5rem"} fontweight={"700"}>
+          <s.Text margin={'3rem 0'} fontsize={'4.5rem'} fontweight={'700'}>
             Select Your Popular tour
           </s.Text>
-          <s.Text fontsize={"2rem"} color={"gray"}>
+          <s.Text fontsize={'2rem'} color={'gray'}>
             you can choose your favourite tour.
           </s.Text>
         </s.TopSliderSection>
@@ -49,9 +49,9 @@ export default function TourSlider({ data, isPending, isError }) {
           <BounceLoader
             size={60}
             cssOverride={{
-              display: "block",
-              margin: "15rem auto",
-              justifyContent: "center",
+              display: 'block',
+              margin: '15rem auto',
+              justifyContent: 'center',
             }}
           />
         ) : data?.data.length == 0 ? (
@@ -74,7 +74,7 @@ export default function TourSlider({ data, isPending, isError }) {
                               <FiMapPin />
                             </s.SecondaryTitleIcon>
                             <s.SliderSecondaryTitle>
-                              {tour?.cities?.split(",").map((city, i) => {
+                              {tour?.cities?.split(',').map((city, i) => {
                                 return `${city},`;
                               })}
                             </s.SliderSecondaryTitle>
@@ -86,7 +86,7 @@ export default function TourSlider({ data, isPending, isError }) {
                               }
                               fullSymbol={
                                 <BsFillStarFill
-                                  color={"var(--main-color)"}
+                                  color={'var(--main-color)'}
                                   size={15}
                                 />
                               }

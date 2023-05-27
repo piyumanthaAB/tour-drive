@@ -30,6 +30,9 @@ import {
   TourFilterTitle,
   CheckBoxContainer,
   SliderContainer,
+  BannerContainer,
+  SignUpBtn,
+  HeadingText,
 } from './TourListElements';
 
 import Checkbox from '@mui/material/Checkbox';
@@ -355,6 +358,12 @@ const TourListComponent = ({ setUrl }) => {
                 {/* <p>Selected maximum: {value2[1] * 10}</p> */}
               </PriceBoxContainer>
             </TourFilterRow>
+            <BannerContainer>
+              <HeadingText>
+                Sign Up from here to make your own tours.
+              </HeadingText>
+              <SignUpBtn to={'/signup'}>Sign Up</SignUpBtn>
+            </BannerContainer>
           </TourFilterContainer>
         </ToursSection>
       </ContentContainer>

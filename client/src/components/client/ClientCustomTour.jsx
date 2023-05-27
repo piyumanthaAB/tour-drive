@@ -46,7 +46,8 @@ const ClientCustomTour = ({ customTourLocations }) => {
   const [fuel, setFuel] = useState({ label: 'Petrol', value: 'petrol' });
 
   const [passengerCount, setPassengerCount] = useState(1);
-  const [name, setName] = useState(`${Math.random()}`);
+  // const [name, setName] = useState(`${Math.random()}`);
+  const [name, setName] = useState(`${user._id.slice(0, 10)}${Date.now()}`);
 
   // final custom tour data with selected locations in each city
   // const [tour, setTour] = useState([

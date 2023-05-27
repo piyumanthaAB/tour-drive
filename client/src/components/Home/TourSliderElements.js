@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import cover from "../../images/home_cover.jpg";
-import { Link } from "react-router-dom";
-import Slider from "react-slick";
+import styled from 'styled-components';
+import cover from '../../images/home_cover.jpg';
+import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
 
 export const StyledSlider = styled(Slider)`
   .slick-slide {
@@ -13,19 +13,19 @@ export const StyledSlider = styled(Slider)`
 `;
 
 export const Text = styled.p`
-  font-size: ${(props) => props.fontsize || "1.5rem"};
-  color: ${(props) => props.color || "1.5rem"};
-  font-weight: ${(props) => props.fontweight || "1.5rem"};
-  margin: ${(props) => props.margin || "0"};
-  font-family: ${(props) => props.fontfamily || "var(--primary-font)"};
-  line-height: ${(props) => props.lineheight || "2.5rem"};
+  font-size: ${(props) => props.fontsize || '1.5rem'};
+  color: ${(props) => props.color || '1.5rem'};
+  font-weight: ${(props) => props.fontweight || '1.5rem'};
+  margin: ${(props) => props.margin || '0'};
+  font-family: ${(props) => props.fontfamily || 'var(--primary-font)'};
+  line-height: ${(props) => props.lineheight || '2.5rem'};
 `;
 export const SliderSection = styled.div`
   width: 100%;
-  min-height: 10rem;
+  /* min-height: 10rem; */
   max-height: 100rem;
-  ${"" /* background-color:red ; */}
-  padding:13rem 5rem;
+  ${'' /* background-color:red ; */}
+  padding:5rem 5rem;
   flex-direction: column;
   position: relative;
   z-index: 1;
@@ -56,7 +56,7 @@ export const SliderImgContainer = styled.div`
   position: relative;
   height: 25rem;
   ${
-    "" /*height: 25rem;
+    '' /*height: 25rem;
   ${"" /* background-image: url(${img_1}); */
   }
   background-image: url(${(props) => props.img});
@@ -118,7 +118,7 @@ export const ReviewTitle = styled.p`
 export const ReviewIcon = styled.div`
   display: flex;
   ${
-    "" /*width:2rem ;
+    '' /*width:2rem ;
     height:2rem ;
     justify-content:center ;
     align-items:center ;

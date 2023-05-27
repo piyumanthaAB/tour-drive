@@ -1,14 +1,15 @@
-import React from "react";
-import HomeCover from "../../components/Home/HomeCover";
-import HomeCoverNew from "../../components/Home/HomeCoverNew";
-import TourSlider from "../../components/Home/TourSlider";
-import CustomerReview from "../../components/Home/CustomerReview";
-import VehicleSlider from "../../components/Home/VehicleSlider";
-import useFetch from "../../hooks/useFetch";
+import React from 'react';
+import HomeCover from '../../components/Home/HomeCover';
+import HomeCoverNew from '../../components/Home/HomeCoverNew';
+import TourSlider from '../../components/Home/TourSlider';
+import CustomerReview from '../../components/Home/CustomerReview';
+import VehicleSlider from '../../components/Home/VehicleSlider';
+import useFetch from '../../hooks/useFetch';
+import CustomTourBanner from '../../components/Home/CustomTourBanner';
 
 const Home = () => {
-  const vehicles = useFetch("/api/v1/vehicles");
-  const tours = useFetch("/api/v1/tours");
+  const vehicles = useFetch('/api/v1/vehicles');
+  const tours = useFetch('/api/v1/tours');
 
   return (
     <>
@@ -19,6 +20,7 @@ const Home = () => {
         isPending={tours.isPending}
         isError={tours.isError}
       />
+      <CustomTourBanner />
       <VehicleSlider
         data={vehicles.data}
         isError={vehicles.isError}
