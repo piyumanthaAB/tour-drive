@@ -205,7 +205,11 @@ function App() {
                 path="/forgot-password"
                 element={<ForgotPassword />}
               />
-              <Route exact path="/reset-password" element={<ResetPassword />} />
+              <Route
+                exact
+                path="/reset-password/:token"
+                element={<ResetPassword />}
+              />
 
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/signup" element={<Signup />} />
@@ -217,7 +221,7 @@ function App() {
               <Route exact path="/tours" element={<Tours />} />
 
               <Route exact path="/blogs" element={<Blogs />} />
-              <Route exact path="/blogs/:id" element={<BlogPost />} />
+              <Route exact path="/blogs/:id" element={<BlogPost />} />
 
               <Route exact path="/vehicles" element={<Vehicles />} />
 

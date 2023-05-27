@@ -10,6 +10,10 @@ export const LoginContainer = styled.form`
     box-shadow:0px 4px 20px -10px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
 `;
+export const EmailInputContainer=styled.div`
+padding:0 4rem;
+margin:1rem 0;
+`
 export const MainContainer = styled.div`
     position: relative;
     width:100vw;

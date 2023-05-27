@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
 import * as l from './LoginFormElement';
 import { useGoogleLogin } from '@react-oauth/google';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function LoginForm() {
   const { login, continueWithGoogle, user, isAuthenticated, loading } =
     useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
+  const redirect = new URLSearchParams(location.search).get('redirect');
 
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -22,13 +25,15 @@ export default function LoginForm() {
   });
 
   useEffect(() => {
+    console.log({ redirect });
     if (isAuthenticated && user && !loading) {
       switch (user?.role) {
         case 'admin':
           navigate('/admin/tours/all');
           break;
         case 'user':
-          navigate('/client/home');
+          redirect ? navigate(redirect || '/') : navigate('/client/home');
+
           break;
         case 'customer_care':
           navigate('/customer-care/view-all-requests');
