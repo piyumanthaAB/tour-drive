@@ -28,6 +28,12 @@ const Navbar = () => {
       url: '/',
       onClick: logout,
     },
+    {
+      text: 'Dashboard',
+      selected: true,
+      url: '/login',
+      onClick: () => {},
+    },
   ];
 
   const [links, setLinks] = useState(generalLinks);

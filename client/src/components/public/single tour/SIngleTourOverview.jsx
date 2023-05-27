@@ -8,6 +8,7 @@ import axios from 'axios';
 import useAuth from './../../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import TextField from '../../shared/Form Elements/TextField';
+import { useNavigate } from 'react-router-dom';
 
 const SIngleTourOverview = ({
   description,
@@ -17,20 +18,25 @@ const SIngleTourOverview = ({
   bookingsCount,
 }) => {
   const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   const [requiredSeats, setRequiredSeats] = useState('1');
   const onCheckout = async () => {
     console.log({ user, tour });
 
     if (!isAuthenticated) {
-      toast.error('Please login to book this tour!', {
-        style: {
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-          fontSize: '1.5rem',
-        },
-      });
+      // toast.error('Please login to book this tour!', {
+      //   style: {
+      //     borderRadius: '10px',
+      //     background: '#333',
+      //     color: '#fff',
+      //     fontSize: '1.5rem',
+      //   },
+      // });
+      // navigate('/login');
+      navigate(
+        `/login?redirect=${encodeURIComponent(window.location.pathname)}`
+      );
     }
 
     if (!requiredSeats || requiredSeats <= 0) {
