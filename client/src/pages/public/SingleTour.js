@@ -11,6 +11,7 @@ import SIngleTourOverview from '../../components/public/single tour/SIngleTourOv
 import TourPlan from '../../components/public/single tour/TourPlan';
 import useFetch from '../../hooks/useFetch';
 import styled from 'styled-components';
+import QAForm from '../../components/public/single tour/QAForm';
 
 const SpinnerContainer = styled.div`
   width: 100%;
@@ -63,7 +64,8 @@ const SingleTour = () => {
           <TourPlan plan={data.data.tourPlan} />
           {<ReviewSummary tourId={id} />}
           <DisplayReviews tourId={id} />
-          <CreateReviewForm tourId={id} />
+          {/* <CreateReviewForm tourId={id} /> */}
+          <QAForm tourId={id} />
         </>
       )}
     </>

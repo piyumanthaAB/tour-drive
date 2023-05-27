@@ -50,6 +50,8 @@ import ViewAllCustomTours from './pages/client/tour related/ViewAllCustomTours';
 import ViewSingleCustomTour from './pages/client/tour related/ViewSingleCustomTour';
 import Blogs from './pages/public/Blogs';
 import BlogPost from './pages/public/BlogPost';
+import ViewAllQARequests from './pages/customer-care/ViewAllQARequests';
+import AnswerQAResuest from './pages/customer-care/AnswerQAResuest';
 function App() {
   const { loadUser } = useAuth();
 
@@ -117,6 +119,16 @@ function App() {
                 exact
                 path="/customer-care/view-request/:id"
                 element={<ViewSingleEmergencyRequest />}
+              />
+              <Route
+                exact
+                path="/customer-care/view-all-qa-requests"
+                element={<ViewAllQARequests />}
+              />
+              <Route
+                exact
+                path="/customer-care/answer-qa-request/:id"
+                element={<AnswerQAResuest />}
               />
               {/* ADMIN ROUTES starts here */}
               <Route exact path="/admin/home" element={<AdminHome />} />{' '}

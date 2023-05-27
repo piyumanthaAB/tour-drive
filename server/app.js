@@ -25,6 +25,7 @@ import { statRouter } from './routes/statRoutes.js';
 import { emergencyRouter } from './routes/emergencyRoutes.js';
 import { DistrictDataRouter } from './routes/districtDataRoutes.js';
 import { blogRouter } from './routes/blogRoutes.js';
+import { qaRouter } from './routes/qaRoutes.js';
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use('/api/v1/stats', statRouter);
 app.use('/api/v1/emergencies', emergencyRouter);
 app.use('/api/v1/district-data', DistrictDataRouter);
 app.use('/api/v1/blogs', blogRouter);
+app.use('/api/v1/qa', qaRouter);
 
 if (process.env.NODE_ENV === 'production') {
   // test

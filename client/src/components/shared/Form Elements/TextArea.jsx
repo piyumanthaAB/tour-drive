@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const InputTextArea = styled.textarea`
   border-radius: 1rem;
@@ -8,6 +8,7 @@ const InputTextArea = styled.textarea`
   padding: 2rem;
   font-family: var(--primary-font);
   width: 100%;
+  font-size: 1.5rem;
 `;
 
 const TextArea = ({ value, setValue, rows, placeholder, readOnly }) => {
@@ -15,7 +16,7 @@ const TextArea = ({ value, setValue, rows, placeholder, readOnly }) => {
     <InputTextArea
       readOnly={readOnly || false}
       rows={rows || 5}
-      placeholder={placeholder || "placeholder"}
+      placeholder={placeholder || 'placeholder'}
       onChange={(e) => setValue(e.target.value)}
       value={value}
     />

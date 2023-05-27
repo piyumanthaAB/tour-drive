@@ -168,6 +168,11 @@ export const cutomer_care_links = [
         text: 'All emergency requests',
         redirectURL: '/customer-care/view-all-requests',
       },
+      {
+        icon: <FiBookmark />,
+        text: 'Customer Q&A',
+        redirectURL: '/customer-care/view-all-qa-requests',
+      },
     ],
   },
 ];

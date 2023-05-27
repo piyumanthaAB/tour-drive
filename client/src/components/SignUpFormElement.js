@@ -196,12 +196,15 @@ export const GoogleLoginButton = styled.button`
 
   border: 0px solid #d24900;
 
-  background: linear-gradient(
+  background-color: var(--main-color);
+  /* background: linear-gradient(
       0deg,
       rgba(168, 57, 0, 0.05),
       rgba(168, 57, 0, 0.05)
     ),
-    #fffbff;
+    #fffbff; */
+  color: #fff;
+  font-weight: 600;
 
   &:hover {
     cursor: pointer;

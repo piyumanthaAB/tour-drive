@@ -122,7 +122,7 @@ export default function SignUpForm() {
           ></l1.LabelTextPassword>
         </l1.LabelTextThree>
         <l1.SignButton>SignUp</l1.SignButton>
-        <l1.Desc2>-----or sign in with-----</l1.Desc2>
+        <l1.Desc2>-----or Sign Up with----</l1.Desc2>
 
         {/* <l1.FacebookLoginButton
           onClick={(e) => {

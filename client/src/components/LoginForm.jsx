@@ -141,9 +141,9 @@ export default function LoginForm() {
         <l.ForgetText to="/forgot-password">
           Forgot your password ? Click here to reset.
         </l.ForgetText>
-        <l.LoginButton>SignIn</l.LoginButton>
+        <l.LoginButton>Login</l.LoginButton>
 
-        <l.Desc2>----- &nbsp;or sign in with &nbsp; -----</l.Desc2>
+        <l.Desc2>----- &nbsp;or Sign In with &nbsp; -----</l.Desc2>
 
         {/* <l.FacebookLoginButton>Continue with Facebook</l.FacebookLoginButton> */}
         <l.GoogleLoginButton onClick={() => googleLogin()}>
