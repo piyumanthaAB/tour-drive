@@ -121,7 +121,7 @@
   color: rgba(0, 0, 0, 0.7);
 }
 .img {
-  background: url("../../images/11.jpg");
+  background: url("../../images/portrait1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   width: 140px;
@@ -132,6 +132,44 @@
   background-position: top center;
   border: 8px solid #1b9cfc;
 }
+.img2 {
+  background: url("../../images/portrait3.jfif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto;
+  background-position: top center;
+  border: 8px solid #1b9cfc;
+}
+.img3 {
+  background: url("../../images/portrait1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto;
+  background-position: top center;
+  border: 8px solid #1b9cfc;
+}
+
+.img1 {
+  background: url("../../images/portrait2.jfif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto;
+  background-position: top center;
+  border: 8px solid #1b9cfc;
+}
+
 .text {
   padding-top: 10rem;
   padding-bottom: 3rem;
