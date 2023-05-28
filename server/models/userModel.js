@@ -32,6 +32,9 @@ const userSchema = new mongoose.Schema(
       type: Number,
       unique: true,
     },
+    otp: {
+      type: String,
+    },
     password: {
       type: String,
       minlength: 8,

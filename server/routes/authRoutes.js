@@ -11,6 +11,8 @@ import {
   updateMyPassword,
   protect,
   updateMe,
+  mobileForgotPassword,
+  mobileResetPassword,
 } from './../controllers/authController.js';
 
 const router = express.Router();
@@ -22,6 +24,8 @@ router.get('/logout', logout);
 router.post('/google', continueWithGoogle);
 router.post('/facebook', continueWithFacebook);
 router.post('/forgotPassword', forgotPassword);
+router.post('/forgotPassword/mobile', mobileForgotPassword);
+router.post('/resetPassword/mobile', mobileResetPassword);
 router.post('/resetPassword/:resetToken', resetPassword);
 router.patch('/update-password', protect, updateMyPassword);
 router.patch('/update-me', protect, updateMe);

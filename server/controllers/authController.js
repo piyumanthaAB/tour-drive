@@ -390,8 +390,76 @@ const updateMe = catchAsync(async (req, res, next) => {
   });
 });
 
+const mobileForgotPassword = catchAsync(async (req, res, next) => {
+  const email = req.body.email;
+  const resetUrl = Math.floor(Math.random() * 10000);
+
+  console.log({ resetUrl });
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return next(new AppError('No user found for this email', 404));
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(
+    user._id,
+    { otp: resetUrl },
+    { new: true, runValidators: true }
+  );
+
+  console.log({ updatedUser });
+
+  try {
+    await new Email(user, resetUrl).sendPasswordReset();
+
+    res.status(200).json({
+      status: 'success',
+      message: 'OTp has sent',
+    });
+  } catch (err) {
+    user.otp = undefined;
+
+    await user.save({ validateBeforeSave: false });
+
+    return next(
+      new AppError(
+        'Something went wrong while trying to send the email. Please try again later !'
+      ),
+      500
+    );
+  }
+
+  // res.status(201).json({
+  //   status: 'success',
+  //   message: 'OTP has been sent to email',
+  // });
+});
+
+const mobileResetPassword = catchAsync(async (req, res, next) => {
+  const { password, passwordConfirm, otp, email } = req.body;
+
+  console.log({ body: req.body });
+  const user = await User.findOne({ email, otp });
+
+  console.log({ user });
+
+  if (!user) {
+    return next(new AppError('no user found', 404));
+  }
+
+  user.password = password;
+  user.passwordConfirm = passwordConfirm;
+  user.otp = undefined;
+  await user.save();
+
+  createSendToken(user, 200, req, res);
+});
+
 // ########################### controllers END ###############################
 export {
+  mobileForgotPassword,
+  mobileResetPassword,
   resetPassword,
   forgotPassword,
   continueWithFacebook,

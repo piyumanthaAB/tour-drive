@@ -64,8 +64,8 @@ const SingleTour = () => {
           <TourPlan plan={data.data.tourPlan} />
           {<ReviewSummary tourId={id} />}
           <DisplayReviews tourId={id} />
-          {/* <CreateReviewForm tourId={id} /> */}
           <QAForm tourId={id} />
+          <CreateReviewForm tourId={id} />
         </>
       )}
     </>
