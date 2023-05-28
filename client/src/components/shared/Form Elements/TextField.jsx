@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const InputField = styled.input`
   width: 100%;
@@ -7,7 +7,7 @@ const InputField = styled.input`
   outline: none;
   border: none;
   padding: 1.5rem 2rem;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: var(--form-input-text-color);
   border: 1px solid #333;
@@ -34,10 +34,10 @@ const TextField = ({
         readOnly={readOnly || false}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        type={type || "text"}
-        placeholder={placeholder || "placeholder"}
+        type={type || 'text'}
+        placeholder={placeholder || 'placeholder'}
         onBlur={
-          type === "email" ? (e) => validateEmail(e.target.value) : () => {}
+          type === 'email' ? (e) => validateEmail(e.target.value) : () => {}
         }
         multiple
       />
@@ -49,10 +49,10 @@ const TextField = ({
       readOnly={readOnly || false}
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      type={type || "text"}
-      placeholder={placeholder || "placeholder"}
+      type={type || 'text'}
+      placeholder={placeholder || 'placeholder'}
       onBlur={
-        type === "email" ? (e) => validateEmail(e.target.value) : () => {}
+        type === 'email' ? (e) => validateEmail(e.target.value) : () => {}
       }
     />
   );

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const ContentContainer = styled.div`
-  width: 80%;
+  width: 90%;
   min-height: 50rem;
   ${'' /* background-color:#000 ; */}
   margin:10rem auto;
@@ -49,11 +49,11 @@ export const VehicleImgContainer = styled.div`
 
 export const VehicleDesc = styled.p`
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 1.9rem;
 `;
 
 export const VehicleDescContainer = styled.div`
-  flex: 0 1 35%;
+  flex: 0 1 45%;
   padding: 2rem 3rem;
   position: relative;
 
@@ -69,7 +69,7 @@ export const VehicleDescContainer = styled.div`
 `;
 export const VehicleTitle = styled.p`
   font-weight: 600;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
 `;
 
 export const Row = styled.div`
@@ -145,7 +145,7 @@ export const BadgeContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 `;
 
 export const BadgeIcon = styled.div`
@@ -160,8 +160,8 @@ export const BadgeIcon = styled.div`
 `;
 
 export const Price = styled.p`
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 2.2rem;
+  font-weight: 700;
 `;
 
 export const ExploreBtn = styled(Link)`

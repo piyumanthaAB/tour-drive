@@ -8,7 +8,7 @@ const InputTextArea = styled.textarea`
   padding: 2rem;
   font-family: var(--primary-font);
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 `;
 
 const TextArea = ({ value, setValue, rows, placeholder, readOnly }) => {

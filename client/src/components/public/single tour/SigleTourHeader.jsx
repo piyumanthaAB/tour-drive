@@ -77,17 +77,17 @@ const SigleTourHeader = ({
 
         <t.HeaderIconCardsContainer>
           <t.IconCard>
-            <t.IconContainer fontsize={'3rem'}>
+            <t.IconContainer fontsize={'3.5rem'}>
               {' '}
               <RxCalendar color="var(--main-color)" />{' '}
             </t.IconContainer>
             <t.IconCardTextContainer>
-              <t.IconContainerText fontsize={'1.8rem'} fontweight={'600'}>
+              <t.IconContainerText fontsize={'2.1rem'} fontweight={'600'}>
                 Duration
               </t.IconContainerText>
               <t.IconContainerText
-                color={'#777'}
-                fontsize={'1.5rem'}
+                color={'#555'}
+                fontsize={'1.9rem'}
                 fontweight={'500'}
               >
                 {duration} Days
@@ -95,17 +95,17 @@ const SigleTourHeader = ({
             </t.IconCardTextContainer>
           </t.IconCard>
           <t.IconCard>
-            <t.IconContainer fontsize={'3rem'}>
+            <t.IconContainer fontsize={'3.5rem'}>
               {' '}
               <HiOutlineUserGroup color="var(--main-color)" />{' '}
             </t.IconContainer>
             <t.IconCardTextContainer>
-              <t.IconContainerText fontsize={'1.8rem'} fontweight={'600'}>
+              <t.IconContainerText fontsize={'2.1rem'} fontweight={'600'}>
                 Max People
               </t.IconContainerText>
               <t.IconContainerText
-                color={'#777'}
-                fontsize={'1.5rem'}
+                color={'#555'}
+                fontsize={'1.9rem'}
                 fontweight={'500'}
               >
                 {capacity}
@@ -113,17 +113,17 @@ const SigleTourHeader = ({
             </t.IconCardTextContainer>
           </t.IconCard>
           <t.IconCard>
-            <t.IconContainer fontsize={'3rem'}>
+            <t.IconContainer fontsize={'3.5rem'}>
               {' '}
               <AiOutlineUser color="var(--main-color)" />{' '}
             </t.IconContainer>
             <t.IconCardTextContainer>
-              <t.IconContainerText fontsize={'1.8rem'} fontweight={'600'}>
+              <t.IconContainerText fontsize={'2.1rem'} fontweight={'600'}>
                 Min Age
               </t.IconContainerText>
               <t.IconContainerText
-                color={'#777'}
-                fontsize={'1.5rem'}
+                color={'#555'}
+                fontsize={'1.9rem'}
                 fontweight={'500'}
               >
                 {age_limit}
@@ -131,17 +131,17 @@ const SigleTourHeader = ({
             </t.IconCardTextContainer>
           </t.IconCard>
           <t.IconCard>
-            <t.IconContainer fontsize={'3rem'}>
+            <t.IconContainer fontsize={'3.5rem'}>
               {' '}
               <FiMapPin color="var(--main-color)" />{' '}
             </t.IconContainer>
             <t.IconCardTextContainer>
-              <t.IconContainerText fontsize={'1.8rem'} fontweight={'600'}>
+              <t.IconContainerText fontsize={'2.1rem'} fontweight={'600'}>
                 Pickup
               </t.IconContainerText>
               <t.IconContainerText
-                color={'#777'}
-                fontsize={'1.5rem'}
+                color={'#555'}
+                fontsize={'1.9rem'}
                 fontweight={'500'}
               >
                 Airport

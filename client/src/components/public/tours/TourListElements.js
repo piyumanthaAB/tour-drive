@@ -49,7 +49,7 @@ export const TourImgContainer = styled.div`
 `;
 
 export const TourDescContainer = styled.div`
-  flex: 0 1 35%;
+  flex: 0 1 45%;
   padding: 2rem 3rem;
   position: relative;
 
@@ -80,8 +80,8 @@ export const TourSecondaryTitleContainer = styled.div`
 `;
 
 export const TourSecondaryTitle = styled.p`
-  font-weight: 400;
-  font-size: 1.3rem;
+  font-weight: 600;
+  font-size: 1.6rem;
 `;
 export const SecondaryTitleIcon = styled.div`
   width: 2rem;
@@ -97,8 +97,8 @@ export const ReviewsContainer = styled.div`
   display: flex;
 `;
 export const ReviewTitle = styled.p`
-  font-weight: 400;
-  font-size: 1.3rem;
+  font-weight: 600;
+  font-size: 1.5rem;
   margin-left: 1rem;
 `;
 
@@ -123,7 +123,7 @@ export const TourPriceContainer = styled.div`
 `;
 export const TourDesc = styled.p`
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 1.9rem;
 `;
 
 export const PriceRow = styled.div`
@@ -141,7 +141,7 @@ export const BadgeContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 `;
 
 export const BadgeIcon = styled.div`
@@ -156,8 +156,8 @@ export const BadgeIcon = styled.div`
 `;
 
 export const Price = styled.p`
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 2.2rem;
+  font-weight: 700;
 `;
 
 export const ExploreBtn = styled(Link)`

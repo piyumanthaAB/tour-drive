@@ -37,8 +37,8 @@ export const TableRow = styled.tr`
 export const TableData = styled.td`
   padding: 1rem 1rem;
   font-weight: ${(props) => (props.th ? '500' : '400')};
-  font-size: ${(props) => (props.th ? '1.3rem' : '1.4rem')};
-  color: ${(props) => (props.th ? '#999' : '#555')};
+  font-size: ${(props) => (props.th ? '1.6rem' : '1.8rem')};
+  color: ${(props) => (props.th ? '#777' : '#333')};
   min-width: ${(props) => props.minwidth || 'auto'};
   &.flex {
     display: flex;

@@ -112,11 +112,11 @@ export const adminlinks = [
       //     text: 'Tour Statistics',
       //     redirectURL:'/admin/vehicle-update'
       // },
-      {
-        icon: <FiBookOpen />,
-        text: 'Reviews Statistics',
-        redirectURL: '/admin/vehicle-rentings',
-      },
+      // {
+      //   icon: <FiBookOpen />,
+      //   text: 'Reviews Statistics',
+      //   redirectURL: '/admin/vehicle-rentings',
+      // },
     ],
   },
 ];

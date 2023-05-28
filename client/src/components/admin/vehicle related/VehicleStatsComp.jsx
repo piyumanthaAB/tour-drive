@@ -162,7 +162,7 @@ const VehicleStatsComp = () => {
         <h1>Vehicle Statistics</h1>
 
         <ChartContainer>
-          <h2>Vehicle Rentings vs Vehicle Type</h2>
+          <h1>Vehicle Rentings vs Vehicle Type</h1>
 
           {rentingsPending && (
             <SpinnerContainer>
@@ -223,7 +223,7 @@ const VehicleStatsComp = () => {
         </ChartContainer>
 
         <ChartContainer>
-          <h2>Vehicle Renting Income vs Vehicle Types</h2>
+          <h1>Vehicle Renting Income vs Vehicle Types</h1>
 
           {incomePending && (
             <SpinnerContainer>
@@ -284,7 +284,7 @@ const VehicleStatsComp = () => {
         </ChartContainer>
 
         <ChartContainer>
-          <h2>Vehicle Ratings Average vs Vehicle Types</h2>
+          <h1>Vehicle Ratings Average vs Vehicle Types</h1>
 
           {!ratingsAverage && (
             <SpinnerContainer>

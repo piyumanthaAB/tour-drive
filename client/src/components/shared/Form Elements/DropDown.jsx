@@ -120,7 +120,7 @@ const DropDown = ({
   return (
     <Container>
       <HeaderContainer ref={dropDownRef} onClick={() => setOpen(!open)}>
-        <Text fontweight="600" color="#222" fontsize="1.6rem">
+        <Text fontweight="600" color="#222" fontsize="1.8rem">
           {/* {currentDropdownVal} */}
           {currentDropdownVal?.label || 'not available '}
         </Text>

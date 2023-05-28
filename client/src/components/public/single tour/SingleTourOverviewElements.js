@@ -140,7 +140,7 @@ export const HR = styled.hr`
 
 export const DateInput = styled.input`
   width: 100%;
-  font-size: 1.6rem;
+  font-size: 1.9rem;
   border-radius: 1rem;
   padding: 1.5rem 2rem;
   outline: none;

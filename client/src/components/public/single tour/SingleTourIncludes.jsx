@@ -17,15 +17,15 @@ const SingleTourIncludes = ({ excludes, includes }) => {
                     {inc !== '' && (
                       <i.IncludeRow key={j}>
                         <i.IconContainer
-                          color='var(--secondary-color)'
-                          fontsize={'2.5rem'}
+                          color="var(--secondary-color)"
+                          fontsize={'2.8rem'}
                         >
                           {' '}
                           <AiOutlineCheckCircle />{' '}
                         </i.IconContainer>
                         <i.Text
                           margin={'0 0 0 2rem'}
-                          fontsize={'1.7rem'}
+                          fontsize={'1.9rem'}
                           fontweight={'500'}
                         >
                           {inc}
@@ -43,7 +43,7 @@ const SingleTourIncludes = ({ excludes, includes }) => {
                     {exc !== '' && (
                       <i.IncludeRow key={j}>
                         <i.IconContainer
-                          color='var(--main-color)'
+                          color="var(--main-color)"
                           fontsize={'2.5rem'}
                         >
                           {' '}

@@ -107,10 +107,10 @@ const SIngleTourOverview = ({
         <o.TourBookingContainer>
           <o.BookingTopContainer>
             <o.PriceTagContainer>
-              <o.IconContainer color="var(--main-color)" fontsize={'3rem'}>
+              <o.IconContainer color="var(--main-color)" fontsize={'3.5rem'}>
                 <TbTag />
               </o.IconContainer>
-              <o.Text margin={'0 1rem'} fontsize={'2rem'} fontweight={'600'}>
+              <o.Text margin={'0 1rem'} fontsize={'2.5rem'} fontweight={'600'}>
                 {' '}
                 From
               </o.Text>
@@ -119,7 +119,7 @@ const SIngleTourOverview = ({
             <o.Text
               color="#00bb98"
               margin={'2rem 1rem'}
-              fontsize={'4rem'}
+              fontsize={'4.5rem'}
               fontweight={'600'}
             >
               {' '}
@@ -134,7 +134,7 @@ const SIngleTourOverview = ({
               <o.Text
                 color="#555"
                 margin={'1rem 1rem'}
-                fontsize={'1.8rem'}
+                fontsize={'2.1rem'}
                 fontweight={'600'}
               >
                 {' '}
@@ -153,7 +153,7 @@ const SIngleTourOverview = ({
               <o.Text
                 color="#555"
                 margin={'1rem 1rem'}
-                fontsize={'1.8rem'}
+                fontsize={'2.1rem'}
                 fontweight={'600'}
               >
                 {' '}
@@ -172,7 +172,7 @@ const SIngleTourOverview = ({
               <o.Text
                 color="#555"
                 margin={'1rem 1rem'}
-                fontsize={'1.8rem'}
+                fontsize={'2.1rem'}
                 fontweight={'600'}
               >
                 {' '}
@@ -195,7 +195,7 @@ const SIngleTourOverview = ({
               <o.Text
                 color="#555"
                 margin={'1rem 1rem'}
-                fontsize={'1.8rem'}
+                fontsize={'2.1rem'}
                 fontweight={'600'}
               >
                 {' '}
@@ -219,7 +219,7 @@ const SIngleTourOverview = ({
                 <o.Text
                   color="#555"
                   margin={'1rem 1rem'}
-                  fontsize={'1.8rem'}
+                  fontsize={'2.1rem'}
                   fontweight={'600'}
                 >
                   {' '}
@@ -239,12 +239,12 @@ const SIngleTourOverview = ({
               <o.Text
                 color="#fff"
                 margin="0 1rem 0 0"
-                fontsize={'1.7rem'}
+                fontsize={'2.1rem'}
                 fontweight="600"
               >
                 {isAuthenticated ? 'Book Now' : 'Login to book this tour'}
               </o.Text>
-              <o.IconContainer color="#fff" fontsize={'2rem'}>
+              <o.IconContainer color="#fff" fontsize={'2.5rem'}>
                 <AiOutlineCompass />
               </o.IconContainer>
             </o.BookNowBtn>
@@ -253,7 +253,7 @@ const SIngleTourOverview = ({
               <o.Text
                 color="#fff"
                 margin="0 1rem 0 0"
-                fontsize={'1.7rem'}
+                fontsize={'2.1rem'}
                 fontweight="600"
               >
                 Sorry, this tour is currently at full capacity!
@@ -277,7 +277,7 @@ const SIngleTourOverview = ({
           <o.Text
             margin={'1rem 0 4rem 0'}
             color="#333"
-            fontsize={'1.7rem'}
+            fontsize={'1.9rem'}
             fontweight={'500'}
             fontfamily={'var(--primary-font)'}
           >
@@ -299,12 +299,12 @@ const SIngleTourOverview = ({
                 {item !== '' && (
                   <o.HighLightRow key={i}>
                     <o.IconContainer
-                      fontsize={'1.8rem'}
+                      fontsize={'2.1rem'}
                       color="var(--main-color)"
                     >
                       <GoPrimitiveDot />
                     </o.IconContainer>
-                    <o.Text fontsize={'1.7rem'} margin={'1rem 2rem '}>
+                    <o.Text fontsize={'1.9rem'} margin={'1rem 2rem '}>
                       {item}
                     </o.Text>
                   </o.HighLightRow>

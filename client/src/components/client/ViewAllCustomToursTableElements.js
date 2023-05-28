@@ -55,9 +55,9 @@ export const LabelGroup = styled.div`
 export const TableDataCell = styled.td`
   padding: 1rem 1rem;
   font-weight: ${(props) => (props.th ? '500' : '400')};
-  font-size: ${(props) => (props.th ? '1.3rem' : '1.4rem')};
+  font-size: ${(props) => (props.th ? '1.6rem' : '1.8rem')};
   ${'' /* text-align:left ; */}
-  color:${(props) => (props.th ? '#999' : '#555')};
+  color:${(props) => (props.th ? '#777' : '#333')};
   min-width: ${(props) => props.minwidth || 'auto'};
   &.flex {
     display: flex;
@@ -68,8 +68,8 @@ export const TableDataCell = styled.td`
 export const TableActionBtn = styled.div`
   /* width: 3rem; */
   /* height: 3rem; */
-  width: 50%;
-  padding: 0.5rem 0;
+  width: 60%;
+  padding: 0.5rem;
   border-radius: 1rem;
   /* background-color: var(--main-color); */
   background-color: ${(props) => props.backgroundColor || 'var(--main-color)'};
@@ -81,7 +81,7 @@ export const TableActionBtn = styled.div`
   justify-content: center;
   align-items: center;
   /* border-radius: 2rem; */
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   :hover {
     cursor: pointer;
     background-color: #333;

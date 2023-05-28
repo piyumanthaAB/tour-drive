@@ -108,9 +108,9 @@ export const TableRow = styled.tr`
 export const TableDataCell = styled.td`
   padding: 1rem 1rem;
   font-weight: ${(props) => (props.th ? '500' : '400')};
-  font-size: ${(props) => (props.th ? '1.3rem' : '1.4rem')};
+  font-size: ${(props) => (props.th ? '1.5rem' : '1.6rem')};
   ${'' /* text-align:left ; */}
-  color:${(props) => (props.th ? '#999' : '#333')};
+  color:${(props) => (props.th ? '#777' : '#333')};
   min-width: ${(props) => props.minwidth || 'auto'};
   &.flex {
     display: flex;

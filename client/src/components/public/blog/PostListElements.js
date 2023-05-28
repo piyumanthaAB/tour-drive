@@ -12,7 +12,7 @@ export const Container = styled.div`
 `;
 
 export const BlogCard = styled.div`
-  flex: 0 1 40%;
+  flex: 0 1 47%;
   max-height: min-content;
   /* background-color: yellow; */
   margin: 2rem 1rem;
@@ -21,7 +21,7 @@ export const BlogCard = styled.div`
 `;
 
 export const BlogCardImgContainer = styled.div`
-  min-height: 30rem;
+  min-height: 35rem;
   background-image: url(${(props) => props.image});
   border-radius: 2rem;
   background-repeat: no-repeat;
@@ -31,14 +31,14 @@ export const BlogCardImgContainer = styled.div`
 export const BlogCardTitle = styled.p`
   font-family: var(--primary-font);
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin: 2rem 0;
 `;
 
 export const BlogDesc = styled.p`
   font-family: var(--primary-font);
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: #555;
 `;
 

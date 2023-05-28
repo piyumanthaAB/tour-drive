@@ -68,7 +68,7 @@ const TourStatsComp = () => {
         <h1>Tour Statistics</h1>
 
         <s.ChartContainer>
-          <h2>Tour Bookings vs Categories</h2>
+          <h1>Tour Bookings vs Categories</h1>
 
           {bookingsPending && (
             <SpinnerContainer>
@@ -132,7 +132,7 @@ const TourStatsComp = () => {
         </s.ChartContainer>
 
         <s.ChartContainer>
-          <h2>Tour Income vs Categories</h2>
+          <h1>Tour Income vs Categories</h1>
 
           {incomePending && (
             <SpinnerContainer>
@@ -198,7 +198,7 @@ const TourStatsComp = () => {
         </s.ChartContainer>
 
         <s.ChartContainer>
-          <h2>Tour Ratings Average vs Categories</h2>
+          <h1>Tour Ratings Average vs Categories</h1>
 
           {!ratingsAverage && (
             <SpinnerContainer>

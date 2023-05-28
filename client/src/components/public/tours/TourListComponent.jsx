@@ -204,12 +204,12 @@ const TourListComponent = ({ setUrl }) => {
                           <ReviewsContainer>
                             <Rating
                               emptySymbol={
-                                <BsFillStarFill color="#888" size={15} />
+                                <BsFillStarFill color="#888" size={20} />
                               }
                               fullSymbol={
                                 <BsFillStarFill
                                   color={'var(--main-color)'}
-                                  size={15}
+                                  size={20}
                                 />
                               }
                               initialRating={
@@ -226,7 +226,7 @@ const TourListComponent = ({ setUrl }) => {
                         </Row>
                         <Row>
                           <TourDesc>
-                            {tour.description.slice(0, 70) + '...'}
+                            {tour.description.slice(0, 100) + '...'}
                           </TourDesc>
                         </Row>
                         <Row>

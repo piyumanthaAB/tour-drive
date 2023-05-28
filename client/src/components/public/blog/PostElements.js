@@ -52,4 +52,5 @@ export const GalleryImgContainer = styled.div`
   /* width: 0%; */
   flex: 0 1 30%;
   height: 27rem;
+  border-radius: 2rem;
 `;
