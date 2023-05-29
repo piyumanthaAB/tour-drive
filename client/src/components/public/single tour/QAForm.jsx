@@ -58,8 +58,8 @@ const QAForm = ({ tourId }) => {
             data.data.qa.map((qa, i) => {
               return (
                 <q.Row key={i}>
-                  <q.QuestionAnswer>Q &nbsp; : {qa.question}</q.QuestionAnswer>
-                  <q.QuestionAnswer>A &nbsp; : {qa.answer}</q.QuestionAnswer>
+                  <q.QuestionAnswer>Q&nbsp; :{qa.question}</q.QuestionAnswer>
+                  <q.QuestionAnswer>A&nbsp; :{qa.answer}</q.QuestionAnswer>
                 </q.Row>
               );
             })}

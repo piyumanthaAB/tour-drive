@@ -67,37 +67,50 @@ const ClientCustomTour = ({ customTourLocations }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     // console.log(formData);
-    const res = await toast.promise(
-      submitForm(
-        '/api/v1/district-data/locations',
-        {
-          customSelectedLocations: customrSelectedLocations.map(
-            (city) => city.charAt(0).toUpperCase() + city.slice(1)
-          ),
-        },
-        'post',
-        {}
-      ),
-      {
-        loading: 'Submitting tour locations...',
-        success: (data) => {
-          console.log({ data });
-          return ` ${data.data.message} ` || 'success';
-        },
-        error: (err) => `${err.response.data.message}`,
-      },
-      {
+
+    if (customrSelectedLocations.length <= 1) {
+      toast.error('Please select at least 2 cities', {
         style: {
           borderRadius: '10px',
           background: '#333',
           color: '#fff',
-          fontSize: '2rem',
+          fontSize: '1.7rem',
         },
-      }
-    );
-    // console.log({ res });
-    setSortedCities(res.data.data.outputData);
-    // console.log({ sortedCities });
+      });
+    } else {
+      console.log({ length: customrSelectedLocations.length });
+      const res = await toast.promise(
+        submitForm(
+          '/api/v1/district-data/locations',
+          {
+            customSelectedLocations: customrSelectedLocations.map(
+              (city) => city.charAt(0).toUpperCase() + city.slice(1)
+            ),
+          },
+          'post',
+          {}
+        ),
+        {
+          loading: 'Submitting tour locations...',
+          success: (data) => {
+            console.log({ data });
+            return ` ${data.data.message} ` || 'success';
+          },
+          error: (err) => `${err.response.data.message}`,
+        },
+        {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+            fontSize: '2rem',
+          },
+        }
+      );
+      // console.log({ res });
+      setSortedCities(res.data.data.outputData);
+      // console.log({ sortedCities });
+    }
   };
 
   const onEstimation = async (e) => {
@@ -354,7 +367,7 @@ const ClientCustomTour = ({ customTourLocations }) => {
                       setLocationsInTheCity([]);
                     }}
                   >
-                    Process the list
+                    Process list
                   </c.AddCityBtn>
                   <c.AddCityBtn
                     width="40%"
@@ -366,7 +379,7 @@ const ClientCustomTour = ({ customTourLocations }) => {
                       setSortedCities([]);
                     }}
                   >
-                    Clear the list
+                    Clear
                   </c.AddCityBtn>
                 </c.ButtonContainer>
               )}

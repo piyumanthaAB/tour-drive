@@ -143,7 +143,7 @@ export const ListItem = styled.div`
   width: 100%;
   background-color: #eee;
   padding: 1.5rem 2rem;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 600;
   transition: all 0.2s;
   /* border-bottom: 1px solid #333; */
@@ -162,7 +162,7 @@ export const ViewOnlyItem = styled.div`
   width: 100%;
   background-color: #eee;
   padding: 1.5rem 2rem;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 600;
   transition: all 0.2s;
   /* border-bottom: 1px solid #333; */

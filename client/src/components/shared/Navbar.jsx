@@ -75,12 +75,12 @@ const Navbar = () => {
           >
             Blog
           </n.NavLink>
-          <n.NavLink
+          {/* <n.NavLink
             selected={currentPath === '/contact-us' ? true : false}
             to="/contact-us"
           >
             Contact Us
-          </n.NavLink>
+          </n.NavLink> */}
         </n.NavLinksContainer>
         <n.NavAuthButtonsContainer>
           {links.map((link, i) => {

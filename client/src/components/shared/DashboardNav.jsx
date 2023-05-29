@@ -20,7 +20,8 @@ const DashboardNav = () => {
                 navigate('/');
               }}
             >
-              <TbLogout />
+              Logout
+              {/* <TbLogout /> */}
             </n.NavBtn>
           </n.NavLinksContainer>
         </n.NavContainer>

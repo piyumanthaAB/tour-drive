@@ -52,6 +52,7 @@ import Blogs from './pages/public/Blogs';
 import BlogPost from './pages/public/BlogPost';
 import ViewAllQARequests from './pages/customer-care/ViewAllQARequests';
 import AnswerQAResuest from './pages/customer-care/AnswerQAResuest';
+import ContactUs from './pages/public/ContactUs';
 function App() {
   const { loadUser } = useAuth();
 
@@ -210,7 +211,7 @@ function App() {
             <Route element={<WithNav />}>
               <Route exact path="/" element={<Home />} />
               <Route exact path="/about" element={<Home />} />
-              <Route exact path="/contact-us" element={<Home />} />
+              {/* <Route exact path="/contact-us" element={<Home />} /> */}
 
               <Route
                 exact
@@ -229,7 +230,7 @@ function App() {
               <Route exact path="/signup-info-1" element={<Profile_1 />} />
               <Route exact path="/signup-info-2" element={<Profile_2 />} />
 
-              <Route exact path="/contact-us" element={<Home />} />
+              <Route exact path="/contact-us" element={<ContactUs />} />
               <Route exact path="/tours" element={<Tours />} />
 
               <Route exact path="/blogs" element={<Blogs />} />

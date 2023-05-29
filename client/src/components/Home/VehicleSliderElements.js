@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import cover from "../../images/toyota.jpg";
-import { Link } from "react-router-dom";
-import Slider from "react-slick";
+import styled from 'styled-components';
+import cover from '../../images/toyota.jpg';
+import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
 
 export const StyledSlider = styled(Slider)`
   .slick-slide {
@@ -13,18 +13,18 @@ export const StyledSlider = styled(Slider)`
 `;
 
 export const Text = styled.p`
-  font-size: ${(props) => props.fontsize || "1.5rem"};
-  color: ${(props) => props.color || "1.5rem"};
-  font-weight: ${(props) => props.fontweight || "1.5rem"};
-  margin: ${(props) => props.margin || "0"};
-  font-family: ${(props) => props.fontfamily || "var(--primary-font)"};
-  line-height: ${(props) => props.lineheight || "2.5rem"};
+  font-size: ${(props) => props.fontsize || '1.5rem'};
+  color: ${(props) => props.color || '1.5rem'};
+  font-weight: ${(props) => props.fontweight || '1.5rem'};
+  margin: ${(props) => props.margin || '0'};
+  font-family: ${(props) => props.fontfamily || 'var(--primary-font)'};
+  line-height: ${(props) => props.lineheight || '2.5rem'};
 `;
 export const SliderSection = styled.div`
   width: 100%;
   min-height: 10rem;
   max-height: 100rem;
-  ${"" /* background-color:red ; */}
+  ${'' /* background-color:red ; */}
   padding:13rem 5rem;
   flex-direction: column;
   position: relative;
@@ -54,7 +54,7 @@ export const CardContainer = styled.div`
 export const SliderImgContainer = styled.div`
   flex: 0 1 30%;
   height: 25rem;
-  ${"" /* background-image: url(${img_1}); */}
+  ${'' /* background-image: url(${img_1}); */}
   background-image: url(${(props) => props.img});
   background-position: center;
   background-repeat: no-repeat;
@@ -85,8 +85,8 @@ export const SliderSecondaryTitleContainer = styled.div`
 `;
 
 export const SliderSecondaryTitle = styled.p`
-  font-weight: 400;
-  font-size: 1.3rem;
+  font-weight: 600;
+  font-size: 1.5rem;
   align-items: center;
 `;
 export const SecondaryTitleIcon = styled.div`
@@ -119,7 +119,7 @@ export const ReviewIcon = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
-  ${"" /* margin-right:0.5rem ; */}
+  ${'' /* margin-right:0.5rem ; */}
   color:var(--main-color);
 `;
 export const Price = styled.p`
@@ -150,5 +150,5 @@ export const br = styled.br``;
 
 export const IconContainer = styled.div`
   color: ${(props) => props.color};
-  font-size: ${(props) => props.fontsize || "1.5rem"};
+  font-size: ${(props) => props.fontsize || '1.5rem'};
 `;

@@ -283,7 +283,7 @@ const VehicleStatsComp = () => {
           )}
         </ChartContainer>
 
-        <ChartContainer>
+        {/* <ChartContainer>
           <h1>Vehicle Ratings Average vs Vehicle Types</h1>
 
           {!ratingsAverage && (
@@ -328,7 +328,7 @@ const VehicleStatsComp = () => {
               </BarChart>
             </>
           )}
-        </ChartContainer>
+        </ChartContainer> */}
       </Container>
     </>
   );

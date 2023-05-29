@@ -197,7 +197,7 @@ const TourStatsComp = () => {
           )}
         </s.ChartContainer>
 
-        <s.ChartContainer>
+        {/* <s.ChartContainer>
           <h1>Tour Ratings Average vs Categories</h1>
 
           {!ratingsAverage && (
@@ -243,7 +243,7 @@ const TourStatsComp = () => {
               </BarChart>
             </>
           )}
-        </s.ChartContainer>
+        </s.ChartContainer> */}
       </s.Container>
     </>
   );

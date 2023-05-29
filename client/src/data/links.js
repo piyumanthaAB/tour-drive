@@ -104,8 +104,8 @@ export const adminlinks = [
       },
       {
         icon: <FiPlusCircle />,
-        text: 'User Statistics',
-        redirectURL: '/admin/vehicle-add',
+        text: 'Tour Statistics',
+        redirectURL: '/admin/tours/stat',
       },
       // {
       //     icon: <FiSliders/>,

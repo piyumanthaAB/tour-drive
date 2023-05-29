@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { BsFillStarFill, BsStarHalf, BsStar } from "react-icons/bs";
-import { FiMapPin } from "react-icons/fi";
-import Slider from "react-slick";
-import { GoPrimitiveDot } from "react-icons/go";
-import * as s from "./VehicleSliderElements";
-import BounceLoader from "react-spinners/ClipLoader.js";
-import NoRecordFound from "../shared/NoRecordFound";
-import Rating from "react-rating";
+import React, { Component } from 'react';
+import { BsFillStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
+import { FiMapPin } from 'react-icons/fi';
+import Slider from 'react-slick';
+import { GoPrimitiveDot } from 'react-icons/go';
+import * as s from './VehicleSliderElements';
+import BounceLoader from 'react-spinners/ClipLoader.js';
+import NoRecordFound from '../shared/NoRecordFound';
+import Rating from 'react-rating';
 // import { tours } from "../../data/tours";
 
 export default function VehicleSlider({ data, isPending, isError }) {
@@ -26,17 +26,17 @@ export default function VehicleSlider({ data, isPending, isError }) {
   //   data: [1, 2, 3, 4, 5, 6, 7, 8, 9],
   // };
 
-  const style = { color: "var(--main-color)" };
+  const style = { color: 'var(--main-color)' };
   console.log(data);
 
   return (
     <>
       <s.SliderSection>
         <s.TopSliderSection>
-          <s.Text margin={"3rem 0"} fontsize={"4.5rem"} fontweight={"700"}>
+          <s.Text margin={'3rem 0'} fontsize={'4.5rem'} fontweight={'700'}>
             Select Your Vehicle
           </s.Text>
-          <s.Text fontsize={"2rem"} color={"gray"}>
+          <s.Text fontsize={'2rem'} color={'gray'}>
             you can choose your favourite vehicle here.
           </s.Text>
         </s.TopSliderSection>
@@ -47,9 +47,9 @@ export default function VehicleSlider({ data, isPending, isError }) {
           <BounceLoader
             size={60}
             cssOverride={{
-              display: "block",
-              margin: "15rem auto",
-              justifyContent: "center",
+              display: 'block',
+              margin: '15rem auto',
+              justifyContent: 'center',
             }}
           />
         ) : data?.data.length == 0 ? (
@@ -83,7 +83,7 @@ export default function VehicleSlider({ data, isPending, isError }) {
                             }
                             fullSymbol={
                               <BsFillStarFill
-                                color={"var(--main-color)"}
+                                color={'var(--main-color)'}
                                 size={15}
                               />
                             }

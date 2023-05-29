@@ -4,6 +4,8 @@ import { BiPurchaseTag } from 'react-icons/bi';
 import { TbTag } from 'react-icons/tb';
 import { AiOutlineCompass, AiOutlineCar } from 'react-icons/ai';
 import { FiKey } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 import * as o from './SingleVehicleOverviewElements';
 import DropDown from '../../shared/Form Elements/DropDown';
@@ -12,6 +14,7 @@ import axios from 'axios';
 
 const SingleVehicleOverview = ({ vehicle }) => {
   const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   const [drivingOptDropdownVal, setDrivingOptDropdownVal] = useState({
     label: 'Without driver',
@@ -28,6 +31,12 @@ const SingleVehicleOverview = ({ vehicle }) => {
   const onCheckout = async () => {
     // console.log({ user, tour });
 
+    if (!isAuthenticated) {
+      navigate(
+        `/login?redirect=${encodeURIComponent(window.location.pathname)}`
+      );
+    }
+
     const vehicleData = {
       vehicleName: `${vehicle.brand} ${vehicle.model}`,
       price: vehicle.price_per_day_with_dr,
@@ -38,23 +47,37 @@ const SingleVehicleOverview = ({ vehicle }) => {
       from,
       to,
     };
-    // console.log({ vehicleData });
+    console.log({ vehicleData });
+    const from_new = new Date(vehicleData.from);
+    const to_new = new Date(vehicleData.to);
 
-    try {
-      const res = await axios({
-        method: 'POST',
-        url: '/api/v1/booking/create-checkout-session',
-        data: vehicleData,
-        headers: {
-          Content: 'application/json',
+    if (from_new < to_new) {
+      try {
+        const res = await axios({
+          method: 'POST',
+          url: '/api/v1/booking/create-checkout-session',
+          data: vehicleData,
+          headers: {
+            Content: 'application/json',
+          },
+        });
+
+        if (res.status === 201) {
+          window.location.href = res.data.data.url;
+        }
+      } catch (error) {
+        console.log(error.response.data);
+      }
+    } else {
+      // "from" is greater than or equal to "to"
+      toast.error('Please enter valid data range', {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+          fontSize: '1.7rem',
         },
       });
-
-      if (res.status === 201) {
-        window.location.href = res.data.data.url;
-      }
-    } catch (error) {
-      console.log(error.response.data);
     }
   };
 

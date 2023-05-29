@@ -89,8 +89,8 @@ export const SliderSecondaryTitleContainer = styled.div`
 `;
 
 export const SliderSecondaryTitle = styled.p`
-  font-weight: 400;
-  font-size: 1.3rem;
+  font-weight: 600;
+  font-size: 1.5rem;
 `;
 export const SecondaryTitleIcon = styled.div`
   width: 2rem;
