@@ -49,10 +49,13 @@ function CustomerReview() {
                   <div className="img"></div>
                   <div className="text">
                     <p>
-                      this is example review card customer review text is here
+                      I recently used TOUR DRIVE for my vacation, and I can't
+                      say enough good things about the experience. From start to
+                      finish, everything was handled with professionalism and
+                      excellence.
                     </p>
-                    <p className="name">person name</p>
-                    <p className="position">CEO</p>
+                    <p className="name">John Smith</p>
+                    <p className="position">Hiker</p>
                   </div>
                 </div>
               </div>
@@ -60,13 +63,16 @@ function CustomerReview() {
             <SwiperSlide>
               <div className="col">
                 <div className="content">
-                  <div className="img"></div>
+                  <div className="img1"></div>
                   <div className="text">
                     <p>
-                      this is example review card customer review text is here
+                      The website was user-friendly, with an intuitive interface
+                      that allowed easy navigation. It offered a wide range of
+                      tour options and vehicles for booking. I could quickly
+                      filter my search based on my preferences and requirements.
                     </p>
-                    <p className="name">person name</p>
-                    <p className="position">CEO</p>
+                    <p className="name">Bradley Cooper</p>
+                    <p className="position">Journalist</p>
                   </div>
                 </div>
               </div>
@@ -74,13 +80,18 @@ function CustomerReview() {
             <SwiperSlide>
               <div className="col">
                 <div className="content">
-                  <div className="img"></div>
+                  <div className="img2"></div>
                   <div className="text">
                     <p>
-                      this is example review card customer review text is here
+                      TOUR DRIVE offered exceptional service with memorable
+                      tours. Their well-planned itineraries ensured I made the
+                      most of my time and explored the highlights of each
+                      destination. Whether it was a city sightseeing tour,
+                      cultural excursion, or thrilling adventure, the quality of
+                      service remained consistently outstanding.
                     </p>
-                    <p className="name">person name</p>
-                    <p className="position">CEO</p>
+                    <p className="name">Kevin Hart</p>
+                    <p className="position">Actor</p>
                   </div>
                 </div>
               </div>
@@ -88,7 +99,7 @@ function CustomerReview() {
             <SwiperSlide>
               <div className="col">
                 <div className="content">
-                  <div className="img"></div>
+                  <div className="img3"></div>
                   <div className="text">
                     <p>
                       this is example review card customer review text is here

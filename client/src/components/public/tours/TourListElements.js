@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import img from './../../../images/banner_background.jpg';
 
 export const ContentContainer = styled.div`
-  width: 80%;
+  width: 90%;
   min-height: 50rem;
   ${'' /* background-color:#000 ; */}
   margin:10rem auto;
@@ -48,7 +49,7 @@ export const TourImgContainer = styled.div`
 `;
 
 export const TourDescContainer = styled.div`
-  flex: 0 1 35%;
+  flex: 0 1 45%;
   padding: 2rem 3rem;
   position: relative;
 
@@ -79,8 +80,8 @@ export const TourSecondaryTitleContainer = styled.div`
 `;
 
 export const TourSecondaryTitle = styled.p`
-  font-weight: 400;
-  font-size: 1.3rem;
+  font-weight: 600;
+  font-size: 1.6rem;
 `;
 export const SecondaryTitleIcon = styled.div`
   width: 2rem;
@@ -96,8 +97,8 @@ export const ReviewsContainer = styled.div`
   display: flex;
 `;
 export const ReviewTitle = styled.p`
-  font-weight: 400;
-  font-size: 1.3rem;
+  font-weight: 600;
+  font-size: 1.5rem;
   margin-left: 1rem;
 `;
 
@@ -122,7 +123,7 @@ export const TourPriceContainer = styled.div`
 `;
 export const TourDesc = styled.p`
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 1.9rem;
 `;
 
 export const PriceRow = styled.div`
@@ -140,7 +141,7 @@ export const BadgeContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 `;
 
 export const BadgeIcon = styled.div`
@@ -155,8 +156,8 @@ export const BadgeIcon = styled.div`
 `;
 
 export const Price = styled.p`
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 2.2rem;
+  font-weight: 700;
 `;
 
 export const ExploreBtn = styled(Link)`
@@ -244,4 +245,42 @@ export const PriceBoxContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const BannerContainer = styled.div`
+  width: 100%;
+  min-height: 50rem;
+  background-image: url(${img});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const HeadingText = styled.p`
+  font-family: var(--primary-font);
+  font-size: 3rem;
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+`;
+
+export const SignUpBtn = styled(Link)`
+  font-size: 1.8rem;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 5rem;
+  background-color: #fff;
+  color: var(--main-color);
+  font-family: var(--primary-fonr);
+  margin: 2rem 0;
+  font-weight: 700;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

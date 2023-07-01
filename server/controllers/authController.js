@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import { Email } from './../utils/email.js';
 import { promisify } from 'util';
+import { log } from 'console';
 
 // ============== MIDDLEWARE STACK START =================
 
@@ -109,11 +110,19 @@ const signUp = catchAsync(async (req, res, next) => {
     return next(new AppError('Must provide password and password confirm !'));
   }
 
+  console.log('aaaaaaaaaaaa');
+
   const newUser = await User.create({ email, password, passwordConfirm });
 
   const URL = `${req.protocol}://${req.get('host')}/login`;
 
-  await new Email(newUser, URL).sendWelcome();
+  try {
+    await new Email(newUser, URL).sendWelcome();
+  } catch (error) {
+    throw error;
+  }
+
+  console.log('bbbbbbbbbbbb');
 
   createSendToken(newUser, 201, req, res);
 });
@@ -247,7 +256,7 @@ const forgotPassword = catchAsync(async (req, res, next) => {
   try {
     const resetUrl = `${req.protocol}://${req.get(
       'host'
-    )}/resetPassword/${resetToken}`;
+    )}/reset-password/${resetToken}`;
     await new Email(user, resetUrl).sendPasswordReset();
 
     res.status(200).json({
@@ -331,8 +340,126 @@ const getCUrrentUser = catchAsync(async (req, res, next) => {
   });
 });
 
+// @ DESCRIPTION            =>  for logged in users to update their passwords
+// @ ENDPOINT               =>  api/v1/auth/update-password[POST]
+// @ ACCESS                 =>  'all logged in users'
+const updateMyPassword = catchAsync(async (req, res, next) => {
+  //1) GEt user from collection
+  const user = await User.findById(req.user._id).select('+password');
+
+  log({ user });
+
+  //2) Check if POSTed current password is correct
+  if (!(await user.correctPassword(req.body.passwordCurrent, user.password)))
+    return next(new AppError('Invalid password !', 401));
+
+  //3) If so, update password
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+
+  // console.log(user);
+
+  await user.save();
+
+  //4) Log user in, send JWT
+  createSendToken(user, 200, req, res);
+});
+
+// @ DESCRIPTION            =>  for currently loggedin user to update their profile
+// @ ENDPOINT               =>  api/v1/auth/update-me [PATCH]
+// @ ACCESS                 =>  'currently loggedin user'
+const updateMe = catchAsync(async (req, res, next) => {
+  const data = {
+    email: req.body.email,
+    name: req.body.name,
+    mobile: req.body.mobile,
+    country: req.body.country,
+    passportID: req.body.passportID,
+  };
+  const updatedUser = await User.findByIdAndUpdate(req.user._id, data, {
+    runValidators: true,
+    new: true,
+  });
+
+  res.status(201).json({
+    status: 'success',
+    message: 'Profile updated successfully',
+    data: {
+      updatedUser,
+    },
+  });
+});
+
+const mobileForgotPassword = catchAsync(async (req, res, next) => {
+  const email = req.body.email;
+  const resetUrl = Math.floor(Math.random() * 10000);
+
+  console.log({ resetUrl });
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return next(new AppError('No user found for this email', 404));
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(
+    user._id,
+    { otp: resetUrl },
+    { new: true, runValidators: true }
+  );
+
+  console.log({ updatedUser });
+
+  try {
+    await new Email(user, resetUrl).sendPasswordReset();
+
+    res.status(200).json({
+      status: 'success',
+      message: 'OTp has sent',
+    });
+  } catch (err) {
+    user.otp = undefined;
+
+    await user.save({ validateBeforeSave: false });
+
+    return next(
+      new AppError(
+        'Something went wrong while trying to send the email. Please try again later !'
+      ),
+      500
+    );
+  }
+
+  // res.status(201).json({
+  //   status: 'success',
+  //   message: 'OTP has been sent to email',
+  // });
+});
+
+const mobileResetPassword = catchAsync(async (req, res, next) => {
+  const { password, passwordConfirm, otp, email } = req.body;
+
+  console.log({ body: req.body });
+  const user = await User.findOne({ email, otp });
+
+  console.log({ user });
+
+  if (!user) {
+    return next(new AppError('no user found', 404));
+  }
+
+  user.password = password;
+  user.passwordConfirm = passwordConfirm;
+  user.otp = undefined;
+  await user.save();
+
+  createSendToken(user, 200, req, res);
+});
+
 // ########################### controllers END ###############################
 export {
+  mobileForgotPassword,
+  mobileResetPassword,
   resetPassword,
   forgotPassword,
   continueWithFacebook,
@@ -343,4 +470,6 @@ export {
   restrictTo,
   logout,
   getCUrrentUser,
+  updateMyPassword,
+  updateMe,
 };

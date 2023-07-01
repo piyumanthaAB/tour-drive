@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Dashboard from '../../components/shared/Dashboard';
 import ViewAllRequestsTable from '../../components/customer-care/ViewAllRequestsTable';
 import useFetch from '../../hooks/useFetch';
@@ -12,6 +12,7 @@ const override = {
   transform: 'translate(-50%,-50%)',
   // borderColor: "red",
 };
+
 const ViewAllEmergencyRequests = () => {
   const { data, isPending, isError } = useFetch(
     '/api/v1/emergencies?status=pending'

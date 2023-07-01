@@ -30,11 +30,11 @@ const ViewAllRequestsTable = ({ requests }) => {
                 <f.TableRow key={i}>
                   <f.TableDataCell>{i + 1} </f.TableDataCell>
                   <f.TableDataCell>
-                    {req.user.name || 'not available'}{' '}
+                    {req.user?.name || 'not available'}{' '}
                   </f.TableDataCell>
-                  <f.TableDataCell>{req.status} </f.TableDataCell>
-                  <f.TableDataCell>{req.message} </f.TableDataCell>
-                  <f.TableDataCell>{req.createdAt} </f.TableDataCell>
+                  <f.TableDataCell>{req?.status} </f.TableDataCell>
+                  <f.TableDataCell>{req?.message} </f.TableDataCell>
+                  <f.TableDataCell>{req?.createdAt} </f.TableDataCell>
                   <f.TableDataCell className="flex" minwidth="1rem">
                     <f.TableActionBtn
                       onClick={(e) => {

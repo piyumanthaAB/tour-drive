@@ -104,19 +104,19 @@ export const adminlinks = [
       },
       {
         icon: <FiPlusCircle />,
-        text: 'User Statistics',
-        redirectURL: '/admin/vehicle-add',
+        text: 'Tour Statistics',
+        redirectURL: '/admin/tours/stat',
       },
       // {
       //     icon: <FiSliders/>,
       //     text: 'Tour Statistics',
       //     redirectURL:'/admin/vehicle-update'
       // },
-      {
-        icon: <FiBookOpen />,
-        text: 'Reviews Statistics',
-        redirectURL: '/admin/vehicle-rentings',
-      },
+      // {
+      //   icon: <FiBookOpen />,
+      //   text: 'Reviews Statistics',
+      //   redirectURL: '/admin/vehicle-rentings',
+      // },
     ],
   },
 ];
@@ -141,8 +141,13 @@ export const clientLinks = [
         redirectURL: '/client/my-vehicle-bookings',
       },
       {
+        icon: <FiTruck />,
+        text: 'My custom tours',
+        redirectURL: '/client/my-custom-tours',
+      },
+      {
         icon: <FiPlusCircle />,
-        text: 'Add Custom Tour',
+        text: 'Request Custom Tour',
         redirectURL: '/client/add-custom-tour',
       },
     ],
@@ -153,15 +158,20 @@ export const cutomer_care_links = [
     resourceType: '',
     icon: <FiAlignLeft />,
     options: [
-      {
-        icon: <FiUser />,
-        text: 'My profile',
-        redirectURL: '/cutomer-care/home',
-      },
+      // {
+      //   icon: <FiUser />,
+      //   text: 'My profile',
+      //   redirectURL: '/cutomer-care/home',
+      // },
       {
         icon: <FiBookmark />,
         text: 'All emergency requests',
         redirectURL: '/customer-care/view-all-requests',
+      },
+      {
+        icon: <FiBookmark />,
+        text: 'Customer Q&A',
+        redirectURL: '/customer-care/view-all-qa-requests',
       },
     ],
   },

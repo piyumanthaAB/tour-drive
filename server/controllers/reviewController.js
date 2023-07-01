@@ -1,5 +1,7 @@
 import { Review } from '../models/reviewModel.js';
 import APIFeatures from '../utils/APIFeatures.js';
+import { User } from '../models/userModel.js';
+import { Booking } from '../models/bookingModel.js';
 import { AppError } from '../utils/AppError.js';
 import { catchAsync } from '../utils/catchAsync.js';
 
@@ -18,6 +20,28 @@ const createReview = catchAsync(async (req, res, next) => {
   };
 
   console.log({ data });
+
+  // need to check if current user has booked this tour?
+  const user = await User.findOne({ email: req.body.email });
+
+  if (!user) {
+    return next(new AppError('No user found for this email', 404));
+  }
+
+  if (req.body.reviewType === 'tour') {
+    const booking = await Booking.find({
+      bookingType: 'tour',
+      user: user._id,
+      tour: req.body.tour,
+    });
+    console.log({ booking });
+
+    if (booking.length === 0) {
+      return next(
+        new AppError('You have not booked this tour, cannot make review', 401)
+      );
+    }
+  }
 
   const review = await Review.create(data);
 

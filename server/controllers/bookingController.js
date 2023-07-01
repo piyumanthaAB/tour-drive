@@ -2,9 +2,10 @@ import { Booking } from '../models/bookingModel.js';
 import Vehicle from './../models/vehicleModel.js';
 import { catchAsync } from '../utils/catchAsync.js';
 import Stripe from 'stripe';
+import CustomTour from '../models/customTourModel.js';
 
 // @ DESCRIPTION            =>  create a booking
-// @ ENDPOINT               =>  api/v1/bookings/create-checkout-session [POST]
+// @ ENDPOINT               =>  /api/v1/bookings/create-checkout-session [POST]
 // @ ACCESS                 =>  'admin'
 const createBooking = catchAsync(async (req, res, next) => {
   const stripe = new Stripe(process.env.STRIPE_KEY);
@@ -20,6 +21,7 @@ const createBooking = catchAsync(async (req, res, next) => {
     vehicleName,
     from,
     to,
+    noOfSeats,
   } = req.body;
 
   console.log({
@@ -50,14 +52,19 @@ const createBooking = catchAsync(async (req, res, next) => {
       },
     ],
     mode: 'payment',
-    success_url:
-      process.env.NODE_ENV === 'development'
-        ? `http://localhost:3000/client/${
-            bookingType === 'tour' ? 'my-tour-bookings' : 'my-vehicle-bookings'
-          }`
-        : `${req.protocol}://${req.get('host')}/client/${
-            bookingType === 'tour' ? 'my-tour-bookings' : 'my-vehicle-bookings'
-          }`,
+    success_url: `http://localhost:3000/client/home`,
+    // success_url:
+    //   process.env.NODE_ENV === 'development'
+    //     ? `http://localhost:3000/client/${
+    //         bookingType === 'tour' || 'custom-tour'
+    //           ? 'my-tour-bookings'
+    //           : bookingType === 'vehicle'
+    //           ? 'my-vehicle-bookings'
+    //           : ''
+    //       }`
+    //     : `${req.protocol}://${req.get('host')}/client/${
+    //         bookingType === 'tour' ? 'my-tour-bookings' : 'my-vehicle-bookings'
+    //       }`,
     cancel_url: `${req.protocol}://${req.get('host')}/tours`,
   });
 
@@ -65,16 +72,26 @@ const createBooking = catchAsync(async (req, res, next) => {
   const booking = await Booking.create({
     bookingType,
     tour: tourID,
+    customTour: tourID,
     price,
     vehicle,
     user,
     duration: `${from} - ${to}`,
+    noOfSeats,
   });
 
   if (bookingType === 'vehicle') {
     const updatedVehicle = await Vehicle.findByIdAndUpdate(vehicle, {
       vehicle_state: 'rented',
     });
+  }
+
+  if (bookingType === 'custom-tour') {
+    const updateCustomTour = await CustomTour.findByIdAndUpdate(
+      tourID,
+      { isPaid: true },
+      { new: true, runValidators: true }
+    );
   }
 
   res.status(201).json({
@@ -109,7 +126,10 @@ const getMyVehicleBookings = catchAsync(async (req, res, next) => {
 const getMyTourBookings = catchAsync(async (req, res, next) => {
   let bookings = await Booking.find({ user: req.user._id });
 
-  bookings = bookings.filter((booking) => booking.bookingType === 'tour');
+  bookings = bookings.filter(
+    (booking) =>
+      booking.bookingType === 'tour' || booking.bookingType === 'custom-tour'
+  );
 
   res.status(200).json({
     status: 'success',
@@ -119,5 +139,44 @@ const getMyTourBookings = catchAsync(async (req, res, next) => {
     },
   });
 });
+// @ DESCRIPTION            =>  get currently loggedin users custom-tour bookings
+// @ ENDPOINT               =>  api/v1/bookings/my-bookings/custom-tours [GET]
+// @ ACCESS                 =>  'user'
+const getMyCustomTourBookings = catchAsync(async (req, res, next) => {
+  const customTours = await Booking.find({ user: req.user._id });
 
-export { createBooking, getMyVehicleBookings, getMyTourBookings };
+  res.status(200).json({
+    status: 'success',
+    results: '',
+    data: {},
+  });
+});
+
+// @ DESCRIPTION            =>  get total bookings of a given tour by tourId
+// @ ENDPOINT               =>  api/v1/bookings/bookings-count/:id [GET]
+// @ ACCESS                 =>  'user'
+const getBookingCounts = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+
+  const bookings = await Booking.find({ tour: id });
+
+  let bookedSeatsCount = 0;
+
+  bookings.forEach((book) => {
+    bookedSeatsCount += book.noOfSeats;
+  });
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      bookingCount: bookedSeatsCount,
+    },
+  });
+});
+
+export {
+  createBooking,
+  getMyVehicleBookings,
+  getMyTourBookings,
+  getBookingCounts,
+};

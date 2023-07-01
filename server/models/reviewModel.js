@@ -11,7 +11,7 @@ const reviewSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      unique: true,
+      // unique: true,
       required: [true, 'A review must have an email'],
       lowercase: true,
       validate: [validator.isEmail, 'please provide a valid email'],

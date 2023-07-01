@@ -67,6 +67,10 @@ export const LabelText =styled.div`
      padding:30px 5px 5px 5px;
 `;
 
+export const EmailInputContainer=styled.div`
+padding:0 4rem;
+`
+
 export const LabelTextEmail =styled.input`
      position:relative;
      width: 428px;

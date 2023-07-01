@@ -121,7 +121,7 @@ const VehicleListComp = ({}) => {
                       >
                         {/* mui check box with icon can use here */}
 
-                        <v.FavouriteBtn>
+                        {/* <v.FavouriteBtn>
                           <Checkbox
                             icon={<FavoriteBorder />}
                             checkedIcon={<Favorite />}
@@ -133,7 +133,7 @@ const VehicleListComp = ({}) => {
                               '& .MuiSvgIcon-root': { fontSize: 20 },
                             }}
                           />
-                        </v.FavouriteBtn>
+                        </v.FavouriteBtn> */}
                       </v.VehicleImgContainer>
                       <v.VehicleDescContainer>
                         <v.VehicleTitle>
@@ -261,7 +261,7 @@ const VehicleListComp = ({}) => {
                 </form>
               </v.CheckBoxContainer>
             </v.TourFilterRow>
-            <v.TourFilterRow>
+            {/* <v.TourFilterRow>
               <v.TourFilterRowTitle>Reviews Score</v.TourFilterRowTitle>
               <v.CheckBoxContainer>
                 <CheckBox
@@ -295,7 +295,7 @@ const VehicleListComp = ({}) => {
                   // checked={reviews['1']}
                 />
               </v.CheckBoxContainer>
-            </v.TourFilterRow>
+            </v.TourFilterRow> */}
             <v.TourFilterRow>
               <v.TourFilterRowTitle>Filter Price</v.TourFilterRowTitle>
               <v.SliderContainer>

@@ -16,7 +16,8 @@ const SingleTourMap = ({ locations }) => {
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/cherinpiyumantha/clgih5ylw006801pj91yv3tmp',
+      style: 'mapbox://styles/cherinpiyumantha/cldsfgjm2004a01p5k1aiq0w0',
+      // style: 'mapbox://styles/cherinpiyumantha/clgih5ylw006801pj91yv3tmp',
       center: [state.lng, state.lat],
       zoom: state.zoom,
       accessToken: `${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`,

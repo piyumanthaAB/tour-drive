@@ -57,15 +57,15 @@ const ViewAllUsers = ({ users }) => {
                 <f.TableRow key={key}>
                   <f.TableDataCell>{key + 1} </f.TableDataCell>
                   <f.TableDataCell>{user.name || '-'}</f.TableDataCell>
-                  <f.TableDataCell minwidth='1rem'>
+                  <f.TableDataCell minwidth="1rem">
                     {user.email || '-'}
                   </f.TableDataCell>
-                  <f.TableDataCell className='flex'>
+                  <f.TableDataCell className="flex">
                     {' '}
                     {user.active ? 'active' : 'deactive'}{' '}
                   </f.TableDataCell>
-                  <f.TableDataCell minwidth='1rem'>{user.role}</f.TableDataCell>
-                  <f.TableDataCell className='flex' minwidth='1rem'>
+                  <f.TableDataCell minwidth="1rem">{user.role}</f.TableDataCell>
+                  <f.TableDataCell className="flex" minwidth="1rem">
                     <f.TableActionBtn
                       onClick={(e) => {
                         onUserUpdate(e, user);
@@ -73,13 +73,13 @@ const ViewAllUsers = ({ users }) => {
                     >
                       <FiEdit />
                     </f.TableActionBtn>
-                    <f.TableActionBtn
+                    {/* <f.TableActionBtn
                       onClick={(e) => {
                         onUserDeactive(e, user);
                       }}
                     >
                       <FiTrash2 />
-                    </f.TableActionBtn>
+                    </f.TableActionBtn> */}
                   </f.TableDataCell>
                 </f.TableRow>
               );

@@ -8,7 +8,7 @@ export const NavbarContainer = styled.div`
   background-color: #fff;
   display: flex;
   justify-content: space-around;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 1rem;
   /* position: sticky; */
   /* top: 0; */
   z-index: 99999999999999999999999;
@@ -17,7 +17,7 @@ export const NavbarContainer = styled.div`
 `;
 
 export const NavBrandCOntainer = styled(Link)`
-  flex: 0 1 15%;
+  flex: 0 1 18%;
   background-image: url(${logo});
   background-position: center;
   background-repeat: no-repeat;
@@ -35,7 +35,7 @@ export const NavLinksContainer = styled.div`
 export const NavLink = styled(Link)`
   font-weight: 500;
   ${'' /* color:#333 ; */}
-  font-size:1.5rem;
+  font-size:1.8rem;
   text-decoration: none;
   transition: all 0.3s;
   color: ${(props) => (props.selected ? 'var(--main-color)' : '#333')};
@@ -53,10 +53,10 @@ export const NavAuthButtonsContainer = styled.div`
 `;
 
 export const AuthButton = styled(Link)`
-  width: 30%;
+  width: 38%;
   background-color: ${(props) =>
     props.selected ? 'var(--main-color)' : '#fff'};
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: ${(props) => (props.selected ? '#fff' : '#333')};
   text-decoration: none;
   padding: 1rem 1rem;

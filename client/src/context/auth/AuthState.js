@@ -51,33 +51,34 @@ const AuthState = (props) => {
         payload: res.data.data.user,
       });
 
-      console.log({ res });
-      toast.success('Login Success', {
-        icon: '👏',
-        style: {
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-          fontSize: '2rem',
-        },
-      });
+      // console.log({ res });
+      // toast.success('Login Success', {
+      //   icon: '👏',
+      //   style: {
+      //     borderRadius: '10px',
+      //     background: '#333',
+      //     color: '#fff',
+      //     fontSize: '2rem',
+      //   },
+      // });
       //load currently loggedin user after login
       loadUser();
+      return res;
     } catch (err) {
       console.log({ '💥error💥': err });
       dispatch({
         type: LOGIN_FAIL,
         payload: err.response.data.message,
       });
-      toast.error(`${err.response.data.message}`, {
-        icon: '😥',
-        style: {
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-          fontSize: '2rem',
-        },
-      });
+      // toast.error(`${err.response.data.message}`, {
+      //   icon: '😥',
+      //   style: {
+      //     borderRadius: '10px',
+      //     background: '#333',
+      //     color: '#fff',
+      //     fontSize: '2rem',
+      //   },
+      // });
       throw err;
     }
   };

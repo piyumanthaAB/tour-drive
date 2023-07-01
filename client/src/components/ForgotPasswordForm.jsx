@@ -1,11 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as l from './ForgotPasswordElement';
+import TextField from './shared/Form Elements/TextField';
+import submitForm from '../hooks/submitForm';
+import { toast } from 'react-hot-toast';
 
 
 export default function ForgotPasswordForm() {
+
+  const[email,setEmail]=useState('');
+
+  const onSubmit=async e=>{
+    e.preventDefault();
+// alert(email)
+
+toast.promise(
+  submitForm('/api/v1/auth/forgotPassword',{email},'post',{}),
+  {
+    loading: 'Sending email...',
+    success: (data) => `Email sent successfully `,
+    error: (err) => {
+      if (!err.response.data.message) {
+        return 'Something went wrong. Try again.';
+      }
+      return `${err?.response?.data?.message?.toString()}`;
+    },
+  },
+  {
+    style: {
+      borderRadius: '10px',
+      background: '#333',
+      color: '#fff',
+      fontSize: '1.7rem',
+    },
+  }
+);
+
+
+
+  }
+
   return (
     <l.MainContainer>
-      <l.LoginContainer>
+      <l.LoginContainer onSubmit={onSubmit}>
         <l.LoginName>Forgot Password</l.LoginName>
         <l.DesContainer>
         
@@ -15,9 +51,10 @@ export default function ForgotPasswordForm() {
         </l.DesContainer>
         
          
-         <l.LabelText>
-          <l.LabelTextEmail placeholder='  Enter Email address or Username'></l.LabelTextEmail>
-         </l.LabelText>
+         <l.EmailInputContainer>
+
+          <TextField value={email} setValue={setEmail} placeholder='  Enter Email address or Username'/>
+         </l.EmailInputContainer>
          <l.LoginButton selected={true}>Send</l.LoginButton>
          
          <l.Desc3>If you still need help, contact </l.Desc3>

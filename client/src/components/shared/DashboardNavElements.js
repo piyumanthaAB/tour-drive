@@ -33,17 +33,19 @@ export const NavLinksContainer = styled.div`
 `;
 
 export const NavBtn = styled.button`
-  width: 5rem;
-  height: 5rem;
+  /* width: 5rem; */
+  /* height: 5rem; */
+  font-family: var(--primary-font);
   background-color: #eee;
-  font-size: 2.5rem;
-  border-radius: 5rem;
+  font-size: 1.8rem;
+  border-radius: 1rem;
   outline: none;
   border: none;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: auto;
+  padding: 1rem 2rem;
 
   :hover {
     cursor: pointer;

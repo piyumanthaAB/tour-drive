@@ -30,17 +30,17 @@ const AdminVehiclecViewForm = ({ vehicles }) => {
                 <f.TableRow key={i}>
                   <f.TableDataCell> {i + 1} </f.TableDataCell>
                   <f.TableDataCell>{vehicle.vehicle_No}</f.TableDataCell>
-                  <f.TableDataCell minwidth='1rem'>
+                  <f.TableDataCell minwidth="1rem">
                     {vehicle.vehicle_type}
                   </f.TableDataCell>
-                  <f.TableDataCell className='flex'>{`${vehicle.model}, ${vehicle.brand}`}</f.TableDataCell>
-                  <f.TableDataCell minwidth='1rem'>
+                  <f.TableDataCell className="flex">{`${vehicle.model}, ${vehicle.brand}`}</f.TableDataCell>
+                  <f.TableDataCell minwidth="1rem">
                     {vehicle.fuel}
                   </f.TableDataCell>
-                  <f.TableDataCell minwidth='1rem'>
+                  <f.TableDataCell minwidth="1rem">
                     {vehicle.vehicle_state}
                   </f.TableDataCell>
-                  <f.TableDataCell className='flex' minwidth='1rem'>
+                  <f.TableDataCell className="flex" minwidth="1rem">
                     <f.TableActionBtn
                       onClick={(e) => {
                         onVehicleUpdate(e, vehicle);
@@ -48,9 +48,7 @@ const AdminVehiclecViewForm = ({ vehicles }) => {
                     >
                       <FiEdit />
                     </f.TableActionBtn>
-                    <f.TableActionBtn>
-                      <FiTrash2 />
-                    </f.TableActionBtn>
+                    {/* <f.TableActionBtn><FiTrash2 /></f.TableActionBtn> */}
                   </f.TableDataCell>
                 </f.TableRow>
               );

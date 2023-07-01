@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-import { stringify } from 'ts-jest';
+import mongoose from "mongoose";
 
 const tourSchema = new mongoose.Schema({
   name: {
@@ -27,12 +26,12 @@ const tourSchema = new mongoose.Schema({
   },
   guide_1: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User',
+    ref: "User",
     // required: [true, 'A Booking must have a user'],
   },
   guide_2: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User',
+    ref: "User",
     // required: [true, 'A Booking must have a user'],
   },
   age_limit: {
@@ -45,22 +44,22 @@ const tourSchema = new mongoose.Schema({
   locationRatingsAverage: {
     type: Number,
     default: 4.5,
-    min: [1, 'Rating must above 1.0'],
-    max: [5, 'Rating must below 5.0'],
+    min: [1, "Rating must above 1.0"],
+    max: [5, "Rating must below 5.0"],
     set: (val) => Math.round(val * 10) / 10,
   },
   serviceRatingsAverage: {
     type: Number,
     default: 4.5,
-    min: [1, 'Rating must above 1.0'],
-    max: [5, 'Rating must below 5.0'],
+    min: [1, "Rating must above 1.0"],
+    max: [5, "Rating must below 5.0"],
     set: (val) => Math.round(val * 10) / 10,
   },
   category: {
     type: String,
     required: true,
     enum: {
-      values: ['city', 'hiking', 'adventure', 'historical', 'cultural'],
+      values: ["city", "hiking", "adventure", "historical", "cultural"],
       message: `category should be one of these: < 'city','hiking','adventure','historical','cultural' >`,
     },
   },
@@ -79,7 +78,7 @@ const tourSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: ['true', 'A tour must have a description'],
+    required: ["true", "A tour must have a description"],
   },
   //   locations: {
   //     type: [String],
@@ -106,10 +105,10 @@ const tourSchema = new mongoose.Schema({
 });
 
 tourSchema.pre(/^find/, function (next) {
-  this.populate('guide_2').populate('guide_1');
+  this.populate("guide_2").populate("guide_1");
 
   next();
 });
 
-const Tour = mongoose.model('Tour', tourSchema);
+const Tour = mongoose.model("Tour", tourSchema);
 export default Tour;
