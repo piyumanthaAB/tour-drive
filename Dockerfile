@@ -17,7 +17,7 @@ COPY client/ ../client/
 COPY server/ ./
 
 # Build the client-side code
-RUN cd ../client && npm install && npm run build
+RUN cd ../client && npm install --force && npm run build
 
 EXPOSE 80
 
