@@ -192,7 +192,7 @@ const SingleVehicleOverview = ({ vehicle }) => {
           <o.Text
             margin={'1rem 0 2rem 0'}
             color="#333"
-            fontsize={'1.7rem'}
+            fontsize={'1.9rem'}
             fontweight={'500'}
             fontfamily={'var(--primary-font)'}
           >

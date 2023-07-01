@@ -158,11 +158,11 @@ export const cutomer_care_links = [
     resourceType: '',
     icon: <FiAlignLeft />,
     options: [
-      {
-        icon: <FiUser />,
-        text: 'My profile',
-        redirectURL: '/cutomer-care/home',
-      },
+      // {
+      //   icon: <FiUser />,
+      //   text: 'My profile',
+      //   redirectURL: '/cutomer-care/home',
+      // },
       {
         icon: <FiBookmark />,
         text: 'All emergency requests',

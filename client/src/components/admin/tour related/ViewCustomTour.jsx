@@ -53,13 +53,13 @@ const ViewCustomTour = ({ tours }) => {
                     >
                       <FiBookOpen />
                     </f.TableActionBtn>
-                    <f.TableActionBtn
+                    {/* <f.TableActionBtn
                       onClick={(e) => {
                         console.log('custom tour deletion');
                       }}
                     >
                       <FiTrash2 />
-                    </f.TableActionBtn>
+                    </f.TableActionBtn> */}
                   </f.TableData>
                 </f.TableRow>
               );

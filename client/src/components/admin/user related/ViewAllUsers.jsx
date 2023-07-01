@@ -73,13 +73,13 @@ const ViewAllUsers = ({ users }) => {
                     >
                       <FiEdit />
                     </f.TableActionBtn>
-                    <f.TableActionBtn
+                    {/* <f.TableActionBtn
                       onClick={(e) => {
                         onUserDeactive(e, user);
                       }}
                     >
                       <FiTrash2 />
-                    </f.TableActionBtn>
+                    </f.TableActionBtn> */}
                   </f.TableDataCell>
                 </f.TableRow>
               );

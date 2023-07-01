@@ -48,9 +48,7 @@ const AdminVehiclecViewForm = ({ vehicles }) => {
                     >
                       <FiEdit />
                     </f.TableActionBtn>
-                    <f.TableActionBtn>
-                      <FiTrash2 />
-                    </f.TableActionBtn>
+                    {/* <f.TableActionBtn><FiTrash2 /></f.TableActionBtn> */}
                   </f.TableDataCell>
                 </f.TableRow>
               );

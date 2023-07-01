@@ -1,5 +1,5 @@
-import React from "react";
-import * as h from "./HomeCoverElements";
+import React from 'react';
+import * as h from './HomeCoverElements';
 const HomeCover = () => {
   return (
     <>
@@ -13,7 +13,7 @@ const HomeCover = () => {
               EXPLORE
             </a>
           </h.btnTour>
-          <div className="test">tour search</div>
+          {/* <div className="test">tour search</div> */}
           <div className="overlay"></div>
         </h.panel>
         <h.panel>
@@ -22,10 +22,10 @@ const HomeCover = () => {
           </h.driveH1>
           <h.btnDrive>
             <a href="vehicles" className="btn">
-              EXPLORE
+              HIRE
             </a>
           </h.btnDrive>
-          <div className="test">renting search</div>
+          {/* <div className="test">renting search</div> */}
           <div className="overlay"></div>
         </h.panel>
       </h.section>
