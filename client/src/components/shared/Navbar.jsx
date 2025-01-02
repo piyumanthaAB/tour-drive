@@ -28,6 +28,12 @@ const Navbar = () => {
       url: '/',
       onClick: logout,
     },
+    {
+      text: 'Dashboard',
+      selected: true,
+      url: '/login',
+      onClick: () => {},
+    },
   ];
 
   const [links, setLinks] = useState(generalLinks);
@@ -64,17 +70,17 @@ const Navbar = () => {
             Vehicles
           </n.NavLink>
           <n.NavLink
-            selected={currentPath === '/blog' ? true : false}
-            to="/blog"
+            selected={currentPath === '/blogs' ? true : false}
+            to="/blogs"
           >
             Blog
           </n.NavLink>
-          <n.NavLink
+          {/* <n.NavLink
             selected={currentPath === '/contact-us' ? true : false}
             to="/contact-us"
           >
             Contact Us
-          </n.NavLink>
+          </n.NavLink> */}
         </n.NavLinksContainer>
         <n.NavAuthButtonsContainer>
           {links.map((link, i) => {

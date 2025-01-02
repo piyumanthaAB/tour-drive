@@ -75,10 +75,10 @@ const TourPlan = ({ plan }) => {
       <p.PlanSection>
         <p.Container ref={planRef}>
           <p.Text
-            color='#222'
-            margin='3rem 0'
-            fontweight='700'
-            fontsize='4.5rem'
+            color="#222"
+            margin="3rem 0"
+            fontweight="700"
+            fontsize="4.5rem"
           >
             Tour Plan{' '}
           </p.Text>
@@ -92,31 +92,31 @@ const TourPlan = ({ plan }) => {
                   }}
                 >
                   <p.DayLabel>
-                    <p.Text color='#fff' fontweight='500' fontsize='1.5rem'>
+                    <p.Text color="#fff" fontweight="500" fontsize="1.7rem">
                       Day {data.day}{' '}
                     </p.Text>
                   </p.DayLabel>
                   <p.Text
-                    color='#333'
-                    margin='0 0 0 1rem'
-                    fontweight='600'
-                    fontsize='1.7rem'
+                    color="#333"
+                    margin="0 0 0 1rem"
+                    fontweight="600"
+                    fontsize="1.9rem"
                   >
                     {data.title}
                   </p.Text>
-                  <p.IconContainer margin='0 2rem 0 auto'>
+                  <p.IconContainer margin="0 2rem 0 auto">
                     <AiOutlineDown />
                   </p.IconContainer>
                 </p.PlanRow>
                 <p.PlanBody key={i} open={open === i ? true : false}>
                   <p.PlanBodyRow>
                     <p.IconContainer>
-                      <RxDotFilled color='var(--main-color)' />
+                      <RxDotFilled color="var(--main-color)" />
                       <p.Text
-                        color='#333'
-                        margin='0 0 0 1rem'
-                        fontweight='500'
-                        fontsize='1.5rem'
+                        color="#333"
+                        margin="0 0 0 1rem"
+                        fontweight="500"
+                        fontsize="1.8rem"
                       >
                         {data.description}
                       </p.Text>

@@ -75,6 +75,9 @@ class Email {
       'Your password reset token. (Valid only for 10 minutes)'
     );
   }
+  async sendPasswordReset() {
+    await this.send('otp', 'Your OTP. (Valid only for 10 minutes)');
+  }
 }
 
 export { Email };

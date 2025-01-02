@@ -30,7 +30,7 @@ const ClientHome = () => {
     <>
       <Dashboard
         rightContainerContent={
-          <>{<ClientHomeComp user={data.data.currentUser} />}</>
+          <>{<ClientHomeComp user={data?.data?.currentUser} />}</>
         }
       />
     </>

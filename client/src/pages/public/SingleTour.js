@@ -11,6 +11,7 @@ import SIngleTourOverview from '../../components/public/single tour/SIngleTourOv
 import TourPlan from '../../components/public/single tour/TourPlan';
 import useFetch from '../../hooks/useFetch';
 import styled from 'styled-components';
+import QAForm from '../../components/public/single tour/QAForm';
 
 const SpinnerContainer = styled.div`
   width: 100%;
@@ -24,17 +25,20 @@ const SingleTour = () => {
   const { id } = useParams();
 
   const { data, isPending, isError } = useFetch(`/api/v1/tours/${id}`);
+  const { data: bookingsCount, isPending: bookingCountPending } = useFetch(
+    `/api/v1/booking/bookings-count/${id}`
+  );
 
   return (
     <>
-      {isPending && (
+      {isPending && bookingCountPending && (
         <SpinnerContainer>
           {' '}
           <ClipLoader size={60} />
         </SpinnerContainer>
       )}
       {isError && <p>Error</p>}
-      {data && (
+      {data && bookingsCount && (
         <>
           <SigleTourHeader
             tour={data.data}
@@ -50,6 +54,7 @@ const SingleTour = () => {
             description={data.data.description}
             price={data.data.price}
             tour={data.data}
+            bookingsCount={bookingsCount.data.bookingCount}
           />
           <SingleTourIncludes
             includes={data.data.includes}
@@ -59,6 +64,7 @@ const SingleTour = () => {
           <TourPlan plan={data.data.tourPlan} />
           {<ReviewSummary tourId={id} />}
           <DisplayReviews tourId={id} />
+          <QAForm tourId={id} />
           <CreateReviewForm tourId={id} />
         </>
       )}

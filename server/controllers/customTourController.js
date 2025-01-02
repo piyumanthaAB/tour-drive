@@ -1,31 +1,31 @@
-import CustomTour from "../models/customTourModel.js";
-import APIFeatures from "../utils/APIFeatures.js";
-import { AppError } from "../utils/AppError.js";
-import { catchAsync } from "../utils/catchAsync.js";
-import multer, { MulterError } from "multer";
+import CustomTour from '../models/customTourModel.js';
+import APIFeatures from '../utils/APIFeatures.js';
+import { AppError } from '../utils/AppError.js';
+import { catchAsync } from '../utils/catchAsync.js';
+import multer, { MulterError } from 'multer';
 
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../client/public/customTour-uploads");
+    cb(null, '../client/public/customTour-uploads');
   },
   filename: (req, file, cb) => {
-    const ext = file.mimetype.split("/")[1];
+    const ext = file.mimetype.split('/')[1];
     cb(null, `tour-${Date.now()}.${ext}`);
   },
 });
 
 const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith("image")) {
+  if (file.mimetype.startsWith('image')) {
     cb(null, true);
   } else {
-    cb(new AppError("Not an image!", 400), false);
+    cb(new AppError('Not an image!', 400), false);
   }
 };
 
 const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 
 const uploadCustomTourPhoto = upload.fields([
-  { name: "galleryImg", maxCount: 3 },
+  { name: 'galleryImg', maxCount: 3 },
 ]);
 
 //@desc Get all custom tours request
@@ -39,7 +39,11 @@ const getCustomTours = catchAsync(async (req, res, nex) => {
 
   const customTours = await features.query;
 
-  res.status(200).json({ success: true, data: customTours });
+  res.status(200).json({
+    success: true,
+    results: customTours.length,
+    data: customTours,
+  });
 });
 
 //@desc Get single tour
@@ -58,59 +62,65 @@ const getCustomTour = catchAsync(async (req, res, next) => {
 });
 
 //@Desc Create new cutom tour
-//@route POST /api/v1/custom-tour/
-//@access Public
+//@route POST /api/v1/custom-tours/
+//@access Logged in users
 const createCustomTour = catchAsync(async (req, res, next) => {
-  const {
-    name,
-    price,
-    category,
-    vehicle,
-    duration,
-    description,
-    highlights,
-    // location,
-    tourType,
-  } = req.body;
-  console.log({ body: req.body });
-  // if (req.files.galleryImg) {
-  const galleryImg = req.files.galleryImg.map((img) => {
-    return img.filename;
-  });
-  // }
-
-  let data = {
-    name,
-    price,
-    category,
-    vehicle,
-    duration,
-    description,
-    highlights,
-    // location,
-    tourType,
-    galleryImg,
+  const data = {
+    name: req.body.name,
+    customTour: req.body.customTour,
+    endDate: req.body.endDate,
+    startDate: req.body.startDate,
+    vehicleType: req.body.vehicleType,
+    vehicleTransmission: req.body.vehicleTransmission,
+    vehicleFuel: req.body.vehicleFuel,
+    passengerCount: req.body.passengerCount,
+    totalDistance: req.body.totalDistance,
+    estimatedVehicleCost: req.body.estimatedVehicleCost,
+    estimatedAccomodationCost: req.body.estimatedAccomodationCost,
+    estimatedTotalCost: req.body.estimatedTotalCost,
+    duration: req.body.duration,
+    user: req.body.user,
   };
 
-  console.log({ data });
-
-  // let locs = location;
-
-  // let regex = /(\[.*?\])/g;
-  // let matches = locs.match(regex);
-  // let loc_array = JSON.parse(`[${matches}]`);
-
-  // data.location = loc_array;
-
-  // console.log({ loc_array });
+  // console.log({ data });
 
   const customTour = await CustomTour.create(data);
 
   res.status(201).json({
     success: true,
-    message: "Custom Tour added successfully.",
+    message: 'Custom Tour added successfully.',
     data: {
       customTour,
+    },
+  });
+});
+
+//@Desc  Update cutom tour
+//@route PATCH /api/v1/custom-tour/:id
+//@access Private
+const updateCustomTour = catchAsync(async (req, res, next) => {
+  console.log({ body: req.body });
+  const { id } = req.params;
+  const data = {
+    adminPriceComment: req.body.adminPriceComment,
+    adminLocationComment: req.body.adminLocationComment,
+    adminVehicleComment: req.body.adminVehicleComment,
+    adminOtherComment: req.body.adminOtherComment,
+    status: req.body.status,
+    finalCost: req.body.finalCost,
+  };
+  const updatedCustomTour = await CustomTour.findByIdAndUpdate(id, data, {
+    new: true,
+    runValidators: true,
+  });
+
+  console.log({ updateCustomTour });
+
+  res.status(200).json({
+    success: true,
+    message: 'Custom Tour update successfully.',
+    data: {
+      updatedCustomTour,
     },
   });
 });
@@ -128,10 +138,45 @@ const deleteCustomTour = catchAsync(async (req, res, next) => {
   }
 });
 
+//@desc get currently loggedin users all custom tour requests
+//@route GET /api/v1/custom-tours/my-custom-tours
+//@access Private
+const getMyCustomTours = catchAsync(async (req, res, next) => {
+  // console.log({ user: req.user._id });
+  // console.log({ user: req.user });
+
+  const myCustomTours = await CustomTour.find({ user: req.user._id });
+
+  res.status(200).json({
+    status: 'success',
+    results: myCustomTours.length,
+    data: { myCustomTours },
+  });
+});
+//@desc get currently loggedin users single custom tour requests
+//@route GET /api/v1/custom-tours/my-custom-tours/:id
+//@access Private
+const getMyCustomTourOne = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+
+  const myCustomTour = await CustomTour.find({
+    user: req.user._id,
+    _id: id,
+  });
+
+  res.status(200).json({
+    status: 'success',
+    data: { myCustomTour },
+  });
+});
+
 export {
   getCustomTour,
   getCustomTours,
   createCustomTour,
   deleteCustomTour,
   uploadCustomTourPhoto,
+  updateCustomTour,
+  getMyCustomTours,
+  getMyCustomTourOne,
 };

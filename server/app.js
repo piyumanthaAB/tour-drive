@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import { AppError } from './utils/AppError.js';
+
 const __dirname = path.resolve();
 
 //global error handler import
@@ -22,6 +23,9 @@ import { bookingRouter } from './routes/bookingRoutes.js';
 import { reviewRouter } from './routes/reviewRoutes.js';
 import { statRouter } from './routes/statRoutes.js';
 import { emergencyRouter } from './routes/emergencyRoutes.js';
+import { DistrictDataRouter } from './routes/districtDataRoutes.js';
+import { blogRouter } from './routes/blogRoutes.js';
+import { qaRouter } from './routes/qaRoutes.js';
 
 const app = express();
 
@@ -47,8 +51,12 @@ app.use('/api/v1/booking', bookingRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/stats', statRouter);
 app.use('/api/v1/emergencies', emergencyRouter);
+app.use('/api/v1/district-data', DistrictDataRouter);
+app.use('/api/v1/blogs', blogRouter);
+app.use('/api/v1/qa', qaRouter);
 
 if (process.env.NODE_ENV === 'production') {
+  // test
   app.use(express.static(path.join(__dirname, '../client/build')));
 
   app.get('*', (req, res) => {

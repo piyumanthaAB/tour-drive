@@ -1,33 +1,33 @@
-import { User } from '../models/userModel.js';
-import Vehicle from '../models/vehicleModel.js';
-import APIFeatures from '../utils/APIFeatures.js';
-import { AppError } from '../utils/AppError.js';
-import { catchAsync } from '../utils/catchAsync.js';
-import multer from 'multer';
+import { User } from "../models/userModel.js";
+import Vehicle from "../models/vehicleModel.js";
+import APIFeatures from "../utils/APIFeatures.js";
+import { AppError } from "../utils/AppError.js";
+import { catchAsync } from "../utils/catchAsync.js";
+import multer from "multer";
 
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '../client/public/vehicle-uploads');
+    cb(null, "../client/public/vehicle-uploads");
   },
   filename: (req, file, cb) => {
-    const ext = file.mimetype.split('/')[1];
+    const ext = file.mimetype.split("/")[1];
     cb(null, `vehicle-${Date.now()}.${ext}`);
   },
 });
 
 const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image')) {
+  if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else {
-    cb(new AppError('Not an image!', 400), false);
+    cb(new AppError("Not an image!", 400), false);
   }
 };
 
 const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 
 const uploadVehiclePhoto = upload.fields([
-  { name: 'vehicle_cover', maxCount: 1 },
-  { name: 'vehicle_gallery', maxCount: 3 },
+  { name: "vehicle_cover", maxCount: 1 },
+  { name: "vehicle_gallery", maxCount: 3 },
 ]);
 //  @desc        Get all vehicles
 //  @route       GET /api/v1/vehicles
@@ -36,7 +36,7 @@ const getVehicles = catchAsync(async (req, res, next) => {
   const allRecords = await Vehicle.find();
 
   let query = Vehicle.find();
-  const types = req?.query?.vehicle_type?.split(',');
+  const types = req?.query?.vehicle_type?.split(",");
 
   if (req?.query?.vehicle_type) {
     query = Vehicle.find({
@@ -109,7 +109,7 @@ const addVehicle = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     success: true,
-    message: 'vehicle added successfully',
+    message: "vehicle added successfully",
     data: vehicle,
   });
 });
@@ -157,7 +157,7 @@ const updateVehicle = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     success: true,
-    message: 'Vehicle updated successfully',
+    message: "Vehicle updated successfully",
     data: { vehicle },
   });
 });
@@ -189,7 +189,7 @@ const updateDriver = catchAsync(async (req, res, next) => {
     driver: req.body.driver,
   };
 
-  if (req.body.action === 'update') {
+  if (req.body.action === "update") {
     const updateDriver = await User.findByIdAndUpdate(data?.driver, {
       assignedToVehicle: true,
     });
@@ -204,8 +204,8 @@ const updateDriver = catchAsync(async (req, res, next) => {
   }
 
   res.status(201).json({
-    status: 'success',
-    message: 'Driver updated successfully',
+    status: "success",
+    message: "Driver updated successfully",
     data: {},
   });
 });
@@ -221,12 +221,12 @@ const updateVehicleState = catchAsync(async (req, res, next) => {
   });
 
   if (!updatedVehicle) {
-    return next(new AppError('No vehicle found for this ID', 400));
+    return next(new AppError("No vehicle found for this ID", 400));
   }
 
   res.status(201).json({
-    status: 'success',
-    message: 'vehicle state updated successfully',
+    status: "success",
+    message: "vehicle state updated successfully",
   });
 });
 

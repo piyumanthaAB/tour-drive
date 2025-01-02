@@ -185,7 +185,7 @@ const AdminTourCreateForm = () => {
           </f.FormGroup>
 
           <f.FormGroup>
-            <Label labelText={'Select Tour Guide 2'} />
+            <Label labelText={"Select Tour Guide 2"} />
             <DropDown
               dropDownValues={availableGuides}
               currentDropdownVal={guideTwo}
@@ -333,13 +333,22 @@ const AdminTourCreateForm = () => {
               placeholder="Enter tour description here"
             />
           </f.FormGroup>
+          <f.FormGroup></f.FormGroup>
 
-          <f.FormGroup>
-            <f.SubmitBtn type="submit">Add Tour</f.SubmitBtn>
+          <f.ButtonRow>
+            <f.SubmitBtn
+              backgroundColor="var(--main-color)"
+              onClick={(e) => {
+                e.preventDefault();
+                onSubmit(e);
+              }}
+            >
+              Add Tour
+            </f.SubmitBtn>
             <f.SubmitBtn color="#333" type="reset">
               Clear
             </f.SubmitBtn>
-          </f.FormGroup>
+          </f.ButtonRow>
         </f.Form>
       </f.Container>
     </>

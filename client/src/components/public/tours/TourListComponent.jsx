@@ -30,6 +30,9 @@ import {
   TourFilterTitle,
   CheckBoxContainer,
   SliderContainer,
+  BannerContainer,
+  SignUpBtn,
+  HeadingText,
 } from './TourListElements';
 
 import Checkbox from '@mui/material/Checkbox';
@@ -169,7 +172,7 @@ const TourListComponent = ({ setUrl }) => {
                         img={`${process.env.PUBLIC_URL}/tour-uploads/${tour.tour_cover}`}
                       >
                         {/* mui check box with icon can use here */}
-
+                        {/* 
                         <FavouriteBtn>
                           <Checkbox
                             icon={<FavoriteBorder />}
@@ -182,7 +185,7 @@ const TourListComponent = ({ setUrl }) => {
                               '& .MuiSvgIcon-root': { fontSize: 20 },
                             }}
                           />
-                        </FavouriteBtn>
+                        </FavouriteBtn> */}
                       </TourImgContainer>
                       <TourDescContainer>
                         <TourTitle>{tour?.name}</TourTitle>
@@ -201,12 +204,12 @@ const TourListComponent = ({ setUrl }) => {
                           <ReviewsContainer>
                             <Rating
                               emptySymbol={
-                                <BsFillStarFill color="#888" size={15} />
+                                <BsFillStarFill color="#888" size={20} />
                               }
                               fullSymbol={
                                 <BsFillStarFill
                                   color={'var(--main-color)'}
-                                  size={15}
+                                  size={20}
                                 />
                               }
                               initialRating={
@@ -223,7 +226,7 @@ const TourListComponent = ({ setUrl }) => {
                         </Row>
                         <Row>
                           <TourDesc>
-                            {tour.description.slice(0, 70) + '...'}
+                            {tour.description.slice(0, 100) + '...'}
                           </TourDesc>
                         </Row>
                         <Row>
@@ -296,7 +299,7 @@ const TourListComponent = ({ setUrl }) => {
                 />
               </CheckBoxContainer>
             </TourFilterRow>
-            <TourFilterRow>
+            {/* <TourFilterRow>
               <TourFilterRowTitle>Reviews Score</TourFilterRowTitle>
               <CheckBoxContainer>
                 <CheckBox
@@ -330,7 +333,7 @@ const TourListComponent = ({ setUrl }) => {
                   checked={reviews['1']}
                 />
               </CheckBoxContainer>
-            </TourFilterRow>
+            </TourFilterRow> */}
             <TourFilterRow>
               <TourFilterRowTitle>Filter Price</TourFilterRowTitle>
               <SliderContainer>
@@ -355,6 +358,12 @@ const TourListComponent = ({ setUrl }) => {
                 {/* <p>Selected maximum: {value2[1] * 10}</p> */}
               </PriceBoxContainer>
             </TourFilterRow>
+            <BannerContainer>
+              <HeadingText>
+                Sign Up from here to make your own tours.
+              </HeadingText>
+              <SignUpBtn to={'/signup'}>Sign Up</SignUpBtn>
+            </BannerContainer>
           </TourFilterContainer>
         </ToursSection>
       </ContentContainer>

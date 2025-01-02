@@ -44,9 +44,20 @@ import AdminViewCustomTour from './pages/admin/tour related/AdminViewCustomTour'
 import ToTopBtn from './components/back-to-top/ToTopBtn';
 import ViewAllEmergencyRequests from './pages/customer-care/ViewAllEmergencyRequests';
 import ViewSingleEmergencyRequest from './pages/customer-care/ViewSingleEmergencyRequest';
-
+import AdminSingleCustomTour from './pages/admin/tour related/AdminSingleCustomTour';
+import ViewCustomTourSummary from './pages/client/tour related/ViewCustomTourSummary';
+import ViewAllCustomTours from './pages/client/tour related/ViewAllCustomTours';
+import ViewSingleCustomTour from './pages/client/tour related/ViewSingleCustomTour';
+import Blogs from './pages/public/Blogs';
+import BlogPost from './pages/public/BlogPost';
+import ViewAllQARequests from './pages/customer-care/ViewAllQARequests';
+import AnswerQAResuest from './pages/customer-care/AnswerQAResuest';
+import ContactUs from './pages/public/ContactUs';
 function App() {
   const { loadUser } = useAuth();
+
+  // console.log({ mapboxToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN });
+  // console.log({ env: process.env });
 
   useEffect(() => {
     loadUser();
@@ -84,6 +95,21 @@ function App() {
                 path="/client/add-custom-tour"
                 element={<AddCustomTour />}
               />
+              <Route
+                exact
+                path="/client/custom-tour/summary"
+                element={<ViewCustomTourSummary />}
+              />
+              <Route
+                exact
+                path="/client/my-custom-tours"
+                element={<ViewAllCustomTours />}
+              />
+              <Route
+                exact
+                path="/client/my-custom-tours/:id"
+                element={<ViewSingleCustomTour />}
+              />
               {/* CUSTOMER CARE routes starts here */}
               <Route
                 exact
@@ -95,6 +121,16 @@ function App() {
                 path="/customer-care/view-request/:id"
                 element={<ViewSingleEmergencyRequest />}
               />
+              <Route
+                exact
+                path="/customer-care/view-all-qa-requests"
+                element={<ViewAllQARequests />}
+              />
+              <Route
+                exact
+                path="/customer-care/answer-qa-request/:id"
+                element={<AnswerQAResuest />}
+              />
               {/* ADMIN ROUTES starts here */}
               <Route exact path="/admin/home" element={<AdminHome />} />{' '}
               {/* this is admin home */}
@@ -104,6 +140,11 @@ function App() {
                 exact
                 path="/admin/custom-tours/all"
                 element={<AdminViewCustomTour />}
+              />
+              <Route
+                exact
+                path="/admin/custom-tours/:id"
+                element={<AdminSingleCustomTour />}
               />
               <Route
                 exact
@@ -170,14 +211,18 @@ function App() {
             <Route element={<WithNav />}>
               <Route exact path="/" element={<Home />} />
               <Route exact path="/about" element={<Home />} />
-              <Route exact path="/contact-us" element={<Home />} />
+              {/* <Route exact path="/contact-us" element={<Home />} /> */}
 
               <Route
                 exact
                 path="/forgot-password"
                 element={<ForgotPassword />}
               />
-              <Route exact path="/reset-password" element={<ResetPassword />} />
+              <Route
+                exact
+                path="/reset-password/:token"
+                element={<ResetPassword />}
+              />
 
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/signup" element={<Signup />} />
@@ -185,8 +230,11 @@ function App() {
               <Route exact path="/signup-info-1" element={<Profile_1 />} />
               <Route exact path="/signup-info-2" element={<Profile_2 />} />
 
-              <Route exact path="/contact-us" element={<Home />} />
+              <Route exact path="/contact-us" element={<ContactUs />} />
               <Route exact path="/tours" element={<Tours />} />
+
+              <Route exact path="/blogs" element={<Blogs />} />
+              <Route exact path="/blogs/:id" element={<BlogPost />} />
 
               <Route exact path="/vehicles" element={<Vehicles />} />
 

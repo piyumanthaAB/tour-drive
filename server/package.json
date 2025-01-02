@@ -9,8 +9,8 @@
     "start": "node server.js",
     "start_dev_server": "set NODE_ENV=development&&nodemon server.js",
     "start_prod_server": "set NODE_ENV=production&&nodemon server.js",
-    "redner:build": "npm install --prefix ./../client && npm run build --prefix ./../client && npm i",
-    "render:start": "set NODE_ENV=production && npm start"
+    "railway:build": "npm install --prefix client && npm run build --prefix client && npm i",
+    "railway:start": "set NODE_ENV=production && npm start"
   },
   "keywords": [],
   "author": "",
@@ -26,10 +26,11 @@
     "html-to-text": "^9.0.4",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.4",
-    "mongoose": "^6.7.4",
+    "mongoose": "^6.11.1",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.1",
+    "nodemon": "^2.0.22",
     "stripe": "^11.12.0",
     "validator": "^13.7.0"
   },

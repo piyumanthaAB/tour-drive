@@ -1,0 +1,277 @@
+const locations = [
+  {
+    city: 'Colombo',
+    availableLocations: [
+      'Gangaramaya Temple',
+      'Viharamahadevi Park',
+      'National Museum of Colombo',
+      'Galle Face Green',
+      'Old Dutch Hospital',
+      'Colombo Fort',
+    ],
+  },
+  {
+    city: 'Gampaha',
+    availableLocations: [
+      'Henarathgoda Botanical Garden',
+      'Attanagalla Temple',
+      'Sapugaskanda Forest Reserve',
+      'Sri Lanka Air Force Museum',
+      'Bellanwila Rajamaha Viharaya',
+      'Thewatte Basilica of Our Lady of Lanka',
+    ],
+  },
+  {
+    city: 'Kalutara',
+    availableLocations: [
+      'Richmond Castle',
+      'Kalutara Bodhiya',
+      'Kalutara Beach',
+      'Brief Garden',
+      'Richmond Castle',
+      'Fa Hien Cave',
+    ],
+  },
+  {
+    city: 'Kandy',
+    availableLocations: [
+      'Temple of the Tooth Relic',
+      'Kandy Lake',
+      'Royal Botanical Gardens',
+      'Udawatta Kele Sanctuary',
+      'Bahirawakanda Vihara Buddha Statue',
+      'Kandy Garrison Cemetery',
+    ],
+  },
+  {
+    city: 'Matale',
+    availableLocations: [
+      'Aluvihare Rock Temple',
+      'Nalanda Gedige',
+      'Sembuwatta Lake',
+      'Riverstone Gap',
+      'Euphoria Spice and Herbal Gardens',
+      'Sri Muthumariamman Temple',
+    ],
+  },
+  {
+    city: 'Nuwara Eliya',
+    availableLocations: [
+      'Horton Plains National Park',
+      'Pedro Tea Estate',
+      'Gregory Lake',
+      'Hakgala Botanical Garden',
+      "St. Clair's Falls",
+      "Galway's Land National Park",
+    ],
+  },
+  {
+    city: 'Galle',
+    availableLocations: [
+      'Galle Fort',
+      'Dutch Reformed Church',
+      'Unawatuna Beach',
+      'Japanese Peace Pagoda',
+      'Maritime Archaeology Museum',
+      'Koggala Lake',
+    ],
+  },
+  {
+    city: 'Matara',
+    availableLocations: [
+      'Matara Fort',
+      'Parey Dewa Buddhist Temple',
+      'Polhena Beach',
+      'Weherahena Buddhist Temple',
+      'Star Fort',
+      'Dondra Head Lighthouse',
+    ],
+  },
+  {
+    city: 'Hambantota',
+    availableLocations: [
+      'Yala National Park',
+      'Bundala National Park',
+      'Kalametiya Bird Sanctuary',
+      'Tangalle Beach',
+      'Mulkirigala Rock Temple',
+      'Tissamaharama Temple',
+    ],
+  },
+  {
+    city: 'Jaffna',
+    availableLocations: [
+      'Nallur Kandaswamy Kovil',
+      'Jaffna Fort',
+      'Keerimalai Hot Springs',
+      'Jaffna Public Library',
+      'Nagadipa Purana Vihara',
+      'Delft Island Wildlife Sanctuary',
+    ],
+  },
+  {
+    city: 'Kilinochchi',
+    availableLocations: [
+      'Iranamadu Tank',
+      'Kantharodai Vihara',
+      'Elephant Pass War Memorial',
+      'Chundikulam National Park',
+      'Mankulam Forest Reserve',
+      'Vallipuram Alvar Kovil',
+    ],
+  },
+  {
+    city: 'Mannar',
+    availableLocations: [
+      'Mannar Fort',
+      "Adam's Bridge",
+      'Thiruketheeswaram Kovil',
+      'Mannar Island',
+      "Giant's Tank",
+      'Madhu Church',
+    ],
+  },
+  {
+    city: 'Vavuniya',
+    availableLocations: [
+      'Kandamale Raja Maha Viharaya',
+      'Kanthasamy Kovil',
+      'Udawela Weva',
+      'Nelukkulam Hot Springs',
+      'Vavuniya Archaeological Museum',
+      'Rangiri Ulpotha Archaeological Site',
+    ],
+  },
+  {
+    city: 'Mullaitivu',
+    availableLocations: [
+      'Mullaitivu Beach',
+      'Mullaitivu Fort',
+      'Maritimepattu Archaeological Site',
+      'Mullaitivu Ecotourism Center',
+      'Mullaitivu Cultural and Information Center',
+      'Mullaitivu Bird Sanctuary',
+    ],
+  },
+  {
+    city: 'Batticaloa',
+    availableLocations: [
+      'Batticaloa Fort',
+      'Kallady Bridge',
+      'Batticaloa Lagoon',
+      'Batticaloa Market',
+      "St. Mary's Cathedral",
+      'Pasikudah Beach',
+    ],
+  },
+  {
+    city: 'Ampara',
+    availableLocations: [
+      'Gal Oya National Park',
+      'Magul Maha Viharaya',
+      'Kudumbigala Monastery',
+      'Lahugala Kitulana National Park',
+      'Maha Oya River Safari',
+      'Elephant Rock',
+    ],
+  },
+  {
+    city: 'Trincomalee',
+    availableLocations: [
+      'Koneswaram Temple',
+      'Pigeon Island National Park',
+      'Trincomalee Beach',
+      'Fort Frederick',
+      'Lovers Leap',
+      'Kanniya Hot Springs',
+    ],
+  },
+  {
+    city: 'Kurunegala',
+    availableLocations: [
+      'Ridi Viharaya',
+      'Kurunegala Clock Tower',
+      'Ethagala Rock Cave Temple',
+      'Kurunegala National Museum',
+      'Royal Rock Temple',
+      'Kurunegala Elephant Park',
+    ],
+  },
+  {
+    city: 'Puttalam',
+    availableLocations: [
+      'Wilpattu National Park',
+      'Kalpitiya Beach',
+      'Dutch Fort Kalpitiya',
+      'Munneshwaram Kovil',
+      'Anawilundawa Wetland Sanctuary',
+      'Puttalam Lagoon',
+    ],
+  },
+  {
+    city: 'Anuradhapura',
+    availableLocations: [
+      'Sri Maha Bodhi Tree',
+      'Ruwanwelisaya Stupa',
+      'Thuparamaya Temple',
+      'Jetavanaramaya Stupa',
+      'Lovamahapaya',
+      'Isurumuniya Temple',
+    ],
+  },
+  {
+    city: 'Polonnaruwa',
+    availableLocations: [
+      'Polonnaruwa Archaeological Site',
+      'Gal Vihara',
+      'Polonnaruwa Vatadage',
+      'Royal Palace of King Parakramabahu',
+      'Rankoth Vehera',
+      'Lankathilaka Temple',
+    ],
+  },
+  {
+    city: 'Badulla',
+    availableLocations: [
+      'Dunhinda Falls',
+      'Muthiyangana Temple',
+      'Badulla Clock Tower',
+      'Bogoda Wooden Bridge',
+      'Namunukula Mountain Range',
+      'Ravana Falls',
+    ],
+  },
+  {
+    city: 'Moneragala',
+    availableLocations: [
+      'Yudaganawa Temple',
+      'Udawalawe National Park',
+      'Maligawila Buddha Statue',
+      'Madunagala Hot Springs',
+      'Wedihitikanda Forest Reserve',
+      'Kaltota Doowili Ella Waterfall',
+    ],
+  },
+  {
+    city: 'Ratnapura',
+    availableLocations: [
+      'Sinharaja Forest Reserve',
+      'Udawalawe Elephant Transit Home',
+      'Gem Museum Ratnapura',
+      'Ratnapura National Museum',
+      'Maha Saman Devalaya',
+      'Bopath Ella Waterfall',
+    ],
+  },
+  {
+    city: 'Kegalle',
+    availableLocations: [
+      'Pinnawala Elephant Orphanage',
+      'Udawatte Kele Sanctuary',
+      'Kegalle Clock Tower',
+      'Kadi',
+    ],
+  },
+];
+
+export { locations as customTourLocations };

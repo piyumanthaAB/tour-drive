@@ -8,7 +8,7 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 1rem 0;
+  margin: 2rem 0;
 `;
 
 const Input = styled.input`
@@ -51,7 +51,7 @@ const Input = styled.input`
 `;
 
 const Label = styled.label`
-  font-size: 1.4rem;
+  font-size: 1.9rem;
   font-family: var(--primary-font);
 
   :hover {

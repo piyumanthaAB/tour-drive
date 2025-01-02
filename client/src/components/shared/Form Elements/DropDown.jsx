@@ -40,7 +40,6 @@ const HeaderContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1rem 2rem;
-
   :hover {
     cursor: pointer;
   }
@@ -62,13 +61,11 @@ const BodyContainer = styled.div`
   max-height: 20rem;
   overflow-y: scroll;
   box-shadow: 0px 0px 32px 0px rgba(143, 143, 143, 0.2);
-
   ::-webkit-scrollbar {
     background-color: #ccc;
     width: 1rem;
     height: 10%;
   }
-
   ::-webkit-scrollbar-thumb {
     background-color: var(--fourth-blue);
     border-radius: 0.5rem;
@@ -81,7 +78,6 @@ const ItemContainer = styled.div`
   padding:1rem 2rem;
   margin: 2rem 0;
   transition: all 0.3s;
-
   :hover {
     cursor: pointer;
     background-color: #ccc;
@@ -100,6 +96,7 @@ const DropDown = ({
   dropDownValues,
   currentDropdownVal,
   setCurrentDropdownVal,
+  onChange,
 }) => {
   const [open, setOpen] = useState(false);
   //   const [currentVal, setCurrentVal] = useState('Select Item');
@@ -123,9 +120,9 @@ const DropDown = ({
   return (
     <Container>
       <HeaderContainer ref={dropDownRef} onClick={() => setOpen(!open)}>
-        <Text fontweight="600" color="#222" fontsize="1.6rem">
+        <Text fontweight="600" color="#222" fontsize="1.8rem">
           {/* {currentDropdownVal} */}
-          {currentDropdownVal.label}
+          {currentDropdownVal?.label || 'not available '}
         </Text>
         <IconContainer
           onClick={() => setOpen(!open)}
@@ -146,6 +143,7 @@ const DropDown = ({
                   label: item.label,
                   value: item.value,
                 });
+                onChange();
               }}
             >
               <Text fontsize="1.6rem">{item.label} </Text>

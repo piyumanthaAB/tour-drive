@@ -12,7 +12,7 @@ export const Conatiner = styled.div`
 
 export const ContainerLeft = styled.div`
   display: flex;
-  flex: 0 0 20%;
+  flex: 0 0 25%;
   ${'' /* background-color:green ; */}
   border-right:2px solid #ccc;
   flex-direction: column;
@@ -120,7 +120,7 @@ export const OptionsContainer = styled.div`
 `;
 
 export const OptionsTitle = styled.p`
-  font-size: 1.75rem;
+  font-size: 1.9rem;
   margin: 0 0 1rem 0;
   font-weight: 1000;
 `;
@@ -135,14 +135,14 @@ export const OptionContainer = styled(Link)`
     font-weight: bold;
     cursor: pointer;
   }
-  color: #777;
+  color: #555;
   font-weight: ${(props) => (props.selected ? 'bold' : '400')};
   text-decoration: none;
   transition: all 0.2s;
 `;
 
 export const Option = styled.p`
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-family: var(--secondary-font);
 `;
 
